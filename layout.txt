@@ -1,0 +1,51 @@
+# projectLayout: take a quick look at below tree for better understanding of the boilerplate if any further questions contact dev
+
+
+├── pythonFlaskApp/
+│   ├── __init__.py
+│   ├── config.py
+│   ├── models.py
+│   ├── site.db
+│   ├── errors/
+│   │   ├── __init__.py
+│   │   └── handlers.py
+│   ├── main/
+│   │   ├── __init__.py
+│   │   └── routes.py
+│   ├── posts/
+│   │   ├── __init__.py
+│   │   ├── forms.py
+│   │   └── routes.py
+│   ├── static/
+│   │   └── profile_pics/
+│   │   │   └── default.jpg
+│   │   └── main.css
+│   ├── templates/
+│   │   ├── errors/
+│   │   │   ├── 403.html
+│   │   │   ├── 404.html
+│   │   │   └── 500.html
+│   │   ├── about.html
+│   │   ├── account.html
+│   │   ├── create_post.html
+│   │   ├── home.html
+│   │   ├── layout.html
+│   │   ├── login.html
+│   │   ├── post.html
+│   │   ├── register.html
+│   │   └── user_posts.html
+│   │       
+│   └── users/
+│       ├── __init__.py
+│       ├── forms.py
+│       ├── routes.py
+│       └── utils.py
+│       
+├── .gitignore 
+├── LICENSE
+├── projectLayout.txt
+├── README.md
+└── run.py
+
+
+github: @attila5287

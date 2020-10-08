@@ -1,0 +1,69 @@
+{% extends "layout.html" %}
+{% block content %}
+    {% if posts ==[] %}
+    <br>
+    Jinja nested statement works great with try - except of Python! These are introductory posts only to show up when demonstration required:
+    <br>
+    
+    {% for post in PostDemoList %}
+    
+    <div class="media m-2">
+      <a class="d-flex align-self-center">
+        <div class="alert alert-primary p-1 bg-body" role="alert" style="border-color: black;">
+        <img class="rounded mr-1"
+        src="{{ url_for('static', filename='profile_pics/' + 'attila.jpg') }}" alt="" 
+        style="max-height: 6rem;">
+        </div>
+      </a>
+      <div class="alert alert-secondary bg-body" role="alert" style="border-color: black;">
+      
+      <div class="media-body">
+        
+        <h5 class="mt-1 my-1"> 
+          {{ post.title }}
+        </h5>
+        <p class="mt-1 my-1">
+          <i class="fa fa-caret-right" aria-hidden="true"></i>
+          {{ post.content }}
+        </p>
+        <p class="text-muted text-right mt-1 my-0">
+            <i class="fas fa-user"></i>
+            {{ post.author }}
+            <em> @  {{ post.date_posted.strftime('%Y-%m-%d') }} </em> 
+            <i class="fas fa-window-close ml-2 mr-auto text-danger"></i>  
+            <i class="fas fa-edit mr-auto text-dark"></i>
+          </p>
+      </div>
+    </div>
+    </div>
+    {% endfor %}
+    {% else %}
+    {% for post in posts.items %}
+        <article class="media content-section">
+          <img class="rounded-circle article-img" src="{{ url_for('static', filename='profile_pics/' + post.author.image_file) }}">
+          <div class="media-body">
+            <div class="article-metadata">
+              <a class="mr-2" href="{{ url_for('users.user_posts', username=post.author.username) }}">{{ post.author.username }}</a>
+              <small class="text-muted">{{ post.date_posted.strftime('%Y-%m-%d') }}</small>
+            </div>
+            <h2><a class="article-title" href="{{ url_for('posts.post', post_id=post.id) }}">{{ post.title }}</a></h2>
+            <p class="article-content">{{ post.content }}</p>
+          </div>
+        </article>
+    {% endfor %}
+    {% for page_num in posts.iter_pages(left_edge=1, right_edge=1, left_current=1, right_current=2) %}
+      {% if page_num %}
+        {% if posts.page == page_num %}
+          <a class="btn btn-info mb-4" href="{{ url_for('main.home', page=page_num) }}">{{ page_num }}</a>
+        {% else %}
+          <a class="btn btn-outline-info mb-4" href="{{ url_for('main.home', page=page_num) }}">{{ page_num }}</a>
+        {% endif %}
+      {% else %}
+        ...
+      {% endif %}
+    {% endfor %}
+
+    {% endif %}
+
+
+{% endblock content %}
