@@ -10,6 +10,26 @@ from blueprints.users.utils import save_picture
 users = Blueprint('users', __name__)
 
 
+
+# function that takes /register user input thru reg-form
+@users.route("/regist3r", methods=['POST'])
+def regist3r():
+  pass
+  hashed_password = bcrypt.generate_password_hash(
+    request.form['password']).decode('utf-8')
+  print('test pw')
+  print(hashed_password)
+  user = User(
+    username=request.form['username'],
+    email=request.form['email'],
+    img_url= 0,
+    password=hashed_password
+  )
+  db.session.add(user)
+  db.session.commit()
+  flash('Your account has been created! You are now able to log in', 'success')
+  return redirect(url_for('users.login'))
+
 @users.route("/register", methods=['GET', 'POST'])
 def register():
     if current_user.is_authenticated:

@@ -64,7 +64,7 @@ __repr__	../blueprints\models.py	/^    def __repr__(self):$/;"	kind:member	line:
 __repr__	../blueprints\models.py	/^    def __repr__(self):$/;"	kind:member	line:47
 about	../blueprints\main\routes.py	/^def about():$/;"	kind:function	line:47
 aboutdev	../blueprints\main\routes.py	/^def aboutdev():$/;"	kind:function	line:51
-account	../blueprints\users\routes.py	/^def account():$/;"	kind:function	line:52
+account	../blueprints\users\routes.py	/^def account():$/;"	kind:function	line:72
 app	../run.py	/^app = create_app()$/;"	kind:variable	line:3
 author	../blueprints\models.py	/^    author = 'attila'$/;"	kind:variable	line:40
 bcrypt	../blueprints\__init__.py	/^bcrypt = Bcrypt()$/;"	kind:variable	line:9
@@ -90,7 +90,7 @@ db	../blueprints\posts\routes.py	/^from blueprints import db$/;"	kind:namespace	
 db	../blueprints\users\routes.py	/^from blueprints import db, bcrypt$/;"	kind:namespace	line:3
 delete_dummy_posts_from	../blueprints\posts\routes.py	/^def delete_dummy_posts_from(user_1d):$/;"	kind:function	line:64
 delete_post	../blueprints\posts\routes.py	/^def delete_post(post_id):$/;"	kind:function	line:53
-delete_user_by_ID	../blueprints\users\routes.py	/^def delete_user_by_ID(user_1d):$/;"	kind:function	line:81
+delete_user_by_ID	../blueprints\users\routes.py	/^def delete_user_by_ID(user_1d):$/;"	kind:function	line:101
 email	../blueprints\models.py	/^    email = db.Column(db.String(120), unique=True, nullable=False)$/;"	kind:variable	line:16
 email	../blueprints\users\forms.py	/^    email = StringField('Email',$/;"	kind:variable	line:12
 email	../blueprints\users\forms.py	/^    email = StringField('Email',$/;"	kind:variable	line:31
@@ -112,13 +112,13 @@ id	../blueprints\models.py	/^    id = db.Column(db.Integer, primary_key=True)$/;
 image_file	../blueprints\models.py	/^    image_file = db.Column(db.String(20), nullable=False, default='default.png')$/;"	kind:variable	line:17
 inject_PostDemoList	../blueprints\main\routes.py	/^def inject_PostDemoList():$/;"	kind:function	line:7
 load_user	../blueprints\models.py	/^def load_user(user_id):$/;"	kind:function	line:9
-login	../blueprints\users\routes.py	/^def login():$/;"	kind:function	line:29
+login	../blueprints\users\routes.py	/^def login():$/;"	kind:function	line:49
 login_manager	../blueprints\__init__.py	/^login_manager = LoginManager()$/;"	kind:variable	line:10
 login_manager	../blueprints\models.py	/^from blueprints import db, login_manager$/;"	kind:namespace	line:4
 login_required	../blueprints\posts\routes.py	/^from flask_login import current_user, login_required$/;"	kind:namespace	line:3
 login_required	../blueprints\users\routes.py	/^from flask_login import login_user, current_user, logout_user, login_required$/;"	kind:namespace	line:2
 login_user	../blueprints\users\routes.py	/^from flask_login import login_user, current_user, logout_user, login_required$/;"	kind:namespace	line:2
-logout	../blueprints\users\routes.py	/^def logout():$/;"	kind:function	line:45
+logout	../blueprints\users\routes.py	/^def logout():$/;"	kind:function	line:65
 logout_user	../blueprints\users\routes.py	/^from flask_login import login_user, current_user, logout_user, login_required$/;"	kind:namespace	line:2
 main	../blueprints\__init__.py	/^    from blueprints.main.routes import main$/;"	kind:namespace	line:25
 main	../blueprints\main\routes.py	/^main = Blueprint('main', __name__)$/;"	kind:variable	line:4
@@ -136,7 +136,8 @@ posts	../blueprints\__init__.py	/^    from blueprints.posts.routes import posts$
 posts	../blueprints\models.py	/^    posts = db.relationship('Post', backref='author', lazy=True)$/;"	kind:variable	line:19
 posts	../blueprints\posts\routes.py	/^posts = Blueprint('posts', __name__)$/;"	kind:variable	line:8
 redirect	../blueprints\users\routes.py	/^from flask import render_template, url_for, flash, redirect, request, Blueprint$/;"	kind:namespace	line:1
-register	../blueprints\users\routes.py	/^def register():$/;"	kind:function	line:14
+regist3r	../blueprints\users\routes.py	/^def regist3r():$/;"	kind:function	line:16
+register	../blueprints\users\routes.py	/^def register():$/;"	kind:function	line:34
 remember	../blueprints\users\forms.py	/^    remember = BooleanField('Remember Me')$/;"	kind:variable	line:34
 render_template	../blueprints\errors\handlers.py	/^from flask import Blueprint, render_template$/;"	kind:namespace	line:1
 render_template	../blueprints\main\routes.py	/^from flask import render_template, request, Blueprint$/;"	kind:namespace	line:1
@@ -165,7 +166,7 @@ url_for	../blueprints\users\routes.py	/^from flask import render_template, url_f
 url_for	../blueprints\users\utils.py	/^from flask import url_for, current_app$/;"	kind:namespace	line:4
 user_id	../blueprints\models.py	/^    user_id = '00'$/;"	kind:variable	line:39
 user_id	../blueprints\models.py	/^    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)$/;"	kind:variable	line:30
-user_posts	../blueprints\users\routes.py	/^def user_posts(username):$/;"	kind:function	line:72
+user_posts	../blueprints\users\routes.py	/^def user_posts(username):$/;"	kind:function	line:92
 username	../blueprints\models.py	/^    username = db.Column(db.String(20), unique=True, nullable=False)$/;"	kind:variable	line:15
 username	../blueprints\users\forms.py	/^    username = StringField('Username',$/;"	kind:variable	line:10
 username	../blueprints\users\forms.py	/^    username = StringField('Username',$/;"	kind:variable	line:39
