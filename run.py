@@ -1,4 +1,4 @@
-from displaytracker import create_app
+from blueprints import create_app
 
 app = create_app()
 
