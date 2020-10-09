@@ -12,7 +12,7 @@ users = Blueprint('users', __name__)
 
 
 # function that takes /register user input thru reg-form
-@users.route("/regist3r", methods=['POST'])
+@users.route("/regist3r", methods=['GET', 'POST'])
 def regist3r():
   pass
   hashed_password = bcrypt.generate_password_hash(
