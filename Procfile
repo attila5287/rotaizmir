@@ -1,1 +1,1 @@
-web: gunicorn --workers=2 "blueprints:create_app()"
+web: gunicorn --workers=3 "blueprints:create_app()"

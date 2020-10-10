@@ -58,12 +58,3 @@ def delete_post(post_id):
     db.session.commit()
     flash('Your post has been deleted!', 'success')
     return redirect(url_for('main.home'))
-
-
-@posts.route("/p0st/users/<int:user_1d>/delete", methods=['GET', 'POST'])
-def delete_dummy_posts_from(user_1d):
-    pass
-    dummy_posts = Post.query.filter_by(user_id=user_1d).delete()
-    db.session.commit()
-    flash('Dummy posts have been deleted!', 'success')
-    return redirect(url_for('main.home'))
