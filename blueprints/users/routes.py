@@ -5,22 +5,29 @@ from blueprints.models import User, Post
 from blueprints.users.forms import (RegistrationForm, LoginForm, UpdateAccountForm,
                                    RequestResetForm, ResetPasswordForm)
 from blueprints.users.utils import save_picture, send_reset_email
+from blueprints.posts.forms import PostDemo
 
 users = Blueprint('users', __name__)
 
 
+@users.route("/reg_post", methods=['GET', 'POST'])
+def reg_post():
+    pass #function to run when new user registered btn hit
+    hashed_password = bcrypt.generate_password_hash(request.form["password"]).decode('utf-8')
+    user = User(username=request.form["username"], email=request.form["email"], password=hashed_password)
+    db.session.add(user)
+    db.session.commit()
+    flash('Your account has been created! You are now able to log in', 'success')
+    return redirect(url_for('users.login'))
+
+
 @users.route("/register", methods=['GET', 'POST'])
 def register():
+    pass
     if current_user.is_authenticated:
         return redirect(url_for('main.home'))
+    
     form = RegistrationForm()
-    if form.validate_on_submit():
-        hashed_password = bcrypt.generate_password_hash(form.password.data).decode('utf-8')
-        user = User(username=form.username.data, email=form.email.data, password=hashed_password)
-        db.session.add(user)
-        db.session.commit()
-        flash('Your account has been created! You are now able to log in', 'success')
-        return redirect(url_for('users.login'))
     return render_template('register.html', title='Register', form=form)
 
 

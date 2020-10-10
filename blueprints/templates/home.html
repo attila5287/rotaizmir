@@ -1,15 +1,154 @@
 {% extends "layout.html" %}
 {% block content %}
+    {% if posts ==[] %}
+    <br>
+  <p class="text-light text-center text-xl">
+        Jinja nested statement works great with try - except of Python! These are introductory posts only to show up when demonstration required:
+  </p>
+
+    <br>
+    
+    
+    <div class="media m-2 text-light">
+      <a class="d-flex align-self-bottom">
+        <div class="alert bg-maroon p-1 mr-2 text-light" role="alert">
+        <img class="rounded mr-1"
+        src="https://raw.githubusercontent.com/attila5287/rota-img/main/profile_pics/attila.png" alt="" 
+        style="max-height: 6rem;">
+        </div>
+      </a>
+      <div class="alert bg-silver" role="alert">
+      
+      <div class="media-body">
+        
+        <h5 class="mt-1 my-1"> 
+          01&gt; welcome to python flask app!
+        </h5>
+        <p class="mt-1 my-1 text-light">
+          <i class="fa fa-caret-right" aria-hidden="true"></i>
+          A: post is a CRUD module
+        </p>
+        <p class="text-light text-right mt-1 my-0">
+            <i class="fas fa-user"></i>
+            attila
+            <em> @  2020-10-10 </em> 
+            <i class="fas fa-window-close ml-2 mr-auto text-light"></i>  
+            <i class="fas fa-edit mr-auto text-light"></i>
+          </p>
+      </div>
+    </div>
+    </div>
+    
+    
+    <div class="media m-2 text-light">
+      <a class="d-flex align-self-bottom">
+        <div class="alert bg-maroon p-1 mr-2 text-light" role="alert">
+        <img class="rounded mr-1"
+        src="https://raw.githubusercontent.com/attila5287/rota-img/main/profile_pics/attila.png" alt="" 
+        style="max-height: 6rem;">
+        </div>
+      </a>
+      <div class="alert bg-silver" role="alert">
+      
+      <div class="media-body">
+        
+        <h5 class="mt-1 my-1"> 
+          02&gt; these are demo posts
+        </h5>
+        <p class="mt-1 my-1 text-light">
+          <i class="fa fa-caret-right" aria-hidden="true"></i>
+          B: create posts or delete yours
+        </p>
+        <p class="text-light text-right mt-1 my-0">
+            <i class="fas fa-user"></i>
+            attila
+            <em> @  2020-10-10 </em> 
+            <i class="fas fa-window-close ml-2 mr-auto text-light"></i>  
+            <i class="fas fa-edit mr-auto text-light"></i>
+          </p>
+      </div>
+    </div>
+    </div>
+    
+    
+    <div class="media m-2 text-light">
+      <a class="d-flex align-self-bottom">
+        <div class="alert bg-maroon p-1 mr-2 text-light" role="alert">
+        <img class="rounded mr-1"
+        src="https://raw.githubusercontent.com/attila5287/rota-img/main/profile_pics/attila.png" alt="" 
+        style="max-height: 6rem;">
+        </div>
+      </a>
+      <div class="alert bg-silver" role="alert">
+      
+      <div class="media-body">
+        
+        <h5 class="mt-1 my-1"> 
+          03&gt; they only appear
+        </h5>
+        <p class="mt-1 my-1 text-light">
+          <i class="fa fa-caret-right" aria-hidden="true"></i>
+          C: read those created by others
+        </p>
+        <p class="text-light text-right mt-1 my-0">
+            <i class="fas fa-user"></i>
+            attila
+            <em> @  2020-10-10 </em> 
+            <i class="fas fa-window-close ml-2 mr-auto text-light"></i>  
+            <i class="fas fa-edit mr-auto text-light"></i>
+          </p>
+      </div>
+    </div>
+    </div>
+    
+    
+    <div class="media m-2 text-light">
+      <a class="d-flex align-self-bottom">
+        <div class="alert bg-maroon p-1 mr-2 text-light" role="alert">
+        <img class="rounded mr-1"
+        src="https://raw.githubusercontent.com/attila5287/rota-img/main/profile_pics/attila.png" alt="" 
+        style="max-height: 6rem;">
+        </div>
+      </a>
+      <div class="alert bg-silver" role="alert">
+      
+      <div class="media-body">
+        
+        <h5 class="mt-1 my-1"> 
+          04&gt; when there are no posts to show
+        </h5>
+        <p class="mt-1 my-1 text-light">
+          <i class="fa fa-caret-right" aria-hidden="true"></i>
+          D: update your posts or preferences
+        </p>
+        <p class="text-light text-right mt-1 my-0">
+            <i class="fas fa-user"></i>
+            attila
+            <em> @  2020-10-10 </em> 
+            <i class="fas fa-window-close ml-2 mr-auto text-light"></i>  
+            <i class="fas fa-edit mr-auto text-light"></i>
+          </p>
+      </div>
+    </div>
+    </div>
+    
+    
+
+
+
+    
+
+    {% else %}
     {% for post in posts.items %}
-        <article class="media content-section">
+        <article class="media content-section text-light">
           <img class="rounded-circle article-img" src="{{ url_for('static', filename='profile_pics/' + post.author.image_file) }}">
-          <div class="media-body">
-            <div class="article-metadata">
+          <div class="media-body text-light">
+            <div class="article-metadata text-light">
               <a class="mr-2" href="{{ url_for('users.user_posts', username=post.author.username) }}">{{ post.author.username }}</a>
-              <small class="text-muted">{{ post.date_posted.strftime('%Y-%m-%d') }}</small>
+              <small class="text-muted  text-light">{{ post.date_posted.strftime('%Y-%m-%d') }}</small>
             </div>
-            <h2><a class="article-title" href="{{ url_for('posts.post', post_id=post.id) }}">{{ post.title }}</a></h2>
-            <p class="article-content">{{ post.content }}</p>
+            <h2><a class="article-title text-light" href="{{ url_for('posts.post', post_id=post.id) }}">{{ post.title }}</a></h2>
+            <p class="article-content text-light">{{ post.content }}</p>
           </div>
         </article>
     {% endfor %}
@@ -24,4 +163,8 @@
         ...
       {% endif %}
     {% endfor %}
+
+    {% endif %}
+
+
 {% endblock content %}

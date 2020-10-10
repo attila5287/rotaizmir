@@ -1,84 +1,203 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+ <!DOCTYPE html>
+ <html>
+   <head>
+     <!-- Required meta tags -->
+     <meta charset="utf-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+     <link rel="icon" type="image/x-icon" class="favicon" href="https://raw.githubusercontent.com/attila5287/rota-img/main/icons/favicon.ico" />
 
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+     <!-- Bootstrap CSS -->
+     <link rel="stylesheet" type="text/css" href="/static/styles/theme/cerulean.css" />
 
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='main.css') }}">
+     <link rel="stylesheet" type="text/css" href="/static/styles/main.css">
 
-    {% if title %}
-        <title>Flask Blog - {{ title }}</title>
-    {% else %}
-        <title>Flask Blog</title>
-    {% endif %}
-</head>
-<body>
-    <header class="site-header">
-      <nav class="navbar navbar-expand-md navbar-dark bg-steel fixed-top">
-        <div class="container">
-          <a class="navbar-brand mr-4" href="/">Flask Blog</a>
-          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggle" aria-controls="navbarToggle" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarToggle">
-            <div class="navbar-nav mr-auto">
-              <a class="nav-item nav-link" href="{{ url_for('main.home') }}">Home</a>
-              <a class="nav-item nav-link" href="{{ url_for('main.about') }}">About</a>
-            </div>
-            <!-- Navbar Right Side -->
-            <div class="navbar-nav">
-              {% if current_user.is_authenticated %}
-                <a class="nav-item nav-link" href="{{ url_for('posts.new_post') }}">New Post</a>
-                <a class="nav-item nav-link" href="{{ url_for('users.account') }}">Account</a>
-                <a class="nav-item nav-link" href="{{ url_for('users.logout') }}">Logout</a>
-              {% else %}
-                <a class="nav-item nav-link" href="{{ url_for('users.login') }}">Login</a>
-                <a class="nav-item nav-link" href="{{ url_for('users.register') }}">Register</a>
-              {% endif %}
-            </div>
-          </div>
-        </div>
-      </nav>
-    </header>
-    <main role="main" class="container">
-      <div class="row">
-        <div class="col-md-8">
-          {% with messages = get_flashed_messages(with_categories=true) %}
-            {% if messages %}
-              {% for category, message in messages %}
-                <div class="alert alert-{{ category }}">
-                  {{ message }}
-                </div>
-              {% endfor %}
-            {% endif %}
-          {% endwith %}
-          {% block content %}{% endblock %}
-        </div>
-        <div class="col-md-4">
-          <div class="content-section">
-            <h3>Our Sidebar</h3>
-            <p class='text-muted'>You can put any information here you'd like.
-              <ul class="list-group">
-                <li class="list-group-item list-group-item-light">Latest Posts</li>
-                <li class="list-group-item list-group-item-light">Announcements</li>
-                <li class="list-group-item list-group-item-light">Calendars</li>
-                <li class="list-group-item list-group-item-light">etc</li>
-              </ul>
-            </p>
-          </div>
-        </div>
-      </div>
-    </main>
+     <link rel="stylesheet" type="text/css" href="https://use.fontawesome.com/releases/v5.1.1/css/all.css"
+       integrity="sha384-O8whS3fhG2OnA5Kas0Y9l3cfpmYjapjI0E4theH4iuMD+pLhbf6JI0jIMfYcK3yZ" crossorigin="anonymous" />
+
+     <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/4.7.3/d3.min.js"></script> -->
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/4.7.3/d3.js"></script>
+
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/d3-tip/0.7.1/d3-tip.min.js"></script>
+
+     <!-- FONTS -->
+     <link href='https://fonts.googleapis.com/css?family=Orbitron' rel='stylesheet' type='text/css'>
+     <link href='https://fonts.googleapis.com/css?family=Baloo+2' rel='stylesheet' type='text/css'> 
+     <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
+     <link href='https://fonts.googleapis.com/css?family=Roboto+Condensed' rel='stylesheet' type='text/css'>
+     <link href='https://fonts.googleapis.com/css?family=Comfortaa' rel='stylesheet' type='text/css'>
+     <link href="https://fonts.googleapis.com/css2?family=Nova+Mono&display=swap" rel="stylesheet"> 
+     <link href="https://fonts.googleapis.com/css2?family=Major+Mono+Display&display=swap" rel="stylesheet">
+     <!-- title -->
+     <title>Göztepe Rotaract Kulübü | 2020-21</title>
+   </head>
+   <body class="bg-body-mini">
+     <header>
+       <nav class="navbar nav-mini navbar-expand-sm navbar-dark fixed-top bg-themy">
+         <a class="navbar-brand bg-transparent border-0 rnd-xl add-anime mx-1 p-0"
+           href="https://rotaizmir.herokuapp.com/">
+           <img class="m-0 px-0 py-0" src="https://raw.githubusercontent.com/attila5287/rota-img/main/icons/favicon.ico" style="height: 33px;"
+             alt="navbar-icon" data-toggle="tooltip" title="About: Göztepe Rotaract Kulübü | 2020-21"
+             >
+         </a>
+         <button class="navbar-toggler bg-transparent  border-light px-2 py-1" type="button" data-toggle="collapse"
+           data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false"
+           aria-label="Toggle navigation">
+           <span class="navbar-toggler-icon"></span>
+         </button>
+         <div class="collapse navbar-collapse nav-mini text-center text-comfo mb-1" id="navbarCollapse">
+           <ul class="nav nav-pills nav-justify nav-mini bg-transparent mr-auto align-items-center">
+             <li class="nav-item text-light">
+               <a class="nav-link add-anime shd-themy rnd-lg mt-1 text-light" href="/home">
+                 <i class="fas fa-home text-md"></i>
+                 Home
+               </a>
+             </li>
+             <li class="nav-item text-light">
+               <a class="nav-link add-anime shd-themy rnd-lg mt-1 text-light" href="/users/new/member">
+                 <i class="fas fa-envelope text-md"></i>
+                 NewPost
+                </a>
+              </li>
+              <li class="nav-item text-light">
+                <a class="nav-link add-anime shd-themy rnd-lg mt-1 text-light" href="/bosers/new/member">
+                  <i class="far fa-bell text-md"></i>
+                  Alert Board
+               </a>
+             </li>
+             <li class="nav-item text-light">
+               <a class="nav-link add-anime shd-themy rnd-lg mt-1 text-light" href="/users/new/member">
+                 <i class="fas fa-address-card text-md"></i>
+                 Member-Form
+                </a>
+              </li>
+             <li class="nav-item text-light" data-toggle="test">
+               <a class="nav-link add-anime shd-themy rnd-lg mt-1 text-light" href="/bosers/csv/members">
+                 <i class="fas fa-file-upload text-md"></i>
+                 Upload-CSV
+               </a>
+             </li>
+             <li class="nav-item text-light">
+               <a class="nav-link add-anime shd-themy rnd-lg mt-1 text-light" href="/bosers/assign/task">
+                 <i class="fas fa-tasks text-md"></i>
+                 AssignTask
+               </a>
+             </li>
+             <li class="nav-item">
+               <a class="nav-link add-anime rnd-lg text-comfo mt-1 text-light"
+                 href="https://github.com/attila5287/rotaizmir">
+                 <i class="fab fa-github text-sm"></i>
+                 attila5287
+               </a>
+             </li>
+           </ul>
+           <form class="form-inline align-items-center bg-transparent">
+             <select class="custom-select custom-select-sm mx-3" >
+               <option value="0" class="disabled">MODE:</option>
+               <option value="1">Play</option>
+               <option value="2">Demo</option>
+               <option value="3">Info</option>
+             </select>
+           </form>
+         </div>
+       </nav>
+
+       <!-- INFO NOTES -->
+       <div class="d-flex flex-row justify-content-between mt-0">
+         <p class="text-light text-italic text-light mt-0 mb-0">
+           <i class="fas fa-info-circle text-light"></i>
+           (1) Register with an email address, users could also choose random-generated nicknames!
+         </p>
+         <p class="text-light text-italic text-light mt-0 mb-0">
+           <i class="fas fa-info-circle text-light"></i>
+           Users may request authorization from board-users/bosers
+          </p>
+          <p class="text-light text-italic text-light mt-0 mb-0">
+            <i class="fas fa-info-circle text-light"></i>
+            board-users/bosers members could also contact members assign tasks to them!
+           
+         </p>
+         <p class="text-light text-italic text-light mt-0 mb-0 mt-0 mb-0">
+           <i class="fas fa-info-circle text-light"></i>
+           Player scores will also be saved on hall of fame!
+         </p>
+       </div>
+
+     </header>
+     
+     <main>
+       <div class="row no-gutters">
+         <div class="col-md-2">
+         </div>
+         <div class="col-md-8">
+           <!-- ONE BEDROOMS OF SELECTED STATE -->
+           {% block content %} {% endblock%}
+           
+         </div>
+         <div class="col-md-2"></div>
+         
+
+         <div class="col-md-6"></div>
+       </div>
+		 </main>
+		 
+		<footer class="footer mt-2">
+			<div class="row">
+				<div class="col-sm-6">
+					<img class="p-0 float-right opac-60"
+						src="https://raw.githubusercontent.com/attila5287/rota-img/main/site/logo_slab.png" alt="footer-logo"
+						style="width: 100%;">
+				</div>
+
+				<div class="col-sm-3">
+          <ul class="list-group list-group-flush bg-transparent text-light">
+            <li class="list-group-item bg-transparent">
+              Rotaract 2440. blg
+            </li>
+            <li class="list-group-item bg-transparent">
+              Board Term of 2020-2021
+            </li>
+            <li class="list-group-item bg-transparent">
+              Prez: Erce Alara Turkoz
+            </li>
+          </ul>
+				</div>
+				<div class="col-sm-3">
+          <ul class="list-group list-group-flush bg-transparent text-light">
+            <li class="list-group-item bg-transparent">
+            </li>
+            <li class="list-group-item bg-transparent">
+            </li>
+            <li class="list-group-item bg-transparent">
+              3: 
+            </li>
+            <li class="list-group-item bg-transparent">
+
+            </li>
+            <li class="list-group-item bg-transparent">
+
+            </li>
+            <li class="list-group-item bg-transparent">
+
+            </li>
+          </ul>
+				</div>
+			</div>
+		</footer>
+     <!-- Optional JavaScript -->
+     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+       integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
+     </script>
+     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+       integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
+     </script>
+     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+       integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
+     </script>
 
 
-    <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-</body>
-</html>
+   </body>
+
+ </html>
+ 

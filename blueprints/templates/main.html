@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <link
+      rel="icon"
+      type="image/x-icon"
+      class="favicon"
+      href="../static/img/icons/favicon2.ico"
+    />
+
+    <!-- Bootstrap CSS -->
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="/static/styles/theme/cerulean.css"
+    />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="/static/styles/theme/vertical-slider.css"
+    />
+    <!-- href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/4.4.1/cerulean/bootstrap.min.css" /> -->
+
+    <link rel="stylesheet" type="text/css" href="/static/styles/main.css" />
+
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://use.fontawesome.com/releases/v5.1.1/css/all.css"
+      integrity="sha384-O8whS3fhG2OnA5Kas0Y9l3cfpmYjapjI0E4theH4iuMD+pLhbf6JI0jIMfYcK3yZ"
+      crossorigin="anonymous"
+    />
+
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/4.7.3/d3.min.js"></script> -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/4.7.3/d3.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3-tip/0.7.1/d3-tip.js"></script>
+
+    <!-- FONTS -->
+    <link
+      href="https://fonts.googleapis.com/css?family=Orbitron"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Cairo"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Comfortaa"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Baloo+2"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat+Alternates:wght@800&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Roboto"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Roboto+Condensed"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=PT+Mono&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- title -->
+    <title>Regropoly</title>
+  </head>
+
+  <body class="bg-body-mini">
+    <header>
+      <nav
+        class="navbar nav-mini navbar-expand-sm navbar-dark fixed-top bg-themy"
+      >
+        <a
+          class="navbar-brand bg-transparent border-0 rnd-xl add-anime mx-1 p-0"
+          href="https://regropoly.herokuapp.com/"
+        >
+          <img
+            class="m-0 px-0 py-0"
+            src="/static/img/icons/favicon3.ico"
+            style="height: 30px"
+            alt="navbar-icon"
+          />
+        </a>
+        <button
+          class="navbar-toggler bg-transparent border-light px-2 py-1"
+          type="button"
+          data-toggle="collapse"
+          data-target="#navbarCollapse"
+          aria-controls="navbarCollapse"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div
+          class="collapse navbar-collapse nav-mini text-center text-comfo mb-1"
+          id="navbarCollapse"
+        >
+          <ul
+            class="nav nav-pills nav-fill nav-mini bg-transparent mr-auto align-items-center"
+          >
+            <li class="nav-item text-light display-mode">
+              <span
+                class="nav-link add-anime shd-themy rnd-lg mt-1 text-light"
+                id="spawn_items"
+              >
+                <i class="fas fa-store-alt text-xl" id="spawn_items_logo"></i>
+                Market
+              </span>
+            </li>
+            <li class="nav-item text-light display-mode">
+              <span
+                class="nav-link add-anime shd-themy rnd-lg mt-1 text-light" id="update_assets"
+              >
+                <i class="fas fa-hand-holding-usd text-xl" id="update_assets_logo"></i>
+                Assets
+              </span>
+            </li>
+            <li class="nav-item">
+              <a
+                class="nav-link add-anime rnd-lg text-comfo mt-1 text-secondary"
+                href="https://github.com/attila5287/regropoly"
+              >
+                <i class="fab fa-github text-sm"></i>
+                attila5287
+              </a>
+            </li>
+          </ul>
+          <form class="form-inline align-items-center bg-transparent">
+            <select class="custom-select custom-select-sm mx-3"
+              id="select-display-mode"
+            >
+            </select>
+          </form>
+        </div>
+      </nav>
+
+      <!-- INFO NOTES -->
+      <div class="d-flex flex-row justify-content-between mt-0">
+        <p class="text-light text-italic text-secondary mt-0 mb-0">
+          <i class="fas fa-info-circle text-secondary"></i>
+          App generates properties every round with Monte-Carlo Simulation-like
+          models
+        </p>
+        <p class="text-light text-italic text-secondary mt-0 mb-0">
+          <i class="fas fa-info-circle text-secondary"></i>
+          The property prices are based on Zillow dataset within uncertainty
+          around mean value
+        </p>
+        <p class="text-light text-italic text-secondary mt-0 mb-0">
+          <i class="fas fa-info-circle text-secondary"></i>
+          Player assets will gain value or lose depending on actual price
+          dataset within uncertainty
+        </p>
+        <p class="text-light text-italic text-secondary mt-0 mb-0 mt-0 mb-0">
+          <i class="fas fa-info-circle text-secondary"></i>
+          Player scores will also be saved on hall of fame!
+        </p>
+      </div>
+    </header>
+    <main class="main" id="main">
+      <div class="d-flex flex-row">
+        <div id="financial-summary"></div>
+      </div>
+
+      <div id="avlb-funds"></div>
+      <div id="high_worth"></div>
+      <div id="low_worth"></div>
+      <div id="rtn_on_inv"></div>
+      <div id="num_of_inv"></div>
+
+      <div class="row no-gutters">
+        <div class="col-8 offset-2 text-center">
+          <div id="round-buttons"></div>
+        </div>
+      </div>
+
+      <div class="row no-gutters">
+        <div class="col-md-2"></div>
+        <div class="col-md-8">
+          <div id="assets-portfolio"></div>
+        </div>
+        <div class="col-md-2"></div>
+      </div>
+    </main>
+
+    <footer class="footer mt-2">
+      <hr class="border-secondary mx-4 opac-70" />
+      <div class="row">
+        <div class="col-sm-6">
+          <img
+            class="p-0 float-right opac-50"
+            src="/static/img/site/regroPoly_newLogo_Md.png"
+            alt="footer-logo"
+            style="height: 10rem"
+          />
+        </div>
+
+        <div class="col-sm-3">
+          <div
+            class="d-flex flex-column justify-content-around text-secondary text-center"
+          >
+            <a>Regropoly | regression monopoly </a>
+            <a>Colorado Monopoly </a>
+            <a>Python</a>
+            <a>d3.js lib</a>
+            <a>Flask Web FrameWork</a>
+          </div>
+        </div>
+        <div class="col-sm-3">
+          <div
+            class="d-flex flex-column justify-content-between text-secondary text-center"
+          >
+            <a>PostgreSQL</a>
+            <a>Heroku </a>
+            <a>Bootstrap</a>
+            <a>BootsWatch</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script
+      src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+      integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      type="text/javascript"
+      src="https://ajax.googleapis.com/ajax/libs/jquery/3.0.0/jquery.min.js"
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+      integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+      integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+      crossorigin="anonymous"
+    ></script>
+
+    <script src="/static/purchased/assets.js"></script>
+  </body>
+</html>
