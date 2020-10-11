@@ -22,6 +22,7 @@ class User(db.Model, UserMixin):
     img_url = db.Column(db.Integer, nullable=False, default =0)
     is_admin = db.Column(db.String(32), nullable=False, default='n')
     is_member = db.Column(db.String(32), nullable=False, default='n')
+    is_prez = db.Column(db.String(32), nullable=False, default='n')
     
     def get_reset_token(self, expires_sec=1800):
         s = Serializer(current_app.config['SECRET_KEY'], expires_sec)

@@ -8,7 +8,8 @@ DROP TABLE public.post CASCADE;
 		"img_url"	INTEGER NOT NULL,
 		"password"	VARCHAR(255) NOT NULL,
 		"is_member"	VARCHAR(32) NOT NULL,
-		"is_admin"	VARCHAR(32) NOT NULL
+		"is_admin"	VARCHAR(32) NOT NULL,
+		"is_prez"	VARCHAR(32) NOT NULL
 	);
 
 
