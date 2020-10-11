@@ -86,7 +86,7 @@ RequestResetForm	../blueprints\users\forms.py	/^class RequestResetForm(FlaskForm
 ResetPasswordForm	../_ref\_xtra\_ber\users\forms.py	/^class ResetPasswordForm(FlaskForm):$/;"	kind:class	line:77
 ResetPasswordForm	../blueprints\users\forms.py	/^class ResetPasswordForm(FlaskForm):$/;"	kind:class	line:70
 SECRET_KEY	../blueprints\config.py	/^    SECRET_KEY = os.environ.get('SECRET_KEY')$/;"	kind:variable	line:6
-SQLALCHEMY_DATABASE_URI	../blueprints\config.py	/^    SQLALCHEMY_DATABASE_URI = os.environ.get('DATABASE_URI')$/;"	kind:variable	line:7
+SQLALCHEMY_DATABASE_URI	../blueprints\config.py	/^    SQLALCHEMY_DATABASE_URI = os.environ.get('DATABASE_URL')$/;"	kind:variable	line:7
 SQLALCHEMY_TRACK_MODIFICATIONS	../blueprints\config.py	/^    SQLALCHEMY_TRACK_MODIFICATIONS = False$/;"	kind:variable	line:5
 SQLAlchemy	../blueprints\__init__.py	/^from flask_sqlalchemy import SQLAlchemy$/;"	kind:namespace	line:2
 SelectField	../_ref\_xtra\_ber\items\forms.py	/^from wtforms import StringField, SubmitField, TextAreaField, SelectField$/;"	kind:namespace	line:3
