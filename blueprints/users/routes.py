@@ -10,7 +10,7 @@ from blueprints.posts.forms import PostDemo
 users = Blueprint('users', __name__)
 
 
-@users.route("/reg_post", methods=['GET', 'POST'])
+@users.route("/reg_post", methods=[ 'POST'])
 def reg_post():
     pass #function to run when new user registered btn hit
     hashed_password = bcrypt.generate_password_hash(request.form["password"]).decode('utf-8')
