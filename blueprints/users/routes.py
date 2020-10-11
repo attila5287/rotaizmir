@@ -62,26 +62,57 @@ def logout():
     logout_user()
     return redirect(url_for('main.home'))
 
-
+  
 @users.route("/account", methods=['GET', 'POST'])
 @login_required
 def account():
-    form = UpdateAccountForm()
-    if form.validate_on_submit():
-        if form.picture.data:
-            picture_file = save_picture(form.picture.data)
-            current_user.image_file = picture_file
-        current_user.username = form.username.data
-        current_user.email = form.email.data
-        db.session.commit()
-        flash('Your account has been updated!', 'success')
-        return redirect(url_for('users.account'))
-    elif request.method == 'GET':
-        form.username.data = current_user.username
-        form.email.data = current_user.email
-    image_file = url_for('static', filename='profile_pics/' + current_user.image_file)
-    return render_template('account.html', title='Account',
-                           image_file=image_file, form=form)
+  pass
+  form = UpdateAccountForm()
+  
+  if request.method == 'POST':
+    pass
+    current_user.username = form.username.data
+    current_user.email = form.email.data
+    db.session.commit()
+    flash('Username and/or Email updated!', 'success')
+    
+    return redirect(url_for('users.account'))
+  
+  elif request.method == 'GET':
+    form.username.data = current_user.username
+    form.email.data = current_user.email
+  
+  return render_template('account.html', title='Account',
+      form=form)
+
+
+@users.route("/set/profile/picture/<int:user_id>/<int:img_index>", methods=['GET', 'POST'])
+@login_required
+def set_profile_pic(user_id, img_index):
+  pass
+  current_user.img_url = img_index
+  db.session.commit()
+  return redirect( url_for('users.account' ))
+  
+# @users.route("/account", methods=['GET', 'POST'])
+# @login_required
+# def account():
+#     form = UpdateAccountForm()
+#     if form.validate_on_submit():
+#         if form.picture.data:
+#             picture_file = save_picture(form.picture.data)
+#             current_user.image_file = picture_file
+#         current_user.username = form.username.data
+#         current_user.email = form.email.data
+#         db.session.commit()
+#         flash('Your account has been updated!', 'success')
+#         return redirect(url_for('users.account'))
+#     elif request.method == 'GET':
+#         form.username.data = current_user.username
+#         form.email.data = current_user.email
+#     image_file = 'static', filename='profile_pics/' + current_user.image_file
+#     return render_template('account.html', title='Account',
+#                            image_file=image_file, form=form)
 
 
 @users.route("/user/<string:username>")
@@ -123,3 +154,4 @@ def reset_token(token):
         flash('Your password has been updated! You are now able to log in', 'success')
         return redirect(url_for('users.login'))
     return render_template('reset_token.html', title='Reset Password', form=form)
+
