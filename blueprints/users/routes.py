@@ -15,9 +15,10 @@ def reg_post():
     pass #function to run when new user registered btn hit
     hashed_password = bcrypt.generate_password_hash(request.form["password"]).decode('utf-8')
     user = User(
-        username=request.form["username"], 
-        email=request.form["email"], 
-        password=hashed_password
+        username = request.form["username"], 
+        email = request.form["email"], 
+        password = hashed_password,
+        img_url = 0,
         )
     db.session.add(user)
     db.session.commit()
