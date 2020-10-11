@@ -42,9 +42,23 @@ class UpdateAccountForm(FlaskForm):
                            validators=[DataRequired(), Length(min=2, max=20)])
     email = StringField('Email',
                         validators=[DataRequired(), Email()])
-    img_url = SelectField('image',
-                              choices=[(0, 'first'), (1, 'second')],
-                               default=0)
+    
+    img_url = SelectField(
+        'image',
+        choices=[(0, 'first'), (1, 'second')],
+        default=0
+        )
+    
+    # is_member = SelectField(
+    #     'image',
+    #     choices=[( 'y', 'yes'), ('n', 'no')],
+    #     default='n')
+    
+    # is_admin = SelectField(
+    #     'image',
+    #     choices=[( 'y', 'yes'), ('n', 'no')],
+    #     default='n')
+    
     submit = SubmitField('Update username/email')
 
     def validate_username(self, username):

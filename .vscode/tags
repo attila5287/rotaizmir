@@ -66,7 +66,7 @@ Post	../_ref\_xtra\_ber\models.py	/^class Post(db.Model):$/;"	kind:class	line:40
 Post	../_ref\_xtra\_ber\posts\routes.py	/^from berenice.models import User, Post$/;"	kind:namespace	line:5
 Post	../_ref\_xtra\_ber\users\broutes.py	/^from berenice.models import User, Post$/;"	kind:namespace	line:4
 Post	../blueprints\main\routes.py	/^from blueprints.models import Post$/;"	kind:namespace	line:2
-Post	../blueprints\models.py	/^class Post(db.Model):$/;"	kind:class	line:38
+Post	../blueprints\models.py	/^class Post(db.Model):$/;"	kind:class	line:43
 Post	../blueprints\posts\routes.py	/^from blueprints.models import Post$/;"	kind:namespace	line:5
 Post	../blueprints\users\routes.py	/^from blueprints.models import User, Post$/;"	kind:namespace	line:4
 PostDemo	../_ref\_xtra\_ber\main\routes.py	/^from berenice.posts.forms import PostDemo$/;"	kind:namespace	line:3
@@ -82,9 +82,9 @@ RegistrationForm	../_ref\_xtra\_ber\users\forms.py	/^class RegistrationForm(Flas
 RegistrationForm	../blueprints\users\forms.py	/^class RegistrationForm(FlaskForm):$/;"	kind:class	line:9
 RegistrationForm	../blueprints\users\routes.py	/^from blueprints.users.forms import (RegistrationForm, LoginForm, UpdateAccountForm,$/;"	kind:namespace	line:5
 RequestResetForm	../_ref\_xtra\_ber\users\forms.py	/^class RequestResetForm(FlaskForm):$/;"	kind:class	line:66
-RequestResetForm	../blueprints\users\forms.py	/^class RequestResetForm(FlaskForm):$/;"	kind:class	line:84
+RequestResetForm	../blueprints\users\forms.py	/^class RequestResetForm(FlaskForm):$/;"	kind:class	line:98
 ResetPasswordForm	../_ref\_xtra\_ber\users\forms.py	/^class ResetPasswordForm(FlaskForm):$/;"	kind:class	line:77
-ResetPasswordForm	../blueprints\users\forms.py	/^class ResetPasswordForm(FlaskForm):$/;"	kind:class	line:95
+ResetPasswordForm	../blueprints\users\forms.py	/^class ResetPasswordForm(FlaskForm):$/;"	kind:class	line:109
 SECRET_KEY	../blueprints\config.py	/^    SECRET_KEY = os.environ.get('SECRET_KEY')$/;"	kind:variable	line:6
 SQLALCHEMY_DATABASE_URI	../blueprints\config.py	/^    SQLALCHEMY_DATABASE_URI = os.environ.get('DATABASE_URL')$/;"	kind:variable	line:7
 SQLALCHEMY_TRACK_MODIFICATIONS	../blueprints\config.py	/^    SQLALCHEMY_TRACK_MODIFICATIONS = False$/;"	kind:variable	line:5
@@ -146,8 +146,8 @@ __repr__	../_ref\_xtra\_ber\models.py	/^    def __repr__(self):$/;"	kind:member	
 __repr__	../_ref\_xtra\_ber\models.py	/^    def __repr__(self):$/;"	kind:member	line:37
 __repr__	../_ref\_xtra\_ber\models.py	/^    def __repr__(self):$/;"	kind:member	line:48
 __repr__	../_ref\_xtra\_ber\posts\forms.py	/^    def __repr__(self):$/;"	kind:member	line:25
-__repr__	../blueprints\models.py	/^    def __repr__(self):$/;"	kind:member	line:34
-__repr__	../blueprints\models.py	/^    def __repr__(self):$/;"	kind:member	line:45
+__repr__	../blueprints\models.py	/^    def __repr__(self):$/;"	kind:member	line:39
+__repr__	../blueprints\models.py	/^    def __repr__(self):$/;"	kind:member	line:50
 __repr__	../blueprints\posts\forms.py	/^    def __repr__(self):$/;"	kind:member	line:24
 __rpr__	../_ref\_py\forms - Copy.py	/^    def __rpr__(self):$/;"	kind:member	line:66
 _timesheet_jam.py	../_ref\_py\_timesheet_jam.py	1;"	kind:file	line:1
@@ -155,7 +155,7 @@ about	../_ref\_xtra\_ber\main\routes.py	/^def about():$/;"	kind:function	line:47
 about	../blueprints\main\routes.py	/^def about():$/;"	kind:function	line:23
 aboutdev	../_ref\_xtra\_ber\main\routes.py	/^def aboutdev():$/;"	kind:function	line:51
 account	../_ref\_xtra\_ber\users\broutes.py	/^def account():$/;"	kind:function	line:77
-account	../blueprints\users\routes.py	/^def account():$/;"	kind:function	line:69
+account	../blueprints\users\routes.py	/^def account():$/;"	kind:function	line:72
 ap_beg_01	../_ref\_py\forms - Copy.py	/^    ap_beg_01 = SelectField(choices=[('0', 'a'), ('12', 'p')])$/;"	kind:variable	line:12
 ap_beg_02	../_ref\_py\forms - Copy.py	/^    ap_beg_02 = SelectField(choices=[('0', 'a'), ('12', 'p')])$/;"	kind:variable	line:19
 ap_beg_03	../_ref\_py\forms - Copy.py	/^    ap_beg_03 = SelectField(choices=[('0', 'a'), ('12', 'p')])$/;"	kind:variable	line:26
@@ -192,16 +192,16 @@ choices	../_ref\_xtra\_ber\items\forms.py	/^        choices=[$/;"	kind:variable	
 choices	../_ref\_xtra\_ber\items\forms.py	/^        choices=[('0', 'Alabama'), ('1', 'Baltimore'),$/;"	kind:variable	line:65
 choices	../_ref\_xtra\_ber\items\forms.py	/^        choices=[('0', 'Alabama'),('1', 'Baltimore'),$/;"	kind:variable	line:19
 choices	../_ref\_xtra\_ber\users\forms.py	/^        choices=[('99', 'Shipper'), ('0', 'Alabama'), ('1', 'Baltimore'),$/;"	kind:variable	line:21
-choices	../blueprints\users\forms.py	/^                              choices=[(0, 'first'), (1, 'second')],$/;"	kind:variable	line:46
+choices	../blueprints\users\forms.py	/^        choices=[(0, 'first'), (1, 'second')],$/;"	kind:variable	line:48
 cityFinder	../_ref\_xtra\_ber\items\routes.py	/^    def cityFinder(item_dest_id):$/;"	kind:function	line:203
 config.py	../blueprints\config.py	1;"	kind:file	line:1
 confirm_password	../_ref\_xtra\_ber\users\forms.py	/^    confirm_password = PasswordField('Confirm Password',$/;"	kind:variable	line:15
 confirm_password	../_ref\_xtra\_ber\users\forms.py	/^    confirm_password = PasswordField('Confirm Password',$/;"	kind:variable	line:79
+confirm_password	../blueprints\users\forms.py	/^    confirm_password = PasswordField('Confirm Password',$/;"	kind:variable	line:111
 confirm_password	../blueprints\users\forms.py	/^    confirm_password = PasswordField('Confirm Password',$/;"	kind:variable	line:17
-confirm_password	../blueprints\users\forms.py	/^    confirm_password = PasswordField('Confirm Password',$/;"	kind:variable	line:97
 content	../_ref\_xtra\_ber\models.py	/^    content = db.Column(db.Text, nullable=False)$/;"	kind:variable	line:45
 content	../_ref\_xtra\_ber\posts\forms.py	/^    content = TextAreaField('Content', validators=[DataRequired()])$/;"	kind:variable	line:9
-content	../blueprints\models.py	/^    content = db.Column(db.Text, nullable=False)$/;"	kind:variable	line:42
+content	../blueprints\models.py	/^    content = db.Column(db.Text, nullable=False)$/;"	kind:variable	line:47
 content	../blueprints\posts\forms.py	/^    content = TextAreaField('Content', validators=[DataRequired()])$/;"	kind:variable	line:9
 create_app	../blueprints\__init__.py	/^def create_app(config_class=Config):$/;"	kind:function	line:18
 create_app	../run.py	/^from blueprints import create_app$/;"	kind:namespace	line:1
@@ -220,7 +220,7 @@ date_posted	../_ref\_xtra\_ber\items\forms.py	/^    date_posted = datetime.utcno
 date_posted	../_ref\_xtra\_ber\models.py	/^    date_posted = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)$/;"	kind:variable	line:17
 date_posted	../_ref\_xtra\_ber\models.py	/^    date_posted = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)$/;"	kind:variable	line:44
 date_posted	../_ref\_xtra\_ber\posts\forms.py	/^    date_posted = datetime.utcnow().date()$/;"	kind:variable	line:16
-date_posted	../blueprints\models.py	/^    date_posted = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)$/;"	kind:variable	line:41
+date_posted	../blueprints\models.py	/^    date_posted = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)$/;"	kind:variable	line:46
 date_posted	../blueprints\posts\forms.py	/^    date_posted = datetime.utcnow().date()$/;"	kind:variable	line:15
 datetime	../_ref\_xtra\_ber\items\forms.py	/^from datetime import datetime$/;"	kind:namespace	line:1
 datetime	../_ref\_xtra\_ber\models.py	/^from datetime import datetime$/;"	kind:namespace	line:2
@@ -235,7 +235,7 @@ db	../blueprints\__init__.py	/^db = SQLAlchemy()$/;"	kind:variable	line:9
 db	../blueprints\models.py	/^from blueprints import db, login_manager$/;"	kind:namespace	line:4
 db	../blueprints\posts\routes.py	/^from blueprints import db$/;"	kind:namespace	line:4
 db	../blueprints\users\routes.py	/^from blueprints import db, bcrypt$/;"	kind:namespace	line:3
-default	../blueprints\users\forms.py	/^                               default=0)$/;"	kind:variable	line:47
+default	../blueprints\users\forms.py	/^        default=0$/;"	kind:variable	line:49
 delete_dummy_posts_from	../_ref\_xtra\_ber\posts\routes.py	/^def delete_dummy_posts_from(user_1d):$/;"	kind:function	line:64
 delete_post	../_ref\_xtra\_ber\posts\routes.py	/^def delete_post(post_id):$/;"	kind:function	line:52
 delete_post	../blueprints\posts\routes.py	/^def delete_post(post_id):$/;"	kind:function	line:53
@@ -257,7 +257,7 @@ email	../blueprints\models.py	/^    email = db.Column(db.String(120), unique=Tru
 email	../blueprints\users\forms.py	/^    email = StringField('Email',$/;"	kind:variable	line:13
 email	../blueprints\users\forms.py	/^    email = StringField('Email',$/;"	kind:variable	line:33
 email	../blueprints\users\forms.py	/^    email = StringField('Email',$/;"	kind:variable	line:43
-email	../blueprints\users\forms.py	/^    email = StringField('Email',$/;"	kind:variable	line:85
+email	../blueprints\users\forms.py	/^    email = StringField('Email',$/;"	kind:variable	line:99
 error_403	../blueprints\errors\handlers.py	/^def error_403(error):$/;"	kind:function	line:12
 error_404	../blueprints\errors\handlers.py	/^def error_404(error):$/;"	kind:function	line:7
 error_500	../blueprints\errors\handlers.py	/^def error_500(error):$/;"	kind:function	line:17
@@ -274,7 +274,7 @@ forms.py	../_ref\_xtra\_ber\posts\forms.py	1;"	kind:file	line:1
 forms.py	../_ref\_xtra\_ber\users\forms.py	1;"	kind:file	line:1
 forms.py	../blueprints\posts\forms.py	1;"	kind:file	line:1
 forms.py	../blueprints\users\forms.py	1;"	kind:file	line:1
-get_reset_token	../blueprints\models.py	/^    def get_reset_token(self, expires_sec=1800):$/;"	kind:member	line:21
+get_reset_token	../blueprints\models.py	/^    def get_reset_token(self, expires_sec=1800):$/;"	kind:member	line:26
 h0me	../_ref\_xtra\_ber\items\routes.py	/^def h0me():$/;"	kind:function	line:65
 handlers.py	../blueprints\errors\handlers.py	1;"	kind:file	line:1
 hh_beg_01	../_ref\_py\forms - Copy.py	/^    hh_beg_01 = IntegerField(default='09')$/;"	kind:variable	line:10
@@ -299,12 +299,12 @@ id	../_ref\_xtra\_ber\models.py	/^    id = db.Column(db.Integer, primary_key=Tru
 id	../_ref\_xtra\_ber\models.py	/^    id = db.Column(db.Integer, primary_key=True)$/;"	kind:variable	line:29
 id	../_ref\_xtra\_ber\models.py	/^    id = db.Column(db.Integer, primary_key=True)$/;"	kind:variable	line:42
 id	../blueprints\models.py	/^    id = db.Column(db.Integer, primary_key=True)$/;"	kind:variable	line:14
-id	../blueprints\models.py	/^    id = db.Column(db.Integer, primary_key=True)$/;"	kind:variable	line:39
+id	../blueprints\models.py	/^    id = db.Column(db.Integer, primary_key=True)$/;"	kind:variable	line:44
 imageFinder	../_ref\_xtra\_ber\items\routes.py	/^    def imageFinder(item_bodyType_index):$/;"	kind:function	line:152
 image_file	../_ref\_xtra\_ber\models.py	/^    image_file = db.Column(db.String(20), nullable=False, default='default.png')$/;"	kind:variable	line:34
-image_file	../blueprints\models.py	/^    image_file = db.Column(db.String(20), nullable=False, default='default.jpg')$/;"	kind:variable	line:17
-img_url	../blueprints\models.py	/^    img_url = db.Column(db.Integer, nullable=False, default =0)$/;"	kind:variable	line:20
-img_url	../blueprints\users\forms.py	/^    img_url = SelectField('image',$/;"	kind:variable	line:45
+image_file	../blueprints\models.py	/^    image_file = db.Column(db.String(32), nullable=False, default='default.jpg')$/;"	kind:variable	line:17
+img_url	../blueprints\models.py	/^    img_url = db.Column(db.Integer, nullable=False, default =0)$/;"	kind:variable	line:22
+img_url	../blueprints\users\forms.py	/^    img_url = SelectField($/;"	kind:variable	line:46
 inject_ItemDemoList	../_ref\_py\item_demo.py	/^def inject_ItemDemoList():$/;"	kind:function	line:24
 inject_ItemDemoList	../_ref\_xtra\_ber\items\routes.py	/^def inject_ItemDemoList():$/;"	kind:function	line:99
 inject_PostDemoList	../_ref\_xtra\_ber\main\routes.py	/^def inject_PostDemoList():$/;"	kind:function	line:8
@@ -314,6 +314,8 @@ inject_bodyTypeTextDict	../_ref\_xtra\_ber\items\routes.py	/^def inject_bodyType
 inject_destCityDict	../_ref\_xtra\_ber\items\routes.py	/^def inject_destCityDict():$/;"	kind:function	line:201
 inject_destStyleDict	../_ref\_xtra\_ber\items\routes.py	/^def inject_destStyleDict():$/;"	kind:function	line:129
 inject_shipStatMsgDict	../_ref\_xtra\_ber\items\routes.py	/^def inject_shipStatMsgDict():$/;"	kind:function	line:184
+is_admin	../blueprints\models.py	/^    is_admin = db.Column(db.String(32), nullable=False, default='n')$/;"	kind:variable	line:23
+is_member	../blueprints\models.py	/^    is_member = db.Column(db.String(32), nullable=False, default='n')$/;"	kind:variable	line:24
 is_shipper	../_ref\_xtra\_ber\models.py	/^    is_shipper = db.Column(db.Text)$/;"	kind:variable	line:30
 is_shipper	../_ref\_xtra\_ber\users\forms.py	/^    is_shipper = SelectField(choices=[('0', 'n'), ('1', 'y')], default='0')$/;"	kind:variable	line:18
 item_demo.py	../_ref\_py\item_demo.py	1;"	kind:file	line:1
@@ -323,7 +325,7 @@ load_user	../blueprints\models.py	/^def load_user(user_id):$/;"	kind:function	li
 location_id	../_ref\_xtra\_ber\models.py	/^    location_id = db.Column(db.String(1), nullable=False)$/;"	kind:variable	line:31
 location_id	../_ref\_xtra\_ber\users\forms.py	/^    location_id = SelectField($/;"	kind:variable	line:20
 login	../_ref\_xtra\_ber\users\broutes.py	/^def login():$/;"	kind:function	line:51
-login	../blueprints\users\routes.py	/^def login():$/;"	kind:function	line:46
+login	../blueprints\users\routes.py	/^def login():$/;"	kind:function	line:49
 login_manager	../_ref\_xtra\_ber\models.py	/^from berenice import db, login_manager$/;"	kind:namespace	line:5
 login_manager	../blueprints\__init__.py	/^login_manager = LoginManager()$/;"	kind:variable	line:12
 login_manager	../blueprints\models.py	/^from blueprints import db, login_manager$/;"	kind:namespace	line:4
@@ -334,7 +336,7 @@ login_required	../blueprints\users\routes.py	/^from flask_login import login_use
 login_user	../_ref\_xtra\_ber\users\broutes.py	/^from flask_login import login_user, current_user, logout_user, login_required$/;"	kind:namespace	line:2
 login_user	../blueprints\users\routes.py	/^from flask_login import login_user, current_user, logout_user, login_required$/;"	kind:namespace	line:2
 logout	../_ref\_xtra\_ber\users\broutes.py	/^def logout():$/;"	kind:function	line:70
-logout	../blueprints\users\routes.py	/^def logout():$/;"	kind:function	line:62
+logout	../blueprints\users\routes.py	/^def logout():$/;"	kind:function	line:65
 logout_user	../_ref\_xtra\_ber\users\broutes.py	/^from flask_login import login_user, current_user, logout_user, login_required$/;"	kind:namespace	line:2
 logout_user	../blueprints\users\routes.py	/^from flask_login import login_user, current_user, logout_user, login_required$/;"	kind:namespace	line:2
 mail	../blueprints\__init__.py	/^mail = Mail()$/;"	kind:variable	line:15
@@ -379,9 +381,9 @@ password	../_ref\_xtra\_ber\users\forms.py	/^    password = PasswordField('Passw
 password	../_ref\_xtra\_ber\users\forms.py	/^    password = PasswordField('Password', validators=[DataRequired()])$/;"	kind:variable	line:40
 password	../_ref\_xtra\_ber\users\forms.py	/^    password = PasswordField('Password', validators=[DataRequired()])$/;"	kind:variable	line:78
 password	../blueprints\models.py	/^    password = db.Column(db.String(60), nullable=False)$/;"	kind:variable	line:18
+password	../blueprints\users\forms.py	/^    password = PasswordField('Password', validators=[DataRequired()])$/;"	kind:variable	line:110
 password	../blueprints\users\forms.py	/^    password = PasswordField('Password', validators=[DataRequired()])$/;"	kind:variable	line:15
 password	../blueprints\users\forms.py	/^    password = PasswordField('Password', validators=[DataRequired()])$/;"	kind:variable	line:35
-password	../blueprints\users\forms.py	/^    password = PasswordField('Password', validators=[DataRequired()])$/;"	kind:variable	line:96
 picture	../_ref\_xtra\_ber\users\forms.py	/^    picture = FileField('Update Profile Picture', validators=[FileAllowed(['jpg', 'png'])])$/;"	kind:variable	line:50
 picture	../blueprints\users\forms.py	/^    picture = FileField('Update Profile Picture', validators=[FileAllowed(['jpg', 'png'])])$/;"	kind:variable	line:16
 post	../_ref\_xtra\_ber\posts\routes.py	/^def post(post_id):$/;"	kind:function	line:25
@@ -397,7 +399,7 @@ redirect	../blueprints\users\routes.py	/^from flask import render_template, url_
 reg_post	../blueprints\users\routes.py	/^def reg_post():$/;"	kind:function	line:14
 regist3r	../_ref\_xtra\_ber\users\broutes.py	/^def regist3r():$/;"	kind:function	line:15
 register	../_ref\_xtra\_ber\users\broutes.py	/^def register():$/;"	kind:function	line:36
-register	../blueprints\users\routes.py	/^def register():$/;"	kind:function	line:30
+register	../blueprints\users\routes.py	/^def register():$/;"	kind:function	line:33
 remember	../_ref\_xtra\_ber\users\forms.py	/^    remember = BooleanField('Remember Me')$/;"	kind:variable	line:41
 remember	../blueprints\users\forms.py	/^    remember = BooleanField('Remember Me')$/;"	kind:variable	line:36
 render_template	../_ref\_py\_timesheet_jam.py	/^from flask import render_template, url_for, flash, request, Blueprint$/;"	kind:namespace	line:1
@@ -413,8 +415,8 @@ request	../_ref\_xtra\_ber\main\routes.py	/^from flask import render_template, r
 request	../_ref\_xtra\_ber\users\broutes.py	/^from flask import render_template, url_for, flash, redirect, request, Blueprint$/;"	kind:namespace	line:1
 request	../blueprints\main\routes.py	/^from flask import render_template, request, Blueprint$/;"	kind:namespace	line:1
 request	../blueprints\users\routes.py	/^from flask import render_template, url_for, flash, redirect, request, Blueprint$/;"	kind:namespace	line:1
-reset_request	../blueprints\users\routes.py	/^def reset_request():$/;"	kind:function	line:130
-reset_token	../blueprints\users\routes.py	/^def reset_token(token):$/;"	kind:function	line:143
+reset_request	../blueprints\users\routes.py	/^def reset_request():$/;"	kind:function	line:133
+reset_token	../blueprints\users\routes.py	/^def reset_token(token):$/;"	kind:function	line:146
 routes.py	../_ref\_xtra\_ber\items\routes.py	1;"	kind:file	line:1
 routes.py	../_ref\_xtra\_ber\main\routes.py	1;"	kind:file	line:1
 routes.py	../_ref\_xtra\_ber\posts\routes.py	1;"	kind:file	line:1
@@ -430,7 +432,7 @@ secrets	../_ref\_xtra\_ber\users\utils.py	/^import secrets$/;"	kind:namespace	li
 secrets	../blueprints\users\utils.py	/^import secrets$/;"	kind:namespace	line:2
 send_reset_email	../blueprints\users\routes.py	/^from blueprints.users.utils import save_picture, send_reset_email$/;"	kind:namespace	line:7
 send_reset_email	../blueprints\users\utils.py	/^def send_reset_email(user):$/;"	kind:function	line:23
-set_profile_pic	../blueprints\users\routes.py	/^def set_profile_pic(user_id, img_index):$/;"	kind:function	line:92
+set_profile_pic	../blueprints\users\routes.py	/^def set_profile_pic(user_id, img_index):$/;"	kind:function	line:95
 ship_status	../_ref\_xtra\_ber\items\DemoCarsLists.py	/^ship_status = [$/;"	kind:variable	line:1877
 ship_status	../_ref\_xtra\_ber\items\forms.py	/^    ship_status = SelectField($/;"	kind:variable	line:21
 ship_status	../_ref\_xtra\_ber\items\forms.py	/^    ship_status = SelectField($/;"	kind:variable	line:68
@@ -444,14 +446,14 @@ submit	../_ref\_xtra\_ber\users\forms.py	/^    submit = SubmitField('Reset Passw
 submit	../_ref\_xtra\_ber\users\forms.py	/^    submit = SubmitField('Update')$/;"	kind:variable	line:51
 submit	../blueprints\posts\forms.py	/^    submit = SubmitField('Post')$/;"	kind:variable	line:10
 submit	../blueprints\users\forms.py	/^    submit = SubmitField('Login')$/;"	kind:variable	line:37
-submit	../blueprints\users\forms.py	/^    submit = SubmitField('Request Password Reset')$/;"	kind:variable	line:87
-submit	../blueprints\users\forms.py	/^    submit = SubmitField('Reset Password')$/;"	kind:variable	line:99
+submit	../blueprints\users\forms.py	/^    submit = SubmitField('Request Password Reset')$/;"	kind:variable	line:101
+submit	../blueprints\users\forms.py	/^    submit = SubmitField('Reset Password')$/;"	kind:variable	line:113
 submit	../blueprints\users\forms.py	/^    submit = SubmitField('Sign Up')$/;"	kind:variable	line:19
-submit	../blueprints\users\forms.py	/^    submit = SubmitField('Update username\/email')$/;"	kind:variable	line:48
+submit	../blueprints\users\forms.py	/^    submit = SubmitField('Update username\/email')$/;"	kind:variable	line:62
 timesheet	../_ref\_py\_timesheet_jam.py	/^timesheet = Blueprint('timesheet', __name__)$/;"	kind:variable	line:4
 title	../_ref\_xtra\_ber\models.py	/^    title = db.Column(db.String(100), nullable=False)$/;"	kind:variable	line:43
 title	../_ref\_xtra\_ber\posts\forms.py	/^    title = StringField('Title', validators=[DataRequired()])$/;"	kind:variable	line:8
-title	../blueprints\models.py	/^    title = db.Column(db.String(100), nullable=False)$/;"	kind:variable	line:40
+title	../blueprints\models.py	/^    title = db.Column(db.String(100), nullable=False)$/;"	kind:variable	line:45
 title	../blueprints\posts\forms.py	/^    title = StringField('Title', validators=[DataRequired()])$/;"	kind:variable	line:8
 typeFinder	../_ref\_xtra\_ber\items\routes.py	/^    def typeFinder(item_bodyType_id):$/;"	kind:function	line:169
 update_post	../_ref\_xtra\_ber\posts\routes.py	/^def update_post(post_id):$/;"	kind:function	line:32
@@ -466,10 +468,10 @@ url_for	../blueprints\users\routes.py	/^from flask import render_template, url_f
 url_for	../blueprints\users\utils.py	/^from flask import url_for, current_app$/;"	kind:namespace	line:4
 user_id	../_ref\_xtra\_ber\models.py	/^    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)$/;"	kind:variable	line:46
 user_id	../_ref\_xtra\_ber\posts\forms.py	/^    user_id = '00'$/;"	kind:variable	line:17
-user_id	../blueprints\models.py	/^    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)$/;"	kind:variable	line:43
+user_id	../blueprints\models.py	/^    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)$/;"	kind:variable	line:48
 user_id	../blueprints\posts\forms.py	/^    user_id = '00'$/;"	kind:variable	line:16
 user_posts	../_ref\_xtra\_ber\users\broutes.py	/^def user_posts(username):$/;"	kind:function	line:97
-user_posts	../blueprints\users\routes.py	/^def user_posts(username):$/;"	kind:function	line:120
+user_posts	../blueprints\users\routes.py	/^def user_posts(username):$/;"	kind:function	line:123
 username	../_ref\_xtra\_ber\models.py	/^    username = db.Column(db.String(20), unique=True, nullable=False)$/;"	kind:variable	line:32
 username	../_ref\_xtra\_ber\users\forms.py	/^    username = StringField('Username',$/;"	kind:variable	line:10
 username	../_ref\_xtra\_ber\users\forms.py	/^    username = StringField('Username',$/;"	kind:variable	line:46
@@ -484,13 +486,13 @@ utils.py	../blueprints\users\utils.py	1;"	kind:file	line:1
 validate_email	../_ref\_xtra\_ber\users\forms.py	/^    def validate_email(self, email):$/;"	kind:member	line:31
 validate_email	../_ref\_xtra\_ber\users\forms.py	/^    def validate_email(self, email):$/;"	kind:member	line:59
 validate_email	../_ref\_xtra\_ber\users\forms.py	/^    def validate_email(self, email):$/;"	kind:member	line:71
+validate_email	../blueprints\users\forms.py	/^    def validate_email(self, email):$/;"	kind:member	line:103
 validate_email	../blueprints\users\forms.py	/^    def validate_email(self, email):$/;"	kind:member	line:26
-validate_email	../blueprints\users\forms.py	/^    def validate_email(self, email):$/;"	kind:member	line:56
-validate_email	../blueprints\users\forms.py	/^    def validate_email(self, email):$/;"	kind:member	line:89
+validate_email	../blueprints\users\forms.py	/^    def validate_email(self, email):$/;"	kind:member	line:70
 validate_username	../_ref\_xtra\_ber\users\forms.py	/^    def validate_username(self, username):$/;"	kind:member	line:26
 validate_username	../_ref\_xtra\_ber\users\forms.py	/^    def validate_username(self, username):$/;"	kind:member	line:53
 validate_username	../blueprints\users\forms.py	/^    def validate_username(self, username):$/;"	kind:member	line:21
-validate_username	../blueprints\users\forms.py	/^    def validate_username(self, username):$/;"	kind:member	line:50
+validate_username	../blueprints\users\forms.py	/^    def validate_username(self, username):$/;"	kind:member	line:64
 validators	../_ref\_xtra\_ber\users\forms.py	/^                                     validators=[DataRequired(), EqualTo('password')])$/;"	kind:variable	line:16
 validators	../_ref\_xtra\_ber\users\forms.py	/^                                     validators=[DataRequired(), EqualTo('password')])$/;"	kind:variable	line:80
 validators	../_ref\_xtra\_ber\users\forms.py	/^                           validators=[DataRequired(), Length(min=2, max=20)])$/;"	kind:variable	line:11
@@ -499,15 +501,15 @@ validators	../_ref\_xtra\_ber\users\forms.py	/^                        validator
 validators	../_ref\_xtra\_ber\users\forms.py	/^                        validators=[DataRequired(), Email()])$/;"	kind:variable	line:39
 validators	../_ref\_xtra\_ber\users\forms.py	/^                        validators=[DataRequired(), Email()])$/;"	kind:variable	line:49
 validators	../_ref\_xtra\_ber\users\forms.py	/^                        validators=[DataRequired(), Email()])$/;"	kind:variable	line:68
+validators	../blueprints\users\forms.py	/^                                     validators=[DataRequired(), EqualTo('password')])$/;"	kind:variable	line:112
 validators	../blueprints\users\forms.py	/^                                     validators=[DataRequired(), EqualTo('password')])$/;"	kind:variable	line:18
-validators	../blueprints\users\forms.py	/^                                     validators=[DataRequired(), EqualTo('password')])$/;"	kind:variable	line:98
 validators	../blueprints\users\forms.py	/^                           validators=[DataRequired(), Length(min=2, max=20)])$/;"	kind:variable	line:12
 validators	../blueprints\users\forms.py	/^                           validators=[DataRequired(), Length(min=2, max=20)])$/;"	kind:variable	line:42
+validators	../blueprints\users\forms.py	/^                        validators=[DataRequired(), Email()])$/;"	kind:variable	line:100
 validators	../blueprints\users\forms.py	/^                        validators=[DataRequired(), Email()])$/;"	kind:variable	line:14
 validators	../blueprints\users\forms.py	/^                        validators=[DataRequired(), Email()])$/;"	kind:variable	line:34
 validators	../blueprints\users\forms.py	/^                        validators=[DataRequired(), Email()])$/;"	kind:variable	line:44
-validators	../blueprints\users\forms.py	/^                        validators=[DataRequired(), Email()])$/;"	kind:variable	line:86
-verify_reset_token	../blueprints\models.py	/^    def verify_reset_token(token):$/;"	kind:member	line:26
+verify_reset_token	../blueprints\models.py	/^    def verify_reset_token(token):$/;"	kind:member	line:31
 year	../_ref\_xtra\_ber\items\DemoCarsLists.py	/^year = [$/;"	kind:variable	line:752
 year	../_ref\_xtra\_ber\items\forms.py	/^    year = StringField('year')$/;"	kind:variable	line:56
 year	../_ref\_xtra\_ber\items\forms.py	/^    year = StringField('year', validators=[DataRequired()], default='2007')$/;"	kind:variable	line:10

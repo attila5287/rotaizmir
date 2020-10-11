@@ -19,11 +19,14 @@ def reg_post():
         email = request.form["email"], 
         password = hashed_password,
         img_url = 0,
+        is_member = 'n',
+        is_admin = 'n',
         )
     db.session.add(user)
     db.session.commit()
     flash('Your account has been created! You are now able to log in', 'success')
     return redirect(url_for('users.login'))
+
 
 # forms to register
 @users.route("/register", methods=['GET', 'POST'])
