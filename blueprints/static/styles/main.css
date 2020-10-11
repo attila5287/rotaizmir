@@ -1214,7 +1214,7 @@ input[type=range][orient=vertical]
 
 .footer {
   font-family: 'Baloo 2', sans-serif;
-  font-size: 0.85rem;
+  font-size: 1.00rem;
   font-style: italic;
 }
 
@@ -1227,4 +1227,21 @@ input[type=range][orient=vertical]
 .form-control-dark:focus {
   border-color: transparent;
   box-shadow: 0 0 0 3px rgba(255, 255, 255, .25);
+}
+
+
+.nav-tabs .nav-link.active,
+.nav-tabs .nav-item.show .nav-link {
+  color: #495057;
+  background-color: rgb(255, 255, 255);
+  border-color: #dee2e6 #dee2e6 #fff;
+}
+
+
+.nav-tabs .nav-link.active,
+.nav-tabs .nav-item.show .nav-link {
+  color: #495057;
+  background-color: #fff;
+  border-color: #dee2e6 #dee2e6 #fff;
+  
 }

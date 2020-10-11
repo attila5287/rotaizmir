@@ -66,7 +66,14 @@
                       Login
                     </a>
                     <div role="separator" class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="/login">
+
+                    <a class="dropdown-item" href="/home">
+                      <i class="fa fa-info-circle" aria-hidden="true"></i>
+                     Home
+                   </a>
+                    
+                    
+                    <a class="dropdown-item" href="/about">
                       <i class="fa fa-info-circle" aria-hidden="true"></i>
                      About
                    </a>
@@ -88,7 +95,7 @@
                     </button>
                     <div class="dropdown-menu">
                       <a class="dropdown-item" href="/account">
-                        <i class="fas fa-user-cog  text-purple"></i>
+                        <i class="fas fa-dice  text-purple"></i>
                         Account
                       </a>
                       <div role="separator" class="dropdown-divider"></div>
@@ -111,6 +118,10 @@
                       <span class="sr-only">Toggle Dropdown</span>
                     </button>
                     <div class="dropdown-menu">
+                      <a class="dropdown-item" href="/post/new">
+                        <i class="fas fa-paper-plane  text-purple"></i>
+                        Post
+                      </a>
                       <a class="dropdown-item" href="/account">
                         <i class="fas fa-user-cog  text-purple"></i>
                         Account
@@ -129,7 +140,7 @@
                   <div class="input-group-prepend">
                     <button type="button" class="btn btn-outline-secondary">
                       <i class="fas fa-user-tag" aria-hidden="true"></i>
-                      Board
+                      Admin
                     </button>
                     <button type="button" class="btn btn-outline-secondary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                       <span class="sr-only">Toggle Dropdown</span>
@@ -141,6 +152,10 @@
                       </a>
                       <div role="separator" class="dropdown-divider"></div>
                       <a class="dropdown-item" href="#">Separated link</a>
+                      <a class="dropdown-item" href="/post/new">
+                        <i class="fas fa-paper-plane  text-purple"></i>
+                        Post
+                      </a>
                     </div>
                   </div>
                 </div>
@@ -164,7 +179,7 @@
                <option value="1">Guest</option>
                <option value="2">User</option>
                <option value="3">Member</option>
-               <option value="4">Board</option>
+               <option value="4">Admin</option>
              </select>
            </form>
          </div>
@@ -214,48 +229,19 @@
       </nav>
 
 			<div class="row">
-				<div class="col-sm-4">
+				<div class="col-sm-6">
 					<img class="p-0 float-right opac-60"
 						src="https://raw.githubusercontent.com/attila5287/rota-img/main/site/logo_slab.png" alt="footer-logo"
             style="width: 100%;">
             
-					<img class="p-4 float-right opac-60"
-						src="https://raw.githubusercontent.com/attila5287/rota-img/main/site/logo_opensdoors_2021.png" alt="footer-logo"
-						style="width: 100%;">
-				</div>
-
-				<div class="col-sm-4">
-          <ul class="list-group list-group-flush bg-transparent text-light">
-            <li class="list-group-item bg-transparent">
-              <i class="fas fa-info-circle text-md" aria-hidden="true"></i>
-              Register for an account, be a User!
-            </li>
-            <li class="list-group-item bg-transparent">
-              <i class="fas fa-info-circle text-md" aria-hidden="true"></i>
-               Fill out form and activate member status, if you are a member if ours!
-            </li>            
-            <li class="list-group-item bg-transparent">
-              <i class="fas fa-info-circle text-md" aria-hidden="true"></i>
-               Users could browse public posts, events, announcements etc. 
-            </li>
-          </ul>
-        </div>
+          </div>
+          
+          <div class="col-sm-6">
+            <img class="p-0 float-right opac-60"
+              src="https://raw.githubusercontent.com/attila5287/rota-img/main/site/logo_opensdoors_2021.png" alt="footer-logo"
+              style="width: 100%;">
         
-				<div class="col-sm-4">
-          <ul class="list-group list-group-flush bg-transparent text-light">
-            
-            <li class="list-group-item bg-transparent">
-              <i class="fas fa-info-circle text-md" aria-hidden="true"></i>
-               Members on the other hand will have full access!
-              
-            </li>
-            <li class="list-group-item bg-transparent">
-              <i class="fas fa-info-circle text-md" aria-hidden="true"></i>
-               BoardUsers/bosers might also coordinate members assigning tasks!
-              
-            </li>
-          </ul>
-				</div>
+        </div>
 			</div>
 		</footer>
      <!-- Optional JavaScript -->
