@@ -1,5 +1,82 @@
 {% extends "layout.html" %}
 {% block content %}
-    <h1>About Page</h1>
-    <p>test for home page temporarily</p>
-{% endblock content %}
+<span class="text-center">
+
+
+    <h4>Welcome!</h4>
+    
+    <div class="row">
+        <div class="col-sm-3">
+            <p class="text-center text-light text-md">
+                <i class="fas fa-award text-2xl"></i> 
+                2020-2021 Dönem Başkanı
+            </p>
+            <img class="p-0 mt-0 mb-1 float-right opac-60"
+            src="https://raw.githubusercontent.com/attila5287/rota-img/main/site/logo_alara.png" alt="footer-logo"
+            style="width: 100%;">
+            <h4 class="text-center text-light">
+                Erce Alara TÜRKÖZ
+            </h4>
+            
+        </div>
+        
+        
+        <div class="col-sm-9">
+<ul class="nav nav-tabs text-xl" id="myTab" role="tablist">
+  <li class="nav-item">
+    <a class="nav-link active" id="guest-tab" data-toggle="tab" href="#guest" role="tab" aria-controls="guest" aria-selected="true">
+        <i class="fa fa-user-lock text-purple" aria-hidden="true"></i>
+        Guest
+        <i class="fa fa-chevron-right text-md text-secondary" aria-hidden="true"></i>
+    </a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" id="user-tab" data-toggle="tab" href="#user" role="tab" aria-controls="user" aria-selected="false">
+        <i class="fas fa-user-clock text-purple"></i>
+        User
+        <i class="fa fa-chevron-right text-md text-secondary" aria-hidden="true"></i>
+        
+
+    </a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" id="member-tab" data-toggle="tab" href="#member" role="tab" aria-controls="member" aria-selected="false">
+        <i class="fas fa-user-check text-purple"></i>
+        Member
+        <i class="fa fa-chevron-right text-md" aria-hidden="true"></i>
+    </a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" id="general-tab" data-toggle="tab" href="#general" role="tab" aria-controls="general" aria-selected="false">Settings</a>
+  </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane text-light text-lg text-comfo text-left py-2 active" id="guest" role="tabpanel" aria-labelledby="guest-tab">
+
+        First, Register with an email address, users could also choose random-generated nicknames!
+  </div>
+  <div class="tab-pane text-light text-lg text-comfo text-left py-2" id="user" role="tabpanel" aria-labelledby="user-tab">
+      Users need to fill out form with their credentials request authorization from board-users/bosers
+  </div>
+  <div class="tab-pane text-light text-lg text-comfo text-left py-2" id="member" role="tabpanel" aria-labelledby="member-tab">
+    Board-users/bosers members could also contact members assign tasks to them!
+    </div>
+      
+  <div class="tab-pane text-light text-lg text-comfo text-left py-2" id="general" role="tabpanel" aria-labelledby="general-tab">
+      rota2440 is all you need to stay in touch with 
+  </div>
+</div>
+
+<script>
+  $(function () {
+    $('#myTab li:last-child a').tab('show')
+  });
+</script>
+
+
+            
+        </div>
+        </div>
+</span>
+    {% endblock content %}

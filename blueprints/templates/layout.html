@@ -39,88 +39,136 @@
              alt="navbar-icon" data-toggle="tooltip" title="About: Göztepe Rotaract Kulübü | 2020-21"
              >
          </a>
-         <button class="navbar-toggler bg-transparent  border-light px-2 py-1" type="button" data-toggle="collapse"
+         <button class="navbar-toggler bg-theme  border-light px-1 py-0" type="button" data-toggle="collapse"
            data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false"
            aria-label="Toggle navigation">
            <span class="navbar-toggler-icon"></span>
          </button>
          <div class="collapse navbar-collapse nav-mini text-center text-comfo mb-1" id="navbarCollapse">
            <ul class="nav nav-pills nav-justify nav-mini bg-transparent mr-auto align-items-center">
-             <li class="nav-item text-light">
-               <a class="nav-link add-anime shd-themy rnd-lg mt-1 text-light" href="/home">
-                 <i class="fas fa-home text-md"></i>
-                 Home
-               </a>
-             </li>
-             <li class="nav-item text-light">
-               <a class="nav-link add-anime shd-themy rnd-lg mt-1 text-light" href="/users/new/member">
-                 <i class="fas fa-envelope text-md"></i>
-                 NewPost
-                </a>
-              </li>
-              <li class="nav-item text-light">
-                <a class="nav-link add-anime shd-themy rnd-lg mt-1 text-light" href="/bosers/new/member">
-                  <i class="far fa-bell text-md"></i>
-                  Alert Board
-               </a>
-             </li>
-             <li class="nav-item text-light">
-               <a class="nav-link add-anime shd-themy rnd-lg mt-1 text-light" href="/users/new/member">
-                 <i class="fas fa-address-card text-md"></i>
-                 Member-Form
-                </a>
-              </li>
-             <li class="nav-item text-light" data-toggle="test">
-               <a class="nav-link add-anime shd-themy rnd-lg mt-1 text-light" href="/bosers/csv/members">
-                 <i class="fas fa-file-upload text-md"></i>
-                 Upload-CSV
-               </a>
-             </li>
-             <li class="nav-item text-light">
-               <a class="nav-link add-anime shd-themy rnd-lg mt-1 text-light" href="/bosers/assign/task">
-                 <i class="fas fa-tasks text-md"></i>
-                 AssignTask
-               </a>
-             </li>
              <li class="nav-item">
-               <a class="nav-link add-anime rnd-lg text-comfo mt-1 text-light"
+               <div class="input-group mx-1">
+                 <div class="input-group-prepend">
+                   <button type="button" class="btn btn-outline-secondary">
+                     <i class="fas fa-user-lock" aria-hidden="true"></i>
+                     Guest
+                   </button>
+                   <button type="button" class="btn btn-outline-secondary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                     <span class="sr-only">Toggle Dropdown</span>
+                   </button>
+                   <div class="dropdown-menu">
+                     <a class="dropdown-item" href="/register">
+                       <i class="fas fa-user-plus text-purple"></i>
+                       Register
+                     </a>
+                     <a class="dropdown-item" href="/login">
+                      <i class="fas fa-sign-in-alt text-purple" aria-hidden="true"></i>
+                      Login
+                    </a>
+                    <div role="separator" class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="/login">
+                      <i class="fa fa-info-circle" aria-hidden="true"></i>
+                     About
+                   </a>
+                    
+
+                   </div>
+                 </div>
+               </div>
+              </li>
+              <li class="nav-item">
+                <div class="input-group mx-1">
+                  <div class="input-group-prepend">
+                    <button type="button" class="btn btn-outline-secondary">
+                      <i class="fas fa-user-clock" aria-hidden="true"></i>
+                      User
+                    </button>
+                    <button type="button" class="btn btn-outline-secondary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      <span class="sr-only">Toggle Dropdown</span>
+                    </button>
+                    <div class="dropdown-menu">
+                      <a class="dropdown-item" href="/account">
+                        <i class="fas fa-user-cog  text-purple"></i>
+                        Account
+                      </a>
+                      <div role="separator" class="dropdown-divider"></div>
+                      <a class="dropdown-item" href="/logout">
+                        <i class="fas fa-sign-out-alt text-purple"></i>
+                        Logout
+                      </a>
+                    </div>
+                  </div>
+                </div>
+                </li>
+              <li class="nav-item">
+                <div class="input-group mx-1">
+                  <div class="input-group-prepend">
+                    <button type="button" class="btn btn-outline-secondary">
+                      <i class="fas fa-user-check" aria-hidden="true"></i>
+                      Member
+                    </button>
+                    <button type="button" class="btn btn-outline-secondary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      <span class="sr-only">Toggle Dropdown</span>
+                    </button>
+                    <div class="dropdown-menu">
+                      <a class="dropdown-item" href="/account">
+                        <i class="fas fa-user-cog  text-purple"></i>
+                        Account
+                      </a>
+                      <div role="separator" class="dropdown-divider"></div>
+                      <a class="dropdown-item" href="#">
+                        <i class="fas fa-sign-out-alt text-purple"></i>
+                        Logout
+                      </a>
+                    </div>
+                  </div>
+                </div>
+                </li>
+              <li class="nav-item">
+                <div class="input-group mx-1">
+                  <div class="input-group-prepend">
+                    <button type="button" class="btn btn-outline-secondary">
+                      <i class="fas fa-user-tag" aria-hidden="true"></i>
+                      Board
+                    </button>
+                    <button type="button" class="btn btn-outline-secondary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      <span class="sr-only">Toggle Dropdown</span>
+                    </button>
+                    <div class="dropdown-menu">
+                      <a class="dropdown-item" href="/account">
+                        <i class="fas fa-user-cog  text-purple"></i>
+                        Account
+                      </a>
+                      <div role="separator" class="dropdown-divider"></div>
+                      <a class="dropdown-item" href="#">Separated link</a>
+                    </div>
+                  </div>
+                </div>
+                </li>
+             <!-- DEV -->
+             <li class="nav-item">
+               <a class="nav-link add-anime rnd-lg text-comfo mt-1 text-secondary"
                  href="https://github.com/attila5287/rotaizmir">
                  <i class="fab fa-github text-sm"></i>
-                 attila5287
+                 <hr class="my-0 py-0">
+                 attila
                </a>
              </li>
+             
+
+
            </ul>
            <form class="form-inline align-items-center bg-transparent">
              <select class="custom-select custom-select-sm mx-3" >
-               <option value="0" class="disabled">MODE:</option>
-               <option value="1">Play</option>
-               <option value="2">Demo</option>
-               <option value="3">Info</option>
+               <option value="0" class="disabled">View As:</option>
+               <option value="1">Guest</option>
+               <option value="2">User</option>
+               <option value="3">Member</option>
+               <option value="4">Board</option>
              </select>
            </form>
          </div>
        </nav>
-
-       <!-- INFO NOTES -->
-       <div class="d-flex flex-row justify-content-between mt-0">
-         <p class="text-light text-italic text-light mt-0 mb-0">
-           <i class="fas fa-info-circle text-light"></i>
-           (1) Register with an email address, users could also choose random-generated nicknames!
-         </p>
-         <p class="text-light text-italic text-light mt-0 mb-0">
-           <i class="fas fa-info-circle text-light"></i>
-           Users may request authorization from board-users/bosers
-          </p>
-          <p class="text-light text-italic text-light mt-0 mb-0">
-            <i class="fas fa-info-circle text-light"></i>
-            board-users/bosers members could also contact members assign tasks to them!
-           
-         </p>
-         <p class="text-light text-italic text-light mt-0 mb-0 mt-0 mb-0">
-           <i class="fas fa-info-circle text-light"></i>
-           Player scores will also be saved on hall of fame!
-         </p>
-       </div>
 
      </header>
      
@@ -138,46 +186,73 @@
 
          <div class="col-md-6"></div>
        </div>
-		 </main>
-		 
+     </main>
+     
+
 		<footer class="footer mt-2">
+      
+      <nav class="nav nav-pills nav-justified">
+        <a class="nav-item nav-link add-anime shd-themy rnd-xl" href="www.instagram.com/gozteperotaract">
+          <h1 class="fab fa-instagram"></h1>
+        </a>
+        <a class="nav-item nav-link add-anime shd-themy rnd-xl" href="/youtube/not/available">
+          <h1 class="fab fa-youtube"></h1>
+          
+        </a>
+        <a class="nav-item nav-link add-anime shd-themy rnd-xl" href="www.twitter.com/GoztepeRotaract">
+          <h1 class="fab fa-twitter"></h1>
+          
+        </a>
+        <a class="nav-item nav-link add-anime shd-themy rnd-xl" href="/linkedin/not/available">
+          <h1 class="fab fa-linkedin"></h1>
+        </a>
+
+        <a class="nav-item nav-link add-anime shd-themy rnd-xl" href="https://gozteperotaract.com">
+          <h1 class="fas fa-globe-americas"></h1>
+        </a>
+        
+      </nav>
+
 			<div class="row">
-				<div class="col-sm-6">
+				<div class="col-sm-4">
 					<img class="p-0 float-right opac-60"
 						src="https://raw.githubusercontent.com/attila5287/rota-img/main/site/logo_slab.png" alt="footer-logo"
+            style="width: 100%;">
+            
+					<img class="p-4 float-right opac-60"
+						src="https://raw.githubusercontent.com/attila5287/rota-img/main/site/logo_opensdoors_2021.png" alt="footer-logo"
 						style="width: 100%;">
 				</div>
 
-				<div class="col-sm-3">
+				<div class="col-sm-4">
           <ul class="list-group list-group-flush bg-transparent text-light">
             <li class="list-group-item bg-transparent">
-              Rotaract 2440. blg
+              <i class="fas fa-info-circle text-md" aria-hidden="true"></i>
+              Register for an account, be a User!
             </li>
             <li class="list-group-item bg-transparent">
-              Board Term of 2020-2021
-            </li>
+              <i class="fas fa-info-circle text-md" aria-hidden="true"></i>
+               Fill out form and activate member status, if you are a member if ours!
+            </li>            
             <li class="list-group-item bg-transparent">
-              Prez: Erce Alara Turkoz
+              <i class="fas fa-info-circle text-md" aria-hidden="true"></i>
+               Users could browse public posts, events, announcements etc. 
             </li>
           </ul>
-				</div>
-				<div class="col-sm-3">
+        </div>
+        
+				<div class="col-sm-4">
           <ul class="list-group list-group-flush bg-transparent text-light">
+            
             <li class="list-group-item bg-transparent">
+              <i class="fas fa-info-circle text-md" aria-hidden="true"></i>
+               Members on the other hand will have full access!
+              
             </li>
             <li class="list-group-item bg-transparent">
-            </li>
-            <li class="list-group-item bg-transparent">
-              3: 
-            </li>
-            <li class="list-group-item bg-transparent">
-
-            </li>
-            <li class="list-group-item bg-transparent">
-
-            </li>
-            <li class="list-group-item bg-transparent">
-
+              <i class="fas fa-info-circle text-md" aria-hidden="true"></i>
+               BoardUsers/bosers might also coordinate members assigning tasks!
+              
             </li>
           </ul>
 				</div>

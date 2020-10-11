@@ -94,6 +94,7 @@ a.article-title:hover {
 
 .navbar {
   height: 45px !important;
+  max-width: 960 !important;
   max-height: 55px !important;
 }
 
@@ -1102,6 +1103,7 @@ tbody td:last-child {
 .nav-midi{
   height: 28px !important;
   max-height: 40px !important;
+  max-width: 960 !important;
 }
 
 .bg-themsie {
@@ -1210,8 +1212,10 @@ input[type=range][orient=vertical]
   font-size: 0.65rem;
 }
 
-.footer text {
-  font-size: 0.75rem;
+.footer {
+  font-family: 'Baloo 2', sans-serif;
+  font-size: 0.85rem;
+  font-style: italic;
 }
 
 .form-control-dark {
