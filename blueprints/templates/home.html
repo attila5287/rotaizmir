@@ -135,7 +135,8 @@
     
     {% else %}
     {% for post in posts.items %}
-        <article class="media content-section text-light">
+
+        <article class="media content-section text-light border-light rnd-2xl">
           <img class="rounded-circle article-img" src="https://raw.githubusercontent.com/attila5287/rota-img/main/profile_pics/attila.png">
           <div class="media-body text-light">
             <div class="article-metadata text-light">
@@ -146,6 +147,7 @@
             <p class="article-content text-light">{{ post.content }}</p>
           </div>
         </article>
+
     {% endfor %}
     {% for page_num in posts.iter_pages(left_edge=1, right_edge=1, left_current=1, right_current=2) %}
       {% if page_num %}

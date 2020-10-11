@@ -64,15 +64,9 @@
                      <a class="dropdown-item" href="/login">
                       <i class="fas fa-sign-in-alt text-purple" aria-hidden="true"></i>
                       Login
-                    </a>
+                    </a>   
                     <div role="separator" class="dropdown-divider"></div>
 
-                    <a class="dropdown-item" href="/home">
-                      <i class="fa fa-home text-purple" aria-hidden="true"></i>
-                     Home
-                   </a>
-                    
-                    
                     <a class="dropdown-item" href="/about">
                       <i class="fa fa-info-circle text-purple" aria-hidden="true"></i>
                      About
@@ -94,10 +88,18 @@
                       <span class="sr-only">Toggle Dropdown</span>
                     </button>
                     <div class="dropdown-menu">
+
+                    <a class="dropdown-item" href="/home">
+                      <i class="fa fa-home text-purple" aria-hidden="true"></i>
+                     Home
+                   </a>
+                    
+                    
                       <a class="dropdown-item" href="/account">
                         <i class="fas fa-dice  text-purple"></i>
-                        Account
+                        (Temp)Acct
                       </a>
+                      
                       <div role="separator" class="dropdown-divider"></div>
                       <a class="dropdown-item" href="/logout">
                         <i class="fas fa-sign-out-alt text-purple"></i>
@@ -118,6 +120,7 @@
                       <span class="sr-only">Toggle Dropdown</span>
                     </button>
                     <div class="dropdown-menu">
+                   
                       <a class="dropdown-item" href="/post/new">
                         <i class="fas fa-paper-plane  text-purple"></i>
                         Post
@@ -126,6 +129,7 @@
                         <i class="fas fa-user-cog  text-purple"></i>
                         Account
                       </a>
+
                       <div role="separator" class="dropdown-divider"></div>
                       <a class="dropdown-item" href="#">
                         <i class="fas fa-sign-out-alt text-purple"></i>
@@ -155,16 +159,22 @@
                       <i class="fas fa-file-excel text-purple"></i>
                       Upload-CSV
                     </a>
+                    <div role="separator" class="dropdown-divider"></div>
                     <a class="dropdown-item" href="/post/new">
                       <i class="fas fa-paper-plane  text-purple"></i>
                       Post
                     </a>
-                    <div role="separator" class="dropdown-divider"></div>
-                      <a class="dropdown-item" href="/account">
-                        <i class="fas fa-user-cog  text-purple"></i>
-                        Account
-                      </a>
+                    <a class="dropdown-item" href="/account">
+                      <i class="fas fa-user-cog  text-purple"></i>
+                      Account
+                    </a>
 
+                    <div role="separator" class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="#">
+                      <i class="fas fa-sign-out-alt text-purple"></i>
+                      Logout
+                    </a>
+                    
                     </div>
                   </div>
                 </div>
@@ -212,7 +222,14 @@
                 <img class="card-img bg-transparent border-0 rounded-circle account-img opac-60"
                   src="https://raw.githubusercontent.com/attila5287/regropoly-img/master/avatars/{{ current_user.img_url }}.png"
                   style="max-width: 10rem;">
-                  
+
+                  <p class="text-robo text-right text-center mb-0 text-italic text-light text-xs py-0">
+                    <i class="fa fa-arrow-up text-2xl fa-pull-left text-secondary mb-2 animated infinite bounceIn delay-1s"
+                    aria-hidden="true"></i>
+
+                    Above is the current (temporary) picture, hit the button bottom below to change
+
+                  </p>                  
                   <div id="img_url_index" class="bg-black text-center text-digi text-2xl text-primary">
                     <i class="fas fa-hashtag text-primary ml-2  mt-2 fa-pull-left" aria-hidden="true"></i>
                     <span class="index">0
@@ -249,18 +266,18 @@
                     <legend class="text-light text-center text-comfo border-bottom">
                       <p class="text-sm text-italic opac-80 mt-0"> 
                         <i class="fas fa-info-circle text-lg text-light" aria-hidden="true"></i>
-                        Welcome, user! Your membership approval is still pending thus no profile pic upload yet! 
+                        Welcome, user! Your membership approval is still pending thus no profile pic upload yet ...! 
                       </p>
+                      <h1 class="text-italic text-light">
+                        {{ current_user.username }}</h1>
+                      <p class="mb-0 text-md text-italic text-robo">
+                        {{ current_user.email }}
+
+                      </p>  
                       <p class="text-sm text-italic opac-80 pb-0 mb-0"> 
                         <i class="fas fa-info-circle text-lg text-light" aria-hidden="true"></i>
                         There are two forms below, first to change temporary profile picture and a second to change username or email.
                       </p>
-                        <h1 class="bg-dark rnd-2xl text-italic text-light">
-                          {{ current_user.username }}</h1>
-                        <p class="mb-0 text-md text-italic text-robo">
-                          {{ current_user.email }}
-
-                        </p>  
                           
                         </legend>
                     <div class="form-group">
