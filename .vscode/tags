@@ -151,7 +151,7 @@ __repr__	../blueprints\posts\forms.py	/^    def __repr__(self):$/;"	kind:member	
 __rpr__	../_ref\_py\forms - Copy.py	/^    def __rpr__(self):$/;"	kind:member	line:66
 _timesheet_jam.py	../_ref\_py\_timesheet_jam.py	1;"	kind:file	line:1
 about	../_ref\_xtra\_ber\main\routes.py	/^def about():$/;"	kind:function	line:47
-about	../blueprints\main\routes.py	/^def about():$/;"	kind:function	line:24
+about	../blueprints\main\routes.py	/^def about():$/;"	kind:function	line:23
 aboutdev	../_ref\_xtra\_ber\main\routes.py	/^def aboutdev():$/;"	kind:function	line:51
 account	../_ref\_xtra\_ber\users\routes.py	/^def account():$/;"	kind:function	line:77
 account	../blueprints\users\routes.py	/^def account():$/;"	kind:function	line:58
@@ -290,7 +290,7 @@ hh_fin_05	../_ref\_py\forms - Copy.py	/^    hh_fin_05 = IntegerField(default='09
 hh_fin_06	../_ref\_py\forms - Copy.py	/^    hh_fin_06 = IntegerField(default='09')$/;"	kind:variable	line:55
 hh_fin_07	../_ref\_py\forms - Copy.py	/^    hh_fin_07 = IntegerField(default='09')$/;"	kind:variable	line:62
 home	../_ref\_xtra\_ber\main\routes.py	/^def home():$/;"	kind:function	line:32
-home	../blueprints\main\routes.py	/^def home():$/;"	kind:function	line:8
+home	../blueprints\main\routes.py	/^def home():$/;"	kind:function	line:7
 id	../_ref\_xtra\_ber\models.py	/^    id = db.Column(db.Integer, primary_key=True)$/;"	kind:variable	line:10
 id	../_ref\_xtra\_ber\models.py	/^    id = db.Column(db.Integer, primary_key=True)$/;"	kind:variable	line:29
 id	../_ref\_xtra\_ber\models.py	/^    id = db.Column(db.Integer, primary_key=True)$/;"	kind:variable	line:42
@@ -335,7 +335,7 @@ mail	../blueprints\__init__.py	/^mail = Mail()$/;"	kind:variable	line:15
 mail	../blueprints\users\utils.py	/^from blueprints import mail$/;"	kind:namespace	line:6
 main	../_ref\_xtra\_ber\main\routes.py	/^main = Blueprint('main', __name__)$/;"	kind:variable	line:5
 main	../blueprints\__init__.py	/^    from blueprints.main.routes import main$/;"	kind:namespace	line:29
-main	../blueprints\main\routes.py	/^main = Blueprint('main', __name__)$/;"	kind:variable	line:5
+main	../blueprints\main\routes.py	/^main = Blueprint('main', __name__)$/;"	kind:variable	line:4
 make	../_ref\_xtra\_ber\items\DemoCarsLists.py	/^make = [$/;"	kind:variable	line:2
 make	../_ref\_xtra\_ber\items\forms.py	/^    make = StringField('make')$/;"	kind:variable	line:54
 make	../_ref\_xtra\_ber\items\forms.py	/^    make = StringField('make', validators=[DataRequired()], default='Ford')$/;"	kind:variable	line:8
