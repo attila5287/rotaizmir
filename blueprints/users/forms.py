@@ -7,11 +7,13 @@ from blueprints.models import User
 
 
 class RegistrationForm(FlaskForm):
+    pass
     username = StringField('Username',
                            validators=[DataRequired(), Length(min=2, max=20)])
     email = StringField('Email',
                         validators=[DataRequired(), Email()])
     password = PasswordField('Password', validators=[DataRequired()])
+    picture = FileField('Update Profile Picture', validators=[FileAllowed(['jpg', 'png'])])
     confirm_password = PasswordField('Confirm Password',
                                      validators=[DataRequired(), EqualTo('password')])
     submit = SubmitField('Sign Up')
