@@ -1,28 +1,35 @@
 from flask import render_template, url_for, flash, redirect, request, Blueprint
 from flask_login import login_user, current_user, logout_user, login_required
-from blueprints import db, bcrypt
-from blueprints.models import User, Post
-from blueprints.users.forms import (RegistrationForm, LoginForm, UpdateAccountForm,
-                                   RequestResetForm, ResetPasswordForm)
-from blueprints.users.utils import save_picture, send_reset_email
-from blueprints.posts.forms import PostDemo
+from berenice import db, bcrypt
+from berenice.models import User, Post
+from berenice.users.forms import (
+    RegistrationForm, LoginForm, UpdateAccountForm,RequestResetForm, ResetPasswordForm
+)
+from berenice.users.utils import save_picture
 
 users = Blueprint('users', __name__)
 
 
-@users.route("/reg_post", methods=[ 'POST'])
-def reg_post():
-    pass #function to run when new user registered btn hit
-    hashed_password = bcrypt.generate_password_hash(request.form["password"]).decode('utf-8')
+# function that takes /register user input thru reg-form
+@users.route("/regist3r", methods=['POST'])
+def regist3r():
+    pass
+    hashed_password = bcrypt.generate_password_hash(
+        request.form['password']).decode('utf-8')
+    print('test pw')
+    print(hashed_password)
     user = User(
-        username=request.form["username"], 
-        email=request.form["email"], 
+        username=request.form['username'],
+        email=request.form['email'],
+        is_shipper = request.form['is_shipper'],
+        location_id=request.form['location_id'],
         password=hashed_password
-        )
+    )
     db.session.add(user)
     db.session.commit()
     flash('Your account has been created! You are now able to log in', 'success')
     return redirect(url_for('users.login'))
+
 
 # forms to register
 @users.route("/register", methods=['GET', 'POST'])
@@ -32,13 +39,12 @@ def register():
     form = RegistrationForm()
     if form.validate_on_submit():
         hashed_password = bcrypt.generate_password_hash(form.password.data).decode('utf-8')
-        user = User(username=form.username.data, email=form.email.data, password=hashed_password )
+        user = User(username=form.username.data, email=form.email.data, password=hashed_password, is_shipper=form.is_shipper.data, location_id=form.location_id.data)
         db.session.add(user)
         db.session.commit()
         flash('Your account has been created! You are now able to log in', 'success')
         return redirect(url_for('users.login'))
     return render_template('register.html', title='Register', form=form)
-
 
 
 @users.route("/login", methods=['GET', 'POST'])
@@ -47,13 +53,16 @@ def login():
         return redirect(url_for('main.home'))
     form = LoginForm()
     if form.validate_on_submit():
+        pass
         user = User.query.filter_by(email=form.email.data).first()
+        
         if user and bcrypt.check_password_hash(user.password, form.password.data):
             login_user(user, remember=form.remember.data)
             next_page = request.args.get('next')
             return redirect(next_page) if next_page else redirect(url_for('main.home'))
         else:
             flash('Login Unsuccessful. Please check email and password', 'danger')
+
     return render_template('login.html', title='Login', form=form)
 
 
@@ -93,33 +102,12 @@ def user_posts(username):
         .paginate(page=page, per_page=5)
     return render_template('user_posts.html', posts=posts, user=user)
 
+@users.route("/user/<int:user_1d>/delete", methods=['GET', 'POST'])
+def delete_user_by_ID(user_1d):
+    pass
+    User.query.filter_by(id=user_1d).delete()
+    db.session.commit()
+    flash('Test user have been deleted!', 'success')
+    return redirect(url_for('main.home'))
 
-@users.route("/reset_password", methods=['GET', 'POST'])
-def reset_request():
-    if current_user.is_authenticated:
-        return redirect(url_for('main.home'))
-    form = RequestResetForm()
-    if form.validate_on_submit():
-        user = User.query.filter_by(email=form.email.data).first()
-        send_reset_email(user)
-        flash('An email has been sent with instructions to reset your password.', 'info')
-        return redirect(url_for('users.login'))
-    return render_template('reset_request.html', title='Reset Password', form=form)
-
-
-@users.route("/reset_password/<token>", methods=['GET', 'POST'])
-def reset_token(token):
-    if current_user.is_authenticated:
-        return redirect(url_for('main.home'))
-    user = User.verify_reset_token(token)
-    if user is None:
-        flash('That is an invalid or expired token', 'warning')
-        return redirect(url_for('users.reset_request'))
-    form = ResetPasswordForm()
-    if form.validate_on_submit():
-        hashed_password = bcrypt.generate_password_hash(form.password.data).decode('utf-8')
-        user.password = hashed_password
-        db.session.commit()
-        flash('Your password has been updated! You are now able to log in', 'success')
-        return redirect(url_for('users.login'))
-    return render_template('reset_token.html', title='Reset Password', form=form)
+    
