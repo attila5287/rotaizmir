@@ -203,44 +203,32 @@
          <div class="col-md-8">
 
     <main class="main" id="main">
-      <div class="content-section border-light">
+      <div class="content-section border-light bg-transparent">
 
         <div class="card bg-transparent p-0 m-0">
           <div class="card-body">
             <div class="row">
               <div class="col-sm-3">
-                <i class="fas fa-info-circle text-light mr-1" aria-hidden="true"></i>
-                <i class="text-light text-balo">
-                  Current profile pic is number
-                  {{ current_user.img_url }} in gallery
-                </i>
                 <img class="card-img bg-transparent border-0 rounded-circle account-img opac-60"
                   src="https://raw.githubusercontent.com/attila5287/regropoly-img/master/avatars/{{ current_user.img_url }}.png"
                   style="max-width: 10rem;">
-                <p class="mb-0">
-                  <i class="fas fa-info-circle text-light mr-1" aria-hidden="true"></i>
-                  <i class="text-light text-balo">
-                    Selected profile pic is number
-                    
-                    <i> {{ current_user.img_url }} </i>
-                    in gallery
-                  </i>
-                </p>
+                  
+                  <div id="img_url_index" class="bg-black text-center text-digi text-2xl text-primary">
+                    <i class="fas fa-hashtag text-primary ml-2  mt-2 fa-pull-left" aria-hidden="true"></i>
+                    <span class="index">0
+                    </span>
+                  </div>
+                  <p class="text-robo text-center mb-0 text-italic text-light text-xs py-0">
+                    <i class="fa fa-arrow-down text-2xl fa-pull-left text-secondary mt-2 animated infinite bounceIn delay-1s"
+                    aria-hidden="true"></i>
 
+                    Click (Tap) below picture for more!
+                  </p>
                 <div id="img_on_air">
                   <img class="card-img bg-transparent border-0"
                     src="https://raw.githubusercontent.com/attila5287/regropoly-img/master/avatars/{{ form.img_url.data }}.png"
                     style="max-width: 12rem;">
                 </div>
-                <div class="card bg-dark border-0 rnd-2xl">
-                  <p class="mb-0 px-3 pt-1 pb-2 text-sm">
-                    <i class="fas fa-info-circle text-light text-lg mr-1 mt-1" aria-hidden="true"></i>
-                    <i class="text-light text-balo mt-1">
-                      Click on img
-                    </i>
-                  </p>
-                </div>
-
                 
                 <form method="get" action="">
                 <a type="button" id="set-as-profile-pic"
@@ -249,27 +237,32 @@
                   class="set_profile_pic btn btn-dark btn-outline-light btn-block bg-themy text-light text-sm text-bold my-2">
                   Set as profile pic!
                 </a>
-                <i class="text-light text-sm"> above -second from top- for a random choice within gallery </i>
-                <div id="img_url_index" class="bg-black text-center text-digi text-2xl text-primary">
-                  <span class="index">
-                  </span>
-                </div>
   
-</form>
               </div>
+            </form>
 
               <div class="col-sm-9">
                 <h2 class="account-heading"></h2>
                 <form method="POST" action="">
                   {{ form.hidden_tag() }}
                   <fieldset class="form-group">
-                    <legend class="text-light text-center text-comfo border-bottom pb-3 pt-0  mb-4">
-                      <p class="text-sm text-nonitalic opac-80 pb-1">Now displaying account
-                        information for </p>
-                      <h1 class="text-italic text-warning">
-                        {{ current_user.username }}</h1>
-                    </legend>
+                    <legend class="text-light text-center text-comfo border-bottom">
+                      <p class="text-sm text-italic opac-80 mt-0"> 
+                        <i class="fas fa-info-circle text-lg text-light" aria-hidden="true"></i>
+                        Welcome, user! Your membership approval is still pending thus no profile pic upload yet! 
+                      </p>
+                      <p class="text-sm text-italic opac-80 pb-0 mb-0"> 
+                        <i class="fas fa-info-circle text-lg text-light" aria-hidden="true"></i>
+                        There are two forms below, first to change temporary profile picture and a second to change username or email.
+                      </p>
+                        <h1 class="bg-dark rnd-2xl text-italic text-light">
+                          {{ current_user.username }}</h1>
+                        <p class="mb-0 text-md text-italic text-robo">
+                          {{ current_user.email }}
 
+                        </p>  
+                          
+                        </legend>
                     <div class="form-group">
                       <span
                         class="form-control-dark form-control-label text-comfo text-md text-light bg-themy px-4 py-2">
