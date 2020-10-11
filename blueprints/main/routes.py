@@ -1,6 +1,6 @@
 from flask import render_template, request, Blueprint
 from blueprints.models import Post
-from blueprints.posts.forms import PostDemo
+# from blueprints.posts.forms import PostDemo
 
 main = Blueprint('main', __name__)
 
