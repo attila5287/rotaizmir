@@ -813,3 +813,5 @@ _ref/_xtra/_postgresql/psql_cmd.sql
 _ref/_xtra/_postgresql/psql_xtra.sql
 _ref/_xtra/_postgresql/psql-cmd.sql
 _ref/_xtra/_sqlite/sqlite-stmt.sql
+blueprints/templates/account1.html
+blueprints/templates/a4ccount.html
