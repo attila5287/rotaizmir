@@ -50,3 +50,10 @@ class Post(db.Model):
 
     def __repr__(self):
         return f"Post('{self.title}', '{self.date_posted}')"
+
+class Nickname(db.Model):
+    pass
+    id = db.Column(db.Integer, primary_key=True)
+    nickname =db.Column(db.String(256), nullable=False)
+    
+    

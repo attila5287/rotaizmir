@@ -1,7 +1,21 @@
-/*  --- TODO --- */
+.content-section {
+  /* background: #ffffff; */
+  padding: 10px 20px;
+  border: 1px solid #dddddd;
+  border-radius: 3px;
+  margin-bottom: 20px;
+    background-image: linear-gradient(#8ab3d141, #cf1f8c70 60%, #12428141);
+  
+  background-repeat: no-repeat;
+  -webkit-filter: none;
+  filter: none;
+  border: 0px solid #333;
+  box-shadow: 0px 0px 15px rgb(45, 129, 168), inset 0px 0px 5px #8ab4d1;
+  color: #ffffff;
+}
 body {
-  background: #fafafa;
-  color: #333333;
+  /* background: #fafafa; */
+  /* color: #333333; */
   margin-top: 5rem;
 }
 
@@ -34,14 +48,6 @@ i {
 
 .site-header .navbar-nav .nav-link.active {
   font-weight: 500;
-}
-
-.content-section {
-  background: #ffffff;
-  padding: 10px 20px;
-  border: 1px solid #dddddd;
-  border-radius: 3px;
-  margin-bottom: 20px;
 }
 
 .article-title {
@@ -382,6 +388,14 @@ h6 {
   margin-bottom: 20px;
   margin-top: 10px;
   padding: 10px 20px;
+  
+  background-image: linear-gradient(#8ab3d14f, #4c93da8a 60%, #12428181);
+  
+  background-repeat: no-repeat;
+  -webkit-filter: none;
+  filter: none;
+  border: 0px solid #333;
+  box-shadow: 0px 0px 15px rgb(45, 129, 168), inset 0px 0px 3px #8ab4d1;
 }
 
 .rnd-arc {
@@ -1005,7 +1019,7 @@ border-radius:2rem;
   border-radius:2rem;
 }
 
-.bg-glass {
+.bg-gl4ss {
   margin-bottom: 8px;
   background-image: -webkit-gradient(linear, left top, left bottom, from(#8ab4d1), color-stop(60%, #4c93dadc), to(#124281));
   background-image: linear-gradient(#124281, #4c93dadc 60%, #8ab4d1);
@@ -1017,6 +1031,19 @@ border-radius:2rem;
   filter: none;
   border: 0px solid #333;
   box-shadow: 0px 0px 15px rgb(45, 129, 168), inset 0px 0px 3px #8ab4d1;
+}
+
+.bg-glass {
+  margin-bottom: 8px;
+  background-image: -webkit-gradient(linear, left top, left bottom, from(#8ab4d1), color-stop(60%, #4c93dadc), to(#124281));
+
+  background-image: linear-gradient(#8ab3d12d, #4c93da41 60%, #12428159);
+  
+  background-repeat: no-repeat;
+  -webkit-filter: none;
+  filter: none;
+  border: 0px solid #333;
+  box-shadow: 0px 0px 10px rgb(45, 129, 168), inset 0px 0px 3px #8ab4d1;
 }
 .td-glass {
   background-image: -webkit-gradient(linear, left top, left bottom, from(#484e55), color-stop(60%, #3A3F44), to(#313539));

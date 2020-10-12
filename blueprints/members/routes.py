@@ -2,59 +2,36 @@ from flask import (render_template, url_for, flash,
                    redirect, request, abort, Blueprint)
 from flask_login import current_user, login_required
 from blueprints import db
-from blueprints.models import Post
-from blueprints.posts.forms import PostForm
+# from blueprints.models import Post
+# from blueprints.posts.forms import PostForm
 
 posts = Blueprint('posts', __name__)
 
+@users.route("/db/init/nicknames")
+def db_init_nicknames():
+    pass  # UPLOAD ZILLOW HOUSE VALUE INDEX CSV'S MERGED
+    existing_data = Nickname.query.first()
 
-@posts.route("/post/new", methods=['GET', 'POST'])
-@login_required
-def new_post():
-    form = PostForm()
-    if form.validate_on_submit():
-        post = Post(title=form.title.data, content=form.content.data, author=current_user)
-        db.session.add(post)
-        db.session.commit()
-        flash('Your post has been created!', 'success')
-        return redirect(url_for('main.home'))
-    return render_template('create_post.html', title='New Post',
-                           form=form, legend='New Post')
+    if existing_data:
+        pass
+        return jsonify({
+            'status0': 'database exists',
+            'status1': 'db init is one time only',
+            'status2': 'no upload necessary',
+        })
+    else:
+        pass
+        csv_url = 'https://gist.githubusercontent.com/attila5287/0e5e9c50c942fa916a3f95f3b5aff6db/raw/65e78a999102d31268e20fb7fc736d2160e6afbb/nicknames.csv'
 
+        with requests.get(csv_url, stream=True) as r:
+            pass
+            lines = (line.decode('utf-8') for line in r.iter_lines())
+            csv_dict = [row for row in csv.DictReader(lines)]
+            nicknames = [
+                Nickname(**row) for row in csv_dict
+            ]
+            # print(inventory)
+            db.session.add_all(nicknames)
+            db.session.commit()
 
-@posts.route("/post/<int:post_id>")
-def post(post_id):
-    post = Post.query.get_or_404(post_id)
-    return render_template('post.html', title=post.title, post=post)
-
-
-@posts.route("/post/<int:post_id>/update", methods=['GET', 'POST'])
-@login_required
-def update_post(post_id):
-    post = Post.query.get_or_404(post_id)
-    if post.author != current_user:
-        abort(403)
-    form = PostForm()
-    if form.validate_on_submit():
-        post.title = form.title.data
-        post.content = form.content.data
-        db.session.commit()
-        flash('Your post has been updated!', 'success')
-        return redirect(url_for('posts.post', post_id=post.id))
-    elif request.method == 'GET':
-        form.title.data = post.title
-        form.content.data = post.content
-    return render_template('create_post.html', title='Update Post',
-                           form=form, legend='Update Post')
-
-
-@posts.route("/post/<int:post_id>/delete", methods=['POST'])
-@login_required
-def delete_post(post_id):
-    post = Post.query.get_or_404(post_id)
-    if post.author != current_user:
-        abort(403)
-    db.session.delete(post)
-    db.session.commit()
-    flash('Your post has been deleted!', 'success')
-    return redirect(url_for('main.home'))
+        return jsonify(csv_dict)

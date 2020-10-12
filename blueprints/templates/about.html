@@ -1,6 +1,6 @@
 {% extends "layout.html" %}
 {% block content %}
-<span class="text-center">
+<div class="content-section text-center">
 
 
     <h4 class="text-italic">Quick-start for our new app:</h4>
@@ -163,10 +163,10 @@
                 
                 <div class="tab-pane text-light text-lg text-comfo text-left py-2" id="admin" role="tabpanel"
                 aria-labelledby="admin-tab">
-                        <div class="progress float-bottom">
-                            <div class="progress-bar progress-bar-striped progress-bar-animated bg-info" role="progressbar" aria-valuenow="95" aria-valuemin="0" aria-valuemax="100" style="width: 95%"></div>
+                    <div class="progress float-bottom my-3">
+                        <div class="progress-bar progress-bar-striped progress-bar-animated bg-info" role="progressbar" aria-valuenow="95" aria-valuemin="0" aria-valuemax="100" style="width: 95%"></div>
+                    </div>    
                             
-                        </div>    
                 <i class="fa fa-caret-right" aria-hidden="true"></i>
                 Lastly, we have admins who may create group events, assignments notifying other members.
                 <hr class="border-secondary my-1 mx-5">
@@ -215,5 +215,5 @@
 
         </div>
     </div>
-</span>
+</div>
 {% endblock content %}
