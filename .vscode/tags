@@ -279,7 +279,7 @@ email	../_ref\_xtra\_ber\users\forms.py	/^    email = StringField('Email',$/;"	k
 email	../_ref\_xtra\_ber\users\forms.py	/^    email = StringField('Email',$/;"	kind:variable	line:48
 email	../_ref\_xtra\_ber\users\forms.py	/^    email = StringField('Email',$/;"	kind:variable	line:67
 email	../blueprints\members\forms.py	/^    email = StringField('email',$/;"	kind:variable	line:19
-email	../blueprints\models.py	/^    email =  db.Column(db.String(256), nullable=False)$/;"	kind:variable	line:68
+email	../blueprints\models.py	/^    email =  db.Column(db.String(256), nullable=True)$/;"	kind:variable	line:68
 email	../blueprints\models.py	/^    email = db.Column(db.String(120), unique=True, nullable=False)$/;"	kind:variable	line:16
 email	../blueprints\users\forms.py	/^    email = StringField('Email',$/;"	kind:variable	line:13
 email	../blueprints\users\forms.py	/^    email = StringField('Email',$/;"	kind:variable	line:33
@@ -331,13 +331,14 @@ home	../blueprints\main\routes.py	/^def home():$/;"	kind:function	line:7
 id	../_ref\_xtra\_ber\models.py	/^    id = db.Column(db.Integer, primary_key=True)$/;"	kind:variable	line:10
 id	../_ref\_xtra\_ber\models.py	/^    id = db.Column(db.Integer, primary_key=True)$/;"	kind:variable	line:29
 id	../_ref\_xtra\_ber\models.py	/^    id = db.Column(db.Integer, primary_key=True)$/;"	kind:variable	line:42
-id	../blueprints\models.py	/^    id =  db.Column(db.Integer, nullable=True, primary_key=True)$/;"	kind:variable	line:63
+id	../blueprints\models.py	/^    id =  db.Column(db.Integer, nullable=False, primary_key=True)$/;"	kind:variable	line:63
 id	../blueprints\models.py	/^    id = db.Column(db.Integer, primary_key=True)$/;"	kind:variable	line:14
 id	../blueprints\models.py	/^    id = db.Column(db.Integer, primary_key=True)$/;"	kind:variable	line:45
 id	../blueprints\models.py	/^    id = db.Column(db.Integer, primary_key=True)$/;"	kind:variable	line:56
 imageFinder	../_ref\_xtra\_ber\items\routes.py	/^    def imageFinder(item_bodyType_index):$/;"	kind:function	line:152
 image_file	../_ref\_xtra\_ber\models.py	/^    image_file = db.Column(db.String(20), nullable=False, default='default.png')$/;"	kind:variable	line:34
 image_file	../blueprints\models.py	/^    image_file = db.Column(db.String(32), nullable=False, default='default.jpg')$/;"	kind:variable	line:17
+img_url	../blueprints\models.py	/^    img_url =  db.Column(db.String(256), nullable=True)$/;"	kind:variable	line:73
 img_url	../blueprints\models.py	/^    img_url = db.Column(db.Integer, nullable=False, default =0)$/;"	kind:variable	line:22
 img_url	../blueprints\users\forms.py	/^    img_url = SelectField($/;"	kind:variable	line:46
 inject_ItemDemoList	../_ref\_py\item_demo.py	/^def inject_ItemDemoList():$/;"	kind:function	line:24
@@ -350,12 +351,12 @@ inject_destCityDict	../_ref\_xtra\_ber\items\routes.py	/^def inject_destCityDict
 inject_destStyleDict	../_ref\_xtra\_ber\items\routes.py	/^def inject_destStyleDict():$/;"	kind:function	line:129
 inject_shipStatMsgDict	../_ref\_xtra\_ber\items\routes.py	/^def inject_shipStatMsgDict():$/;"	kind:function	line:184
 is_admin	../blueprints\members\forms.py	/^    is_admin  = SelectField(choices=[('n', 'NO'), ('y', 'YES')], default ='n')$/;"	kind:variable	line:22
-is_admin	../blueprints\models.py	/^    is_admin  =  db.Column(db.String(8), nullable=False)$/;"	kind:variable	line:70
+is_admin	../blueprints\models.py	/^    is_admin  =  db.Column(db.String(8), nullable=False)$/;"	kind:variable	line:71
 is_admin	../blueprints\models.py	/^    is_admin = db.Column(db.String(32), nullable=False, default='n')$/;"	kind:variable	line:23
 is_member	../blueprints\members\forms.py	/^    is_member  = SelectField(choices=[('n', 'NO'), ('y', 'YES')], default ='n')$/;"	kind:variable	line:23
 is_member	../blueprints\models.py	/^    is_member = db.Column(db.String(32), nullable=False, default='n')$/;"	kind:variable	line:24
 is_prez	../blueprints\members\forms.py	/^    is_prez  = SelectField(choices=[('n', 'NO'), ('y', 'YES')], default ='n')$/;"	kind:variable	line:24
-is_prez	../blueprints\models.py	/^    is_prez  =  db.Column(db.String(8), nullable=False)$/;"	kind:variable	line:71
+is_prez	../blueprints\models.py	/^    is_prez  =  db.Column(db.String(8), nullable=False)$/;"	kind:variable	line:70
 is_prez	../blueprints\models.py	/^    is_prez = db.Column(db.String(32), nullable=False, default='n')$/;"	kind:variable	line:25
 is_shipper	../_ref\_xtra\_ber\models.py	/^    is_shipper = db.Column(db.Text)$/;"	kind:variable	line:30
 is_shipper	../_ref\_xtra\_ber\users\forms.py	/^    is_shipper = SelectField(choices=[('0', 'n'), ('1', 'y')], default='0')$/;"	kind:variable	line:18
@@ -435,7 +436,7 @@ password	../blueprints\users\forms.py	/^    password = PasswordField('Password',
 password	../blueprints\users\forms.py	/^    password = PasswordField('Password', validators=[DataRequired()])$/;"	kind:variable	line:15
 password	../blueprints\users\forms.py	/^    password = PasswordField('Password', validators=[DataRequired()])$/;"	kind:variable	line:35
 phone_num	../blueprints\members\forms.py	/^    phone_num = StringField('phone_number', default='')$/;"	kind:variable	line:18
-phone_num	../blueprints\models.py	/^    phone_num =  db.Column(db.String(256), nullable=False)$/;"	kind:variable	line:67
+phone_num	../blueprints\models.py	/^    phone_num =  db.Column(db.String(256), nullable=True)$/;"	kind:variable	line:67
 picture	../_ref\_xtra\_ber\users\forms.py	/^    picture = FileField('Update Profile Picture', validators=[FileAllowed(['jpg', 'png'])])$/;"	kind:variable	line:50
 picture	../blueprints\users\forms.py	/^    picture = FileField('Update Profile Picture', validators=[FileAllowed(['jpg', 'png'])])$/;"	kind:variable	line:16
 post	../_ref\_xtra\_ber\posts\routes.py	/^def post(post_id):$/;"	kind:function	line:25

@@ -25,7 +25,7 @@ def db_init_members():
         })
     else:
         pass
-        csv_url = 'https://gist.githubusercontent.com/attila5287/22f92a01e318a8d51e4aa1a18cf0b523/raw/b95251da49678654451c501d9ee4e4340311cb76/members_demo.csv'
+        csv_url = 'https://gist.githubusercontent.com/attila5287/d80f78522096bf3b650b1f3bc7f65277/raw/8c7402fb2206e67ba5b917f43c68859878cf6aad/members_demo.csv'
 
         with requests.get(csv_url, stream=True) as r:
             pass

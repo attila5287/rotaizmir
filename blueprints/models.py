@@ -60,14 +60,14 @@ class Nickname(db.Model):
 
 class Member(db.Model): 
     pass
-    id =  db.Column(db.Integer, nullable=True, primary_key=True)
+    id =  db.Column(db.Integer, nullable=False, primary_key=True)
     first_name =  db.Column(db.String(256), nullable=False)
     middle_name =  db.Column(db.String(256), nullable=True)
     last_name =  db.Column(db.String(256), nullable=False)
-    phone_num =  db.Column(db.String(256), nullable=False)
-    email =  db.Column(db.String(256), nullable=False)
+    phone_num =  db.Column(db.String(256), nullable=True)
+    email =  db.Column(db.String(256), nullable=True)
     gender  =  db.Column(db.String(8), nullable=False)
-    is_admin  =  db.Column(db.String(8), nullable=False)
     is_prez  =  db.Column(db.String(8), nullable=False)
+    is_admin  =  db.Column(db.String(8), nullable=False)
     user_id =  db.Column(db.Integer, nullable=True)
-    
+    img_url =  db.Column(db.String(256), nullable=True)
