@@ -148,11 +148,11 @@
                     </button>
                     <div class="dropdown-menu">
 
-                    <a class="dropdown-item" href="/member/add">
+                    <a class="dropdown-item" href="/member/new">
                       <i class="fas fa-user-plus text-purple"></i>
                       Add-Member
                     </a>
-                    <a class="dropdown-item" href="/upload/csv">
+                    <a class="dropdown-item" href="/members/csv">
                       <i class="fas fa-file-excel text-purple"></i>
                       Upload-CSV
                     </a>
@@ -182,11 +182,13 @@
            </ul>
            <form class="form-inline align-items-center bg-transparent">
              <select class="custom-select custom-select-sm mx-3 px-4" >
-               <option value="0" class="disabled">TestMode</option>
-               <option value="1">Guest</option>
-               <option value="2">User</option>
-               <option value="3">Member</option>
-               <option value="4">Admin</option>
+               <option value="0" class=" disabled"> 
+                 ClubMenu
+               </option>
+               <option value="1" href="/home">Posts</option>
+               <option value="2" href="">Tasks</option>
+               <option value="3" href="">Events</option>
+               <option value="4" href="/members/list">Members</option>
              </select>
            </form>
          </div>

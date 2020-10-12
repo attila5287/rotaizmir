@@ -258,7 +258,7 @@ db	../blueprints\members\routes.py	/^from blueprints import db$/;"	kind:namespac
 db	../blueprints\models.py	/^from blueprints import db, login_manager$/;"	kind:namespace	line:4
 db	../blueprints\posts\routes.py	/^from blueprints import db$/;"	kind:namespace	line:4
 db	../blueprints\users\routes.py	/^from blueprints import db, bcrypt$/;"	kind:namespace	line:5
-db_init_members	../blueprints\members\routes.py	/^def db_init_members():$/;"	kind:function	line:15
+db_init_members	../blueprints\members\routes.py	/^def db_init_members():$/;"	kind:function	line:23
 db_init_nicknames	../blueprints\users\routes.py	/^def db_init_nicknames():$/;"	kind:function	line:164
 default	../blueprints\users\forms.py	/^        default=0$/;"	kind:variable	line:49
 delete_dummy_posts_from	../_ref\_xtra\_ber\posts\routes.py	/^def delete_dummy_posts_from(user_1d):$/;"	kind:function	line:64
@@ -396,6 +396,7 @@ make	../_ref\_xtra\_ber\items\forms.py	/^    make = StringField('make', validato
 make	../_ref\_xtra\_ber\models.py	/^    make = db.Column(db.String(16), nullable=False, default='Ford')$/;"	kind:variable	line:11
 members	../blueprints\__init__.py	/^    from blueprints.members.routes import members$/;"	kind:namespace	line:27
 members	../blueprints\members\routes.py	/^members = Blueprint('members', __name__)$/;"	kind:variable	line:12
+members_list	../blueprints\members\routes.py	/^def members_list():$/;"	kind:function	line:15
 middle_name	../blueprints\members\forms.py	/^    middle_name = StringField('middle name', default='')$/;"	kind:variable	line:14
 middle_name	../blueprints\models.py	/^    middle_name =  db.Column(db.String(256), nullable=True)$/;"	kind:variable	line:65
 mm_beg_01	../_ref\_py\forms - Copy.py	/^    mm_beg_01 = IntegerField(default='00')$/;"	kind:variable	line:11

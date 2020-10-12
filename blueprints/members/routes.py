@@ -11,6 +11,14 @@ from blueprints.members.forms import MemberForm
 
 members = Blueprint('members', __name__)
 
+@members.route("/members/list")
+def members_list():
+   pass
+   return jsonify({ 
+                   'status' : 'success' ,
+                   'members' : 'list' ,
+                   })
+
 @members.route("/db/init/members")
 def db_init_members():
     pass  # UPLOAD ZILLOW HOUSE VALUE INDEX CSV'S MERGED
