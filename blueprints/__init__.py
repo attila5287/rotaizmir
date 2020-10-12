@@ -24,10 +24,12 @@ def create_app(config_class=Config):
     login_manager.init_app(app)
     mail.init_app(app)
 
+    from blueprints.members.routes import members
     from blueprints.users.routes import users
     from blueprints.posts.routes import posts
     from blueprints.main.routes import main
     from blueprints.errors.handlers import errors
+    app.register_blueprint(members)
     app.register_blueprint(users)
     app.register_blueprint(posts)
     app.register_blueprint(main)

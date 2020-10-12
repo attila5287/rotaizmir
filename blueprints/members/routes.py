@@ -1,16 +1,20 @@
+import csv
+import requests
 from flask import (render_template, url_for, flash,
-                   redirect, request, abort, Blueprint)
+                   redirect, request, abort, Blueprint, 
+                   jsonify
+                   )
 from flask_login import current_user, login_required
 from blueprints import db
-# from blueprints.models import Post
-# from blueprints.posts.forms import PostForm
+from blueprints.models import Member
+from blueprints.members.forms import MemberForm
 
-posts = Blueprint('posts', __name__)
+members = Blueprint('members', __name__)
 
-@users.route("/db/init/nicknames")
-def db_init_nicknames():
+@members.route("/db/init/members")
+def db_init_members():
     pass  # UPLOAD ZILLOW HOUSE VALUE INDEX CSV'S MERGED
-    existing_data = Nickname.query.first()
+    existing_data = Member.query.first()
 
     if existing_data:
         pass
@@ -21,17 +25,21 @@ def db_init_nicknames():
         })
     else:
         pass
-        csv_url = 'https://gist.githubusercontent.com/attila5287/0e5e9c50c942fa916a3f95f3b5aff6db/raw/65e78a999102d31268e20fb7fc736d2160e6afbb/nicknames.csv'
+        csv_url = 'https://gist.githubusercontent.com/attila5287/22f92a01e318a8d51e4aa1a18cf0b523/raw/b95251da49678654451c501d9ee4e4340311cb76/members_demo.csv'
 
         with requests.get(csv_url, stream=True) as r:
             pass
             lines = (line.decode('utf-8') for line in r.iter_lines())
             csv_dict = [row for row in csv.DictReader(lines)]
-            nicknames = [
-                Nickname(**row) for row in csv_dict
+            members = [
+                Member(**row, 
+                       user_id= 0,
+                       is_admin= 'n',
+                       is_prez= 'n',
+                       ) for row in csv_dict
             ]
-            # print(inventory)
-            db.session.add_all(nicknames)
+            # print(inventory).
+            db.session.add_all(members)
             db.session.commit()
 
         return jsonify(csv_dict)

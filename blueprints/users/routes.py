@@ -3,7 +3,7 @@ import requests
 from flask import render_template, url_for, flash, redirect, request, Blueprint, jsonify
 from flask_login import login_user, current_user, logout_user, login_required
 from blueprints import db, bcrypt
-from blueprints.models import User, Post, Nickname
+from blueprints.models import User, Post, Nickname, Member
 from blueprints.users.forms import ( RegistrationForm, LoginForm, UpdateAccountForm, RequestResetForm, ResetPasswordForm )
 from blueprints.users.utils import save_picture, send_reset_email
 from blueprints.posts.forms import PostDemo

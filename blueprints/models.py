@@ -54,6 +54,20 @@ class Post(db.Model):
 class Nickname(db.Model):
     pass
     id = db.Column(db.Integer, primary_key=True)
-    nickname =db.Column(db.String(256), nullable=False)
+    nickname = db.Column(db.String(256), nullable=False)
     
+
+
+class Member(db.Model): 
+    pass
+    id =  db.Column(db.Integer, nullable=True, primary_key=True)
+    first_name =  db.Column(db.String(256), nullable=False)
+    middle_name =  db.Column(db.String(256), nullable=True)
+    last_name =  db.Column(db.String(256), nullable=False)
+    phone_num =  db.Column(db.String(256), nullable=False)
+    email =  db.Column(db.String(256), nullable=False)
+    gender  =  db.Column(db.String(8), nullable=False)
+    is_admin  =  db.Column(db.String(8), nullable=False)
+    is_prez  =  db.Column(db.String(8), nullable=False)
+    user_id =  db.Column(db.Integer, nullable=True)
     
