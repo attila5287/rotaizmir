@@ -51,4 +51,3 @@
   </tr>
 {% endfor %}
 </table>
-
