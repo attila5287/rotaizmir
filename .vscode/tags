@@ -61,11 +61,11 @@ MAIL_SERVER	../blueprints\config.py	/^    MAIL_SERVER = 'smtp.googlemail.com'$/;
 MAIL_USERNAME	../blueprints\config.py	/^    MAIL_USERNAME = os.environ.get('EMAIL_USER')$/;"	kind:variable	line:11
 MAIL_USE_TLS	../blueprints\config.py	/^    MAIL_USE_TLS = True$/;"	kind:variable	line:10
 Mail	../blueprints\__init__.py	/^from flask_mail import Mail$/;"	kind:namespace	line:5
-Member	../blueprints\members\routes.py	/^from blueprints.models import Member$/;"	kind:namespace	line:9
+Member	../blueprints\members\routes.py	/^from blueprints.models import Member$/;"	kind:namespace	line:10
 Member	../blueprints\models.py	/^class Member(db.Model): $/;"	kind:class	line:61
 Member	../blueprints\users\routes.py	/^from blueprints.models import User, Post, Nickname, Member$/;"	kind:namespace	line:6
 MemberForm	../blueprints\members\forms.py	/^class MemberForm(FlaskForm):$/;"	kind:class	line:7
-MemberForm	../blueprints\members\routes.py	/^from blueprints.members.forms import MemberForm$/;"	kind:namespace	line:10
+MemberForm	../blueprints\members\routes.py	/^from blueprints.members.forms import MemberForm$/;"	kind:namespace	line:11
 Message	../blueprints\users\utils.py	/^from flask_mail import Message$/;"	kind:namespace	line:5
 MetaData	../_ref\_xtra\_ber\models.py	/^from sqlalchemy import Table, Column, Integer, String, MetaData, ForeignKey$/;"	kind:namespace	line:1
 Nickname	../blueprints\models.py	/^class Nickname(db.Model):$/;"	kind:class	line:54
@@ -170,7 +170,7 @@ __repr__	../blueprints\posts\forms.py	/^    def __repr__(self):$/;"	kind:member	
 __rpr__	../_ref\_py\forms - Copy.py	/^    def __rpr__(self):$/;"	kind:member	line:66
 _timesheet_jam.py	../_ref\_py\_timesheet_jam.py	1;"	kind:file	line:1
 about	../_ref\_xtra\_ber\main\routes.py	/^def about():$/;"	kind:function	line:47
-about	../blueprints\main\routes.py	/^def about():$/;"	kind:function	line:23
+about	../blueprints\main\routes.py	/^def about():$/;"	kind:function	line:18
 aboutdev	../_ref\_xtra\_ber\main\routes.py	/^def aboutdev():$/;"	kind:function	line:51
 account	../_ref\_xtra\_ber\users\broutes.py	/^def account():$/;"	kind:function	line:77
 account	../blueprints\users\routes.py	/^def account():$/;"	kind:function	line:73
@@ -190,6 +190,7 @@ ap_fin_04	../_ref\_py\forms - Copy.py	/^    ap_fin_04 = SelectField(choices=[('0
 ap_fin_05	../_ref\_py\forms - Copy.py	/^    ap_fin_05 = SelectField(choices=[('0', 'a'), ('12', 'p')])$/;"	kind:variable	line:50
 ap_fin_06	../_ref\_py\forms - Copy.py	/^    ap_fin_06 = SelectField(choices=[('0', 'a'), ('12', 'p')])$/;"	kind:variable	line:57
 ap_fin_07	../_ref\_py\forms - Copy.py	/^    ap_fin_07 = SelectField(choices=[('0', 'a'), ('12', 'p')])$/;"	kind:variable	line:64
+api_all	../blueprints\members\routes.py	/^def api_all():$/;"	kind:function	line:29
 app	../run.py	/^app = create_app()$/;"	kind:variable	line:3
 author	../_ref\_xtra\_ber\posts\forms.py	/^    author = 'attila'$/;"	kind:variable	line:18
 author	../blueprints\posts\forms.py	/^    author = 'attila'$/;"	kind:variable	line:17
@@ -233,7 +234,7 @@ current_app	../blueprints\users\utils.py	/^from flask import url_for, current_ap
 current_user	../_ref\_xtra\_ber\posts\routes.py	/^from flask_login import current_user, login_required$/;"	kind:namespace	line:3
 current_user	../_ref\_xtra\_ber\users\broutes.py	/^from flask_login import login_user, current_user, logout_user, login_required$/;"	kind:namespace	line:2
 current_user	../_ref\_xtra\_ber\users\forms.py	/^from flask_login import current_user$/;"	kind:namespace	line:5
-current_user	../blueprints\members\routes.py	/^from flask_login import current_user, login_required$/;"	kind:namespace	line:7
+current_user	../blueprints\members\routes.py	/^from flask_login import login_user, current_user, logout_user, login_required$/;"	kind:namespace	line:8
 current_user	../blueprints\posts\routes.py	/^from flask_login import current_user, login_required$/;"	kind:namespace	line:3
 current_user	../blueprints\users\forms.py	/^from flask_login import current_user$/;"	kind:namespace	line:5
 current_user	../blueprints\users\routes.py	/^from flask_login import login_user, current_user, logout_user, login_required$/;"	kind:namespace	line:4
@@ -254,11 +255,11 @@ db	../_ref\_xtra\_ber\models.py	/^from berenice import db, login_manager$/;"	kin
 db	../_ref\_xtra\_ber\posts\routes.py	/^from berenice import db$/;"	kind:namespace	line:4
 db	../_ref\_xtra\_ber\users\broutes.py	/^from berenice import db, bcrypt$/;"	kind:namespace	line:3
 db	../blueprints\__init__.py	/^db = SQLAlchemy()$/;"	kind:variable	line:9
-db	../blueprints\members\routes.py	/^from blueprints import db$/;"	kind:namespace	line:8
+db	../blueprints\members\routes.py	/^from blueprints import db$/;"	kind:namespace	line:9
 db	../blueprints\models.py	/^from blueprints import db, login_manager$/;"	kind:namespace	line:4
 db	../blueprints\posts\routes.py	/^from blueprints import db$/;"	kind:namespace	line:4
 db	../blueprints\users\routes.py	/^from blueprints import db, bcrypt$/;"	kind:namespace	line:5
-db_init_members	../blueprints\members\routes.py	/^def db_init_members():$/;"	kind:function	line:23
+db_init	../blueprints\members\routes.py	/^def db_init():$/;"	kind:function	line:46
 db_init_nicknames	../blueprints\users\routes.py	/^def db_init_nicknames():$/;"	kind:function	line:164
 default	../blueprints\users\forms.py	/^        default=0$/;"	kind:variable	line:49
 delete_dummy_posts_from	../_ref\_xtra\_ber\posts\routes.py	/^def delete_dummy_posts_from(user_1d):$/;"	kind:function	line:64
@@ -295,7 +296,6 @@ first_name	../blueprints\models.py	/^    first_name =  db.Column(db.String(256),
 flash	../_ref\_py\_timesheet_jam.py	/^from flask import render_template, url_for, flash, request, Blueprint$/;"	kind:namespace	line:1
 flash	../_ref\_xtra\_ber\posts\routes.py	/^from flask import (render_template, url_for, flash,$/;"	kind:namespace	line:1
 flash	../_ref\_xtra\_ber\users\broutes.py	/^from flask import render_template, url_for, flash, redirect, request, Blueprint$/;"	kind:namespace	line:1
-flash	../blueprints\members\routes.py	/^from flask import (render_template, url_for, flash,$/;"	kind:namespace	line:3
 flash	../blueprints\posts\routes.py	/^from flask import (render_template, url_for, flash,$/;"	kind:namespace	line:1
 flash	../blueprints\users\routes.py	/^from flask import render_template, url_for, flash, redirect, request, Blueprint, jsonify$/;"	kind:namespace	line:3
 forms - Copy.py	../_ref\_py\forms - Copy.py	1;"	kind:file	line:1
@@ -328,6 +328,7 @@ hh_fin_06	../_ref\_py\forms - Copy.py	/^    hh_fin_06 = IntegerField(default='09
 hh_fin_07	../_ref\_py\forms - Copy.py	/^    hh_fin_07 = IntegerField(default='09')$/;"	kind:variable	line:62
 home	../_ref\_xtra\_ber\main\routes.py	/^def home():$/;"	kind:function	line:32
 home	../blueprints\main\routes.py	/^def home():$/;"	kind:function	line:7
+home	../blueprints\members\routes.py	/^def home():$/;"	kind:function	line:16
 id	../_ref\_xtra\_ber\models.py	/^    id = db.Column(db.Integer, primary_key=True)$/;"	kind:variable	line:10
 id	../_ref\_xtra\_ber\models.py	/^    id = db.Column(db.Integer, primary_key=True)$/;"	kind:variable	line:29
 id	../_ref\_xtra\_ber\models.py	/^    id = db.Column(db.Integer, primary_key=True)$/;"	kind:variable	line:42
@@ -376,14 +377,16 @@ login_manager	../blueprints\__init__.py	/^login_manager = LoginManager()$/;"	kin
 login_manager	../blueprints\models.py	/^from blueprints import db, login_manager$/;"	kind:namespace	line:4
 login_required	../_ref\_xtra\_ber\posts\routes.py	/^from flask_login import current_user, login_required$/;"	kind:namespace	line:3
 login_required	../_ref\_xtra\_ber\users\broutes.py	/^from flask_login import login_user, current_user, logout_user, login_required$/;"	kind:namespace	line:2
-login_required	../blueprints\members\routes.py	/^from flask_login import current_user, login_required$/;"	kind:namespace	line:7
+login_required	../blueprints\members\routes.py	/^from flask_login import login_user, current_user, logout_user, login_required$/;"	kind:namespace	line:8
 login_required	../blueprints\posts\routes.py	/^from flask_login import current_user, login_required$/;"	kind:namespace	line:3
 login_required	../blueprints\users\routes.py	/^from flask_login import login_user, current_user, logout_user, login_required$/;"	kind:namespace	line:4
 login_user	../_ref\_xtra\_ber\users\broutes.py	/^from flask_login import login_user, current_user, logout_user, login_required$/;"	kind:namespace	line:2
+login_user	../blueprints\members\routes.py	/^from flask_login import login_user, current_user, logout_user, login_required$/;"	kind:namespace	line:8
 login_user	../blueprints\users\routes.py	/^from flask_login import login_user, current_user, logout_user, login_required$/;"	kind:namespace	line:4
 logout	../_ref\_xtra\_ber\users\broutes.py	/^def logout():$/;"	kind:function	line:70
 logout	../blueprints\users\routes.py	/^def logout():$/;"	kind:function	line:66
 logout_user	../_ref\_xtra\_ber\users\broutes.py	/^from flask_login import login_user, current_user, logout_user, login_required$/;"	kind:namespace	line:2
+logout_user	../blueprints\members\routes.py	/^from flask_login import login_user, current_user, logout_user, login_required$/;"	kind:namespace	line:8
 logout_user	../blueprints\users\routes.py	/^from flask_login import login_user, current_user, logout_user, login_required$/;"	kind:namespace	line:4
 mail	../blueprints\__init__.py	/^mail = Mail()$/;"	kind:variable	line:15
 mail	../blueprints\users\utils.py	/^from blueprints import mail$/;"	kind:namespace	line:6
@@ -395,8 +398,7 @@ make	../_ref\_xtra\_ber\items\forms.py	/^    make = StringField('make')$/;"	kind
 make	../_ref\_xtra\_ber\items\forms.py	/^    make = StringField('make', validators=[DataRequired()], default='Ford')$/;"	kind:variable	line:8
 make	../_ref\_xtra\_ber\models.py	/^    make = db.Column(db.String(16), nullable=False, default='Ford')$/;"	kind:variable	line:11
 members	../blueprints\__init__.py	/^    from blueprints.members.routes import members$/;"	kind:namespace	line:27
-members	../blueprints\members\routes.py	/^members = Blueprint('members', __name__)$/;"	kind:variable	line:12
-members_list	../blueprints\members\routes.py	/^def members_list():$/;"	kind:function	line:15
+members	../blueprints\members\routes.py	/^members = Blueprint('members', __name__)$/;"	kind:variable	line:13
 middle_name	../blueprints\members\forms.py	/^    middle_name = StringField('middle name', default='')$/;"	kind:variable	line:14
 middle_name	../blueprints\models.py	/^    middle_name =  db.Column(db.String(256), nullable=True)$/;"	kind:variable	line:65
 mm_beg_01	../_ref\_py\forms - Copy.py	/^    mm_beg_01 = IntegerField(default='00')$/;"	kind:variable	line:11
@@ -462,7 +464,6 @@ render_template	../_ref\_xtra\_ber\posts\routes.py	/^from flask import (render_t
 render_template	../_ref\_xtra\_ber\users\broutes.py	/^from flask import render_template, url_for, flash, redirect, request, Blueprint$/;"	kind:namespace	line:1
 render_template	../blueprints\errors\handlers.py	/^from flask import Blueprint, render_template$/;"	kind:namespace	line:1
 render_template	../blueprints\main\routes.py	/^from flask import render_template, request, Blueprint$/;"	kind:namespace	line:1
-render_template	../blueprints\members\routes.py	/^from flask import (render_template, url_for, flash,$/;"	kind:namespace	line:3
 render_template	../blueprints\posts\routes.py	/^from flask import (render_template, url_for, flash,$/;"	kind:namespace	line:1
 render_template	../blueprints\users\routes.py	/^from flask import render_template, url_for, flash, redirect, request, Blueprint, jsonify$/;"	kind:namespace	line:3
 request	../_ref\_py\_timesheet_jam.py	/^from flask import render_template, url_for, flash, request, Blueprint$/;"	kind:namespace	line:1
@@ -521,7 +522,6 @@ url_for	../_ref\_py\_timesheet_jam.py	/^from flask import render_template, url_f
 url_for	../_ref\_xtra\_ber\posts\routes.py	/^from flask import (render_template, url_for, flash,$/;"	kind:namespace	line:1
 url_for	../_ref\_xtra\_ber\users\broutes.py	/^from flask import render_template, url_for, flash, redirect, request, Blueprint$/;"	kind:namespace	line:1
 url_for	../_ref\_xtra\_ber\users\utils.py	/^from flask import url_for, current_app$/;"	kind:namespace	line:4
-url_for	../blueprints\members\routes.py	/^from flask import (render_template, url_for, flash,$/;"	kind:namespace	line:3
 url_for	../blueprints\posts\routes.py	/^from flask import (render_template, url_for, flash,$/;"	kind:namespace	line:1
 url_for	../blueprints\users\routes.py	/^from flask import render_template, url_for, flash, redirect, request, Blueprint, jsonify$/;"	kind:namespace	line:3
 url_for	../blueprints\users\utils.py	/^from flask import url_for, current_app$/;"	kind:namespace	line:4

@@ -1,3 +1,21 @@
+body {
+  font-size: 0.75rem;
+}
+.article-img {
+  font-size: 1.125rem;
+  text-anchor: middle;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+@media (min-width: 768px) {
+  .article-img {
+    font-size: 3.5rem;
+  }
+}
+
 .content-section {
   /* background: #ffffff; */
   padding: 10px 20px;
@@ -70,13 +88,16 @@ a.article-title:hover {
 }
 
 .article-metadata {
+  background-image: linear-gradient(#ec6ef03b, #f941ff65 60%, #8f057d55);
+  font-size: 1.25rem;
   padding-bottom: 1px;
   margin-bottom: 4px;
-  border-bottom: 1px solid #e3e3e3
+  border-bottom: 1px solid #e3e3e3;
 }
 
 .article-metadata a:hover {
-  color: #333;
+  font-size: 1.25rem;
+  color: rgb(6, 226, 255);
   text-decoration: none;
 }
 
@@ -935,9 +956,7 @@ h6 {
   border: 0 aqua;
   color: #d1d5e9;
 }
-body {
-  font-size: .75rem;
-}
+
 
 /* import metallic btn-second4ry from spacelab */
 
@@ -1068,8 +1087,8 @@ border-radius:2rem;
 }
 
 .nav-mini{
-  height: 35px !important;
-  max-height: 40px !important;
+  height: 45px !important;
+  max-height: 55px !important;
 }
 .bg-body-mini {
   /* background-blend-mode: normal; */
@@ -1134,7 +1153,7 @@ tbody td:last-child {
 }
 
 .bg-themsie {
-  background-image: linear-gradient(#c3710d85, #612d02c7 60%, #1a058fc9);
+  background-image: linear-gradient(#ec6ef052, #f941ff65 60%, #75036655);
 }
 .shd-themy {
   border: 0px solid turquoise;
@@ -1241,7 +1260,7 @@ input[type=range][orient=vertical]
 
 .footer {
   font-family: 'Baloo 2', sans-serif;
-  font-size: 1.00rem;
+  font-size: 0.80rem;
   font-style: italic;
 }
 
@@ -1272,3 +1291,4 @@ input[type=range][orient=vertical]
   border-color: #dee2e6 #dee2e6 #fff;
   
 }
+

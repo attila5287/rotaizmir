@@ -1,26 +1,49 @@
 import csv
 import requests
-from flask import (render_template, url_for, flash,
+from flask import (
+    render_template, url_for, flash,
                    redirect, request, abort, Blueprint, 
                    jsonify
                    )
-from flask_login import current_user, login_required
+from flask_login import login_user, current_user, logout_user, login_required
 from blueprints import db
 from blueprints.models import Member
 from blueprints.members.forms import MemberForm
 
 members = Blueprint('members', __name__)
+@members.route("/members")
+# @login_required()
+def home():
+    pass
+    page = request.args.get('page', 1, type=int)
+    members = Member.query.order_by(Member.id.desc()).paginate(page=page, per_page=25)
+    
+    try:
+        _ = [ member for member in members.items ]
+    except:
+        members = []
 
-@members.route("/members/list")
-def members_list():
+    return render_template( 'members.html', members=members )
+
+@members.route("/members/api")
+def api_all():
    pass
-   return jsonify({ 
-                   'status' : 'success' ,
-                   'members' : 'list' ,
-                   })
+   q_all = Member.query.all()
+   
+   members = [ m for m in q_all ]
+   d = [ 
+        { 
+         c.name: getattr(member, c.name)
+         for c in member.__table__.columns
+         }
+        for member in members
+        ]
+   
 
-@members.route("/db/init/members")
-def db_init_members():
+   return jsonify(dict(enumerate(d)))
+
+@members.route("/members/db/init")
+def db_init():
     pass  # UPLOAD ZILLOW HOUSE VALUE INDEX CSV'S MERGED
     existing_data = Member.query.first()
 
@@ -51,3 +74,4 @@ def db_init_members():
             db.session.commit()
 
         return jsonify(csv_dict)
+

@@ -1,16 +1,18 @@
  <!DOCTYPE html>
  <html>
+
    <head>
      <!-- Required meta tags -->
      <meta charset="utf-8">
      <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-     <link rel="icon" type="image/x-icon" class="favicon" href="https://raw.githubusercontent.com/attila5287/rota-img/main/icons/favicon.ico" />
+     <link rel="icon" type="image/x-icon" class="favicon"
+       href="https://raw.githubusercontent.com/attila5287/rota-img/main/icons/favicon.ico" />
 
      <!-- Bootstrap CSS -->
      <link rel="stylesheet" type="text/css" href="/static/styles/theme/cerulean.css" />
 
      <link rel="stylesheet" type="text/css" href="/static/styles/main.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
      <link rel="stylesheet" type="text/css" href="https://use.fontawesome.com/releases/v5.1.1/css/all.css"
        integrity="sha384-O8whS3fhG2OnA5Kas0Y9l3cfpmYjapjI0E4theH4iuMD+pLhbf6JI0jIMfYcK3yZ" crossorigin="anonymous" />
 
@@ -21,24 +23,26 @@
 
      <!-- FONTS -->
      <link href='https://fonts.googleapis.com/css?family=Orbitron' rel='stylesheet' type='text/css'>
-     <link href='https://fonts.googleapis.com/css?family=Baloo+2' rel='stylesheet' type='text/css'> 
+     <link href='https://fonts.googleapis.com/css?family=Baloo+2' rel='stylesheet' type='text/css'>
      <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
      <link href='https://fonts.googleapis.com/css?family=Roboto+Condensed' rel='stylesheet' type='text/css'>
      <link href='https://fonts.googleapis.com/css?family=Comfortaa' rel='stylesheet' type='text/css'>
-     <link href="https://fonts.googleapis.com/css2?family=Nova+Mono&display=swap" rel="stylesheet"> 
+     <link href="https://fonts.googleapis.com/css2?family=Nova+Mono&display=swap" rel="stylesheet">
      <link href="https://fonts.googleapis.com/css2?family=Major+Mono+Display&display=swap" rel="stylesheet">
      <!-- title -->
      <title>Göztepe Rotaract Kulübü | 2020-21</title>
    </head>
+
    <body class="bg-body-mini">
      <header>
        <nav class="navbar nav-mini navbar-expand-sm navbar-dark fixed-top bg-themy">
-         <a class="navbar-brand bg-transparent border-0 rnd-xl add-anime mx-1 p-0"
+         <a class="navbar-brand bg-transparent border-0 rnd-xl add-anime"
            href="https://rotaizmir.herokuapp.com/">
-           <img class="m-0 px-0 py-0" src="https://raw.githubusercontent.com/attila5287/rota-img/main/icons-png/circle_white.png" style="height: 33px;"
-             alt="navbar-icon" data-toggle="tooltip" title="About: Göztepe Rotaract Kulübü | 2020-21"
-             >
-             
+           <img class="m-0 px-0 py-0"
+             src="https://raw.githubusercontent.com/attila5287/rota-img/main/icons-png/circle_white.png"
+             style="max-height: 3rem;" alt="navbar-icon" data-toggle="tooltip"
+             title="Göztepe Rotaract Kulübü">
+
          </a>
          <button class="navbar-toggler bg-theme  border-light px-1 py-0" type="button" data-toggle="collapse"
            data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false"
@@ -47,209 +51,105 @@
          </button>
          <div class="collapse navbar-collapse nav-mini text-center text-comfo mb-1" id="navbarCollapse">
            <ul class="nav nav-pills nav-justify nav-mini bg-transparent mr-auto align-items-center">
-             <li class="nav-item">
-               <div class="input-group mx-1">
-                 <div class="input-group-prepend">
-                   <button type="button" class="btn btn-outline-secondary border-0">
-                     <i class="fas fa-user-lock" aria-hidden="true"></i>
-                     Guest
-                   </button>
-                   <button type="button" class="btn btn-outline-secondary border-0 dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                     <span class="sr-only">Toggle Dropdown</span>
-                   </button>
-                   <div class="dropdown-menu">
-                     <a class="dropdown-item" href="/register">
-                       <i class="fas fa-user-plus text-purple"></i>
-                       Register
-                     </a>
-                     <a class="dropdown-item" href="/login">
-                      <i class="fas fa-sign-in-alt text-purple" aria-hidden="true"></i>
-                      Login
-                    </a>
-                    <div role="separator" class="dropdown-divider"></div>
+            
+            {% if current_user.is_authenticated %}
 
-                    <a class="dropdown-item" href="/home">
-                      <i class="fa fa-home text-purple" aria-hidden="true"></i>
-                     Home
-                   </a>
-                    
-                    
-                    <a class="dropdown-item" href="/about">
-                      <i class="fa fa-info-circle text-purple" aria-hidden="true"></i>
-                     About
-                   </a>
-                    
+            {% set navigation_bar = [
+              
+              ('/home', 'posts-home', 'Posts', 'envelope-open'),
+              ('/post/new', 'new-post', 'NewPost', 'paper-plane'),
+              ('/account', 'account', 'Account', 'user-cog'),
+              ('/logout', 'logout', 'Logout', 'sign-out-alt'),
+              ('/logout', 'logout', 'Logout', 'sign-out-alt'),
 
-                   </div>
-                 </div>
-               </div>
+            ] -%}
+            {% set active_page = active_page|default('new-post') -%}
+            {% for href, id, caption, icon in navigation_bar %}
+            <li class="nav-item">
+                <a class="nav-link text-light add-anime shd-themy text-md"  href="{{href|e }}">
+                  <i class="text-lg fas fa-{{icon|e }}"></i>
+                  {{ caption|e }}
+                </a>
               </li>
-              <li class="nav-item">
-                <div class="input-group mx-1">
-                  <div class="input-group-prepend">
-                    <button type="button" class="btn btn-outline-secondary border-0">
-                      <i class="fas fa-user-clock" aria-hidden="true"></i>
-                      User
-                    </button>
-                    <button type="button" class="btn btn-outline-secondary border-0 dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                      <span class="sr-only">Toggle Dropdown</span>
-                    </button>
-                    <div class="dropdown-menu">
-                      <a class="dropdown-item" href="/account">
-                        <i class="fas fa-dice  text-purple"></i>
-                        Account
-                      </a>
-                      <div role="separator" class="dropdown-divider"></div>
-                      <a class="dropdown-item" href="/logout">
-                        <i class="fas fa-sign-out-alt text-purple"></i>
-                        Logout
-                      </a>
-                    </div>
-                  </div>
-                </div>
-                </li>
-              <li class="nav-item">
-                <div class="input-group mx-1">
-                  <div class="input-group-prepend">
-                    <button type="button" class="btn btn-outline-secondary border-0">
-                      <i class="fas fa-user-check" aria-hidden="true"></i>
-                      Member
-                    </button>
-                    <button type="button" class="btn btn-outline-secondary border-0 dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                      <span class="sr-only">Toggle Dropdown</span>
-                    </button>
-                    <div class="dropdown-menu">
-                      <a class="dropdown-item" href="/post/new">
-                        <i class="fas fa-paper-plane  text-purple"></i>
-                        Post
-                      </a>
-                      <a class="dropdown-item" href="/account">
-                        <i class="fas fa-user-cog  text-purple"></i>
-                        Account
-                      </a>
-                      <div role="separator" class="dropdown-divider"></div>
-                      <a class="dropdown-item" href="#">
-                        <i class="fas fa-sign-out-alt text-purple"></i>
-                        Logout
-                      </a>
-                    </div>
-                  </div>
-                </div>
-                </li>
-              <li class="nav-item">
-                <div class="input-group mx-1">
-                  <div class="input-group-prepend">
-                    <button type="button" class="btn btn-outline-secondary border-0">
-                      <i class="fas fa-user-tag" aria-hidden="true"></i>
-                      Admin
-                    </button>
-                    <button type="button" class="btn btn-outline-secondary border-0 dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                      <span class="sr-only">Toggle Dropdown</span>
-                    </button>
-                    <div class="dropdown-menu">
+            
+            {% endfor %}
+            {% else %}
+            {% set navigation_bar = [
+              ('/register', 'register', 'Register', 'user-plus'),
+                ('/login', 'login', 'Login', 'sign-in-alt'),
+                ('/about/', 'about', 'About', 'info-circle')
+            ] -%}
+            
+            {% for href, id, caption, icon in navigation_bar %}
+                <a class="nav-link text-light add-anime shd-themy text-md"  href="{{href|e }}">
+                  <i class="fas fa-{{icon|e }}"></i>
+                  {{ caption|e }}
+                </a>
+              </li>
+            {% endfor %}
+            
 
-                    <a class="dropdown-item" href="/member/new">
-                      <i class="fas fa-user-plus text-purple"></i>
-                      Add-Member
-                    </a>
-                    <a class="dropdown-item" href="/members/csv">
-                      <i class="fas fa-file-excel text-purple"></i>
-                      Upload-CSV
-                    </a>
-                    <a class="dropdown-item" href="/post/new">
-                      <i class="fas fa-paper-plane  text-purple"></i>
-                      Post
-                    </a>
-                    <div role="separator" class="dropdown-divider"></div>
-                      <a class="dropdown-item" href="/account">
-                        <i class="fas fa-user-cog  text-purple"></i>
-                        Account
-                      </a>
+            {% endif %}
 
-                    </div>
-                  </div>
-                </div>
-                </li>
+
              <!-- DEV -->
              <li class="nav-item">
                <a class="nav-link add-anime rnd-lg text-comfo mt-1 text-secondary"
-                 href="https://github.com/attila5287/rotaizmir">
+                 href="https://rotaract2440.org/kulup/23#"
+                 >
                  <i class="fab fa-github text-sm"></i>
                  <hr class="my-0 py-0">
                  attila
                </a>
              </li>
            </ul>
-           <form class="form-inline align-items-center bg-transparent">
-             <select class="custom-select custom-select-sm mx-3 px-4" >
-               <option value="0" class=" disabled"> 
-                 ClubMenu
-               </option>
-               <option value="1" href="/home">Posts</option>
-               <option value="2" href="">Tasks</option>
-               <option value="3" href="">Events</option>
-               <option value="4" href="/members/list">Members</option>
-             </select>
-           </form>
          </div>
        </nav>
 
      </header>
-     
      <main>
-       <div class="row no-gutters">
-         <div class="col-md-2">
-         </div>
-         <div class="col-md-8">
-           <!-- ONE BEDROOMS OF SELECTED STATE -->
-           {% block content %} {% endblock%}
-           
-         </div>
-         <div class="col-md-2"></div>
-         
-
-         <div class="col-md-6"></div>
-       </div>
-     </main>
-     
-
-		<footer class="container footer mt-2">
-      
-      <nav class="nav nav-pills nav-justified">
-        <a class="nav-item nav-link add-anime shd-themy rnd-xl" href="https://rotaract2440.org/kulup/23#">   
-          <img class="m-0 bg-light rnd-lg py-0 pl-2 pr-1 add-anime"
-            src="https://raw.githubusercontent.com/attila5287/rota-img/main/site/logo_slab.png" alt="slab-logo"
-            style="height: 3rem;"
-            >
-        </a>
-        <a class="nav-item nav-link add-anime shd-themy rnd-xl" href="www.instagram.com/gozteperotaract">
-          <h1 class="fab fa-instagram"></h1>
-        </a>
-        <a class="nav-item nav-link add-anime shd-themy rnd-xl" href="/youtube/not/available">
-          <h1 class="fab fa-youtube"></h1>
+     <div class="row no-gutters">
+       <div class="col-md-9">
+         {% block content %} {% endblock%}
+        </div>
+        <div class="col-md-3">
           
-        </a>
-        <a class="nav-item nav-link add-anime shd-themy rnd-xl" href="www.twitter.com/GoztepeRotaract">
-          <h1 class="fab fa-twitter"></h1>
-          
-        </a>
-        <a class="nav-item nav-link add-anime shd-themy rnd-xl" href="/linkedin/not/available">
-          <h1 class="fab fa-linkedin"></h1>
-        </a>
+        </div>
+      </div>
+      </main>
+       
+     <footer class="container footer mt-2">
 
-        <a class="nav-item nav-link add-anime shd-themy rnd-xl" href="https://gozteperotaract.com">
-          <h1 class="fas fa-globe-americas"></h1>
-        </a>
-        <a class="nav-item nav-link add-anime shd-themy rnd-xl" href="https://gozteperotaract.com">   
-          <img class="m-0 bg-light rnd-lg py-0 pl-2 pr-1"
-              src="https://raw.githubusercontent.com/attila5287/rota-img/main/site/logo_opensdoors_2021.png" alt="footer-logo"
-              style="height: 3.5rem;"
-              >
-        </a>
-        
-      </nav>
+       <nav class="nav nav-pills nav-justified">
+         <a class="nav-item nav-link add-anime shd-themy rnd-xl" href="https://rotaract2440.org/kulup/23#">
+           <img class="m-0 bg-light rnd-lg py-0 pl-2 pr-1 add-anime"
+             src="https://raw.githubusercontent.com/attila5287/rota-img/main/site/logo_slab.png" alt="slab-logo"
+             style="height: 2.75rem;">
+         </a>
+         <a class="nav-item nav-link add-anime shd-themy rnd-xl" href="www.instagram.com/gozteperotaract">
+           <h1 class="fab fa-instagram"></h1>
+         </a>
+         <a class="nav-item nav-link add-anime shd-themy rnd-xl" href="/youtube/not/available">
+           <h1 class="fab fa-youtube"></h1>
 
-		</footer>
+         </a>
+         <a class="nav-item nav-link add-anime shd-themy rnd-xl" href="www.twitter.com/GoztepeRotaract">
+           <h1 class="fab fa-twitter"></h1>
+
+         </a>
+         <a class="nav-item nav-link add-anime shd-themy rnd-xl" href="/linkedin/not/available">
+           <h1 class="fab fa-linkedin"></h1>
+         </a>
+
+         <a class="nav-item nav-link add-anime shd-themy rnd-xl" href="https://gozteperotaract.com">
+           <img class="m-0 bg-light rnd-lg py-0 pl-2 pr-1"
+             src="https://raw.githubusercontent.com/attila5287/rota-img/main/site/logo_opensdoors_2021.png"
+             alt="footer-logo" style="height: 2.75rem;">
+         </a>
+
+       </nav>
+
+     </footer>
      <!-- Optional JavaScript -->
      <!-- jQuery first, then Popper.js, then Bootstrap JS -->
      <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
@@ -267,4 +167,3 @@
    </body>
 
  </html>
- 

@@ -1,0 +1,206 @@
+{% extends "layout.html" %}
+{% block content %}
+    {% if posts ==[] %}
+    <br>
+  <p class="text-light text-center text-xl">
+    <i class="fa fa-arrow-down text-2xl" aria-hidden="true"></i>
+        These are introductory posts only to show up when demonstration required:
+  </p>
+
+    <br>
+    
+    
+    <div class="media my-1 mx-2 text-light">
+      <a class="d-flex align-self-bottom">
+        <div class="alert bg-maroon p-1 mr-2 text-light" role="alert">
+        <img class="rounded mr-1"
+        src="https://raw.githubusercontent.com/attila5287/rota-img/main/profile_pics/attila.png" alt="" 
+        style="max-height: 6rem;">
+        </div>
+      </a>
+      <div class="alert bg-silver" role="alert">
+      
+      <div class="media-body">
+        
+        <h5 class="mt-1 my-1"> 
+          01&gt; welcome to rota izmir demo vers.!
+        </h5>
+        <p class="mt-1 my-1 text-light">
+          <i class="fa fa-caret-right" aria-hidden="true"></i>
+          A: post is a CRUD module
+        </p>
+        <p class="text-light text-right mt-1 my-0">
+            <i class="fas fa-user"></i>
+            attila
+            <em> @  2020-10-10 </em> 
+            <i class="fas fa-window-close ml-2 mr-auto text-light"></i>  
+            <i class="fas fa-edit mr-auto text-light"></i>
+          </p>
+      </div>
+    </div>
+    </div>
+    
+    
+    <div class="media m-2 text-light">
+      <a class="d-flex align-self-bottom">
+        <div class="alert bg-maroon p-1 mr-2 text-light" role="alert">
+        <img class="rounded mr-1"
+        src="https://raw.githubusercontent.com/attila5287/rota-img/main/profile_pics/attila.png" alt="" 
+        style="max-height: 6rem;">
+        </div>
+      </a>
+      <div class="alert bg-silver" role="alert">
+      
+      <div class="media-body">
+        
+        <h5 class="mt-1 my-1"> 
+          02&gt; these are demo posts
+        </h5>
+        <p class="mt-1 my-1 text-light">
+          <i class="fa fa-caret-right" aria-hidden="true"></i>
+          B: create posts or delete yours
+        </p>
+        <p class="text-light text-right mt-1 my-0">
+            <i class="fas fa-user"></i>
+            attila
+            <em> @  2020-10-10 </em> 
+            <i class="fas fa-window-close ml-2 mr-auto text-light"></i>  
+            <i class="fas fa-edit mr-auto text-light"></i>
+          </p>
+      </div>
+    </div>
+    </div>
+    
+    
+    <div class="media m-2 text-light">
+      <a class="d-flex align-self-bottom">
+        <div class="alert bg-maroon p-1 mr-2 text-light" role="alert">
+        <img class="rounded mr-1"
+        src="https://raw.githubusercontent.com/attila5287/rota-img/main/profile_pics/attila.png" alt="" 
+        style="max-height: 6rem;">
+        </div>
+      </a>
+      <div class="alert bg-silver" role="alert">
+      
+      <div class="media-body">
+        
+        <h5 class="mt-1 my-1"> 
+          03&gt; they only appear
+        </h5>
+        <p class="mt-1 my-1 text-light">
+          <i class="fa fa-caret-right" aria-hidden="true"></i>
+          C: read those created by others
+        </p>
+        <p class="text-light text-right mt-1 my-0">
+            <i class="fas fa-user"></i>
+            attila
+            <em> @  2020-10-10 </em> 
+            <i class="fas fa-window-close ml-2 mr-auto text-light"></i>  
+            <i class="fas fa-edit mr-auto text-light"></i>
+          </p>
+      </div>
+    </div>
+    </div>
+    
+    
+    <div class="media m-2 text-light">
+      <a class="d-flex align-self-bottom">
+        <div class="alert bg-maroon p-1 mr-2 text-light" role="alert">
+        <img class="rounded mr-1"
+        src="https://raw.githubusercontent.com/attila5287/rota-img/main/profile_pics/attila.png" alt="" 
+        style="max-height: 6rem;">
+        </div>
+      </a>
+      <div class="alert bg-silver" role="alert">
+      
+      <div class="media-body">
+        
+        <h5 class="mt-1 my-1"> 
+          04&gt; when there are no posts to show
+        </h5>
+        <p class="mt-1 my-1 text-light">
+          <i class="fa fa-caret-right" aria-hidden="true"></i>
+          D: update your posts or preferences
+        </p>
+        <p class="text-light text-right mt-1 my-0">
+            <i class="fas fa-user"></i>
+            attila
+            <em> @  2020-10-10 </em> 
+            <i class="fas fa-window-close ml-2 mr-auto text-light"></i>  
+            <i class="fas fa-edit mr-auto text-light"></i>
+          </p>
+      </div>
+    </div>
+    </div>
+    
+    
+    {% else %}
+    <div class="row">
+    {% for m in members.items %}
+
+  <div class="col-sm-6">
+    <article class="media content-section text-light rnd-2xl">
+      <img class="rounded-circle article-img" 
+      src="{{ m.img_url  }}" alt="{{ m.id }}-photo" 
+      >
+      <div class="media-body text-light">
+        <div class="article-metadata text-md">
+          <a class="text-capitalize mr-2" >
+            {{m.last_name}}, 
+            {{m.first_name}}
+          {{m.middle_name}}
+          </a>
+        </div>
+        <h2><a class="article-title text-md text-capitalize">
+        </a></h2>
+
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item bg-transparent py-1"> 
+            <i class="far fa-envelope mr-2" aria-hidden="true"></i>
+            {{ m.email }}</li>
+          <li class="list-group-item bg-transparent py-1"> 
+            <i class="fa fa-phone mr-2" aria-hidden="true"></i>
+            0
+            -{{ m.phone_num[:3] }}
+            -{{ m.phone_num[3:6] }}
+            -{{ m.phone_num[6:10] }}
+          </li>
+          <li class="list-group-item bg-transparent py-1"> 
+            <i class="fa fa-graduation-cap mr-2" ></i>
+            MemberID: {{ m.id }} 
+          </li>
+          <li class="list-group-item bg-transparent py-1"> 
+            <i class="fas fa-user-tag mr-2"></i>
+            UserID: {{ m.user_id }}
+          </li>
+            
+        </ul>
+      </div>
+    </article>    
+    
+  </div>
+  
+  {% endfor %}
+</div>
+<div class="text-center">
+  {% for page_num in members.iter_pages(left_edge=1, right_edge=1, left_current=5, right_current=5) %}
+  {% if page_num %}
+    {% if members.page == page_num %}
+      <a class="btn btn-info mb-4 text-xl" href="{{ url_for('members.home', page=page_num) }}">
+        {{ page_num }}
+
+      </a>
+    {% else %}
+      <a class="btn btn-outline-light mb-4 text-xl" href="{{ url_for('members.home', page=page_num) }}">{{ page_num }}</a>
+    {% endif %}
+  {% else %}
+    ...
+  {% endif %}
+{% endfor %}
+
+</div>
+  
+    {% endif %}
+
+
+{% endblock content %}

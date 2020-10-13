@@ -1,138 +1,42 @@
 {% extends "layout.html" %}
 {% block content %}
-    {% if posts ==[] %}
+    {% if posts.items ==[] %}
     <br>
   <p class="text-light text-center text-xl">
     <i class="fa fa-arrow-down text-2xl" aria-hidden="true"></i>
-        These are introductory posts only to show up when demonstration required:
+        These are demo posts only to show up when demonstration required:
   </p>
 
     <br>
     
-    
-    <div class="media m-2 text-light">
-      <a class="d-flex align-self-bottom">
-        <div class="alert bg-maroon p-1 mr-2 text-light" role="alert">
-        <img class="rounded mr-1"
-        src="https://raw.githubusercontent.com/attila5287/rota-img/main/profile_pics/attila.png" alt="" 
-        style="max-height: 6rem;">
-        </div>
-      </a>
-      <div class="alert bg-silver" role="alert">
-      
-      <div class="media-body">
-        
-        <h5 class="mt-1 my-1"> 
-          01&gt; welcome to rota izmir demo vers.!
-        </h5>
-        <p class="mt-1 my-1 text-light">
-          <i class="fa fa-caret-right" aria-hidden="true"></i>
-          A: post is a CRUD module
-        </p>
-        <p class="text-light text-right mt-1 my-0">
-            <i class="fas fa-user"></i>
-            attila
-            <em> @  2020-10-10 </em> 
-            <i class="fas fa-window-close ml-2 mr-auto text-light"></i>  
-            <i class="fas fa-edit mr-auto text-light"></i>
-          </p>
+    <div class="content-section" >
+      {% set demo_posts = [
+        ( 'welcome!', 'attila', 'attila'),
+        ] -%}
+
+{% for title, content, image in demo_posts %}
+  <article class="media content-section text-light border-light rnd-2xl">
+    <img class="rounded-circle article-img" src="https://raw.githubusercontent.com/attila5287/rota-img/main/profile_pics/{{image}}.png">
+    <div class="media-body text-light">
+      <div class="article-metadata text-light">
+        <a class="mr-2" href="">
+          rotaract2440
+        </a>
+        <small class="text-italic text-light">
+          10/10/2020
+        </small>
       </div>
+      <h2><a class="article-title text-light" href="{{ id }}">
+        {{ title}}
+      </a></h2>
+      <p class="article-content text-light">
+        {{ content }}
+      </p>
     </div>
+  </article>
+{% endfor %}
+
     </div>
-    
-    
-    <div class="media m-2 text-light">
-      <a class="d-flex align-self-bottom">
-        <div class="alert bg-maroon p-1 mr-2 text-light" role="alert">
-        <img class="rounded mr-1"
-        src="https://raw.githubusercontent.com/attila5287/rota-img/main/profile_pics/attila.png" alt="" 
-        style="max-height: 6rem;">
-        </div>
-      </a>
-      <div class="alert bg-silver" role="alert">
-      
-      <div class="media-body">
-        
-        <h5 class="mt-1 my-1"> 
-          02&gt; these are demo posts
-        </h5>
-        <p class="mt-1 my-1 text-light">
-          <i class="fa fa-caret-right" aria-hidden="true"></i>
-          B: create posts or delete yours
-        </p>
-        <p class="text-light text-right mt-1 my-0">
-            <i class="fas fa-user"></i>
-            attila
-            <em> @  2020-10-10 </em> 
-            <i class="fas fa-window-close ml-2 mr-auto text-light"></i>  
-            <i class="fas fa-edit mr-auto text-light"></i>
-          </p>
-      </div>
-    </div>
-    </div>
-    
-    
-    <div class="media m-2 text-light">
-      <a class="d-flex align-self-bottom">
-        <div class="alert bg-maroon p-1 mr-2 text-light" role="alert">
-        <img class="rounded mr-1"
-        src="https://raw.githubusercontent.com/attila5287/rota-img/main/profile_pics/attila.png" alt="" 
-        style="max-height: 6rem;">
-        </div>
-      </a>
-      <div class="alert bg-silver" role="alert">
-      
-      <div class="media-body">
-        
-        <h5 class="mt-1 my-1"> 
-          03&gt; they only appear
-        </h5>
-        <p class="mt-1 my-1 text-light">
-          <i class="fa fa-caret-right" aria-hidden="true"></i>
-          C: read those created by others
-        </p>
-        <p class="text-light text-right mt-1 my-0">
-            <i class="fas fa-user"></i>
-            attila
-            <em> @  2020-10-10 </em> 
-            <i class="fas fa-window-close ml-2 mr-auto text-light"></i>  
-            <i class="fas fa-edit mr-auto text-light"></i>
-          </p>
-      </div>
-    </div>
-    </div>
-    
-    
-    <div class="media m-2 text-light">
-      <a class="d-flex align-self-bottom">
-        <div class="alert bg-maroon p-1 mr-2 text-light" role="alert">
-        <img class="rounded mr-1"
-        src="https://raw.githubusercontent.com/attila5287/rota-img/main/profile_pics/attila.png" alt="" 
-        style="max-height: 6rem;">
-        </div>
-      </a>
-      <div class="alert bg-silver" role="alert">
-      
-      <div class="media-body">
-        
-        <h5 class="mt-1 my-1"> 
-          04&gt; when there are no posts to show
-        </h5>
-        <p class="mt-1 my-1 text-light">
-          <i class="fa fa-caret-right" aria-hidden="true"></i>
-          D: update your posts or preferences
-        </p>
-        <p class="text-light text-right mt-1 my-0">
-            <i class="fas fa-user"></i>
-            attila
-            <em> @  2020-10-10 </em> 
-            <i class="fas fa-window-close ml-2 mr-auto text-light"></i>  
-            <i class="fas fa-edit mr-auto text-light"></i>
-          </p>
-      </div>
-    </div>
-    </div>
-    
     
     {% else %}
     {% for post in posts.items %}
@@ -140,11 +44,12 @@
         <article class="media content-section text-light border-light rnd-2xl">
           <img class="rounded-circle article-img" src="https://raw.githubusercontent.com/attila5287/rota-img/main/profile_pics/attila.png">
           <div class="media-body text-light">
-            <div class="article-metadata text-light">
-              <a class="mr-2" href="{{ url_for('users.user_posts', username=post.author.username) }}">{{ post.author.username }}</a>
-              <small class="text-muted  text-light">{{ post.date_posted.strftime('%Y-%m-%d') }}</small>
+            <div class="article-metadata">
+              <a class="text-light mr-2" href="{{ url_for('users.user_posts', username=post.author.username) }}">{{ post.author.username }}</a> 
+              <small class="ml-auto text-md text-italic text-light">@{{ post.date_posted.strftime('%Y-%m-%d') }}</small>
             </div>
             <h2><a class="article-title text-light" href="{{ url_for('posts.post', post_id=post.id) }}">{{ post.title }}</a></h2>
+            <hr class="mb-2 mt-0 opac-30 border-light px-4">  
             <p class="article-content text-light">{{ post.content }}</p>
           </div>
         </article>
