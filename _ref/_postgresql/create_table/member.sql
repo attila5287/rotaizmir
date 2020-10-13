@@ -9,6 +9,9 @@ CREATE TABLE "member" (
 	"email"	VARCHAR(64),
 	"is_admin"	VARCHAR(64),
 	"is_prez"	VARCHAR(64),
-	"img_url"	VARCHAR(256)
+	"img_url"	VARCHAR(256),
+	"linkedin"	VARCHAR(256),
+	"instagram"	VARCHAR(256),
+	"twitter"	VARCHAR(256)
 )
 ;

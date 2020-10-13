@@ -71,3 +71,6 @@ class Member(db.Model):
     is_admin  =  db.Column(db.String(8), nullable=False)
     user_id =  db.Column(db.Integer, nullable=True)
     img_url =  db.Column(db.String(256), nullable=True)
+    linkedin =  db.Column(db.String(256), nullable=True)
+    twitter =  db.Column(db.String(256), nullable=True)
+    instagram =  db.Column(db.String(256), nullable=True)
