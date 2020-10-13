@@ -138,11 +138,34 @@
     <div class="row">
     {% for m in members.items %}
 
-  <div class="col-sm-6">
+  <div class="col-md-3">
     <article class="media content-section text-light rnd-2xl">
-      <img class="rounded-circle article-img" 
+<div class="d-flex flex-column align-content-center">
+        <img class="rounded-circle article-img" 
       src="{{ m.img_url  }}" alt="{{ m.id }}-photo" 
       >
+      <ul class="list-group list-group-flush">
+
+        <a class="list-group-item pt-0 pb-1 bg-transparent" href="https://www.instagram.com/{{ m.id }}" >
+          <i class="fab fa-instagram">@insta_{{m.id}}</i>
+        </a>
+
+        <a class="list-group-item pt-0 pb-1 bg-transparent"
+        href="https://twitter.com/{{ m.id}}"
+        >
+          <i class="fab fa-twitter">@twit_{{ m.id }}</i>
+        </a>
+
+        <a class="list-group-item pt-0 pb-1 bg-transparent"
+        href="https://tr.linkedin.com/public-profile/in/{{ m.id}}"
+        >
+          <i class="fab fa-linkedin">@lnkedn_{{ m.id}}</i>
+        </a>
+
+
+
+      </ul>
+</div>
       <div class="media-body text-light">
         <div class="article-metadata text-md">
           <a class="text-capitalize mr-2" >
@@ -186,12 +209,12 @@
   {% for page_num in members.iter_pages(left_edge=1, right_edge=1, left_current=5, right_current=5) %}
   {% if page_num %}
     {% if members.page == page_num %}
-      <a class="btn btn-info mb-4 text-xl" href="{{ url_for('members.home', page=page_num) }}">
+      <a class="btn btn-light disabled bg-transparent border-0 mb-4 text-xl" href="{{ url_for('members.home', page=page_num) }}">
         {{ page_num }}
 
       </a>
     {% else %}
-      <a class="btn btn-outline-light mb-4 text-xl" href="{{ url_for('members.home', page=page_num) }}">{{ page_num }}</a>
+      <a class="btn btn-outline-light bg-theme mb-4 text-xl" href="{{ url_for('members.home', page=page_num) }}">{{ page_num }}</a>
     {% endif %}
   {% else %}
     ...

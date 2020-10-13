@@ -16,7 +16,7 @@ members = Blueprint('members', __name__)
 def home():
     pass
     page = request.args.get('page', 1, type=int)
-    members = Member.query.order_by(Member.id.desc()).paginate(page=page, per_page=25)
+    members = Member.query.order_by(Member.id.desc()).paginate(page=page, per_page=24)
     
     try:
         _ = [ member for member in members.items ]

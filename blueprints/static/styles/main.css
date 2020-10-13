@@ -1,5 +1,11 @@
-body {
-  font-size: 0.75rem;
+html {
+  font-size: 0.80rem;
+}
+@media (min-width: 768px) {
+  html {
+    font-size: 1rem;
+  }
+}
 }
 .article-img {
   font-size: 1.125rem;
