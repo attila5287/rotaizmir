@@ -1,0 +1,28 @@
+{% extends "layout.html" %}
+{% block content %}
+    <div class="content-section">
+        <form method="POST" action="" enctype="multipart/form-data">
+            
+            <i class="text-hide">{{ form.hidden_tag() }}</i>
+
+            <fieldset class="form-group">
+                <legend class="border-bottom mb-4">Account Info</legend>
+                <div class="form-group">
+                    {{ form.csv_file.label(class="form-control-label") }}
+                    {{ form.csv_file(class="form-control-lg rnd-xl shd-themy form-control-file") }}
+                    {% if form.csv_file.errors %}
+                        {% for error in form.csv_file.errors %}
+                            <span class="text-danger">{{ error }}</span>
+                          <br>
+                        {% endfor %}
+                    {% endif %}
+                </div>
+            </fieldset>
+            <div class="form-group">
+                {{ form.submit(class="btn btn-dark bg-themy btn-lg btn-block", style="border-radius:1rem;") }}
+            </div>
+        </form>
+    </div>
+
+
+    {% endblock content %}

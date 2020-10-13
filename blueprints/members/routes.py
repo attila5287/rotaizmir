@@ -1,23 +1,58 @@
+import os
 import csv
+import codecs
 import requests
 from flask import (
     render_template, url_for, flash,
                    redirect, request, abort, Blueprint, 
                    jsonify
                    )
-from flask_login import login_user, current_user, logout_user, login_required
+from flask_login import ( 
+    login_user, current_user, logout_user, login_required)
 from blueprints import db
 from blueprints.models import Member
-from blueprints.members.forms import MemberForm
+from blueprints.members.forms import (
+    MemberForm, 
+    CSVReaderForm
+    )
 
 members = Blueprint('members', __name__)
+# inv_feed (doc: CSV read ex)
+@members.route('/csv/feed', methods=['GET', 'POST'])
+def csv_feed():
+    form = CSVReaderForm()
+    if request.method == 'POST':
+        csvfile = request.files['csv_file']
+        reader = csv.DictReader(codecs.iterdecode(csvfile, 'windows-1252'))
+        members = [
+            Member(**row, 
+                    user_id= 0,
+                    is_admin= 'n',
+                    is_prez= 'n',
+                    instagram= '',
+                    twitter= '',
+                    linkedin= '',
+                    ) for row in reader
+        ]
+        # print(inventory).
+        db.session.add_all(members)
+        db.session.commit()
+        flash('CSV read successfully!', 'success')
+        return render_template('about.html')
+
+    return render_template(
+        'csv_feed.html',
+        title='CSV Feed',
+        form=form,
+    )
+
+    
 @members.route("/members")
 # @login_required()
 def home():
     pass
     page = request.args.get('page', 1, type=int)
     members = Member.query.order_by(Member.id.desc()).paginate(page=page, per_page=24)
-    
     try:
         _ = [ member for member in members.items ]
     except:

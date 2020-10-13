@@ -1,7 +1,19 @@
 from datetime import datetime
 from flask_wtf import FlaskForm
-from wtforms import StringField, SubmitField, TextAreaField, IntegerField, SelectField
+from wtforms import StringField, SubmitField, TextAreaField, IntegerField, SelectField, FileField
 from wtforms.validators import DataRequired, Email
+from flask_wtf.file import (
+    FileField, FileAllowed
+)
+
+class CSVReaderForm(FlaskForm):
+    csv_file = FileField(
+        'Inv CSV Feed',
+        validators=[
+        FileAllowed(['csv'])
+        ]
+        )
+    submit = SubmitField('Feed Inv | Read CSV')
 
 
 class MemberForm(FlaskForm):
