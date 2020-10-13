@@ -56,8 +56,9 @@
 
             {% set navigation_bar = [
               
-              ('/home', 'posts-home', 'PostsHome', 'envelope-open'),
+              ('/home', 'posts-home', 'Posts', 'envelope-open'),
               ('/post/new', 'new-post', 'NewPost', 'paper-plane'),
+              ('/members', 'members', 'Members', 'id-card'),
               ('/account', 'account', 'Account', 'user-cog'),
               ('/logout', 'logout', 'Logout', 'sign-out-alt'),
 
@@ -106,7 +107,8 @@
        </nav>
 
      </header>
-     <main>
+
+<main>
            <!-- ONE BEDROOMS OF SELECTED STATE -->
            
         <div class="card bg-transparent p-0 m-0">
@@ -219,14 +221,14 @@
           </div>
         </div>
           </main>
-
+                 
      <footer class="container footer mt-2">
 
        <nav class="nav nav-pills nav-justified">
          <a class="nav-item nav-link add-anime shd-themy rnd-xl" href="https://rotaract2440.org/kulup/23#">
            <img class="m-0 bg-light rnd-lg py-0 pl-2 pr-1 add-anime"
              src="https://raw.githubusercontent.com/attila5287/rota-img/main/site/logo_slab.png" alt="slab-logo"
-             style="height: 3rem;">
+             style="height: 2.75rem;">
          </a>
          <a class="nav-item nav-link add-anime shd-themy rnd-xl" href="www.instagram.com/gozteperotaract">
            <h1 class="fab fa-instagram"></h1>
@@ -244,17 +246,16 @@
          </a>
 
          <a class="nav-item nav-link add-anime shd-themy rnd-xl" href="https://gozteperotaract.com">
-           <h1 class="fas fa-globe-americas"></h1>
-         </a>
-         <a class="nav-item nav-link add-anime shd-themy rnd-xl" href="https://gozteperotaract.com">
            <img class="m-0 bg-light rnd-lg py-0 pl-2 pr-1"
              src="https://raw.githubusercontent.com/attila5287/rota-img/main/site/logo_opensdoors_2021.png"
-             alt="footer-logo" style="height: 3.5rem;">
+             alt="footer-logo" style="height: 2.75rem;">
          </a>
 
        </nav>
 
      </footer>
+     <aside>
+       
      <!-- Optional JavaScript -->
      <!-- jQuery first, then Popper.js, then Bootstrap JS -->
      <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
@@ -267,9 +268,12 @@
      <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
      </script>
-
+     <script src="/static/users/account.js"></script>
+     
+     </aside>
 
    </body>
 
  </html>
 
+ 
