@@ -18,7 +18,7 @@ from blueprints.members.forms import (
 
 members = Blueprint('members', __name__)
 # inv_feed (doc: CSV read ex)
-@members.route('/csv/feed', methods=['GET', 'POST'])
+@members.route('/members/file', methods=['GET', 'POST'])
 def csv_feed():
     form = CSVReaderForm()
     if request.method == 'POST':

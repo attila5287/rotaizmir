@@ -1157,10 +1157,10 @@ tbody td:last-child {
 }
 
 .bg-membf {
-  background-image: linear-gradient(#6e77f052, #f941ff65 60%, #75036655);
+  background-image: linear-gradient(#f541f552, #e705a365 60%, #75036655);
 }
 .bg-membm {
-  background-image: linear-gradient(#6e9bf052, #f941ff65 60%, #030e7555);
+  background-image: linear-gradient(#6e86f052, #4441ff65 60%, #030e7555);
 }
 .bg-themsie {
   background-image: linear-gradient(#ec6ef052, #f941ff65 60%, #75036655);
