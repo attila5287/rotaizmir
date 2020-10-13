@@ -44,32 +44,20 @@
     <article class="media content-section text-light rnd-2xl">
       <div class="d-flex flex-column align-content-center">
       <img class="rounded-circle article-img" 
-      src="https://raw.githubusercontent.com/attila5287/rota-img/main/photos/{{ img_url  }}" alt="{{ id }}-photo" 
+      src="https://raw.githubusercontent.com/attila5287/rota-img/main/photos/{{ img_url  }}" alt="memb-{{ id }}-photo" 
       >
       <ul class="list-group list-group-flush">
+
 
         <a class="list-group-item pt-0 pb-1 bg-transparent" href="https://www.instagram.com/{{ id }}" >
           <i class="fab fa-instagram">@insta_{{id}}</i>
         </a>
 
-        <a class="list-group-item pt-0 pb-1 bg-transparent"
-        href="https://twitter.com/{{ id}}"
-        >
-          <i class="fab fa-twitter">@twit_{{ id }}</i>
-        </a>
-
-        <a class="list-group-item pt-0 pb-1 bg-transparent"
-        href="https://tr.linkedin.com/public-profile/in/{{ id}}"
-        >
-          <i class="fab fa-linkedin">@lnkedn_{{ id}}</i>
-        </a>
-
-
 
       </ul>
     </div>
       <div class="media-body text-light">
-        <div class="article-metadata text-md">
+        <div class="article-metadata bg-memb{{m.gender}}text-md">
           <a class="text-capitalize text-justified mr-2" >
             {{last_name}}, 
             {{first_name}}
@@ -114,24 +102,29 @@
       <img class="rounded-circle article-img" 
       src="{{ m.img_url  }}" alt="{{ m.id }}-photo" 
       >
-      <ul class="list-group list-group-flush">
+      <ul class="list-group list-group-horizontal list-group-flush">
 
-        <a class="list-group-item pt-0 pb-1 bg-transparent" href="https://www.instagram.com/{{ m.id }}" >
-          <i class="fab fa-instagram">@insta_{{m.id}}</i>
-        </a>
+        {% set social_media = [
+          (
+            'instagram',
+            'https://www.instagram.com/{{ m.instagram }}',
+            ),
+            (
+              'twitter',
+              'https://twitter.com/{{ m.twitter}}',
+              ),
+            (
+              'linkedin',
+              'https://tr.linkedin.com/public-profile/in/{{ m.linkedin}}',
+              ),
+          ] %}
+{% for icon,sc_name in social_media %}
 
-        <a class="list-group-item pt-0 pb-1 bg-transparent"
-        href="https://twitter.com/{{ m.id}}"
-        >
-          <i class="fab fa-twitter">@twit_{{ m.id }}</i>
-        </a>
+<a class="list-group-item list-group-item-action pt-0 pb-1 bg-transparent add-anime p-0" href="https://www.instagram.com/{{ sc_name }}" >
+  <i class="text-xl pt-1 pb-0 opac-70 fab fa-{{icon}}"></i>
+</a>
 
-        <a class="list-group-item pt-0 pb-1 bg-transparent"
-        href="https://tr.linkedin.com/public-profile/in/{{ m.id}}"
-        >
-          <i class="fab fa-linkedin">@lnkedn_{{ m.id}}</i>
-        </a>
-
+{% endfor %}        
 
 
       </ul>

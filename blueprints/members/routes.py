@@ -56,7 +56,7 @@ def db_init():
         })
     else:
         pass
-        csv_url = 'https://gist.githubusercontent.com/attila5287/d80f78522096bf3b650b1f3bc7f65277/raw/8c7402fb2206e67ba5b917f43c68859878cf6aad/members_demo.csv'
+        csv_url = 'https://gist.githubusercontent.com/attila5287/d80f78522096bf3b650b1f3bc7f65277/raw/6ee257198f35763d823d98a0955fbcef0cf2e941/members_demo.csv'
 
         with requests.get(csv_url, stream=True) as r:
             pass
@@ -67,6 +67,9 @@ def db_init():
                        user_id= 0,
                        is_admin= 'n',
                        is_prez= 'n',
+                       instagram= '',
+                       twitter= '',
+                       linkedin= '',
                        ) for row in csv_dict
             ]
             # print(inventory).
