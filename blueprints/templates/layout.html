@@ -51,48 +51,84 @@
          </button>
          <div class="collapse navbar-collapse nav-mini text-center text-comfo mb-1" id="navbarCollapse">
            <ul class="nav nav-pills nav-justify nav-mini bg-transparent mr-auto align-items-center">
-            
-            {% if current_user.is_authenticated %}
+             {% if current_user.is_authenticated %}
 
-            {% set navigation_bar = [
-              
-              ('/home', 'posts-home', 'Posts', 'envelope-open'),
-              ('/post/new', 'new-post', 'NewPost', 'paper-plane'),
-              ('/members', 'members', 'Members', 'id-card'),
-              ('/members/table', 'memb-table', 'MTable', 'table'),
-              ('/members/file', 'memb-file', 'MFile', 'file-excel'),
-              ('/members/form', 'memb-form', 'MForm', 'clipboard-list'),
+
+      {% set navigation_bar = [
               ('/account', 'account', 'Account', 'user-cog'),
               ('/logout', 'logout', 'Logout', 'sign-out-alt'),
-
-            ] -%}
-            {% set active_page = active_page|default('new-post') -%}
-            {% for href, id, caption, icon in navigation_bar %}
-            <li class="nav-item">
-                <a class="nav-link text-light add-anime shd-themy text-md"  href="{{href|e }}">
+      ] -%}
+      {% set active_page = active_page|default('new-post') -%}
+      {% for href, id, caption, icon in navigation_bar %}
+      <li class="nav-item">
+    <a class="nav-link text-light add-anime shd-themy text-md"  href="{{href|e }}">
                   <i class="text-lg fas fa-{{icon|e }}"></i>
                   {{ caption|e }}
-                </a>
+    </a>
               </li>
-            
-            {% endfor %}
-            {% else %}
-            {% set navigation_bar = [
+              
+              {% endfor %}
+    <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle text-light add-anime shd-themy text-md" href="#" id="dropdown01" data-toggle="dropdown"  aria-haspopup="true" aria-expanded="false"
+          title="public announcements, events, meet-ups..."
+          >
+           <i class="text-lg fas fa-paper-plane" aria-hidden="true"></i> 
+           Posts</a>
+
+          <div class="dropdown-menu" aria-labelledby="dropdown01">
+      {% set dd_posts =  [ 
+      ( 'New Post', '/post/new', ),
+      ( 'Posts Home', '/home', ),
+      ] %}
+      {% for caption, href in dd_posts %}
+
+      <a class="dropdown-item" href="{{href}}">
+              {{ caption }}</a>
+      {% endfor %}
+          </div>
+    </li>            
+          
+    <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle text-light add-anime shd-themy text-md" href="#" id="dropdown01" data-toggle="dropdown"  aria-haspopup="true" aria-expanded="false"
+          title="public announcements, events, meet-ups..."
+          >
+           <i class="text-lg fas fa-users" aria-hidden="true"></i> 
+           Members</a>
+
+          <div class="dropdown-menu" aria-labelledby="dropdown01">
+      {% set dd_members =  [ 
+              ('/members', 'Home'),
+              ('/members/file', 'File Upload'),
+              ('/members/table', 'Table'),
+              ('/members/form', 'New Member'),
+      ] %}
+      {% for  href, caption in dd_members %}
+
+      <a class="dropdown-item" href="{{href}}">
+              {{ caption }}</a>
+      {% endfor %}
+          </div>
+    </li>            
+          
+
+
+      {% else %}
+      {% set navigation_bar = [
               ('/register', 'register', 'Register', 'user-plus'),
-                ('/login', 'login', 'Login', 'sign-in-alt'),
-                ('/about/', 'about', 'About', 'info-circle')
-            ] -%}
+    ('/login', 'login', 'Login', 'sign-in-alt'),
+    ('/about/', 'about', 'About', 'info-circle')
+      ] -%}
             
-            {% for href, id, caption, icon in navigation_bar %}
-                <a class="nav-link text-light add-anime shd-themy text-md"  href="{{href|e }}">
+      {% for href, id, caption, icon in navigation_bar %}
+    <a class="nav-link text-light add-anime shd-themy text-md"  href="{{href|e }}">
                   <i class="fas fa-{{icon|e }}"></i>
                   {{ caption|e }}
-                </a>
+    </a>
               </li>
-            {% endfor %}
+      {% endfor %}
             
 
-            {% endif %}
+      {% endif %}
 
            </ul>
          </div>
@@ -103,10 +139,10 @@
      <div class="row no-gutters">
        <div class="col-md-10 offset-1">
          {% block content %} {% endblock%}
-        </div>
+  </div>
       </div>
       </main>
-       
+    
      <footer class="container footer mt-2">
 
        <nav class="nav nav-pills nav-justified">

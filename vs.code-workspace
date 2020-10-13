@@ -23,7 +23,7 @@
 		"editor.fastScrollSensitivity": 8,
 		"screencastMode.verticalOffset": 22,
 		"python.autoComplete.addBrackets": true,
-		"editor.lineHeight": 16,
+		"editor.lineHeight": 19,
 		"terminal.integrated.drawBoldTextInBrightColors": false,
 		"workbench.colorTheme": "Dracula Text Only",
 		"debug.console.fontSize": 12,
@@ -120,7 +120,7 @@
 		"editor.suggest.showIcons": false,
 		"editor.suggest.snippetsPreventQuickSuggestions": false,
 		"color-highlight.matchWords": true,
-		"editor.fontSize": 13,
+		"editor.fontSize": 15,
 
 	},
 	"git-autoconfig.configList": [],
