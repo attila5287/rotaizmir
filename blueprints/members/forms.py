@@ -34,4 +34,7 @@ class MemberForm(FlaskForm):
     is_admin  = SelectField(choices=[('n', 'NO'), ('y', 'YES')], default ='n')
     is_member  = SelectField(choices=[('n', 'NO'), ('y', 'YES')], default ='n')
     is_prez  = SelectField(choices=[('n', 'NO'), ('y', 'YES')], default ='n')
+    linkedin = StringField('linkedin', default='')
+    instagram = StringField('instagram', default='')
+    twitter = StringField('twitter', default='')
 

@@ -4,7 +4,7 @@
     <br>
   <p class="text-light text-center text-lg">
     <i class="fa fa-arrow-down text-2xl animated infinite heartBeat" aria-hidden="true"></i> These are demo items, only be seen if there are no members in database...
-        <i class="fas fa-id-card"></i>
+        <i class="fas fa-id-card bg-"></i>
   </p>
 
     <br>
@@ -168,16 +168,15 @@
   
   {% endfor %}
 </div>
-<div class="text-center">
+<div class="d-flex flex-row justify-content-center">
   {% for page_num in members.iter_pages(left_edge=1, right_edge=1, left_current=5, right_current=5) %}
   {% if page_num %}
     {% if members.page == page_num %}
-      <a class="btn btn-light disabled bg-transparent border-0 mb-4 text-xl" href="{{ url_for('members.home', page=page_num) }}">
+      <a class="btn btn-light disabled bg-transparent border-0 mb-4 text-xl" href="{{ url_for('members.table', page=page_num) }}">
         {{ page_num }}
-
       </a>
     {% else %}
-      <a class="btn btn-outline-light bg-theme mb-4 text-xl" href="{{ url_for('members.home', page=page_num) }}">{{ page_num }}</a>
+      <a class="btn btn-outline-light bg-theme mb-4 text-xl" href="{{ url_for('members.table', page=page_num) }}">{{ page_num }}</a>
     {% endif %}
   {% else %}
     ...

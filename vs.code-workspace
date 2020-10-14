@@ -25,7 +25,7 @@
 		"python.autoComplete.addBrackets": true,
 		"editor.lineHeight": 19,
 		"terminal.integrated.drawBoldTextInBrightColors": false,
-		"workbench.colorTheme": "Dracula Text Only",
+		"workbench.colorTheme": " dracula_liny",
 		"debug.console.fontSize": 12,
 		"workbench.settings.useSplitJSON": true,
 		"editor.suggest.maxVisibleSuggestions": 10,
