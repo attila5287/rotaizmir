@@ -1,5 +1,7 @@
 {% extends "layout.html" %}
 {% block content %}
+
+
 {% if members.items == [] %}
 <p class="text-light text-center text-lg">
     <i class="fa fa-arrow-down text-2xl animated infinite heartBeat" aria-hidden="true"></i> 
@@ -7,6 +9,7 @@
   </p>
 
     {% else %}
+
 
 <table class="table table-dark table-hover bg-info text-light table-inverse mt-3 opac-80 rnd-2xl">
   <thead class="thead-inverse bg-theme">
@@ -61,6 +64,38 @@
         <td class="align-items-center"
         id="cell-{{ rowloop.index }}-{{ loop.index }}">
           {{v.title()}}
+        </td>
+        
+
+        {% elif k in [ "is_admin", "is_prez"] %}
+        {% set icon_dict = {
+          'y' : 'check',
+          'n' : 'times',
+        } %}
+
+
+        <td class="align-items-center"
+        id="cell-{{ rowloop.index }}-{{ loop.index }}">
+          
+          <i class="fas fa-{{  icon_dict[v] }}"></i>
+
+
+        </td>
+        
+
+        {% elif k ==  "gender" %}
+        {% set gender_dict = {
+          'f' : 'female',
+          'm' : 'male',
+        } %}
+
+
+        <td class="align-items-center"
+        id="cell-{{ rowloop.index }}-{{ loop.index }}">
+          
+          <i class="fas fa-{{  gender_dict[v] }}"></i>
+
+
         </td>
         
         

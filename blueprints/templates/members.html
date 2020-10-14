@@ -172,11 +172,11 @@
   {% for page_num in members.iter_pages(left_edge=1, right_edge=1, left_current=5, right_current=5) %}
   {% if page_num %}
     {% if members.page == page_num %}
-      <a class="btn btn-light disabled bg-transparent border-0 mb-4 text-xl" href="{{ url_for('members.table', page=page_num) }}">
+      <a class="btn btn-light disabled bg-transparent border-0 mb-4 text-xl" href="{{ url_for('members.home', page=page_num) }}">
         {{ page_num }}
       </a>
     {% else %}
-      <a class="btn btn-outline-light bg-theme mb-4 text-xl" href="{{ url_for('members.table', page=page_num) }}">{{ page_num }}</a>
+      <a class="btn btn-outline-light bg-theme mb-4 text-xl" href="{{ url_for('members.home', page=page_num) }}">{{ page_num }}</a>
     {% endif %}
   {% else %}
     ...
