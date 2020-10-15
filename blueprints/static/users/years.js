@@ -1,3 +1,22 @@
+// $nick = d3.select("#nickname_on_air");
+d3.json("/nicknames/api", function (err, data) {
+  const n = Object.keys(data).length;
+
+  let genRandID = ( n_samples ) => Math.floor( Math.random() * n_samples );
+  const first_random = genRandID( n );
+
+yearSelectEnd(first_random);  
+// d3.select("#yearEnd")
+//   .attr("min", 0)
+//   .attr( "max", Object.keys(data).length )
+//   .attr( "value", 0 )
+//   ;
+  
+});
+
+
+
+
 
 function yearSelectEnd(defIndex) {
   
@@ -9,10 +28,10 @@ function yearSelectEnd(defIndex) {
   // console.log( 'userInput :>> ', defIndex );
   let parseTime = d3.timeParse( "%Y" ); // display only year
 
-  let width = $( `#jackpotYrEnd` ).width();
-  let height = $( `#jackpotYrEnd` ).height();
+  let width = $( "#nickname-generator" ).width();
+  let height = $( "#nickname-generator" ).height();
 
-  let svg = d3.select( '#jackpotYrEnd' )
+  let svg = d3.select( '#nickname-generator' )
     .append( 'svg' )
     .attr( 'width', width )
     .attr( 'height', height );
@@ -21,26 +40,27 @@ function yearSelectEnd(defIndex) {
     .classed( 'plot', true );
 
   let scale = d3.scaleTime()
-    .domain( [ parseTime(defIndex-1), parseTime(defIndex+1) ] )
+    .domain( [ defIndex-1, defIndex+1 ] )
     .range( [ 0, height ] );
 
   let axis = d3
     .axisRight( scale )
-    .ticks( d3.timeYear.every( 1 ) )
+    // .ticks( d3.timeYear.every( 1 ) )
     .tickFormat( d3.timeFormat( "%Y" ) );
 
   let axisGroup = plotGroup.append( 'g' )
     .classed( 'jackpot', true );
 
   function jackpotRight( userInput, axG,  parseTime, height ) {
-    let scale = d3.scaleTime()
-      .domain( [ parseTime(userInput-1), parseTime(userInput+1) ] )
+    let scale = d3.scaleLinear()
+      .domain( [ userInput-1, userInput+1 ] )
       .range( [ height , 0 ] );
 
     let axis = d3
       .axisRight( scale )
-      .ticks( d3.timeYear.every( 1 ) )
-      .tickFormat( d3.timeFormat( "%Y" ) );
+      // .ticks( d3.timeYear )
+      .tickFormat( d3.format( "," ) )
+      ;
 
     axG
      .transition()
@@ -59,4 +79,4 @@ function yearSelectEnd(defIndex) {
     } )
 
 }
-yearSelectEnd(2020);
+
