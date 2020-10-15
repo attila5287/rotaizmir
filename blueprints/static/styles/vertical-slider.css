@@ -1,0 +1,166 @@
+.custrange-vertical {
+  height: 100%;
+  width: 1.00rem;
+  padding-bottom: 1rem;
+  background-color: #0a0158;
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+}
+
+.custrange-vertical:focus {
+  outline: none;
+}
+
+.custrange-vertical:focus::-webkit-slider-thumb {
+  -webkit-box-shadow: 0 0 0 1px #fff, 0 0 0 0.2rem rgba(47, 164, 231, 0.25);
+          box-shadow: 0 0 0 1px #fff, 0 0 0 0.2rem rgba(47, 164, 231, 0.25);
+}
+
+.custrange-vertical:focus::-moz-range-thumb {
+  box-shadow: 0 0 0 1px #fff, 0 0 0 0.2rem rgba(47, 164, 231, 0.25);
+}
+
+.custrange-vertical:focus::-ms-thumb {
+  box-shadow: 0 0 0 1px #fff, 0 0 0 0.2rem rgba(47, 164, 231, 0.25);
+}
+
+.custrange-vertical::-moz-focus-outer {
+  border: 0;
+}
+
+.custrange-vertical::-webkit-slider-thumb {
+  width: 1rem;
+  height: 1rem;
+  margin-top: -0.25rem;
+  background-color: #2FA4E7;
+  border: 0;
+  border-radius: 1rem;
+  -webkit-transition: background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, -webkit-box-shadow 0.15s ease-in-out;
+  transition: background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, -webkit-box-shadow 0.15s ease-in-out;
+  transition: background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+  transition: background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out, -webkit-box-shadow 0.15s ease-in-out;
+  -webkit-appearance: none;
+          appearance: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .custrange-vertical::-webkit-slider-thumb {
+    -webkit-transition: none;
+    transition: none;
+  }
+}
+
+.custrange-vertical::-webkit-slider-thumb:active {
+  background-color: #cfeaf9;
+}
+
+.custrange-vertical::-webkit-slider-runnable-track {
+  height: 100%;
+  width: 0.5rem;
+  color: transparent;
+  cursor: pointer;
+  background-color: #9abada;
+  border-color: transparent;
+  border-radius: 1rem;
+}
+
+.cv-left::-moz-range-thumb {
+  width: 1.50rem;
+  height: 0.75rem;
+  color: white;
+  border-radius: 0.5rem 1.50rem 1.50rem 0.5rem;
+  background-image: -webkit-gradient(linear, left top, left bottom, from(#d564df), color-stop(60%, #6c14fb), to(#380885));
+
+  background-image: linear-gradient(#f277f6, #6a2470 60%, #531e55);
+  -webkit-transition: background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, -webkit-box-shadow 0.15s ease-in-out;
+  transition: background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, -webkit-box-shadow 0.15s ease-in-out;
+  transition: background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+  transition: background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out, -webkit-box-shadow 0.15s ease-in-out;
+  -moz-appearance: none;
+  appearance: none;
+}
+
+.cv-right::-moz-range-thumb {
+  width: 1.50rem;
+  height: 0.75rem;;
+  color: white;
+  border-radius: 1.50rem 0.5rem 0.5rem 1.50rem;
+  background-image: -webkit-gradient(linear, left top, left bottom, from(#d564df), color-stop(60%, #6c14fb), to(#380885));
+
+  background-image: linear-gradient(#f277f6, #6a2470 60%, #531e55);
+  -webkit-transition: background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, -webkit-box-shadow 0.15s ease-in-out;
+  transition: background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, -webkit-box-shadow 0.15s ease-in-out;
+  transition: background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+  transition: background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out, -webkit-box-shadow 0.15s ease-in-out;
+  -moz-appearance: none;
+  appearance: none;
+}
+@media (prefers-reduced-motion: reduce) {
+  .custrange-vertical::-moz-range-thumb {
+    -webkit-transition: none;
+    transition: none;
+  }
+}
+
+.custrange-vertical::-moz-range-thumb:active {
+  background-color: #cfeaf9;
+}
+
+.custrange-vertical::-moz-range-track {
+  height: 100%;
+  width: 0.25rem;
+  color: transparent;
+  cursor: pointer;
+  background-color: #6466d163;
+  border-color: transparent;
+  border-radius: 1rem;
+}
+
+.custrange-vertical::-ms-thumb {
+  width: 1rem;
+  height: 1rem;
+  margin-top: 0;
+  margin-right: 0.2rem;
+  margin-left: 0.2rem;
+  background-color: #2FA4E7;
+  border: 0;
+  border-radius: 1rem;
+  -webkit-transition: background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, -webkit-box-shadow 0.15s ease-in-out;
+  transition: background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, -webkit-box-shadow 0.15s ease-in-out;
+  transition: background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+  transition: background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out, -webkit-box-shadow 0.15s ease-in-out;
+  appearance: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .custrange-vertical::-ms-thumb {
+    -webkit-transition: none;
+    transition: none;
+  }
+}
+
+.custrange-vertical::-ms-thumb:active {
+  background-color: #cfdbf9;
+}
+
+.custrange-vertical::-ms-track {
+  height: 100%;
+  width: 0.5rem;
+  color: transparent;
+  cursor: pointer;
+  background-color: transparent;
+  border-color: transparent;
+  border-width: 0.5rem;
+}
+
+.custrange-vertical::-ms-fill-lower {
+  background-color: #dee2e6;
+  border-radius: 1rem;
+}
+
+.custrange-vertical::-ms-fill-upper {
+  margin-right: 15px;
+  background-color: #dee2e6;
+  border-radius: 1rem;
+}

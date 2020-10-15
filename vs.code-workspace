@@ -8,6 +8,12 @@
 		},
 		{
 			"path": "..\\displaytracker"
+		},
+		{
+			"path": "..\\..\\activities_practice\\14_D3"
+		},
+		{
+			"path": "..\\..\\activities_practice\\12_JS"
 		}
 	],
 	"settings": {
@@ -25,7 +31,7 @@
 		"python.autoComplete.addBrackets": true,
 		"editor.lineHeight": 19,
 		"terminal.integrated.drawBoldTextInBrightColors": false,
-		"workbench.colorTheme": " dracula_liny",
+		"workbench.colorTheme": "Dracula",
 		"debug.console.fontSize": 12,
 		"workbench.settings.useSplitJSON": true,
 		"editor.suggest.maxVisibleSuggestions": 10,
@@ -51,7 +57,6 @@
 		"python.pythonPath": "C:/Users/DENVER/anaconda3/envs/reg_env/python.exe",
 		"editor.mouseWheelZoom": true,
 		"editor.autoClosingQuotes": "always",
-		"editor.dragAndDrop": false,
 		"css.trace.server": "messages",
 		"json.trace.server": "messages",
 		"html.trace.server": "messages",
@@ -72,23 +77,16 @@
 		"editor.showFoldingControls": "always",
 		"editor.cursorStyle": "block",
 		"editor.cursorSmoothCaretAnimation": true,
-		"javascript.suggest.autoImports": false,
-		"editor.suggest.showStructs": false,
 		"editor.suggest.showValues": false,
 		"editor.suggest.showEnumMembers": false,
 		"editor.suggest.localityBonus": true,
 		"breadcrumbs.showInterfaces": false,
 		"outline.showInterfaces": false,
 		"editor.suggest.showUsers": false,
-		"editor.suggest.showTypeParameters": false,
 		"typescript.enablePromptUseWorkspaceTsdk": true,
 		"editor.fontWeight": "300",
-		"editor.suggest.showFields": false,
 		"editor.suggest.showIssues": false,
-		"editor.suggest.showReferences": false,
 		"editor.suggest.showUnits": false,
-		"editor.suggest.showEvents": false,
-		"editor.suggest.showEnums": false,
 		"javascript.format.insertSpaceAfterOpeningAndBeforeClosingJsxExpressionBraces": true,
 		"javascript.format.insertSpaceBeforeFunctionParenthesis": true,
 		"npm.enableRunFromFolder": true,
@@ -118,7 +116,6 @@
 		"editor.suggest.shareSuggestSelections": true,
 		"editor.suggestSelection": "recentlyUsedByPrefix",
 		"editor.suggest.showIcons": false,
-		"editor.suggest.snippetsPreventQuickSuggestions": false,
 		"color-highlight.matchWords": true,
 		"editor.fontSize": 15,
 

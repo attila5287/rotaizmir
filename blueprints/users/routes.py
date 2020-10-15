@@ -35,6 +35,7 @@ def register():
     if current_user.is_authenticated:
         return redirect(url_for('main.home'))
     form = RegistrationForm()
+    # form.username.choices = Nickname.query.all()
     if form.validate_on_submit():
         hashed_password = bcrypt.generate_password_hash(form.password.data).decode('utf-8')
         user = User(username=form.username.data, email=form.email.data, password=hashed_password ,img_url = 0)
@@ -81,6 +82,7 @@ def account():
     db.session.commit()
     flash('Username and/or Email updated!', 'success')
     
+
     return redirect(url_for('users.account'))
   
   elif request.method == 'GET':
@@ -151,7 +153,9 @@ def reset_token(token):
     if user is None:
         flash('That is an invalid or expired token', 'warning')
         return redirect(url_for('users.reset_request'))
+    
     form = ResetPasswordForm()
+    
     if form.validate_on_submit():
         hashed_password = bcrypt.generate_password_hash(form.password.data).decode('utf-8')
         user.password = hashed_password
@@ -188,3 +192,15 @@ def db_init_nicknames():
             db.session.commit()
 
         return jsonify(csv_dict)
+
+
+@users.route('/nicknames/api')
+def nicknames_api():
+   pass
+   q_all = [ #query all
+       n for n in Nickname.query.all()
+   ]
+   d = [q.nickname for q in q_all]
+   
+   return jsonify(dict(enumerate(d)))
+   

@@ -1,154 +1,12 @@
-html {
-  font-size: 0.80rem;
-}
-@media (min-width: 768px) {
-  html {
-    font-size: 1rem;
-  }
-}
-.table-img {
-  border-radius: 0.5rem;
-  font-size: 0.75rem;
-  text-anchor: middle;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-}
-
-
-.table-img img{
-  max-height: 2.75rem;
-}
-
-
-.article-img {
-  font-size: 1.125rem;
-  text-anchor: middle;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-}
-
-@media (min-width: 768px) {
-  .article-img {
-    font-size: 3.5rem;
-  }
-}
-
-.content-section {
-  /* background: #ffffff; */
-  padding: 10px 20px;
-  border: 1px solid #dddddd;
-  border-radius: 3px;
-  margin-bottom: 20px;
-    background-image: linear-gradient(#8ab3d141, #cf1f8c70 60%, #12428141);
-  
-  background-repeat: no-repeat;
-  -webkit-filter: none;
-  filter: none;
-  border: 0px solid #333;
-  box-shadow: 0px 0px 15px rgb(45, 129, 168), inset 0px 0px 5px #8ab4d1;
-  color: #ffffff;
-}
-body {
-  /* background: #fafafa; */
-  /* color: #333333; */
-  margin-top: 5rem;
-}
-
-h1, h2, h3, h4, h5, h6 {
-  color: #ffffff;
-  font-family: 'Comfortaa', sans-serif;
-}
-
-p {
-  color: #ffffff;
-  font-family: 'Comfortaa', sans-serif;
-}
-
-i {
-  color: #ffffff;
-  font-family: 'Roboto', sans-serif;
-}
-
-.bg-steel {
-  background-color: #5f788a;
-}
-
-.site-header .navbar-nav .nav-link {
-  color: #cbd5db;
-}
-
-.site-header .navbar-nav .nav-link:hover {
-  color: #ffffff;
-}
-
-.site-header .navbar-nav .nav-link.active {
-  font-weight: 500;
-}
-
-.article-title {
-  color: #ffffff;
-}
-
-a.article-title:hover {
-  color: #ca9a42;
-  text-decoration: none;
-}
-
-.article-content {
-  white-space: pre-line;
-}
-
-.article-img {
-  height: 65px;
-  width: 65px;
-  margin-right: 16px;
-}
-
-.article-metadata {
-  font-size: 1.25rem;
-  padding-bottom: 1px;
-  margin-bottom: 4px;
-  border-bottom: 1px solid #e3e3e3;
-}
-
-.article-metadata a:hover {
-  font-size: 1.25rem;
-  color: rgb(6, 226, 255);
-  text-decoration: none;
-}
-
-.article-svg {
-  width: 25px;
-  height: 25px;
-  vertical-align: middle;
-}
-
-.account-img {
-  height: 125px;
-  width: 125px;
-  margin-right: 20px;
-  margin-bottom: 16px;
-}
-
-.account-heading {
-  font-size: 2.5rem;
-}
-
 
 .navbar {
   height: 45px !important;
-  max-width: 960 !important;
   max-height: 55px !important;
 }
 
 .toolt1p {
   opacity: 0.5;
-  border-radius:
-   2rem;
+  border-radius: 2rem;
   padding: 4px 8px 4px 8px;
   max-width: 25rem !important;
   height: 6rem !important;
@@ -266,9 +124,6 @@ border-width: 4px; */
   box-shadow: rgb(111, 230, 161) 5px 15px 15px;
 }
 
-.text-nonitalic {
-  font-style: normal;
-}
 .text-italic {
   font-style: italic;
 }
@@ -339,12 +194,7 @@ border-width: 4px; */
 .text-cond {
   font-family: 'Roboto Condensed', sans-serif;
 }
-.text-major {
-  font-family: 'Major Mono Display', monospace;
-}
-.text-nova {
-  font-family: 'Nova Mono', monospace;
-}
+
 .text-robo {
   font-family: 'Roboto', sans-serif;
 }
@@ -429,14 +279,6 @@ h6 {
   margin-bottom: 20px;
   margin-top: 10px;
   padding: 10px 20px;
-  
-  background-image: linear-gradient(#8ab3d14f, #4c93da8a 60%, #12428181);
-  
-  background-repeat: no-repeat;
-  -webkit-filter: none;
-  filter: none;
-  border: 0px solid #333;
-  box-shadow: 0px 0px 15px rgb(45, 129, 168), inset 0px 0px 3px #8ab4d1;
 }
 
 .rnd-arc {
@@ -660,12 +502,13 @@ h6 {
 }
 
 .bg-green {
-  background-image: -webkit-gradient(linear, left top, left bottom, from(#484e55), color-stop(60%, #3A3F44), to(#234e09));
-  background-image: linear-gradient(#198123c4, #008659c5 60%, #0c5a02b4);
+  background-image: -webkit-gradient(linear, left top, left bottom, from(#484e55), color-stop(60%, #3A3F44), to(#313539));
+  background-image: linear-gradient(#36b340, #36b340 60%, #234e09);
+  background-repeat: no-repeat;
   -webkit-filter: none;
   filter: none;
-  border: 0px solid #02640a;
-  box-shadow: 0px 0px 5px #ad00a586, inset 0px 0px 2px #9636b37c;
+  border: 1px solid #36b340;
+  box-shadow: 0px 0px 5px #36b340, inset 0px 0px 2px #36b340;
 }
  
 .bg-brick {
@@ -976,7 +819,9 @@ h6 {
   border: 0 aqua;
   color: #d1d5e9;
 }
-
+body {
+  font-size: .75rem;
+}
 
 /* import metallic btn-second4ry from spacelab */
 
@@ -1058,7 +903,7 @@ border-radius:2rem;
   border-radius:2rem;
 }
 
-.bg-gl4ss {
+.bg-glass {
   margin-bottom: 8px;
   background-image: -webkit-gradient(linear, left top, left bottom, from(#8ab4d1), color-stop(60%, #4c93dadc), to(#124281));
   background-image: linear-gradient(#124281, #4c93dadc 60%, #8ab4d1);
@@ -1070,19 +915,6 @@ border-radius:2rem;
   filter: none;
   border: 0px solid #333;
   box-shadow: 0px 0px 15px rgb(45, 129, 168), inset 0px 0px 3px #8ab4d1;
-}
-
-.bg-glass {
-  margin-bottom: 8px;
-  background-image: -webkit-gradient(linear, left top, left bottom, from(#8ab4d1), color-stop(60%, #4c93dadc), to(#124281));
-
-  background-image: linear-gradient(#8ab3d12d, #4c93da41 60%, #12428159);
-  
-  background-repeat: no-repeat;
-  -webkit-filter: none;
-  filter: none;
-  border: 0px solid #333;
-  box-shadow: 0px 0px 10px rgb(45, 129, 168), inset 0px 0px 3px #8ab4d1;
 }
 .td-glass {
   background-image: -webkit-gradient(linear, left top, left bottom, from(#484e55), color-stop(60%, #3A3F44), to(#313539));
@@ -1102,26 +934,33 @@ border-radius:2rem;
   background-size: auto;
   position: relative;
   vertical-align: top;
-  background-image: url("https://raw.githubusercontent.com/attila5287/rota-img/main/backgrounds/guzelyali.jpg");
+  background-image: linear-gradient(#998d99, #c4c4c4 60%, #5d476b);
+  /* background-image: url("https://www.limos4less.com/images/bg-1.jpg");
+  background-image: url("https://www.jetsetter.com/uploads/sites/7/2018/04/city-cultural-historic-building-960x960.jpeg");
+  background-image: url("https://d36tnp772eyphs.cloudfront.net/blogs/1/2017/05/12251784553_018a0b3095_k-1200x720.jpg"); */
+  background-image: url("https://upload.wikimedia.org/wikipedia/commons/thumb/0/09/United_States_Capitol_Building_at_night.jpg/1200px-United_States_Capitol_Building_at_night.jpg");
+
   background-color: #002B36;
 }
 
 .nav-mini{
-  height: 45px !important;
-  max-height: 55px !important;
+  height: 35px !important;
+  max-height: 40px !important;
 }
 .bg-body-mini {
   /* background-blend-mode: normal; */
+  /* background-blend-mode: multiply; */
   /* background-blend-mode: difference; */
-  /* background-blend-mode: hard-light; */
+  background-blend-mode: hard-light;
   margin-top: 40px;
   background-position: top;
   background-repeat: repeat;
-  /* background-size: auto; */
-  background-size: cover;
+  background-size: auto;
   position: relative;
   vertical-align: top;
-  background-image: url("https://raw.githubusercontent.com/attila5287/rota-img/main/backgrounds/guzelyali.jpg");
+  background-image: linear-gradient(#998d99, #c4c4c4 60%, #5d476b);
+  background-image: url("https://upload.wikimedia.org/wikipedia/commons/thumb/0/09/United_States_Capitol_Building_at_night.jpg/1200px-United_States_Capitol_Building_at_night.jpg");
+  background-color: #002B36;
 }
 /* set map, body, and html to 100% of the screen size */
 body,
@@ -1169,23 +1008,10 @@ tbody td:last-child {
 .nav-midi{
   height: 28px !important;
   max-height: 40px !important;
-  max-width: 960 !important;
-}
-.bg-rowf {
-  background-image: linear-gradient(#ff00d460, #ff00d498 60%, #aa078f98);
-}
-.bg-rowm {
-  background-image: linear-gradient(#6e86f052, #3153ee80 60%, #0d35e691);
 }
 
-.bg-membf {
-  background-image: linear-gradient(#f541f552, #e705a365 60%, #75036655);
-}
-.bg-membm {
-  background-image: linear-gradient(#6e86f052, #4441ff65 60%, #030e7555);
-}
 .bg-themsie {
-  background-image: linear-gradient(#ec6ef052, #f941ff65 60%, #75036655);
+  background-color: rgb(41, 37, 65);
 }
 .shd-themy {
   border: 0px solid turquoise;
@@ -1200,29 +1026,19 @@ tbody td:last-child {
   border-radius: 0.50rem;
 }
 
-.bg-colorado {
-  border: 0px solid turquoise;
-  box-shadow: 0px 0px 4px #5d73ee  ,  inset 0px 0px 3px #47a8e0ad;
-  border-radius: 0.25rem;
-  background-image: linear-gradient(#002fffd7, #ffffff 60%, #002fffd7);
-}
-
 .bg-themy {
   border: 0px solid turquoise;
   box-shadow: 0px 0px 4px #5d73ee  ,  inset 0px 0px 3px #47a8e0ad;
-  border-radius: 0.25rem;
-  background-image: linear-gradient(#fb3873d7, #9c04a1a2 60%, #9600a3ca);
+  border-radius: 0.75rem;
+  background-image: linear-gradient(#ff00ea67, #001aff11 60%, #0400ff5d);
 }
-
 .bg-theme {
   background-image: linear-gradient(#ff00ea38, #0c3da89d 60%, #0806a3b4);
-  background-image: linear-gradient(#ff9064b6, #f36608b6 60%, #ff4b1494);
-  background-image: linear-gradient(#fb3873d7, #9c04a1a2 60%, #9600a3ca);
   background-repeat: repeat;
   -webkit-filter: none;
   filter: none;
   border: 0px solid turquoise;
-  box-shadow: 0px 0px 4px #944403  ,  inset 0px 0px 3px #a54607ad;
+  box-shadow: 0px 0px 4px #5d73ee  ,  inset 0px 0px 3px #47a8e0ad;
 }
 
 .st-btn {
@@ -1286,57 +1102,3 @@ input[type=range][orient=vertical]
   text-anchor: middle;
 }
 
-.list-group-item{
-  font-size: 0.65rem;
-}
-
-.footer {
-  font-family: 'Baloo 2', sans-serif;
-  font-size: 0.80rem;
-  font-style: italic;
-}
-
-.form-control-dark {
-  color: #fff;
-  background-color: rgba(255, 255, 255, .1);
-  border-color: rgba(255, 255, 255, .1);
-}
-
-.form-control-dark:focus {
-  border-color: transparent;
-  box-shadow: 0 0 0 3px rgba(255, 255, 255, .25);
-}
-
-
-.nav-tabs .nav-link.active,
-.nav-tabs .nav-item.show .nav-link {
-  color: #495057;
-  background-color: rgb(255, 255, 255);
-  border-color: #dee2e6 #dee2e6 #fff;
-}
-
-
-.nav-tabs .nav-link.active,
-.nav-tabs .nav-item.show .nav-link {
-  color: #495057;
-  background-color: #fff;
-  border-color: #dee2e6 #dee2e6 #fff;
-  
-}
-
-
-.custom-range::-moz-range-thumb {
-  width: 1rem;
-  height: 2rem;
-  color: white;
-  border-radius: 1rem 1rem 0.5rem 0.5rem;
-  background-image: -webkit-gradient(linear, left top, left bottom, from(#d564df), color-stop(60%, #6c14fb), to(#380885));
-
-  background-image: linear-gradient(#f277f6, #6a2470 60%, #531e55);
-  -webkit-transition: background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, -webkit-box-shadow 0.15s ease-in-out;
-  transition: background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, -webkit-box-shadow 0.15s ease-in-out;
-  transition: background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
-  transition: background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out, -webkit-box-shadow 0.15s ease-in-out;
-  -moz-appearance: none;
-  appearance: none;
-}
