@@ -1211,7 +1211,7 @@ tbody td:last-child {
   border: 0px solid turquoise;
   box-shadow: 0px 0px 4px #5d73ee  ,  inset 0px 0px 3px #47a8e0ad;
   border-radius: 0.25rem;
-  background-image: linear-gradient(#fb3873d7, #9c04a1a2 60%, #9600a3ca);
+  background-image: linear-gradient(#fd40858c , #fd4085b0  60%, #7217398e );
 }
 
 .bg-theme {
@@ -1232,6 +1232,7 @@ tbody td:last-child {
   font-family: 'Comfortaa', sans-serif;
   font-size: 1.00rem;
 }
+
 .line-xtra {
   stroke:#aaaaff;
   fill: none;
