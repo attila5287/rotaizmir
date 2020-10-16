@@ -1,3 +1,5 @@
+import random
+from random import shuffle
 import csv
 import requests
 from flask import render_template, url_for, flash, redirect, request, Blueprint, jsonify
@@ -196,11 +198,11 @@ def db_init_nicknames():
 
 @users.route('/nicknames/api')
 def nicknames_api():
-   pass
-   q_all = [ #query all
-       n for n in Nickname.query.all()
-   ]
-   d = [q.nickname for q in q_all]
-   
-   return jsonify(dict(enumerate(d)))
-   
+    pass
+    q_db = Nickname.query.all()
+    q_all = [ #query all
+        n for n in q_db
+    ]
+    d = [q.nickname for q in q_all]
+    random.shuffle(d)
+    return jsonify(dict(enumerate(d)))
