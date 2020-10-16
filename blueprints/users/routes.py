@@ -237,3 +237,17 @@ def db_init_colors():
             db.session.commit()
 
         return jsonify(csv_dict)
+
+
+@users.route('/colors/api')
+def colors_api():
+    pass
+    q_db = Color.query.all()
+    q_all = [ #query all
+        c for c in q_db
+    ]
+    random.shuffle(q_all)
+    
+    indexed =  [{c.name: getattr(q, c.name)
+          for c in q.__table__.columns} for q in q_all]
+    return jsonify(dict(enumerate(indexed)))
