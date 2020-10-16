@@ -5,12 +5,13 @@ import requests
 from flask import render_template, url_for, flash, redirect, request, Blueprint, jsonify
 from flask_login import login_user, current_user, logout_user, login_required
 from blueprints import db, bcrypt
-from blueprints.models import User, Post, Nickname, Member
+from blueprints.models import User, Post, Nickname, Member, Color
 from blueprints.users.forms import ( RegistrationForm, LoginForm, UpdateAccountForm, RequestResetForm, ResetPasswordForm )
 from blueprints.users.utils import save_picture, send_reset_email
 from blueprints.posts.forms import PostDemo
 
 users = Blueprint('users', __name__)
+
 
 
 @users.route("/reg_post", methods=[ 'POST'])
@@ -206,3 +207,33 @@ def nicknames_api():
     d = [q.nickname for q in q_all]
     random.shuffle(d)
     return jsonify(dict(enumerate(d)))
+
+
+@users.route("/db/init/colors")
+def db_init_colors():
+    pass  # UPLOAD ZILLOW HOUSE VALUE INDEX CSV'S MERGED
+    existing_data = Color.query.first()
+
+    if existing_data:
+        pass
+        return jsonify({
+            'status0': 'database exists',
+            'status1': 'db init is one time only',
+            'status2': 'no upload necessary',
+        })
+    else:
+        pass
+        csv_url = 'https://gist.githubusercontent.com/attila5287/3f0373400332073d5391abd4cf0665f3/raw/66791b84df3eded96f8bbea74115200da2f5055a/colors.csv'
+
+        with requests.get(csv_url, stream=True) as r:
+            pass
+            lines = (line.decode('utf-8') for line in r.iter_lines())
+            csv_dict = [row for row in csv.DictReader(lines)]
+            colors = [
+                Color(**row) for row in csv_dict
+            ]
+            # print(inventory)
+            db.session.add_all(colors)
+            db.session.commit()
+
+        return jsonify(csv_dict)

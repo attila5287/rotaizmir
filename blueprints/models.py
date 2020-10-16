@@ -57,6 +57,13 @@ class Nickname(db.Model):
     nickname = db.Column(db.String(256), nullable=False)
     
 
+class Color(db.Model):
+    pass
+    id = db.Column(db.Integer, primary_key=True)
+    color = db.Column(db.String(16), nullable=False)
+    colorcode = db.Column(db.String(8), nullable=False)
+    
+
 
 class Member(db.Model): 
     pass

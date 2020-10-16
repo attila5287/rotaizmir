@@ -4,19 +4,7 @@
 			"path": "."
 		},
 		{
-			"path": "..\\deXtra\\bootstrap-4.5.0-examples"
-		},
-		{
-			"path": "..\\displaytracker"
-		},
-		{
-			"path": "..\\..\\activities_practice\\14_D3"
-		},
-		{
-			"path": "..\\..\\activities_practice\\12_JS"
-		},
-		{
-			"path": "..\\regropoly"
+			"path": "..\\references"
 		}
 	],
 	"settings": {
