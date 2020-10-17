@@ -8,7 +8,7 @@
 		}
 	],
 	"settings": {
-		"editor.quickSuggestionsDelay": 4500,
+		"editor.quickSuggestionsDelay": 5000,
 		"editor.fontFamily": "'FantasqueSansMono Nerd Font',  'Dank Mono', 'Victor Mono'",
 		"markdown.preview.fontFamily": "-Anonymous Prom, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', 'Ubuntu', 'Droid Sans', sans-serif",
 		"terminal.integrated.fontWeightBold": "normal",
@@ -20,9 +20,9 @@
 		"editor.fastScrollSensitivity": 8,
 		"screencastMode.verticalOffset": 22,
 		"python.autoComplete.addBrackets": true,
-		"editor.lineHeight": 19,
+		"editor.lineHeight": 17,
 		"terminal.integrated.drawBoldTextInBrightColors": false,
-		"workbench.colorTheme": "Dracula",
+		"workbench.colorTheme": "Dracula Falcon",
 		"debug.console.fontSize": 12,
 		"workbench.settings.useSplitJSON": true,
 		"editor.suggest.maxVisibleSuggestions": 10,
@@ -108,7 +108,9 @@
 		"editor.suggestSelection": "recentlyUsedByPrefix",
 		"editor.suggest.showIcons": false,
 		"color-highlight.matchWords": true,
-		"editor.fontSize": 15,
+		"editor.snippetSuggestions": "top",
+		"emmet.showExpandedAbbreviation": "inMarkupAndStylesheetFilesOnly",
+		"emmet.showSuggestionsAsSnippets": true,
 
 	},
 	"git-autoconfig.configList": [],

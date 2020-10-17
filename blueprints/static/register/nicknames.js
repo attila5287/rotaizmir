@@ -1,101 +1,96 @@
-d3.json("/nicknames/api", function (err, data) {
-  const n = Object.keys(data).length;
+d3.json( "/nicknames/api", function ( err, data ) {
+  const n = Object.keys( data ).length;
 
-  let genRandID = (n_samples) => Math.floor(Math.random() * n_samples);
-  const first_random = genRandID(n);
-  d3.select("#slider-nn")
-    .attr("min", 0)
-    .attr("max", Object.keys(data).length - 1)
-    .attr("value", 0);
+  let genRandID = ( n_samples ) => Math.floor( Math.random() * n_samples );
+  const first_random = genRandID( n );
+  d3.select( "#slider-nn" )
+    .attr( "min", 0 )
+    .attr( "max", Object.keys( data ).length - 1 )
+    .attr( "value", 0 );
 
-  yearSelectEnd(first_random);
+  yearSelectEnd( first_random, data );
 
-  function yearSelectEnd(def_index) {
-    let $yearEnd = d3.select("#slider-nn");
-    $yearEnd.attr("value", def_index);
 
-    let width = $("#nickname-generator").width();
-    let height = $("#nickname-generator").height();
+  function yearSelectEnd ( def_index, data ) {
+    // console.log('data :>> ', data);
+    let $sliderNN = d3.select( "#slider-nn" );
+    $sliderNN.attr( "value", def_index );
+
+    let width = $( "#nickname-generator" ).width();
+    let height = $( "#nickname-generator" ).height()*1.25;
 
     let svg = d3
       .select("#nickname-generator")
       .append("svg")
+      .attr("class", "bg-glass")
       .attr("width", width)
       .attr("height", height);
 
     let plotGroup = svg
-      .append("g")
-      .classed("plot", true);
-      ;
-    const keys = Object.keys( data ).map( ( k ) => data[ k ] );  
-    const first_dom = [
-      keys[ def_index - 1 ],
-      keys[ def_index ],
-      keys[ def_index + 1 ],
-    ];
-    let scale = d3
-      .scaleBand()
-      .domain(first_dom)
-      .range([0, height])
-      ;
+      .append( "g" )
+      .classed( "plot", true );
     
-    let axis = d3
-      .axisRight(scale)
-      .tickSizeInner(width * 0.15)
-      .tickSizeOuter(width * 0.15)
-      .tickPadding( 3 )
-      ;
-    
+    const flat_paired_arr = Object.keys( data ).map( ( k ) => data[ k ] );
+
     let axisGroup = plotGroup
       .append( "g" )
-      .classed( "jackpot", true );
+      .classed( "jackpot", true )
+      ;
     
-    jackpotRight( def_index, axisGroup, height, keys, width );
     
-    function jackpotRight(index, axG, chartHeight, keysList, chartWidth) {
+    function jackpotRight(index, svg, chartHeight, data, chartWidth) {
+      const $input = d3.select("#input-nickname").select("input");
+
+      if (!$input.empty()) {
+        $input.remove();
+      }
+      d3.select("#input-nickname")
+        .append("input")
+        .classed("rdonly text-lite form-control bg-transparent border-0", true)
+        .attr("value", data[index]);
+
       let new_domain = [
-        keysList[index-1],
-        keysList[index],
-        keysList[index+1],
+        data[index - 2],
+        data[index - 1],
+        data[index],
+        data[index + 1],
+        data[index + 2],
       ];
-      let scale = d3
-        .scaleBand()
-        .domain(new_domain)
-        .range([0, chartHeight])
-        ;
+
+      let scale = d3.scaleBand().domain(new_domain).range([0, chartHeight]);
       let axis = d3
         .axisRight(scale)
+        .ticks(5)
         .tickSizeInner(chartWidth * 0.25)
-        .tickSizeOuter(width * 0.15)
-        .tickPadding(3);
+        .tickSizeOuter(chartWidth * 0.15)
+        .tickPadding(1);
         ;
       
-      axG.transition().ease( d3.easeElastic ).duration( 1500 ).call( axis );
+      svg.transition().ease(d3.easeElastic).duration(1500).call(axis);
     }
     
-    d3.select("#slider-nn").on("change", function () {
-      let new_index = +this.value;
+    jackpotRight(def_index, axisGroup, height, flat_paired_arr, width);
+    
+    
+    d3.select( "#slider-nn" ).on( "change", function () {
+      jackpotRight(+this.value, axisGroup, height, flat_paired_arr, width);
+    } );
 
-      jackpotRight(+this.value, axisGroup, height, keys, width);
-    });
     d3.selectAll( '.nickname-buttons' )
-      .on( "click", function ( event ) {
-        // d3.event.preventDefault();
+      .on( "click", function () {
         let selected = d3.event.target.id.trim();
         let actions = {
-          "up-icon-nn" : 1,
-          "up-nn" : 1,
-          "down-nn" : -1,
-          "down-icon-nn" : -1,
+          "up-icon-nn": 1,
+          "up-btn-nn": 1,
+          "down-btn-nn": -1,
+          "down-icon-nn": -1,
         };
 
         let this_val = d3.select( "#slider-nn" ).attr( "value" );
-        
+
         d3.select( "#slider-nn" ).attr( "value", +this_val + actions[ selected ] );
-        
-        jackpotRight(+this_val, axisGroup, height, keys, width);        
+
+        jackpotRight(+this_val, axisGroup, height, flat_paired_arr, width);
       } )
   }
-});
-
-
+} );
