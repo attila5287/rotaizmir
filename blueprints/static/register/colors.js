@@ -23,7 +23,7 @@ d3.json("/colors/api", function (err, data) {
       .attr( "value", def_index );
 
     let width = $("#color-generator").width();
-    let height = $("#color-generator").width()*.4;
+    let height = $("#color-generator").height();
 
     let svg = d3
       .select("#color-generator")

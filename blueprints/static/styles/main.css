@@ -1372,7 +1372,7 @@ input[type=range][orient=vertical]
   border-radius: 0.75rem;  
 }
 .evt-clk{
-  background-image: linear-gradient(#f847f885, #ff00ffb2 60%, #ac009585);
+  background-image: linear-gradient(#f8479a85, #ff00aab2 60%, #fa0085ad);
   box-shadow: 0px 0px 8px #5d73ee  ,  inset 0px 0px 6px #47a8e0ad;
   border: 0px solid #dddddd;
   border-radius: 1rem;

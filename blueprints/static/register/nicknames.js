@@ -17,7 +17,7 @@ d3.json( "/nicknames/api", function ( err, data ) {
     $sliderNN.attr( "value", def_index );
 
     let width = $( "#nickname-generator" ).width();
-    let height = $("#nickname-generator").width() * 0.4;
+    let height = $( "#nickname-generator" ).height();
 
     let svg = d3
       .select("#nickname-generator")

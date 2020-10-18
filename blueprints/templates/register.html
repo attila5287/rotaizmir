@@ -135,81 +135,58 @@
     </header>
     
     <main>
-      <div class="content-section">
+      <div class="content-section p-0">
         <div class="row no-gutters">
-                    <div class="col-sm-6 col-md-5 offset-md-1" name="nickname-mix">
-            <fieldset class="text-center p-1">
+          <div class="col col-sm-6 col-md-5 offset-md-1" name="nickname-mix">
+            <fieldset class="text-right p-0">
               <!-- <div class="form-row"> -->
-                <div class="form-row align-items-center">
+                <div class="form-row">
                   <div class="col-1">
-                    <input class="custrange-vertical cv-right mx-0 px-0" type="range" id="slider-nn" orient="vertical"
+                    <input class="custrange-vertical cv-right mx-0 px-0 ml-1" type="range" id="slider-nn" orient="vertical"
                       min="0" step="1">
                   </div>
-                  <div class="col-1">
-                    <div class="d-flex flex-column align-content-center">
-                      <h1 class="fa fa-caret-right animated infinite heartBeat text-light fa-pull-right" 
-                      aria-hidden="true"></h1>
-                    </div>
+
+                  <div class="col-9" id="nickname-generator">
                   </div>
-                  <div class="col-7" id="nickname-generator">
-                  </div>
-                  <div class="col-1">
-                    <div class="d-flex flex-column align-content-center">
-                      <h1 class="fa fa-caret-left animated infinite heartBeat text-light fa-pull-left" 
-                      aria-hidden="true"></h1>
-                    </div>
-                  </div>
-                  <div class="col-2">
+                  <div class="col-2 text-left">
                       
                         <a type="button" class="nickname-buttons evt-clk btn btn-outline-light btn-block rnd-xl py-5"
                           id="up-btn-nn">
                           <i class="fas fa-chevron-up text-3xl" id="up-icon-nn"></i>
                         </a>
+                        <h3 class="fa fa-caret-left animated infinite heartBeat text-light my-0 opac-70" aria-hidden="true"></h3>
                         <a type="button" class="nickname-buttons evt-clk btn btn-outline-light btn-block rnd-xl py-5 opac-90"
                           id="down-btn-nn">
                           <i id="down-icon-nn" class="fas fas fa-chevron-down text-2xl"></i>
                         </a>                                    
         
                   </div>
-
               </div>
             </fieldset>
           </div>
-          <div class="col-sm-6 col-md-5 offset-md-1" name="color-mix">
-            <fieldset class="text-center p-1">
+          <div class="col col-sm-6 col-md-5 offset-md-1" name="color-mix">
+            <fieldset class="text-right p-0">
               <!-- <div class="form-row"> -->
-                <div class="form-row align-items-center">
+                <div class="form-row">
                   <div class="col-1">
-                    <input class="custrange-vertical cv-right mx-0 px-0" type="range" id="slider-clr" orient="vertical"
+                    <input class="custrange-vertical cv-right mx-0 px-0 ml-1" type="range" id="slider-clr" orient="vertical"
                       min="0" step="1">
                   </div>
-                  <div class="col-1">
-                    <div class="d-flex flex-column align-content-center">
-                      <h1 class="fa fa-caret-right animated infinite heartBeat text-light fa-pull-right" 
-                      aria-hidden="true"></h1>
-                    </div>
-                  </div>
-                  <div class="col-7" id="color-generator">
-                  </div>
-                  <div class="col-1">
-                    <div class="d-flex flex-column align-content-center">
-                      <h1 class="fa fa-caret-left animated infinite heartBeat text-light fa-pull-left" 
-                      aria-hidden="true"></h1>
-                    </div>
-                  </div>
-                  <div class="col-2">
-                      
-                        <a type="button" class="color-buttons evt-clk btn btn-outline-light btn-block rnd-xl py-5 opac-90"
-                          id="up-btn-clr">
-                          <i class="fas fa-chevron-up text-3xl" id="up-icon-clr"></i>
-                        </a>
-                        <a type="button" class="color-buttons evt-clk btn btn-outline-light btn-block rnd-xl py-5 opac-90"
-                          id="down-btn-clr">
-                          <i id="down-icon-clr" class="fas fas fa-chevron-down text-2xl"></i>
-                        </a>                                    
-        
-                  </div>
 
+                  <div class="col-9" id="color-generator">
+                  </div>
+                  <div class="col-2 text-left">
+                    <a type="button" class="color-buttons evt-clk btn btn-outline-light btn-block rnd-xl py-5"
+                      id="up-btn-clr">
+                      <i class="fas fa-chevron-up text-3xl" id="up-icon-clr"></i>
+                    </a>
+                    <h3 class="fa fa-caret-left animated infinite heartBeat text-light my-0 opac-70" aria-hidden="true"></h3>
+                    <a type="button" class="color-buttons evt-clk btn btn-outline-light btn-block rnd-xl py-5 opac-90"
+                      id="down-btn-clr">
+                      <i id="down-icon-clr" class="fas fas fa-chevron-down text-2xl"></i>
+                    </a>                                    
+                    
+                  </div>
               </div>
             </fieldset>
           </div>
