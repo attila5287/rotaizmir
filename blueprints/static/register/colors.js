@@ -23,7 +23,7 @@ d3.json("/colors/api", function (err, data) {
       .attr( "value", def_index );
 
     let width = $("#color-generator").width();
-    let height = $("#color-generator").height()*1.25;
+    let height = $("#color-generator").width()*.4;
 
     let svg = d3
       .select("#color-generator")
@@ -31,19 +31,11 @@ d3.json("/colors/api", function (err, data) {
       .attr("class", "bg-glass")
       .attr("width", width)
       .attr("height", height);
-      
 
     let plotGroup = svg
       .append("g")
       .classed( "plot", true )
       ;
-    const keys = Object.keys( data ).map( ( k ) => data[ k ].color );  
-    const first_dom = [
-      keys[def_index - 1],
-      keys[def_index],
-      keys[def_index + 1],
-    ];
-    
     let axisGroup = plotGroup
       .append( "g" )
       .classed( "jackpot", true )
@@ -84,7 +76,6 @@ d3.json("/colors/api", function (err, data) {
         .axisRight(scale)
         .ticks(5)
         .tickSizeInner(chartWidth * 0.25)
-        .tickSizeOuter(chartWidth * 0.15 )
         ;
       
       axG.transition().ease( d3.easeElastic ).duration( 1500 ).call( axis );

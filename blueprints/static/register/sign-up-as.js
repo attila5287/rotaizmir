@@ -17,6 +17,3 @@ console.log( 'inp :>> ', $input_clr );
 d3.select( "#sign_up_as" )
   .text( `Sign Up As: ${$input_nn}${$input_clr}` )
   .attr("href", `/add/member/${$input_nn}${$input_clr}${$append_num}`);
-
-    console.log('d3.event.target :>> ', this.value());
-  })

@@ -17,7 +17,7 @@ d3.json( "/nicknames/api", function ( err, data ) {
     $sliderNN.attr( "value", def_index );
 
     let width = $( "#nickname-generator" ).width();
-    let height = $( "#nickname-generator" ).height()*1.25;
+    let height = $("#nickname-generator").width() * 0.4;
 
     let svg = d3
       .select("#nickname-generator")
@@ -61,8 +61,7 @@ d3.json( "/nicknames/api", function ( err, data ) {
       let axis = d3
         .axisRight(scale)
         .ticks(5)
-        .tickSizeInner(chartWidth * 0.25)
-        .tickSizeOuter(chartWidth * 0.15)
+        .tickSizeInner(chartWidth * 0.10)
         .tickPadding(1);
         ;
       
