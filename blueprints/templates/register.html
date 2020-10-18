@@ -33,7 +33,6 @@
     <!-- title -->
     <title>Göztepe Rotaract Kulübü | 2020-21</title>
   </head>
-
   <body class="bg-body-mini">
     <header>
       <nav class="navbar nav-mini navbar-expand-sm navbar-dark fixed-top bg-themy">
@@ -115,7 +114,7 @@
             {% set navigation_bar = [
             ('/register', 'register', 'Register', 'user-plus'),
 ('/login', 'login', 'Login', 'sign-in-alt'),
-('/about/', 'about', 'About', 'info-circle')
+('/about', 'about', 'About', 'info-circle')
     ] -%}
 
             {% for href, id, caption, icon in navigation_bar %}
@@ -134,6 +133,7 @@
       </nav>
 
     </header>
+    
     <main>
       <div class="content-section">
         <div class="row no-gutters">
@@ -161,11 +161,11 @@
                   </div>
                   <div class="col-2">
                       
-                        <a type="button" class="nickname-buttons listeners btn btn-outline-light btn-block rnd-xl bg-themy py-5 opac-90"
+                        <a type="button" class="nickname-buttons evt-clk btn btn-outline-light btn-block rnd-xl py-5"
                           id="up-btn-nn">
                           <i class="fas fa-chevron-up text-3xl" id="up-icon-nn"></i>
                         </a>
-                        <a type="button" class="nickname-buttons listeners btn btn-outline-light btn-block rnd-xl bg-themy py-5 opac-90"
+                        <a type="button" class="nickname-buttons evt-clk btn btn-outline-light btn-block rnd-xl py-5 opac-90"
                           id="down-btn-nn">
                           <i id="down-icon-nn" class="fas fas fa-chevron-down text-2xl"></i>
                         </a>                                    
@@ -199,11 +199,11 @@
                   </div>
                   <div class="col-2">
                       
-                        <a type="button" class="color-buttons listeners btn btn-outline-light btn-block rnd-xl bg-themy py-5 opac-90"
+                        <a type="button" class="color-buttons evt-clk btn btn-outline-light btn-block rnd-xl py-5 opac-90"
                           id="up-btn-clr">
                           <i class="fas fa-chevron-up text-3xl" id="up-icon-clr"></i>
                         </a>
-                        <a type="button" class="color-buttons listeners btn btn-outline-light btn-block rnd-xl bg-themy py-5 opac-90"
+                        <a type="button" class="color-buttons evt-clk btn btn-outline-light btn-block rnd-xl py-5 opac-90"
                           id="down-btn-clr">
                           <i id="down-icon-clr" class="fas fas fa-chevron-down text-2xl"></i>
                         </a>                                    
