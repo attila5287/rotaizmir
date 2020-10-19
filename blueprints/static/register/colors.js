@@ -63,11 +63,42 @@ d3.json("/colors/api", function (err, data) {
             return arr.slice(i - 2, i + 3).map((d) => d.color);
           }
         };
-      
+      const get_colcodes = (d, i) => {
+        const arr = Object.keys(d).map((k) => d[k]);
+
+        if (i == 0) {
+          return [
+            "#40E0D0",
+            "#00FFFF",
+            arr.slice(i, i + 3).map((d) => d.colorcode),
+          ].flat();
+        } else if (i == 1) {
+          return [
+            "#40E0D0",
+            arr.slice(i - 1, i + 3).map((d) => d.colorcode),
+          ].flat();
+        } else {
+          return arr.slice(i - 2, i + 3).map((d) => d.colorcode);
+        }
+      };
+
       
       let now_displaying = create_doma1n( data, index );
+      let now_colcodes = get_colcodes( data, index );
+      
       
       console.log('now_displaying :>> ', now_displaying);
+      console.log('now_displaying  cc:>> ', now_colcodes);
+      $cc = d3.selectAll( '.color-squares' )
+        .data( now_colcodes )
+        .transition()
+        .duration(500)
+        .style( "background-color", d => d );
+
+
+
+
+
       let color_on_air = data[ index ].color;
       
       d3.select("#input-color")
@@ -80,18 +111,21 @@ d3.json("/colors/api", function (err, data) {
           "rdonly text-outlined border-0 text-center text-3xl form-control bg-transparent",
           true
         )
-        .attr("value", `-${color_on_air}-`);
+        .attr( "value", `-${color_on_air}-` );
+      
+        
       
       let scale = d3
         .scaleBand()
         .domain(now_displaying)
-        .range([0, chartHeight])
-        ;
+        .range( [ 0, chartHeight ] );
+      
       let axis = d3
         .axisRight(scale)
         .ticks(5)
-        .tickSizeInner(chartWidth * 0.30)
-        ;
+        .tickSizeInner( chartWidth * 0.30 );
+      
+      
       
       axG.transition().ease( d3.easeElastic ).duration( 1500 ).call( axis );
     }

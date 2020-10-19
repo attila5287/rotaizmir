@@ -540,6 +540,18 @@ h6 {
   -webkit-box-shadow: 0 0.5rem 1rem rgba(190, 170, 147, 0.271) !important;
   box-shadow: 0 0.5rem 1rem rgba(190, 170, 147, 0.271) !important;
 }
+.color-squares{
+  margin-top: 0.9rem;
+  margin-bottom: 0.9rem;
+  border-radius: 0.25rem;
+  text-shadow: 2px 2px rgba(255, 255, 255, 0.397);
+}
+.text-gold {
+  color:#fb3873d7;
+  margin-top: 0.15rem;
+  margin-bottom: 0.25rem;
+  text-shadow: 2px 3px #B58900;
+}
 .text-theme {
   color: #fb3873d7;
   text-shadow: 2px 3px #ff14ff98;
