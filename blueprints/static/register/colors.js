@@ -3,20 +3,20 @@ d3.json("/colors/api", function (err, data) {
 
   let genRandID = ( n_samples ) => Math.floor( Math.random() * n_samples );
   
-  const first_random = genRandID( n );
+  const defIndex = genRandID( n );
   
   d3.select("#input-color")
-    .attr("data-name", data[first_random].color)
-    .attr("data-number", data[first_random].colorcode)
-    .attr("value", data[first_random].color)
-    .style("fill", data[first_random].colorcode);
+    .attr("data-name", data[defIndex].color)
+    .attr("data-number", data[defIndex].colorcode)
+    .attr("value", data[defIndex].color)
+    .style("fill", data[defIndex].colorcode);
   
   d3.select( "#slider-clr" )
     .attr("min", 0)
     .attr("max", Object.keys(data).length - 1)
     .attr("value", 0);
 
-  yearSelectEnd(first_random);
+  yearSelectEnd(defIndex);
 
   function yearSelectEnd(def_index) {
     d3.select( "#slider-clr" )
@@ -49,33 +49,48 @@ d3.json("/colors/api", function (err, data) {
       if (!$input.empty()) {
         $input.remove();
       }
+        const create_doma1n = (d, i) => {
+          const arr = Object.keys( d ).map( ( k ) => d[ k ] );
+          
+          if (i == 0) {
+            return ["turquoise", "aqua", arr.slice(i, i + 3).map(d=>d.color)].flat();
+          } else if (i == 1) {
+            return [
+              "turqoise",
+              arr.slice(i - 1, i + 3).map((d) => d.color),
+            ].flat();
+          } else {
+            return arr.slice(i - 2, i + 3).map((d) => d.color);
+          }
+        };
+      
+      
+      let now_displaying = create_doma1n( data, index );
+      
+      console.log('now_displaying :>> ', now_displaying);
+      let color_on_air = data[ index ].color;
+      
       d3.select("#input-color")
-        .style("border-color", data[index].colorcode)
-        .style("fill", data[index].colorcode)
-        .style("background-color", data[index].colorcode)
+        .style("border-color", color_on_air)
+        .style("fill", color_on_air)
+        .style("background-color", color_on_air)
+        .style("border-radius", "6px")
         .append("input")
         .classed(
-          "rdonly text-outlined text-center text-3xl form-control bg-transparent",
+          "rdonly text-outlined border-0 text-center text-3xl form-control bg-transparent",
           true
         )
-        .attr("value", data[index].color);
+        .attr("value", `-${color_on_air}-`);
       
-      let new_domain = [
-        data[index - 2].color,
-        data[index - 1].color,
-        data[index].color,
-        data[index + 1 ].color,
-        data[index + 2 ].color,
-      ];
       let scale = d3
         .scaleBand()
-        .domain(new_domain)
+        .domain(now_displaying)
         .range([0, chartHeight])
         ;
       let axis = d3
         .axisRight(scale)
         .ticks(5)
-        .tickSizeInner(chartWidth * 0.25)
+        .tickSizeInner(chartWidth * 0.30)
         ;
       
       axG.transition().ease( d3.easeElastic ).duration( 1500 ).call( axis );
@@ -84,7 +99,7 @@ d3.json("/colors/api", function (err, data) {
     d3.select("#slider-clr").on("change", function () {
       let new_index = +this.value;
 
-      jackpotRight(+this.value, axisGroup, height, data, width);
+      jackpotRight(new_index, axisGroup, height, data, width);
     });
     d3.selectAll( '.color-buttons' )
       .on( "click", function (  ) {
@@ -103,13 +118,13 @@ d3.json("/colors/api", function (err, data) {
         d3.select( "#read-only-username" )
           .style(
           "background-color",
-          data[first_random + actions[selected]].colorcode
+          data[defIndex + actions[selected]].colorcode
         );
         
         d3.select("#input-color")
-          .attr("data-name", data[first_random].color)
-          .attr("data-number", data[first_random].colorcode)
-          .attr("value", data[first_random].color)
+          .attr("data-name", data[defIndex].color)
+          .attr("data-number", data[defIndex].colorcode)
+          .attr("value", data[defIndex].color)
           
           ;
         

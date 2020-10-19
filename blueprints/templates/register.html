@@ -135,10 +135,9 @@
     </header>
     
     <main>
-      <div class="content-section p-0">
-        <div class="row no-gutters">
-          <div class="col col-sm-6 col-md-5 offset-md-1" name="nickname-mix">
-            <fieldset class="text-right p-0">
+        <div class="row no-gutters" name="generators">
+          <div class="col col-sm-6 col-md-5 offset-md-1" name="nickname-section">
+            <div class="text-right p-0">
               <!-- <div class="form-row"> -->
                 <div class="form-row">
                   <div class="col-1">
@@ -149,23 +148,22 @@
                   <div class="col-9" id="nickname-generator">
                   </div>
                   <div class="col-2 text-left">
-                      
-                        <a type="button" class="nickname-buttons evt-clk btn btn-outline-light btn-block rnd-xl py-5"
-                          id="up-btn-nn">
-                          <i class="fas fa-chevron-up text-3xl" id="up-icon-nn"></i>
-                        </a>
-                        <h3 class="fa fa-caret-left animated infinite heartBeat text-light my-0 opac-70" aria-hidden="true"></h3>
-                        <a type="button" class="nickname-buttons evt-clk btn btn-outline-light btn-block rnd-xl py-5 opac-90"
-                          id="down-btn-nn">
-                          <i id="down-icon-nn" class="fas fas fa-chevron-down text-2xl"></i>
-                        </a>                                    
-        
+                    <a type="button" class="nickname-buttons evt-clk btn btn-outline-light btn-block rnd-xl py-4"
+                      id="up-btn-nn">
+                      <i class="fas fa-chevron-up text-3xl" id="up-icon-nn"></i>
+                    </a>
+                    <h4 class="fa fa-caret-left animated infinite heartBeat text-light my-0 opac-70" aria-hidden="true"></h4>
+                    <a type="button" class="nickname-buttons evt-clk btn btn-outline-light btn-block rnd-xl py-4 opac-90"
+                      id="down-btn-nn">
+                      <i id="down-icon-nn" class="fas fas fa-chevron-down text-2xl"></i>
+                    </a>                                    
+                    
                   </div>
               </div>
-            </fieldset>
+            </div>
           </div>
-          <div class="col col-sm-6 col-md-5 offset-md-1" name="color-mix">
-            <fieldset class="text-right p-0">
+          <div class="col col-sm-6 col-md-5 offset-md-1" name="color-section">
+            <div class="text-right p-0">
               <!-- <div class="form-row"> -->
                 <div class="form-row">
                   <div class="col-1">
@@ -176,135 +174,64 @@
                   <div class="col-9" id="color-generator">
                   </div>
                   <div class="col-2 text-left">
-                    <a type="button" class="color-buttons evt-clk btn btn-outline-light btn-block rnd-xl py-5"
+                    <a type="button" class="color-buttons evt-clk btn btn-outline-light btn-block rnd-xl py-4"
                       id="up-btn-clr">
                       <i class="fas fa-chevron-up text-3xl" id="up-icon-clr"></i>
                     </a>
-                    <h3 class="fa fa-caret-left animated infinite heartBeat text-light my-0 opac-70" aria-hidden="true"></h3>
-                    <a type="button" class="color-buttons evt-clk btn btn-outline-light btn-block rnd-xl py-5 opac-90"
+                    <h4 class="fa fa-caret-left animated infinite heartBeat text-light my-0 opac-70" aria-hidden="true"></h4>
+                    <a type="button" class="color-buttons evt-clk btn btn-outline-light btn-block rnd-xl py-4 opac-90"
                       id="down-btn-clr">
                       <i id="down-icon-clr" class="fas fas fa-chevron-down text-2xl"></i>
                     </a>                                    
                     
                   </div>
               </div>
-            </fieldset>
+            </div>
           </div>
+        </div>
+
+        <div class="content-section p-1 mb-2 pb-3" name="preview-section">
+          
+            <div class="row py-0 my-auto align-items-center px-4" >
+              <div class="col" id="input-nickname">
+                <input class="rdonly text-lite form-control bg-transparent border-0" type="text" value="hello-world"
+                  readonly>
+              </div>
+              <div class="col" id="input-color">
+                <input class="rdonly text-lite form-control bg-transparent border-0" type="text" value="turqoise"
+                  readonly>
+              </div>
+              <div class="col text-center rdonly" id="append-numeric">
+              </div>
+            </div>
+            <div class="row">
+              <div class="offset-2">
+                <div class="form-inline mx-2" name="preview-usrnm">
+            <input class="form-control text-right" type="text" placeholder="preview-part-1"  readonly>
+            <div class="input-group-append">
+              <span class="input-group-text border-light bg-light">-</span>
+            </div>
+            <input class="form-control text-center" type="text"  placeholder="preview-part-2" >
+            <div class="input-group-append">
+              <span class="input-group-text border-light bg-light">-</span>
+            </div>
+            <input class="form-control" type="text" name="" placeholder="preview-part-3" >
+          </div>
+              </div>
+            </div>
 
         </div>
-        <form method="POST" action="/reg_post" name="original-form">
-          {{ form.hidden_tag() }}
-          <fieldset class="form-group">
-            <legend class="border-bottom mb-4">Join Today</legend>
 
-
-            <div class="form-group">
-              {{ form.username.label(class="form-control-label") }}
-              {% if form.username.errors %}
-              {{ form.username(class="form-control form-control-lg is-invalid") }}
-              <div class="invalid-feedback">
-                {% for error in form.username.errors %}
-                <span>{{ error }}</span>
-                {% endfor %}
-              </div>
-              {% else %}
-              <fieldset id="read-only-username" class="bg-transparent shd-theme" id="nickname_on_air">
-                <div class="row py-0 my-auto align-items-center">
-
-                  <div class="col" id="input-nickname">
-                    <input class="rdonly text-lite form-control bg-transparent border-0" type="text" value="hello-world"
-                      readonly>
-                  </div>
-                  <div class="col" id="input-color">
-                    <input class="rdonly text-lite form-control bg-transparent border-0" type="text" value="aqua"
-                      readonly>
-                  </div>
-                  <div class="col text-center" id="append-numeric">
-                  </div>
-                </div>
-
-              </fieldset>
-
-
-              {% endif %}
-            </div>
-            <div class="form-group">
-              {{ form.username.label(class="form-control-label") }}
-              {% if form.username.errors %}
-              {{ form.username(class="form-control form-control-lg is-invalid") }}
-              <div class="invalid-feedback">
-                {% for error in form.username.errors %}
-                <span>{{ error }}</span>
-                {% endfor %}
-              </div>
-              {% else %}
-              <input class="form-control form-control-lg" type="text" name="" id="nickname_as_text">
-
-              {{ form.username(class="form-control form-control-lg") }}
-              {% endif %}
-            </div>
-            <div class="form-group">
-              {{ form.email.label(class="form-control-label") }}
-              {% if form.email.errors %}
-              {{ form.email(class="form-control form-control-lg is-invalid") }}
-              <div class="invalid-feedback">
-                {% for error in form.email.errors %}
-                <span>{{ error }}</span>
-                {% endfor %}
-              </div>
-              {% else %}
-              {{ form.email(class="form-control form-control-lg") }}
-              {% endif %}
-            </div>
-
-            <div class="form-group">
-              {{ form.password.label(class="form-control-label") }}
-              {% if form.password.errors %}
-              {{ form.password(class="form-control form-control-lg is-invalid") }}
-              <div class="invalid-feedback">
-                {% for error in form.password.errors %}
-                <span>{{ error }}</span>
-                {% endfor %}
-              </div>
-              {% else %}
-              {{ form.password(class="form-control form-control-lg") }}
-              {% endif %}
-            </div>
-
-            <div class="form-group">
-              {{ form.confirm_password.label(class="form-control-label") }}
-              {% if form.confirm_password.errors %}
-              {{ form.confirm_password(class="form-control form-control-lg is-invalid") }}
-              <div class="invalid-feedback">
-                {% for error in form.confirm_password.errors %}
-                <span>{{ error }}</span>
-                {% endfor %}
-              </div>
-              {% else %}
-              {{ form.confirm_password(class="form-control form-control-lg") }}
-              {% endif %}
-            </div>
-          </fieldset>
-          <div class="form-group">
-            <a type="button" name="submit" class="btn btn-outline-info btn-block text-xl text-light border-light rnd-xl"
-              id="sign_up_as">
-              <i class="far fa-address-card"></i>
-
-
+        <div class="row" name="already_a_member">
+        <div class="col-6 offset-3 text-center align-items-center bg-themy text-italic text-light rnd-2xl pb-1 pt-2 mt-2 mb-3">
+            Already a user or member?  Please sign in
+            <a class="btn-info bg-theme rnd-lg px-2 pt-1 pb-2" href="{{ url_for('users.login') }}">
+              <i class="fas fa-sign-in-alt text-primary">
+              </i>
+              Login
             </a>
-
-          </div>
-        </form>
-
-      </div>
-      </div>
-
-      <div class="border-top pt-3">
-        <small class="text-light text-lg">
-          Already Have An Account? <a class="text-bold ml-2" href="{{ url_for('users.login') }}">Sign In</a>
-        </small>
-      </div>
-
+        </div>
+        </div>
     </main>
 
     <footer>
@@ -360,7 +287,7 @@
 
       <script src="/static/plugins/count-up.js"></script>
 
-      <script src="/static/register/sign-up-as.js"></script>ss
+      <script src="/static/register/signup-as.js"></script>ss
 
     </aside>
 
