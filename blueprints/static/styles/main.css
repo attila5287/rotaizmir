@@ -1244,7 +1244,7 @@ tbody td:last-child {
 
 .bg-themy {
   border: 0px solid turquoise;
-  box-shadow: 0px 0px 12px #5dccee  ,  inset 0px 0px 8px #5dccee;
+  box-shadow: 0px 0px 8px #5dccee  ,  inset 0px 0px 6px #5dccee;
   border-radius: 0.75rem;
   background-image: linear-gradient(#fb5391c7 , #fd4085b0  60%, #a31d4ed7 );
 }
