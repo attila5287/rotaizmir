@@ -14,18 +14,26 @@ users = Blueprint('users', __name__)
 
 
 
-@users.route("/reg/post/<string:gen_username>/<int:img_index>", methods=[ 'GET','POST'])
-def reg_post_public(gen_username, img_index):
+@users.route("/reg/post/public/<string:gen_username>", methods=[ 'GET','POST'])
+def reg_post_public( gen_username ):
     pass #function to run when new user registered btn hit
+    user = User.query.filter_by(username=gen_username).first()
+    if user:
+        raise ValidationError('That username is taken. Please choose a different one.')
+    
+    
+    
+    
     hashed_password = bcrypt.generate_password_hash(request.form["password"]).decode('utf-8')
     user = User(
         username = gen_username, 
         email = request.form["email"], 
         password = hashed_password,
-        img_url = img_index,
+        img_url = 0,
         is_member = 'n',
         is_admin = 'n',
         )
+    
     db.session.add(user)
     db.session.commit()
     flash('Your account has been created! You are now able to log in', 'success')

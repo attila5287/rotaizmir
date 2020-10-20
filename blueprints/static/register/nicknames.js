@@ -59,9 +59,12 @@ d3.json("/nicknames/api", function (err, data) {
       d3.select("#input-nickname")
         .append("input")
         .classed("rdonly text-lite form-control bg-transparent border-0", true)
-        .attr("value", dom_disp[2]);
-
-    }
+        .attr("id", "input-nn")
+        .attr( "value", dom_disp[ 2 ] );
+      
+      
+      render_signup();
+      }
 
     jackpotRight(def_index, axisGroup, height, flat_paired_arr, width);
 
@@ -82,7 +85,9 @@ d3.json("/nicknames/api", function (err, data) {
 
       d3.select("#slider-nn").attr("value", +this_val + actions[selected]);
 
-      jackpotRight(+this_val, axisGroup, height, flat_paired_arr, width);
+      jackpotRight(+this_val, axisGroup, height, 
+        flat_paired_arr, width );
+      console.log('test :>> ');
     });
   }
 });

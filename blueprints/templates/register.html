@@ -176,29 +176,29 @@
                   </div>
                   <div class="col-1 text-center">
                     <p class="color-squares">
-                      <i class="fas fa-square text-gold"></i>
+                      <i class="fas fa-caret-left text-gold"></i>
                     </p>
                     
                     <p class="color-squares">
-                      <i class="fas fa-square text-gold"></i>
+                      <i class="fas fa-caret-left text-gold"></i>
                     </p>
                     
                     <p class="color-squares">
-                      <i class="fas fa-square text-gold"></i>
+                      <i class="fas fa-caret-left text-gold"></i>
                     </p>
                     
                     <p class="color-squares">
-                      <i class="fas fa-square text-gold"></i>
+                      <i class="fas fa-caret-left text-gold"></i>
                     </p>
                     
                     <p class="color-squares">
-                      <i class="fas fa-square text-gold"></i>
+                      <i class="fas fa-caret-left text-gold"></i>
                     </p>
                     
                   </div>
                   
                   <div class="col-2 text-left">
-                    <a type="button" class="color-buttons evt-clk btn btn-outline-light btn-block rnd-xl py-4"
+                    <a type="button" class="color-buttons evt-clk btn btn-outline-light btn-block rnd-xl py-4 mt-2"
                       id="up-btn-clr">
                       <i class="fas fa-chevron-up text-3xl" id="up-icon-clr"></i>
                     </a>
@@ -214,12 +214,21 @@
             </div>
           </div>
         </div>
+        
+        <div class="content-section p-0" name="form-section">
+          <form method="POST" action="" id="regpub-form">
+            <fieldset class="text-left p-2">
+              {{ form.hidden_tag() }}
+              <legend class="border-bottom mb-4 mt-2">
+                Username Preview
+                <i class="muted">
+                  
+                </i>
+              </legend>
 
-        <div class="content-section p-1 mb-2 pb-3" name="preview-section">
-          
-            <div class="row py-0 my-auto align-items-center px-4" >
+            <div class="row py-0 align-items-center" >
               <div class="col" id="input-nickname">
-                <input class="rdonly text-lite form-control bg-transparent border-0" type="text" value="hello-world"
+                <input class="rdonly text-lite form-control bg-transparent border-0" type="text" value="aqua"
                   readonly>
               </div>
               <div class="col" id="input-color">
@@ -229,22 +238,67 @@
               <div class="col text-center rdonly" id="append-numeric">
               </div>
             </div>
-            <div class="row">
-              <div class="offset-2">
-                <div class="form-inline mx-2" name="preview-usrnm">
-            <input class="form-control text-right" type="text" placeholder="preview-part-1"  readonly>
-            <div class="input-group-append">
-              <span class="input-group-text border-light bg-light">-</span>
-            </div>
-            <input class="form-control text-center" type="text"  placeholder="preview-part-2" >
-            <div class="input-group-append">
-              <span class="input-group-text border-light bg-light">-</span>
-            </div>
-            <input class="form-control" type="text" name="" placeholder="preview-part-3" >
-          </div>
-              </div>
-            </div>
 
+              <div class="form-group col-10 offset-1">
+                <i class="fas far fa-envelope text-xl"></i>
+                {{ form.email.label(class="form-control-label text-xl text-comfo text-lowercase") }}
+                {% if form.email.errors %}
+                {{ form.email(class="form-control form-control-lg is-invalid") }}
+                <div class="invalid-feedback">
+                  {% for error in form.email.errors %}
+                  <span>{{ error }}</span>
+                  {% endfor %}
+                </div>
+                {% else %}
+                {{ form.email(class="form-control form-control-lg") }}
+                {% endif %}
+              </div>
+              <div class="form-group col-10 offset-1">
+                <i class="fas fa-lock"></i>
+                {{ form.password.label(class="form-control-label text-xl text-comfo text-lowercase") }}
+                {% if form.password.errors %}
+                {{ form.password(class="form-control form-control-lg is-invalid") }}
+                <div class="invalid-feedback">
+                  {% for error in form.password.errors %}
+                  <span>{{ error }}</span>
+                  {% endfor %}
+                </div>
+                {% else %}
+                {{ form.password(class="form-control form-control-lg") }}
+                {% endif %}
+              </div>
+              <div class="form-group col-10 offset-1">
+                <i class="fas fa-lock"></i>
+                {{ form.confirm_password.label(class="form-control-label") }}
+                {% if form.confirm_password.errors %}
+                {{ form.confirm_password(class="form-control form-control-lg is-invalid") }}
+                <div class="invalid-feedback">
+                  {% for error in form.confirm_password.errors %}
+                  <span>{{ error }}</span>
+                  {% endfor %}
+                </div>
+                {% else %}
+                {{ form.confirm_password(class="form-control form-control-lg") }}
+                {% endif %}
+              </div>
+              <div class="form-group col-10 offset-1">
+                <i class="fas fa-lock"></i>
+                {{ form.submit.label(class="form-control-label") }}
+                {% if form.submit.errors %}
+                {{ form.submit(class="form-control form-control-lg is-invalid") }}
+                <div class="invalid-feedback">
+                  {% for error in form.submit.errors %}
+                  <span>{{ error }}</span>
+                  {% endfor %}
+                </div>
+                {% else %}
+                {{ form.submit(class="form-control form-control-lg") }}
+                {% endif %}
+              </div>              
+              <div class="form-group" id="sign_up_as">
+              </div>
+            </fieldset>
+          </form>
         </div>
 
         <div class="row" name="already_a_member">

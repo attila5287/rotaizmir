@@ -87,17 +87,13 @@ d3.json("/colors/api", function (err, data) {
       let now_colcodes = get_colcodes( data, index );
       
       
-      console.log('now_displaying :>> ', now_displaying);
-      console.log('now_displaying  cc:>> ', now_colcodes);
+      // console.log('now_displaying :>> ', now_displaying);
+      // console.log('now_displaying  cc:>> ', now_colcodes);
       $cc = d3.selectAll( '.color-squares' )
         .data( now_colcodes )
         .transition()
         .duration(500)
         .style( "background-color", d => d );
-
-
-
-
 
       let color_on_air = data[ index ].color;
       
@@ -111,6 +107,7 @@ d3.json("/colors/api", function (err, data) {
           "rdonly text-outlined border-0 text-center text-3xl form-control bg-transparent",
           true
         )
+        .attr( "id", "input-clr")
         .attr( "value", `-${color_on_air}-` );
       
         
@@ -128,6 +125,7 @@ d3.json("/colors/api", function (err, data) {
       
       
       axG.transition().ease( d3.easeElastic ).duration( 1500 ).call( axis );
+      render_signup();
     }
     
     d3.select("#slider-clr").on("change", function () {

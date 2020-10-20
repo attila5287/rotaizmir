@@ -547,11 +547,12 @@ h6 {
   text-shadow: 2px 2px rgba(255, 255, 255, 0.397);
 }
 .text-gold {
-  color:#fb3873d7;
-  margin-top: 0.15rem;
-  margin-bottom: 0.25rem;
-  text-shadow: 2px 3px #B58900;
+  color:#b58900;
+  margin-top: 0 .15rem;
+  margin-bottom: 0.35rem;
 }
+
+
 .text-theme {
   color: #fb3873d7;
   text-shadow: 2px 3px #ff14ff98;
@@ -1243,8 +1244,8 @@ tbody td:last-child {
 
 .bg-themy {
   border: 0px solid turquoise;
-  box-shadow: 0px 0px 8px #5d73ee  ,  inset 0px 0px 6px #47a8e0ad;
-  border-radius: 0.25rem;
+  box-shadow: 0px 0px 12px #5dccee  ,  inset 0px 0px 8px #5dccee;
+  border-radius: 0.75rem;
   background-image: linear-gradient(#fb5391c7 , #fd4085b0  60%, #a31d4ed7 );
 }
 
@@ -1256,7 +1257,7 @@ tbody td:last-child {
   -webkit-filter: none;
   filter: none;
   border: 0px solid turquoise;
-  box-shadow: 0px 0px 4px #944403  ,  inset 0px 0px 3px #a54607ad;
+  box-shadow: 0px 0px 8px #5d73ee  ,  inset 0px 0px 6px #47a8e0ad;
 }
 
 .st-btn {
