@@ -1389,8 +1389,9 @@ input[type=range][orient=vertical]
   border-radius: 0.75rem;  
 }
 .evt-clk{
-  background-image: linear-gradient(#003cff85, #ff2ab8da 60%, #ff00bfe3);
+  background-image: linear-gradient(#003cff85 , #fd4085d7  60%, #c70049 );
   box-shadow: 0px 0px 8px #5d73ee  ,  inset 0px 0px 6px #47a8e0ad;
   border: 0px solid #dddddd;
   border-radius: 1rem;
 }
+

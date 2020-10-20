@@ -10,7 +10,7 @@ data = [];
 data.forEach( ( value, index, array ) => {
   d3.select("#append-numeric")
     .append("span")
-    .classed(`countup led-xl text-light text-nowrap part${index}`, true)
+    .classed(`countup led-lg mx-1 text-primary text-nowrap part${index}`, true)
     .html(+value)
     .attr("cup-start", 0)
     .attr("data-number", +value)
