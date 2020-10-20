@@ -35,7 +35,7 @@
   </head>
   <body class="bg-body-mini">
     <header>
-      <nav class="navbar nav-mini navbar-expand-sm navbar-dark fixed-top bg-themy">
+      <nav class="navbar nav-mini navbar-expand navbar-dark fixed-top bg-themy">
         <a class="navbar-brand bg-transparent border-0 rnd-xl add-anime" href="https://rotaizmir.herokuapp.com/">
           <img class="m-0 px-0 py-0"
             src="https://raw.githubusercontent.com/attila5287/rota-img/main/icons-png/circle_white.png"
@@ -238,8 +238,8 @@
 
             <hr class="border-light mx-5">
               <div class="form-group col-10 offset-1">
-                <i class="fas far fa-envelope text-xl"></i>
-                {{ form.email.label(class="text-monts text-xl text-lowercase text-mont text-xl") }}
+                <i class="fas fa-envelope text-xl"></i>
+                {{ form.email.label(class="text-monts text-xl text-lowercase") }}
                 {% if form.email.errors %}
                 {{ form.email(class="form-control form-control-lg is-invalid") }}
                 <div class="invalid-feedback">
@@ -253,7 +253,7 @@
               </div>
               <div class="form-group col-10 offset-1">
                 <i class="text-2xl mr-2 fas fa-lock"></i>
-                {{ form.password.label(class="text-monts text-xl text-lowercase text-mont text-xl") }}
+                {{ form.password.label(class="text-monts text-xl text-lowercase") }}
                 {% if form.password.errors %}
                 {{ form.password(class="form-control form-control-lg is-invalid") }}
                 <div class="invalid-feedback">
@@ -267,7 +267,7 @@
               </div>
               <div class="form-group col-10 offset-1">
                 <i class="text-2xl mr-2 fas fa-user-lock"></i>
-                {{ form.confirm_password.label(class="text-monts text-xl text-lowercase text-mont text-xl") }}
+                {{ form.confirm_password.label(class="text-monts text-xl text-lowercase") }}
                 {% if form.confirm_password.errors %}
                 {{ form.confirm_password(class="form-control form-control-lg is-invalid") }}
                 <div class="invalid-feedback">
