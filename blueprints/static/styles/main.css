@@ -557,6 +557,10 @@ h6 {
   color: #fb3873d7;
   text-shadow: 2px 3px #ff14ff98;
 }
+.text-monts {
+  font-family: 'Montserrat Alternates', sans-serif;
+  text-shadow: 2px 3px #ff148291;
+}
 .text-lite {
   text-align: center;
   font-size : 2.00rem;

@@ -41,7 +41,7 @@ function render_signup () {
     append_numeric = append_numeric + d3.select( this ).attr( "data-number" );
   } );
 
-  const $signup = d3.select( "#sign_up_as" ).select( "a" );
+  const $signup = d3.select( "#sign_up_as" ).select( "p" );
   if (!$signup.empty()) {
     $signup.remove();
   }
@@ -53,21 +53,12 @@ function render_signup () {
   $join.exit().remove();
   $join
     .enter()
-    .append("div")
-    .attr("class", "row")
-    .append("div")
-    .attr("class", "col-10 offset-1")
-
-    .append("a")
-    .transition()
-    .duration(5000)
+    .append("p")
     .attr(
       "class",
-      "btn btn-outline-info btn-block text-xl text-light border-0 bg-themy rnd-2xl pt-1 pb-2"
-    )
-    .attr("type", "button")
-    .text((d) => `Sign Up As: ${d}`)
-    .attr( "href", ( d ) => `/reg/post/public/${d}` )
+      "text-md text-center text-italic text-light mb-0"
+      )
+    .text((d) => `How about ${d} for temporary username?`)
     ;
     
     

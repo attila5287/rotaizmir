@@ -19,7 +19,7 @@
     <img class="rounded-circle article-img" src="https://raw.githubusercontent.com/attila5287/rota-img/main/profile_pics/{{image}}.png">
     <div class="media-body text-light">
       <div class="article-metadata text-light">
-        <a class="mr-2" href="">
+        <a class="bg-light rnd-xl text-bold mr-2 px-2 py-1" href="">
           rotaract2440
         </a>
         <small class="text-italic text-light">
@@ -48,7 +48,7 @@
               <a class="text-light mr-2" href="{{ url_for('users.user_posts', username=post.author.username) }}">{{ post.author.username }}</a> 
               <small class="ml-auto text-md text-italic text-light">@{{ post.date_posted.strftime('%Y-%m-%d') }}</small>
             </div>
-            <h2><a class="article-title text-light" href="{{ url_for('posts.post', post_id=post.id) }}">{{ post.title }}</a></h2>
+            <h2 class="bg-theme"><a class="article-title text-light" href="{{ url_for('posts.post', post_id=post.id) }}">{{ post.title }}</a></h2>
             <hr class="mb-2 mt-0 opac-30 border-light px-4">  
             <p class="article-content text-light">{{ post.content }}</p>
           </div>

@@ -215,15 +215,12 @@
           </div>
         </div>
         
-        <div class="content-section p-0" name="form-section">
+        <div class="content-section px-4 mx-4" name="form-section">
           <form method="POST" action="" id="regpub-form">
             <fieldset class="text-left p-2">
               {{ form.hidden_tag() }}
-              <legend class="border-bottom mb-4 mt-2">
-                Username Preview
-                <i class="muted">
-                  
-                </i>
+              <legend class="text-center text-comfo text-md mb-0 pb-0 mt-2">
+                You may be able to change your temporary username when membership approved.
               </legend>
 
             <div class="row py-0 align-items-center" >
@@ -239,9 +236,10 @@
               </div>
             </div>
 
+            <hr class="border-light mx-5">
               <div class="form-group col-10 offset-1">
                 <i class="fas far fa-envelope text-xl"></i>
-                {{ form.email.label(class="form-control-label text-xl text-comfo text-lowercase") }}
+                {{ form.email.label(class="text-monts text-xl text-lowercase text-mont text-xl") }}
                 {% if form.email.errors %}
                 {{ form.email(class="form-control form-control-lg is-invalid") }}
                 <div class="invalid-feedback">
@@ -254,8 +252,8 @@
                 {% endif %}
               </div>
               <div class="form-group col-10 offset-1">
-                <i class="fas fa-lock"></i>
-                {{ form.password.label(class="form-control-label text-xl text-comfo text-lowercase") }}
+                <i class="text-2xl mr-2 fas fa-lock"></i>
+                {{ form.password.label(class="text-monts text-xl text-lowercase text-mont text-xl") }}
                 {% if form.password.errors %}
                 {{ form.password(class="form-control form-control-lg is-invalid") }}
                 <div class="invalid-feedback">
@@ -268,8 +266,8 @@
                 {% endif %}
               </div>
               <div class="form-group col-10 offset-1">
-                <i class="fas fa-lock"></i>
-                {{ form.confirm_password.label(class="form-control-label") }}
+                <i class="text-2xl mr-2 fas fa-user-lock"></i>
+                {{ form.confirm_password.label(class="text-monts text-xl text-lowercase text-mont text-xl") }}
                 {% if form.confirm_password.errors %}
                 {{ form.confirm_password(class="form-control form-control-lg is-invalid") }}
                 <div class="invalid-feedback">
@@ -282,8 +280,9 @@
                 {% endif %}
               </div>
               <div class="form-group col-10 offset-1">
-                <i class="fas fa-lock"></i>
-                {{ form.submit.label(class="form-control-label") }}
+                <div class="form-group" id="sign_up_as">
+              </div>
+
                 {% if form.submit.errors %}
                 {{ form.submit(class="form-control form-control-lg is-invalid") }}
                 <div class="invalid-feedback">
@@ -292,25 +291,25 @@
                   {% endfor %}
                 </div>
                 {% else %}
-                {{ form.submit(class="form-control form-control-lg") }}
+                {{ form.submit(class="form-control btn btn-outline-info btn-block text-xl text-light border-0 bg-themy rnd-2xl pt-1 pb-2") }}
                 {% endif %}
               </div>              
-              <div class="form-group" id="sign_up_as">
-              </div>
+              
             </fieldset>
           </form>
+              <div class="row mb-5" name="already_a_member">
+                <div class="col-10 offset-1 text-center align-items-center text-italic text-light">
+                  Already a user or member? Please sign in
+                  <a class="btn btn-info rnd-lg px-2 pt-1 pb-2" href="{{ url_for('users.login') }}">
+                    <i class="fas fa-sign-in-alt text-light">
+                    </i>
+                    Login
+                  </a>
+                </div>
+              </div>
         </div>
+        
 
-        <div class="row" name="already_a_member">
-        <div class="col-6 offset-3 text-center align-items-center bg-themy text-italic text-light rnd-2xl pb-1 pt-2 mt-2 mb-3">
-            Already a user or member?  Please sign in
-            <a class="btn-info bg-theme rnd-lg px-2 pt-1 pb-2" href="{{ url_for('users.login') }}">
-              <i class="fas fa-sign-in-alt text-primary">
-              </i>
-              Login
-            </a>
-        </div>
-        </div>
     </main>
 
     <footer>
