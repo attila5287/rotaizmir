@@ -18,14 +18,15 @@
   <article class="media text-light rnd-2xl">
     <img class="rounded-circle article-img" src="https://raw.githubusercontent.com/attila5287/rota-img/main/profile_pics/{{image}}.png">
     <div class="media-body text-light">
-      <div class="article-metadata text-light">
+      <div class="article-metadata text-light mb-0">
         <a class="bg-light rnd-xl text-bold mr-2 px-2 py-1" href="">
-          rotaract2440
+          hello-world
         </a>
         <small class="text-italic text-light">
-          10/10/2020
+          10/05/2020
         </small>
       </div>
+      <hr class="border-light my-0 mx-5">
       <h2><a class="article-title text-light" href="{{ id }}">
         {{ title}}
       </a></h2>
@@ -44,11 +45,12 @@
         <article class="media content-section text-light border-light rnd-2xl">
           <img class="rounded-circle article-img" src="https://raw.githubusercontent.com/attila5287/regropoly-img/master/avatars/{{post.author.img_url}}.png">
           <div class="media-body text-light">
-            <div class="article-metadata">
-              <a class="text-light mr-2" href="{{ url_for('users.user_posts', username=post.author.username) }}">{{ post.author.username }}</a> 
+            <div class="article-metadata mb-0">
+              <a class="bg-light rnd-xl text-bold text-theme mr-2 px-2 pb-1 mb-0" href="{{ url_for('users.user_posts', username=post.author.username) }}">{{ post.author.username }}</a> 
               <small class="ml-auto text-md text-italic text-light">@{{ post.date_posted.strftime('%Y-%m-%d') }}</small>
             </div>
-            <h2 class="bg-theme"><a class="article-title text-light" href="{{ url_for('posts.post', post_id=post.id) }}">{{ post.title }}</a></h2>
+            <hr class="border-light my-0 mx-5">
+            <h4 class="shd-themy "><a class="article-title text-light" href="{{ url_for('posts.post', post_id=post.id) }}">{{ post.title }}</a></h4>
             <hr class="mb-2 mt-0 opac-30 border-light px-4">  
             <p class="article-content text-light">{{ post.content }}</p>
           </div>
