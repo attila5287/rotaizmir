@@ -1,6 +1,5 @@
  <!DOCTYPE html>
  <html>
-
    <head>
      <!-- Required meta tags -->
      <meta charset="utf-8">
@@ -32,10 +31,9 @@
      <!-- title -->
      <title>Göztepe Rotaract Kulübü | 2020-21</title>
    </head>
-
    <body class="bg-body-mini">
-<header>
-       <nav class="navbar nav-mini navbar-expand navbar-dark fixed-top bg-themy">
+     <header>
+     <nav class="navbar nav-mini navbar-expand navbar-dark fixed-top bg-themy">
          <a class="navbar-brand bg-transparent border-0 rnd-xl add-anime"
            href="https://rotaizmir.herokuapp.com/">
            <img class="m-0 px-0 py-0"
@@ -136,12 +134,26 @@
        </nav>
 
      </header>
-
-<main>
-        <div class="card bg-transparent p-0 m-0">
+     <main>
+       {% set instructions = [
+        'Your membership approval is still pending thus no profile pic upload yet ...! ',
+        'There are two forms below, first to change temporary profile picture and a second to change username or email.'
+        ]
+        %}
+        
+        {% for msg in instructions %}
+       <div class="px-5 mx-5 alert alert-info alert-dismissible fade show rnd-xl" role="alert">
+         <strong>Welcome, user!</strong> 
+         {{msg}}
+         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+           <span aria-hidden="true">&times;</span>
+          </button>
+       </div>        
+        {% endfor %}
+     <div class="card bg-transparent p-0 pb-3 m-0">
           <div class="card-body">
             <div class="row">
-              <div class="col-sm-3 offset-sm-1 text-center">
+              <div class="col-sm-3 offset-sm-1 text-center content-section">
                 <img class="card-img bg-transparent border-0"
                   src="https://raw.githubusercontent.com/attila5287/rota-img/main/avatars/{{ current_user.img_url }}.png"
                   style="max-width: 10rem;">
@@ -180,32 +192,26 @@
               </form>
   
               </div>
-              <div class="col-sm-7 offset-sm-1 px-4">
+              <div class="col-sm-6 offset-sm-1 content-section">
                 <h2 class="account-heading"></h2>
                 <form method="POST" action="">
                   {{ form.hidden_tag() }}
                   <fieldset class="form-group">
-                    <legend class="text-light text-center text-comfo border-bottom">
-                      <p class="text-sm text-italic opac-80 mt-0"> 
-                        <i class="fas fa-info-circle text-lg text-light" aria-hidden="true"></i>
-                        Welcome, user! Your membership approval is still pending thus no profile pic upload yet ...! 
-                      </p>
-                      <h1 class="text-italic text-light">
-                        {{ current_user.username }}</h1>
+                    <legend class="legend text-light text-center text-comfo border-bottom">
+      
+                      <h4 class="text-italic text-light bg-light text-lite px-1 pb-2 rnd-xl">
+                        {{ current_user.username }}</h4>
                       <p class="mb-0 text-md text-italic text-robo">
                         {{ current_user.email }}
 
                       </p>  
-                      <p class="text-sm text-italic opac-80 pb-0 mb-0"> 
-                        <i class="fas fa-info-circle text-lg text-light" aria-hidden="true"></i>
-                        There are two forms below, first to change temporary profile picture and a second to change username or email.
-                      </p>
-                          
+                
                         </legend>
                     <div class="form-group">
                       <span
-                        class="form-control-dark form-control-label text-comfo text-md text-light bg-themy px-4 py-2">
-                        Update {{ form.username.label }}
+                        class="form-control-dark form-control-label text-comfo text-md text-light px-4 py-2">
+                        <i class="far fa-user text-lite"></i>
+                        {{ form.username.label(class="text-lite text-lowercase ml-2") }}
                       </span>
                       {% if form.username.errors %}
                       {{ form.username(class="form-control-dark form-control form-control-dark form-control-lg is-invalid") }}
@@ -221,8 +227,9 @@
                     </div>
                     <div class="form-group">
                       <span
-                        class="form-control-dark form-control-label text-comfo text-md text-light bg-themy px-4 py-2">
-                        Update {{ form.email.label }}
+                        class="form-control-dark form-control-label text-comfo text-md text-light px-4 py-2">
+                      <i class="far fa-envelope text-lite"></i>
+                        {{ form.username.label(class="text-lite text-lowercase ml-2") }}
                       </span>
                       {% if form.email.errors %}
                       {{ form.email(class="form-control-dark form-control form-control-dark form-control-lg is-invalid") }}
@@ -246,8 +253,8 @@
               </div>
             </div>
           </div>
-        </div>
-          </main>
+      </div>
+      </main>
                  
      <footer class="container footer mt-2">
 

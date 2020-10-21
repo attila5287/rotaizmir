@@ -15,8 +15,14 @@ from blueprints.members.forms import (
     MemberForm,
     CSVReaderForm
 )
-
 members = Blueprint('members', __name__)
+
+@members.route('/member/edit/<int:id>')
+def edit(id):
+    pass
+    return jsonify({'status' : 'success'})
+    # return render_template('expression')
+
 @members.route('/member/<int:id>')
 def member(id):
     pass

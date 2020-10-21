@@ -58,6 +58,17 @@
 
 
         </ul>
+        <nav class="nav nav-fill">
+          <li class="nav-item">
+            <a class="nav-link" href="{{ url_for('members.edit', id=m.id) }}">
+              <i class="fas fa-edit text-3xl text-light text-memb{{m.gender}}"></i>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="" tabindex="-1" aria-disabled="true">Item 2</a>
+            <i class="fas fa-clipboard text-3xl text-memb{{m.gender}}"></i>
+          </li>
+        </nav>
         
         
       </div>
