@@ -1,0 +1,47 @@
+{% extends "layout.html" %}
+{% block content %}
+<div class="content-section">
+    <form method="POST" action="">
+        {{ form.hidden_tag() }}
+        <fieldset class="form-group">
+            <legend class="legend border-bottom">
+                
+                {{ legend }}
+                <i class="fas fa-edit text-3xl ml-2 mt-0"></i>
+
+            </legend>
+            <p class="notes mb-4">
+                <i class="fas fa-info-circle text-xl ml-2 mt-0"></i>
+                {{ notes }}
+            </p>
+            <form method="POST" action="">
+        
+                <div class="row">
+                    {% for field in form %}
+                    <div class="col-sm-5 offset-1">
+                        <i class="fas fa-edit ml-2 my-0 text-light">
+                            {{field.label(class="text-light", style="border-radius: 1rem;") }}
+                        </i>
+        
+                        {{field(class="form-control form-control-success form-control-lg border-body pl-4 mb-2 p-2", style="border-radius: 1rem;") }}
+        
+                    </div>
+                    {% endfor %}
+                </div>
+        
+                <button type="submit" class="btn btn-block btn-outline-light btn-rounded btn-lg box-shadow bg-themy"
+                    style="border-radius: 9px;">
+                    <h3>
+                        <i class="fas fas fa-user-graduate"></i>
+                        add member
+                    </h3>
+                </button>
+        
+            </form>
+            
+        </fieldset>
+        <div class="form-group">
+        </div>
+    </form>
+</div>
+{% endblock content %}

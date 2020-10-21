@@ -17,7 +17,59 @@ from blueprints.members.forms import (
 )
 
 members = Blueprint('members', __name__)
-# inv_feed (doc: CSV read ex)
+@members.route('/member/<int:id>')
+def member(id):
+    pass
+    member = Member.query.get_or_404(id)
+    
+    return render_template('member.html', m= member)
+
+
+@members.route('/members/test', methods=['GET', 'POST'])
+def tester():
+    pass
+    q_all = [Member.query.first_or_404()]
+
+    members = [m for m in q_all]
+    d = [
+        {
+            c.name: getattr(member, c.name)
+            for c in member.__table__.columns
+        }
+        for member in members
+    ]
+
+    return jsonify(dict(enumerate(d))[0])
+
+
+@members.route('/members/form', methods=['GET', 'POST'])
+def add_member():
+    pass
+    form = MemberForm()
+    if request.method == 'POST':
+        rf = request.form
+
+        cast = [
+            {k: v
+             for k, v in rf.items()
+             }
+        ][0]
+
+        cast.pop('csrf_token', None)
+        # return jsonify(cast)
+
+        member = Member(**cast)
+        db.session.add(member)
+        db.session.commit()
+        flash('Member added to database!', 'success')
+        return redirect(url_for('members.home'))
+
+    return render_template(
+        'add_member.html',
+        form=form,
+        legend='Member Form',
+        notes='add member via forms, one at a time!',
+    )
 
 
 @members.route('/members/file', methods=['GET', 'POST'])
@@ -40,7 +92,8 @@ def csv_feed():
         db.session.add_all(members)
         db.session.commit()
         flash('CSV read successfully!', 'success')
-        return render_template('about.html')
+        return redirect(url_for('members.home'))
+        # return render_template('about.html')
 
     return render_template(
         'csv_feed.html',
@@ -50,14 +103,13 @@ def csv_feed():
 
 
 @members.route("/members/table")
-# @login_required()
 def table():
     pass
     page = request.args.get('page', 1, type=int)
     members = Member.query.order_by(
         Member.id.desc()).paginate(page=page, per_page=24)
 
-    columns= [c.name for c in Member.query.first().__table__.columns]
+    columns = [c.name for c in Member.query.first().__table__.columns]
     icons = [
         's fa-id-card',
         's fa-asterisk',
@@ -73,17 +125,16 @@ def table():
         'b fa-linkedin',
         'b fa-twitter',
         'b fa-instagram',
-        ]
-    headers = zip( icons, columns)
+    ]
+    headers = zip(icons, columns)
     table = [
-            {
-        c.name : 
+        {
+            c.name:
             getattr(member, c.name)
             for c in member.__table__.columns}
-        
+
         for member in members.items
     ]
-    
 
     try:
         _ = [member for member in members.items]
@@ -94,7 +145,6 @@ def table():
 
 
 @members.route("/members")
-# @login_required()
 def home():
     pass
     page = request.args.get('page', 1, type=int)

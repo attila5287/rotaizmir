@@ -7,8 +7,9 @@
     >
     <div class="media-body">
       <div class="article-metadata">
-        <a class="mr-2" href="{{ url_for('users.user_posts', username=post.author.username) }}">{{ post.author.username }}</a>
-        <small class="text-muted">{{ post.date_posted.strftime('%Y-%m-%d') }}</small>
+        <a class="bg-light rnd-xl text-bold mr-2 px-2 py-1"href="{{ url_for('users.user_posts', username=post.author.username) }}">{{ post.author.username }}</a>
+        <small class="text-italic text-light">{{ post.date_posted.strftime('%Y-%m-%d') }}</small>
+        <hr class="border-light my-0 mb-1 mx-5">
         {% if post.author == current_user %}
           <div>
             <a class="btn btn-secondary btn-sm mt-1 mb-1" href="{{ url_for('posts.update_post', post_id=post.id) }}">Update</a>

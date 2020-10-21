@@ -29,12 +29,11 @@ class MemberForm(FlaskForm):
                            DataRequired()], default='Turkoz')
     phone_num = StringField('phone_number', default='')
     email = StringField('email',
-                        validators=[DataRequired(), Email()])
+                        validators=[ Email()])
     gender  = SelectField(choices=[('m', 'Male'), ('f', 'Female')], default ='m')
     is_admin  = SelectField(choices=[('n', 'NO'), ('y', 'YES')], default ='n')
-    is_member  = SelectField(choices=[('n', 'NO'), ('y', 'YES')], default ='n')
     is_prez  = SelectField(choices=[('n', 'NO'), ('y', 'YES')], default ='n')
     linkedin = StringField('linkedin', default='')
     instagram = StringField('instagram', default='')
     twitter = StringField('twitter', default='')
-
+    # picture = FileField('Update Profile Picture', validators=[FileAllowed(['jpg', 'png'])])

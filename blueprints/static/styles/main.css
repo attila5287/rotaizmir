@@ -6,6 +6,21 @@ html {
     font-size: 1rem;
   }
 }
+.member-img{
+  font-size: 2.25rem;
+  text-anchor: middle;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+  
+  @media (min-width: 768px) {
+  .member-img {
+    font-size: 4.5rem;
+  }
+}
+
 .table-img {
   border-radius: 0.5rem;
   font-size: 0.75rem;
@@ -559,6 +574,24 @@ h6 {
 .text-monts {
   font-family: 'Montserrat Alternates', sans-serif;
   text-shadow: 2px 3px #ff148291;
+}
+.notes {
+  text-align: center;
+  font-size : 0.80rem;
+  font-style : normal;
+  opacity: 90%;
+  color: #fff;
+  
+}
+.legend {
+  text-align: center;
+  font-size : 2.00rem;
+  text-shadow: 2px 3px #ff14ff91;
+  font-style : normal;
+  font-family: 'Montserrat Alternates', sans-serif;
+  opacity: 90%;
+  color: #fff;
+  
 }
 .text-lite {
   text-align: center;
@@ -1336,8 +1369,13 @@ input[type=range][orient=vertical]
   text-anchor: middle;
 }
 
-.list-group-item{
-  font-size: 0.65rem;
+.tri-right{
+  border-radius: 0.25rem 4.5rem 4.5rem 0.25rem;
+
+}
+.tri-left{
+  border-radius: 4.5rem 0.25rem 0.25rem 4.5rem;
+
 }
 
 .footer {

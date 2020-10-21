@@ -91,7 +91,7 @@
           </div>
     </li>            
           
-    <li class="nav-item dropdown">
+    <li class="nav-item dropdown" name="members-dd">
           <a class="nav-link dropdown-toggle text-light add-anime shd-themy text-md" href="#" id="dropdown01" data-toggle="dropdown"  aria-haspopup="true" aria-expanded="false"
           title="public announcements, events, meet-ups..."
           >
@@ -113,12 +113,10 @@
           </div>
     </li>            
           
-
-
       {% else %}
       {% set navigation_bar = [
-              ('/register', 'register', 'Register', 'user-plus'),
-    ('/login', 'login', 'Login', 'sign-in-alt'),
+      ('/register', 'register', 'Register', 'user-plus'),
+      ('/login', 'login', 'Login', 'sign-in-alt'),
     ('/about', 'about', 'About', 'info-circle')
       ] -%}
             

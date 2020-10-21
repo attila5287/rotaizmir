@@ -1,0 +1,114 @@
+{% extends "layout.html" %}
+{% block content %}
+<div class="row no-gutters">
+  <div class="col-1">
+      <a type="button" class="btn btn-outline-primary bg-themy btn-block mt-5 py-5 tri-left" id=""
+      href="{{ url_for('members.member', id=m.id-1) }}"
+      >
+      <i class="fas fa-chevron-left text-2xl"></i>
+    </a>
+  </div>
+
+  <div class="col-10 content-section px-1">
+    <h4 class="bg-memb{{m.gender}} text-center pb-2">
+      <i class="fas fa-id-card float-left ml-5 text-3xl"></i>
+        <a class="text-capitalize mr-2" >
+          {{m.last_name}}, 
+          {{m.first_name}}
+          {{m.middle_name}}
+        </a>
+      </h4>
+      <div class="row no-gutters">
+    <div class="col-4 text-center">
+      <img class="rounded-circle member-img" src="{{ m.img_url  }}" alt="{{ m.id }}-photo">
+
+      <hr class="border-light mx-5 mt-0 mb-2">
+
+        <ul class="list-group list-group-horizontal list-group-flush mb-4">
+
+
+          {% set values = [
+            (m.instagram,'instagram'),
+            (m.linkedin,'linkedin'),
+            (m.twitter,'twitter'),
+            ] %}
+{% for value, social in values %}
+
+          {% if value != '' %}
+          <a class="list-group-item list-group-item-action pt-0 pb-1 bg-transparent add-anime p-0" href="{{ value }}" >
+            <i class="text-3xl text-light pt-1 pb-0 fab fa-{{social}}">
+            </i>
+          </a>
+          
+          {% else %}
+          
+          <a class="list-group-item list-group-item-action pt-0 pb-1 bg-transparent p-0"  >
+            <i class="text-3xl text-secondary disabled pt-1 pb-0 opac-50 fab fa-{{social}}">
+            </i>
+          </a>
+          {% endif %}
+              
+
+{% endfor %}
+
+
+
+
+        </ul>
+        
+        
+      </div>
+      <div class="col-8">
+        <table class="table text-lg table-light  table-striped table-hover table-bordered text-light bg-transparent">
+          <tbody>
+            <tr>
+              <th scope="row">
+                <i class="fas fa-envelope"></i>
+              </th>
+              <td>Email</td>
+              <td>{{m.email }}</td>
+            </tr>
+            <tr>
+              <th scope="row">
+                <i class="fas fa-phone"></i>
+              </th>
+              <td>Phone</td>
+              <td>
+                0
+            -{{ m.phone_num[:3] }}
+            -{{ m.phone_num[3:6] }}
+            -{{ m.phone_num[6:10] }}
+              </td>
+            </tr>
+
+            <tr>
+              <th scope="row">
+                <i class="fas fa-graduation-cap"></i>
+              </th>
+              <td>Member ID</td>
+              <td>{{m.id }}</td>
+            </tr>            
+            <tr>
+              <th scope="row">
+                <i class="fas fa-user-tag"></i>
+              </th>
+              <td>User ID</td>
+              <td>{{m.user_id }}</td>
+            </tr>            
+
+          </tbody>
+        </table> 
+      </div>
+    </div>
+
+  </div>
+<div class="col-1">
+      <a type="button" class="btn btn-outline-primary bg-themy btn-block mt-5 py-5 tri-right" id=""
+      href="{{ url_for('members.member', id=m.id+1) }}"
+      >
+      <i class="fas fa-chevron-right text-2xl"></i>
+    </a>
+  </div>  
+</div>
+
+{% endblock content %}

@@ -5,6 +5,15 @@
 		},
 		{
 			"path": "..\\references"
+		},
+		{
+			"path": "..\\berenice"
+		},
+		{
+			"path": "..\\cheetsheet\\code_snippets\\Python\\Flask_Blog\\12-Error-Pages"
+		},
+		{
+			"path": "..\\displaytracker"
 		}
 	],
 	"settings": {
