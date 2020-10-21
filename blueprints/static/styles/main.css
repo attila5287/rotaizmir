@@ -1245,6 +1245,12 @@ tbody td:last-child {
   background-image: linear-gradient(#6e86f052, #3153ee80 60%, #0d35e691);
 }
 
+.text-membf {
+  color:#f541f552 ;
+}
+.text-membm {
+  color:#4441ff65 ;
+}
 .bg-membf {
   background-image: linear-gradient(#f541f552, #e705a365 60%, #75036655);
 }

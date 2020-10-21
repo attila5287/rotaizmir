@@ -9,15 +9,8 @@
     </a>
   </div>
 
-  <div class="col-10 content-section px-1">
-    <h4 class="bg-memb{{m.gender}} text-center pb-2">
-      <i class="fas fa-id-card float-left ml-5 text-3xl"></i>
-        <a class="text-capitalize mr-2" >
-          {{m.last_name}}, 
-          {{m.first_name}}
-          {{m.middle_name}}
-        </a>
-      </h4>
+  <div class="col-10 content-section">
+
       <div class="row no-gutters">
     <div class="col-4 text-center">
       <img class="rounded-circle member-img" src="{{ m.img_url  }}" alt="{{ m.id }}-photo">
@@ -36,15 +29,25 @@
 
           {% if value != '' %}
           <a class="list-group-item list-group-item-action pt-0 pb-1 bg-transparent add-anime p-0" href="{{ value }}" >
+            <div class="d-flex flex-column">
             <i class="text-3xl text-light pt-1 pb-0 fab fa-{{social}}">
             </i>
+            <i class="text-xl text-light disabled pt-1 pb-0 opac-80 fas fa-check">
+            </i>                        
+            </div>    
           </a>
           
           {% else %}
           
           <a class="list-group-item list-group-item-action pt-0 pb-1 bg-transparent p-0"  >
+            <div class="d-flex flex-column">
             <i class="text-3xl text-secondary disabled pt-1 pb-0 opac-50 fab fa-{{social}}">
             </i>
+            
+            <i class="text-xl text-secondary disabled pt-1 pb-0 opac-50 fas fa-times">
+            </i>              
+            </div>
+
           </a>
           {% endif %}
               
@@ -59,45 +62,76 @@
         
       </div>
       <div class="col-8">
-        <table class="table text-lg table-light  table-striped table-hover table-bordered text-light bg-transparent">
-          <tbody>
-            <tr>
-              <th scope="row">
-                <i class="fas fa-envelope"></i>
+          <table class="table table-dark table-hover table-borderless bg-transparent text-light mt-2">
+              <thead class="bg-memb{{m.gender}} text-lg">
+              <th scope="col">
+                <i class="fas fa-id-card float-left text-xl"></i>
               </th>
-              <td>Email</td>
-              <td>{{m.email }}</td>
-            </tr>
-            <tr>
-              <th scope="row">
-                <i class="fas fa-phone"></i>
+              <th scope="col">
+                Full Name
               </th>
-              <td>Phone</td>
-              <td>
-                0
-            -{{ m.phone_num[:3] }}
-            -{{ m.phone_num[3:6] }}
-            -{{ m.phone_num[6:10] }}
-              </td>
-            </tr>
+              <th scope="col" class="text-uppercase">
+                {{m.last_name}}, 
+                {{m.first_name}}
+                {{m.middle_name}}
+              </th>
+              
+            </thead>
+            <tbody class="bg-memb{{m.gender}} text-lg">
+              <tr>
+                <th scope="row" class="bg-transparent">
+                  <i class="fas fa-envelope"></i>
+                </th>
+                <td>Email</td>
+                <td class="bg-light text-dark">
+                  {{m.email }}</td>
+              </tr>
+              <tr>
+                <th scope="row" class="bg-transparent">
+                  <i class="fas fa-phone"></i>
+                </th>
+                <td>Phone</td>
+                <td class="bg-light text-dark">
+                  0
+              -{{ m.phone_num[:3] }}
+              -{{ m.phone_num[3:6] }}
+              -{{ m.phone_num[6:10] }}
+                </td>
+              </tr>
+  
+              <tr>
+                <th scope="row" class="bg-transparent">
+                  <i class="fas fa-graduation-cap"></i>
+                </th>
+                <td>Member ID</td>
+                <td class="bg-light text-dark">
+                  {{m.id }}</td>
+              </tr>            
+              <tr>
+                <th scope="row" class="bg-transparent">
+                  <i class="fas fa-user-tag"></i>
+                </th>
+                <td>User ID</td>
+                <td class="bg-light text-dark">
+                  
+                {% if m.user_id != 0 %}
+                <i class="fas fa-check text-memb{{m.gender}}"></i>
+                {{m.user_id}}
+                
+                {% else %}
+                
+                <i class="fas fa-times text-memb{{m.gender}}"></i>
+                {% endif %}
+                
+                
 
-            <tr>
-              <th scope="row">
-                <i class="fas fa-graduation-cap"></i>
-              </th>
-              <td>Member ID</td>
-              <td>{{m.id }}</td>
-            </tr>            
-            <tr>
-              <th scope="row">
-                <i class="fas fa-user-tag"></i>
-              </th>
-              <td>User ID</td>
-              <td>{{m.user_id }}</td>
-            </tr>            
 
-          </tbody>
-        </table> 
+
+                </td>
+              </tr>            
+  
+            </tbody>
+          </table> 
       </div>
     </div>
 
