@@ -2,10 +2,10 @@
 {% block content %}
 <div class="row no-gutters">
   <div class="col-1">
-      <a type="button" class="btn btn-outline-primary bg-themy btn-block mt-5 py-5 tri-left" id=""
+      <a type="button" class="btn btn-outline-primary bg-memb{{ m.gender}} btn-block mt-5 py-5  opac-70 tri-left" id=""
       href="{{ url_for('members.member', id=m.id-1) }}"
       >
-      <i class="fas fa-chevron-left text-2xl"></i>
+      <i class="fas fa-chevron-left text-3xl"></i>
     </a>
   </div>
 
@@ -44,7 +44,7 @@
             <i class="text-3xl text-secondary disabled pt-1 pb-0 opac-50 fab fa-{{social}}">
             </i>
             
-            <i class="text-xl text-secondary disabled pt-1 pb-0 opac-50 fas fa-times">
+            <i class="text-xl text-secondary disabled pt-1 pb-0 opac-50 fas fa-times"> 
             </i>              
             </div>
 
@@ -112,8 +112,7 @@
                   <i class="fas fa-user-tag"></i>
                 </th>
                 <td>User ID</td>
-                <td class="bg-light text-dark">
-                  
+                <td class="bg-light text-dark text-italic">
                 {% if m.user_id != 0 %}
                 <i class="fas fa-check text-memb{{m.gender}}"></i>
                 {{m.user_id}}
@@ -121,15 +120,31 @@
                 {% else %}
                 
                 <i class="fas fa-times text-memb{{m.gender}}"></i>
+                Not a user yet
                 {% endif %}
-                
-                
-
-
-
                 </td>
+
+
               </tr>            
-  
+              <tr>
+              <th scope="row" class="bg-transparent">
+                  <i class="fas fa-user-md"></i>
+                </th>
+                <td>Admin?</td>
+                <td class="bg-light text-dark text-italic">
+                {% if m.is_admin != 'n' %}
+                <i class="fas fa-check text-memb{{m.gender}}"></i>
+                {{m.user_id}}
+                
+                {% else %}
+                
+                <i class="fas fa-times text-memb{{m.gender}}"></i>
+                Not an admin
+                {% endif %}
+                </td>
+
+
+              </tr>              
             </tbody>
           </table> 
       </div>
@@ -137,10 +152,10 @@
 
   </div>
 <div class="col-1">
-      <a type="button" class="btn btn-outline-primary bg-themy btn-block mt-5 py-5 tri-right" id=""
+      <a type="button" class="btn btn-outline-primary bg-memb{{ m.gender}} btn-block mt-5 py-5  opac-70 tri-right" id=""
       href="{{ url_for('members.member', id=m.id+1) }}"
       >
-      <i class="fas fa-chevron-right text-2xl"></i>
+      <i class="fas fa-chevron-right text-3xl"></i>
     </a>
   </div>  
 </div>

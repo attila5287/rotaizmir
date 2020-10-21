@@ -1,4 +1,33 @@
+tbody tr th:first-child {
+  border-radius: 0.75rem 0 0 0.75rem;
+}
+thead tr th:first-child {
+  border-radius: 0.75rem 0 0 0.75rem;
+}
 
+thead th:nth-child(2) {
+  border-radius: 0 0 0 0;
+}
+
+thead th:nth-child(3) {
+  border-radius: 0 0 0 0;
+}
+
+thead th:nth-child(4) {
+  border-radius: 0 0 0 0;
+}
+
+thead th:nth-child(5) {
+  border-radius: 0 0 0 0;
+}
+
+thead th:nth-child(6) {
+  border-radius: 0 0 0 0;
+}
+
+thead th:last-child {
+  border-radius: 0 0.75rem 0.75rem 0;
+}
 .custrange-vertical::-webkit-slider-thumb {
   width: 4rem;
   height: 4rem;
