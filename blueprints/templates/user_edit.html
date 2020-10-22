@@ -1,0 +1,91 @@
+{% extends "layout.html" %}
+{% block content %}
+
+        <legend class="row col-8 offset-2 legend border-bottom text-right mr-4 mt-2">
+            <i class="fas fa-edit text-3xl ml-2 mt-0"></i>
+          {{ legend }}
+      </legend>
+          <div class="row">
+            <div class="col-2">
+              <img class="border-0 add-anime member-img p-1 shd-themy mb-2" src="{{ member.img_url  }}" alt="{{ member.id }}-photo" style="width: 95%;">
+            {% for i in info %}
+            
+            <p class="notes my-4 text-right">
+                <i class="fas fa-info-circle text-xl fa-pull-left"></i>
+                {{ i }}
+            </p>
+            
+            {% endfor %}
+            {% for a in access %}
+            
+            <p class="notes my-2 text-right">
+                <i class="fas fas fa-key text-xl ">
+                    {{ a }}
+                </i>
+            </p>
+            
+            {% endfor %}
+            </div>
+            
+            <div class="col" name="form-part">
+            <div class="content-section pl-4 pt-3 pr-0">
+                <fieldset class="form-group">
+                <form method="POST" action="">
+                    {{ form.hidden_tag() }}
+                        
+                        {% for field in form %}
+                        {% if field.id != 'csrf_token' %}
+                    
+                <div class="form-row align-items-center mb-4">
+
+                    <div class="col-2">
+                        <p class="text-monts text-sm text-right my-0">
+                            {{field.label}}
+                        </p>
+                    </div>
+                    <div class="col">
+                        <div class="input-group mx-2 mb-0 text-comfo">
+                          <div class="input-group-prepend add-anime">  
+                          <span class="input-group-text bg-themsie  text-light text-bold" id="inputGroupPrepend">
+                            <i class="fa{{icons(field.id)}} fa-fw ml-2 mt-0"></i>
+                              </span>
+                          </div>
+                      {{field(class="form-control form-control-dark form-control-sm mb-0 shd-themy mr-2" )}}
+                      </div>
+                    </div>
+                </div>
+            
+            {% else %}
+    
+            {% endif %}
+                
+                {% endfor %}
+                <div class="form-group">
+
+                        <input class="btn btn-outline-success btn-block bg-green rnd-2xl text-monts mt-2 pt-2 pb-3 text-light" type="submit" value="Submit" >
+                </div>
+                <div class="form-group row">
+                <div class="col-4 offset-1">
+                    <a type="submit" class="btn btn-outline-danger btn-block rnd-xl text-xl">
+                        <i class="far fa-trash-alt"></i>
+                        
+                             delete
+                    </a>
+                </div>                                        
+                <div class="col-4 offset-1">
+                    <a type="submit" class="btn btn-outline-info btn-block rnd-xl text-xl text-light"
+                    href="{{url_for( 'members.edit', id= member.id )}}">
+                        <i class="fas fas fa-undo"></i>
+                        
+                             reset
+                    </a>
+                </div>                                        
+                    </fieldset>
+                </form>
+            </div>
+            </div>
+        </div>
+            
+
+    
+{% endblock content %}

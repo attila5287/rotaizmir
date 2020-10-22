@@ -135,21 +135,18 @@
 
      </header>
      <main>
-       {% set instructions = [
-        'Your membership approval is still pending thus no profile pic upload yet ...! ',
-        'There are two forms below, first to change temporary profile picture and a second to change username or email.'
-        ]
-        %}
-        
-        {% for msg in instructions %}
-       <div class="px-5 mx-5 alert alert-info alert-dismissible fade show rnd-xl" role="alert">
-         <strong>Welcome, user!</strong> 
-         {{msg}}
-         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-           <span aria-hidden="true">&times;</span>
-          </button>
-       </div>        
-        {% endfor %}
+       <blockquote class="blockquote text-sm text-center mt-2">
+         <p class="mb-0"> 
+           <i class="fas fa-info-circle fa-fw"></i>
+           There are two forms below, first to change temporary profile picture and a second to change username or email.</p>
+       </blockquote>
+       <blockquote class="blockquote text-sm text-center mt-0 mb-0">
+         <p class="mb-0 mt-0"> 
+           <i class="fas fa-info-circle fa-fw"></i>
+           Your membership approval is still pending thus no profile pic upload yet ...! 
+          </p>
+       </blockquote>
+       
      <div class="card bg-transparent p-0 pb-3 m-0">
           <div class="card-body">
             <div class="row">
@@ -199,7 +196,7 @@
                   <fieldset class="form-group">
                     <legend class="legend text-light text-center text-comfo border-bottom">
       
-                      <h4 class="text-italic text-light bg-light text-lite px-1 pb-2 rnd-xl">
+                      <h4 class="text-italic text-light  text-lite px-1 pb-2 rnd-xl">
                         {{ current_user.username }}</h4>
                       <p class="mb-0 text-md text-italic text-robo">
                         {{ current_user.email }}
@@ -209,7 +206,7 @@
                         </legend>
                     <div class="form-group">
                       <span
-                        class="form-control-dark form-control-label text-comfo text-md text-light px-4 py-2">
+                        class="form-control-label text-comfo text-md text-light px-4 py-2">
                         <i class="far fa-user text-lite"></i>
                         {{ form.username.label(class="text-lite text-lowercase ml-2") }}
                       </span>
@@ -227,7 +224,7 @@
                     </div>
                     <div class="form-group">
                       <span
-                        class="form-control-dark form-control-label text-comfo text-md text-light px-4 py-2">
+                        class="form-control-label text-comfo text-md text-light px-4 py-2">
                       <i class="far fa-envelope text-lite"></i>
                         {{ form.username.label(class="text-lite text-lowercase ml-2") }}
                       </span>

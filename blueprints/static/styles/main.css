@@ -64,7 +64,7 @@ html {
   -webkit-filter: none;
   filter: none;
   border: 0px solid #333;
-  box-shadow: 0px 0px 15px rgb(45, 129, 168), inset 0px 0px 5px #8ab4d1;
+  box-shadow: 0px 0px 8px rgb(45, 129, 168), inset 0px 0px 6px #8ab4d1;
   color: #ffffff;
 }
 body {
@@ -253,11 +253,11 @@ border-width: 4px; */
 
 .add-anime:hover {
   transform: scale(1.1, 1.1);
-  box-shadow: rgb(111, 230, 141) 5px 15px 15px;
+  box-shadow: rgb(111, 216, 230) 5px 15px 15px;
 }
 
 .add-anime:hover:first-child {
-  box-shadow: rgb(166, 57, 255)5px 15px 15px;
+  box-shadow: rgb(0, 255, 136)5px 15px 15px;
 }
 
 .add-anime:hover:nth-last-child(4) {
@@ -269,7 +269,7 @@ border-width: 4px; */
 }
 
 .add-anime:hover:nth-last-child(2) {
-  box-shadow: rgb(219, 223, 0) 5px 15px 15px;
+  box-shadow: rgb(0, 225, 255) 5px 15px 15px;
 }
 
 .add-anime:hover:nth-last-child(1) {
@@ -728,7 +728,7 @@ h6 {
 
 .bg-green {
   background-image: -webkit-gradient(linear, left top, left bottom, from(#484e55), color-stop(60%, #3A3F44), to(#234e09));
-  background-image: linear-gradient(#198123c4, #008659c5 60%, #0c5a02b4);
+  background-image: linear-gradient(#00ffc8c4, #20eebb9f 60%, #058a52ce);
   -webkit-filter: none;
   filter: none;
   border: 0px solid #02640a;
@@ -1308,7 +1308,7 @@ thead th:last-child {
 
 .bg-themy {
   border: 0px solid turquoise;
-  box-shadow: 0px 0px 8px #5dccee  ,  inset 0px 0px 6px #5dccee;
+  box-shadow: 0px 0px 4px #5dccee  ,  inset 0px 0px 2px #5dccee;
   border-radius: 0.75rem;
   background-image: linear-gradient(#fb5391c7 , #fd4085b0  60%, #a31d4ed7 );
 }
@@ -1388,11 +1388,11 @@ input[type=range][orient=vertical]
 }
 
 .tri-right{
-  border-radius: 0.25rem 4.5rem 4.5rem 0.25rem;
+  border-radius: 0.5rem 4.5rem 4.5rem 0.5rem;
 
 }
 .tri-left{
-  border-radius: 4.5rem 0.25rem 0.25rem 4.5rem;
+  border-radius: 4.5rem 0.5rem 0.5rem 4.5rem;
 
 }
 
