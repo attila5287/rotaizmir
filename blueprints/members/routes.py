@@ -13,6 +13,7 @@ from blueprints import db
 from blueprints.models import Member, User
 from blueprints.members.forms import (
     MemberForm,
+    MemberMenu,
     CSVReaderForm,
     MemberEditForm
 )
@@ -95,21 +96,33 @@ def edit(id):
                            access= access,
                            )
 
-@members.route('/member/<int:id>')
+@members.route('/member/<int:id>', methods=['GET', 'POST'])
 def show(id):
     pass
+    form = MemberMenu()
     member = Member.query.get_or_404(id)
+    
+    members = [m for m in Member.query.all()]
+    form.menu.choices = [
+        ( m.id, '{}, {} {}'.format(m.last_name, m.first_name, m.middle_name).strip()) for m in members
+    ]
+    if request.method == 'POST':
+        pass
+        return redirect(url_for('members.show', id=request.form['menu']))
+
+    elif request.method == 'GET':
+        pass
+    
     access = [
         'a',
         'm',
     ]
-    info = [
-        'Members gallery'
+    instructions = [
+        'Members gallery, choose arrow buttons or dropdown menu. Members could see other members while only admins are authorized to edit member info or assign tasks.'
     ]
-    return render_template('member.html', m= member,
-                           info=info,
+    return render_template('member.html', form=form, m= member,
+                           instructions=instructions,
                            access = access
-                    
                            )
 
 

@@ -60,3 +60,10 @@ class MemberEditForm(FlaskForm):
     twitter = StringField('twitter', )
     # submit = SubmitField('submit', )
     # picture = FileField('Update Profile Picture', validators=[FileAllowed(['jpg', 'png'])])
+
+class MemberMenu(FlaskForm):
+    pass
+    menu  = SelectField('Members', choices=[('0', '0'), ('1', '1')], )
+    # submit = SubmitField('submit', )
+    
+
