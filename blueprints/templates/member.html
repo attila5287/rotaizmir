@@ -6,6 +6,7 @@
       {{ i }}
     </p>
     {% endfor %}
+
     <div class="row no-gutters align-items-center">
       <div class="col-1">
         <a type="button" class="btn btn-outline-light border-0 bg-memb{{ m.gender}} btn-block  rnd-xl py-5 tri-left" id=""
@@ -15,7 +16,7 @@
       </a>
       </div>
       <div class="col-10">
-        <div class="content-section pl-4 pt-3 pr-0">
+        <div class="content-section pl-4 pt-3 pr-0 col-10 offset-1 col-md-8 offset-md-2 col-lg-6 offset-lg-3">
             <fieldset class="form-group">
                 <form method="POST" action="">
                     {{ form.hidden_tag() }}

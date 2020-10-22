@@ -7,9 +7,15 @@
      <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
      <link rel="icon" type="image/x-icon" class="favicon"
        href="https://raw.githubusercontent.com/attila5287/rota-img/main/icons/favicon.ico" />
+       
+       <!-- Bootstrap CSS -->
+       {% if mode %}
+       <link rel="stylesheet" type="text/css" href="/static/styles/themes/{{mode}}/bootstrap.css" />
+       {% else %}
+       <link rel="stylesheet" type="text/css" href="/static/styles/theme/cerulean.css" />
+       
+       {% endif %}
 
-     <!-- Bootstrap CSS -->
-     <link rel="stylesheet" type="text/css" href="/static/styles/theme/cerulean.css" />
 
      <link rel="stylesheet" type="text/css" href="/static/styles/main.css">
      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">

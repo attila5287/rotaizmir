@@ -125,9 +125,11 @@ def show(id):
     instructions = [
         'Members gallery, choose arrow buttons or dropdown menu. Members could see other members while only admins are authorized to edit member info or assign tasks.'
     ]
+    # return jsonify({'k' : mode})
     return render_template('member.html', form=form, m= member,
                            instructions=instructions,
-                           access = access
+                           access = access,
+                           mode='cerulean', 
                            )
 
 
