@@ -1,174 +1,212 @@
 {% extends "layout.html" %}
 {% block content %}
-<div class="row no-gutters">
-  <div class="col-1">
-      <a type="button" class="btn btn-outline-primary bg-memb{{ m.gender}} btn-block mt-5 py-5  opac-70 tri-left" id=""
-      href="{{ url_for('members.member', id=m.id-1) }}"
-      >
-      <i class="fas fa-chevron-left text-3xl"></i>
-    </a>
-  </div>
+{% for i in info %}
+<div class="row align-items-center text-center">
 
-  <div class="col-10 content-section">
-
-      <div class="row no-gutters">
-    <div class="col-4 text-center">
-      <img class="rounded-circle member-img" src="{{ m.img_url  }}" alt="{{ m.id }}-photo">
-
-      <hr class="border-light mx-5 mt-0 mb-2">
-
-        <ul class="list-group list-group-horizontal list-group-flush mb-4">
-
-
-          {% set values = [
-            (m.instagram,'instagram'),
-            (m.linkedin,'linkedin'),
-            (m.twitter,'twitter'),
-            ] %}
-{% for value, social in values %}
-
-          {% if value != '' %}
-          <a class="list-group-item list-group-item-action pt-0 pb-1 bg-transparent add-anime p-0" href="{{ value }}" >
-            <div class="d-flex flex-column">
-            <i class="text-3xl text-light pt-1 pb-0 fab fa-{{social}}">
-            </i>
-            <i class="text-xl text-light disabled pt-1 pb-0 opac-80 fas fa-check">
-            </i>                        
-            </div>    
-          </a>
-          
-          {% else %}
-          
-          <a class="list-group-item list-group-item-action pt-0 pb-1 bg-transparent p-0"  >
-            <div class="d-flex flex-column">
-            <i class="text-3xl text-secondary disabled pt-1 pb-0 opac-50 fab fa-{{social}}">
-            </i>
-            
-            <i class="text-xl text-secondary disabled pt-1 pb-0 opac-50 fas fa-times"> 
-            </i>              
-            </div>
-
-          </a>
-          {% endif %}
-              
-
-{% endfor %}
-
-
-
-
-        </ul>
-        <nav class="nav nav-fill">
-          <li class="nav-item">
-            <a class="nav-link" href="{{ url_for('members.edit', id=m.id) }}">
-              <i class="fas fa-edit text-3xl text-light text-memb{{m.gender}}"></i>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="" tabindex="-1" aria-disabled="true">Item 2</a>
-            <i class="fas fa-clipboard text-3xl text-memb{{m.gender}}"></i>
-          </li>
-        </nav>
-        
-        
-      </div>
-      <div class="col-8">
-          <table class="table table-dark table-hover table-borderless bg-transparent text-light mt-2">
-              <thead class="bg-memb{{m.gender}} text-lg">
-              <th scope="col">
-                <i class="fas fa-id-card float-left text-xl"></i>
-              </th>
-              <th scope="col">
-                Full Name
-              </th>
-              <th scope="col" class="text-uppercase">
-                {{m.last_name}}, 
-                {{m.first_name}}
-                {{m.middle_name}}
-              </th>
-              
-            </thead>
-            <tbody class="bg-memb{{m.gender}} text-lg">
-              <tr>
-                <th scope="row" class="bg-transparent">
-                  <i class="fas fa-envelope"></i>
-                </th>
-                <td>Email</td>
-                <td class="bg-light text-dark">
-                  {{m.email }}</td>
-              </tr>
-              <tr>
-                <th scope="row" class="bg-transparent">
-                  <i class="fas fa-phone"></i>
-                </th>
-                <td>Phone</td>
-                <td class="bg-light text-dark">
-                  0
-              -{{ m.phone_num[:3] }}
-              -{{ m.phone_num[3:6] }}
-              -{{ m.phone_num[6:10] }}
-                </td>
-              </tr>
+              <div class="col-md-10 offset-md-1 col-lg-8 offset-lg-2">
+<div class="row">
   
-              <tr>
-                <th scope="row" class="bg-transparent">
-                  <i class="fas fa-graduation-cap"></i>
-                </th>
-                <td>Member ID</td>
-                <td class="bg-light text-dark">
-                  {{m.id }}</td>
-              </tr>            
-              <tr>
-                <th scope="row" class="bg-transparent">
-                  <i class="fas fa-user-tag"></i>
-                </th>
-                <td>User ID</td>
-                <td class="bg-light text-dark text-italic">
-                {% if m.user_id != 0 %}
-                <i class="fas fa-check text-memb{{m.gender}}"></i>
-                {{m.user_id}}
-                
-                {% else %}
-                
-                <i class="fas fa-times text-memb{{m.gender}}"></i>
-                Not a user yet
-                {% endif %}
-                </td>
-
-
-              </tr>            
-              <tr>
-              <th scope="row" class="bg-transparent">
-                  <i class="fas fa-user-md"></i>
-                </th>
-                <td>Admin?</td>
-                <td class="bg-light text-dark text-italic">
-                {% if m.is_admin != 'n' %}
-                <i class="fas fa-check text-memb{{m.gender}}"></i>
-                {{m.user_id}}
-                
-                {% else %}
-                
-                <i class="fas fa-times text-memb{{m.gender}}"></i>
-                Not an admin
-                {% endif %}
-                </td>
-
-
-              </tr>              
-            </tbody>
-          </table> 
-      </div>
-    </div>
-
+    
+  <div class="col">
+    <a type="button" class="btn btn-outline-light border-0 bg-memb{{ m.gender}} btn-block  opac-70 rnd-xl py-4 tri-left" id=""
+  href="{{ url_for('members.show', id=m.id-1) }}"
+  >
+  <i class="fas fa-chevron-left text-3xl"></i>
+  </a>
   </div>
-<div class="col-1">
-      <a type="button" class="btn btn-outline-primary bg-memb{{ m.gender}} btn-block mt-5 py-5  opac-70 tri-right" id=""
-      href="{{ url_for('members.member', id=m.id+1) }}"
+  
+  <div class="col-8">
+    <p class="notes mt-1 text-center mb-1">
+      <i class="fas fa-info-circle text-xl mr-2"></i>
+      {{ i }}
+    </p>
+  </div>
+  
+
+  <div class="col">
+      <a type="button" class="btn btn-outline-light border-0 bg-memb{{ m.gender}} btn-block  opac-70 rnd-xl py-4 tri-right" id=""
+      href="{{ url_for('members.show', id=m.id+1) }}"
       >
       <i class="fas fa-chevron-right text-3xl"></i>
-    </a>
+    </a>  
   </div>  
 </div>
+</div>
+</div>
+                  
+            {% endfor %}
+            <div class="row align-items-center text-center">
 
+              <div class="col-10 offset-1 content-section col-md-8 offset-md-2 col-lg-6 offset-lg-3">
+            
+                  <div class="row">
+                <div class="col-4 text-center">
+                  <img class="rounded-circle member-img img-fluid p-0" src="{{ m.img_url  }}" alt="{{ m.id }}-photo">
+            
+                  <hr class="border-secondary">
+                  
+                        <nav class="nav flex-column text-left">
+                            {% set member_actions = [
+                              ( '/member/edit/{}'.format(m.id), 'edit', 'Edit', ), 
+                              ( '/member/edit/{}'.format(m.id), 'clipboard-list', 'Tasks', ), 
+                              ( '/member/edit/{}'.format(m.id), 'award', 'Achievements', ), 
+                              ] %}
+                  
+                            {% for url, icon, text in member_actions %}
+                            <li class="nav-item text-nowrap add-anime rnd-lg border-bottom border-secondary opac-80 mr-2">
+                              <a class="nav-link text-comfo text-sm text-italic text-light" href="{{ url }}">
+                                <i class="fas fa-{{icon}} fa-fw text-md text-light"></i>
+                                {{text}}
+                              </a>
+                            </li>
+                            
+                            
+                            {% endfor %}
+                          </nav>
+            
+                    
+                    
+                  </div>
+                  <div class="col-8">
+                      <table class="table table-dark table-sm table-hover table-borderless bg-transparent text-light mt-2 mx-2">
+                          <thead class="bg-memb{{m.gender}} text-sm">
+                          <th scope="col">
+                            <i class="fas fa-id-card float-left text-xl"></i>
+                          </th>
+                          <th scope="col">
+                            Full Name
+                          </th>
+                          <th scope="col" class="text-uppercase">
+                            {{m.last_name}}, 
+                            {{m.first_name}}
+                            {{m.middle_name}}
+                          </th>
+                          
+                        </thead>
+                        <tbody class="bg-transparent text-sm">
+                          <tr>
+                            <th scope="row" class="bg-memb{{m.gender}}">
+                              <i class="fas fa-envelope"></i>
+                            </th>
+                            <td class="bg-memb{{ m.gender}}">Email</td>
+                            <td class="form-control-dark">
+                              {{m.email }}</td>
+                          </tr>
+                          <tr>
+                            <th scope="row" class="bg-memb{{m.gender}}">
+                              <i class="fas fa-phone"></i>
+                            </th>
+                            <td class="bg-memb{{ m.gender}}">Phone</td>
+                            <td class="form-control-dark">
+                              0
+                          -{{ m.phone_num[:3] }}
+                          -{{ m.phone_num[3:6] }}
+                          -{{ m.phone_num[6:10] }}
+                            </td>
+                          </tr>
+              
+                          <tr>
+                            <th scope="row" class="bg-memb{{m.gender}}">
+                              <i class="fas fa-graduation-cap"></i>
+                            </th>
+                            <td class="bg-memb{{ m.gender}}">Member ID</td>
+                            <td class="form-control-dark">
+                              {{m.id }}</td>
+                          </tr>            
+                          <tr>
+                            <th scope="row" class="bg-memb{{m.gender}}">
+                              <i class="fas fa-user-tag"></i>
+                            </th>
+                            <td class="bg-memb{{ m.gender}}">User ID</td>
+                            <td class="form-control-dark text-italic">
+                            {% if m.user_id != 0 %}
+                            <i class="fas fa-check text-memb{{m.gender}}"></i>
+                            {{m.user_id}}
+                            
+                            {% else %}
+                            
+                            <i class="fas fa-times text-memb{{m.gender}}"></i>
+                            Not a user yet
+                            {% endif %}
+                            </td>
+            
+            
+                          </tr>            
+                          <tr>
+                          <th scope="row" class="bg-memb{{m.gender}}">
+                              <i class="fas fa-user-md"></i>
+                            </th>
+                            <td class="bg-memb{{ m.gender}}">Admin?</td>
+                            <td class="form-control-dark text-italic">
+                            {% if m.is_admin != 'n' %}
+                            <i class="fas fa-check text-memb{{m.gender}}"></i>
+                            {{m.user_id}}
+                            
+                            {% else %}
+                            
+                            <i class="fas fa-times text-memb{{m.gender}}"></i>
+                            Not an admin
+                            {% endif %}
+                            </td>
+            
+            
+                          </tr>              
+                        </tbody>
+                      </table> 
+                      <ul class="list-group list-group-horizontal list-group-flush  mt-2 mb-4 mx-4">
+                      
+            
+                      {% set values = [
+                        (m.twitter,'twitter'),
+                        (m.instagram,'instagram'),
+                        (m.linkedin,'linkedin'),
+                        ] %}
+            {% for value, social in values %}
+            
+                      {% if value != '' %}
+                      <a class="list-group-item list-group-item-action pt-0 pb-1 bg-transparent text-center add-anime rnd-lg p-0" href="{{ value }}" >
+                        <div class="d-flex flex-row justify-content-center">
+                        <i class="text-3xl text-light pt-1 pb-0 fab fa-{{social}} fa-fw">
+                        </i>
+                        <i class="text-xl text-light disabled pt-1 pb-0 opac-80 fas fa-check fa-fw ml-2">
+                        </i>                        
+                        </div>    
+                      </a>
+                      
+                      {% else %}
+                      
+                      <a class="list-group-item list-group-item-action pt-0 pb-1 bg-transparent p-0"  >
+                        <div class="d-flex flex-row justify-content-center">
+                        <i class="text-3xl text-secondary disabled pt-1 pb-0 opac-50 fab fa-{{social}} fa-fw">
+                        </i>
+                        
+                        <i class="text-xl text-secondary disabled pt-1 pb-0 opac-50 fas fa-times fa-fw ml-1"> 
+                        </i>              
+                        </div>
+            
+                      </a>
+                      {% endif %}
+                      {% endfor %}
+                          
+            
+                      
+            
+            
+            
+                    </ul>
+                  </div>
+                </div>
+            
+              </div>
+            </div>
+            
+            {% for a in access %}
+            
+            <p class="notes my-2 text-right">
+                <i class="fas fas fa-key text-xl ">
+                    {{ a }}
+                </i>
+            </p>
+            
+            {% endfor %}
 {% endblock content %}

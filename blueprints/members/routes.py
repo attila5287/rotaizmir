@@ -10,25 +10,107 @@ from flask import (
 from flask_login import (
     login_user, current_user, logout_user, login_required)
 from blueprints import db
-from blueprints.models import Member
+from blueprints.models import Member, User
 from blueprints.members.forms import (
     MemberForm,
-    CSVReaderForm
+    CSVReaderForm,
+    MemberEditForm
 )
 members = Blueprint('members', __name__)
 
-@members.route('/member/edit/<int:id>')
+@members.context_processor
+def inject_icons():
+    pass
+    def icons(label):
+        pass
+        gallery = { #font awesome icons for member forms
+            "email": "s fa-envelope", 
+            "first_name": "s fa-user-edit", 
+            "gender": "s fa-venus-mars", 
+            "id": "s fa-id-card", 
+            "img_url": "s fa-image", 
+            "instagram": "b fa-instagram", 
+            "is_admin": "s fa-user-md", 
+            "is_prez": "s fa-user-md", 
+            "last_name": "s fa-user-edit", 
+            "linkedin": "b fa-linkedin", 
+            "middle_name": "s fa-user-edit", 
+            "phone_num": "s fa-phone", 
+            "twitter": "b fa-twitter", 
+            "user_id": "s fa-user-tag"
+            }
+        
+        return gallery.get(label, 's fa-edit')
+    
+    return dict(icons=icons)
+
+
+@members.route('/member/edit/<int:id>', methods=['GET', 'POST'])
 def edit(id):
     pass
-    return jsonify({'status' : 'success'})
-    # return render_template('expression')
+    users = [u for u in User.query.all()]
+    q_all = [Member.query.get_or_404(id)]
+    members = [m for m in q_all]
+    member = [m for m in q_all][0]
+    d = [
+        {
+            c.name: getattr(member, c.name)
+            for c in member.__table__.columns
+        }
+        for member in members
+    ]
+    form = MemberEditForm()
+    
+    if form.validate_on_submit():
+        cast_into_dict = {field.name : field.data for field in form}
+        cast_into_dict.pop('csrf_token', None)
+        d = cast_into_dict.copy()
+        for name, value in d.items():
+            pass
+            setattr(member, name, value) 
+        db.session.commit()
+        return redirect(url_for('members.show', id=member.id))
+        # return jsonify(d)
+    
+    
+    elif request.method == 'GET':
+        form = MemberEditForm(**dict(enumerate(d))[0])
+        form.user_id.choices = [
+            (u.id, '{}|{}'.format(u.email, u.username)) for u in users
+        ]        
+        
+    info = [
+        'Edit member details',
+    ]    
+    access = [
+        'a'
+    ]
+    
+    return render_template('member_edit.html',
+                           title="EditMember#{}".format(id),
+                           legend="Edit Member #{}".format(id),
+                           form = form,
+                           member= member,
+                           info= info,
+                           access= access,
+                           )
 
 @members.route('/member/<int:id>')
-def member(id):
+def show(id):
     pass
     member = Member.query.get_or_404(id)
-    
-    return render_template('member.html', m= member)
+    access = [
+        'a',
+        'm',
+    ]
+    info = [
+        'Members gallery'
+    ]
+    return render_template('member.html', m= member,
+                           info=info,
+                           access = access
+                    
+                           )
 
 
 @members.route('/members/test', methods=['GET', 'POST'])

@@ -585,7 +585,7 @@ h6 {
 }
 .legend {
   text-align: center;
-  font-size : 2.00rem;
+  font-size : 1.75rem;
   text-shadow: 2px 3px #ff14ff91;
   font-style : normal;
   font-family: 'Montserrat Alternates', sans-serif;
@@ -1196,7 +1196,12 @@ html {
   width: 99.4%;
   height: 99%;
 }
-tbody tr td:first-child {
+
+thead th:first-child {
+  border-radius: 0.75rem 0 0 0.75rem;
+}
+
+tbody td:first-child {
   border-radius: 0.75rem 0 0 0.75rem;
 }
 
@@ -1221,6 +1226,10 @@ tbody td:nth-child(6) {
 }
 
 tbody td:last-child {
+  border-radius: 0 0.75rem 0.75rem 0;
+}
+
+thead th:last-child {
   border-radius: 0 0.75rem 0.75rem 0;
 }
 
@@ -1264,12 +1273,7 @@ tbody td:last-child {
   border-radius: 0.75rem;
   background-image: linear-gradient(#cc00ff1e, #001aff0e 60%, #0400ff09);
 }
-.shd-themy {
-  border: 0px solid turquoise;
-  box-shadow: 0px 0px 2px #5d73ee  ,  inset 0px 0px 2px #47a8e0ad;
-  border-radius: 0.75rem;
-  background-image: linear-gradient(#cc00ff1e, #001aff0e 60%, #0400ff09);
-}
+
 
 .border-themy {
   box-shadow: 0px 0px 2px #5d73ee  ,  inset 0px 0px 3px #47a8e0ad;
@@ -1288,12 +1292,20 @@ tbody td:last-child {
   box-shadow: 0px 0px 0px #5dccee  ,  inset 0px 0px 0px #5dccee;
 }
 
+
 .bg-themsie {
   border: 0px solid turquoise;
-  box-shadow: 0px 0px 4px #5dccee  ,  inset 0px 0px 2px #5dccee;
+  box-shadow: 0px 0px 4px #5dccee  ,  inset 0px 0px 3px #5dccee;
   border-radius: 0.75rem;
   background-image: linear-gradient(#fb5391c7 , #fd4085b0  60%, #a31d4ed7 );
 }
+
+.shd-themy {
+  border: 0px solid turquoise;
+  box-shadow: 0px 0px 4px #5dccee  ,  inset 0px 0px 3px #5dccee;
+  border-radius: 0.75rem;
+}
+
 .bg-themy {
   border: 0px solid turquoise;
   box-shadow: 0px 0px 8px #5dccee  ,  inset 0px 0px 6px #5dccee;

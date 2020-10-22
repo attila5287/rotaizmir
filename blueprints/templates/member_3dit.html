@@ -1,0 +1,98 @@
+{% extends "layout.html" %}
+{% block content %}
+<p class="notes mb-4 text-center">
+    <i class="fas fa-info-circle text-xl ml-2 mt-0"></i>
+    {{ notes }}
+    Edit member details. 
+</p>
+<div class="content-section">
+     <form method="POST" action="">
+         {{ form.hidden_tag() }}
+        <fieldset class="form-group">
+          <div class="row no-gutters">
+            <div class="col-4">
+              <img class="rounded-circle border-0 add-anime member-img p-2 shd-themy" src="{{ member.img_url  }}" alt="{{ member.id }}-photo">
+              {% set social_media = [
+              (form.instagram, "instagram"),
+              (form.twitter,  "twitter"),
+                    (form.linkedin, "linkedin"),
+                    ] %}
+                    
+                {% for f,s in social_media %}
+                <div class="input-group">
+                    <div class="input-group-prepend add-anime">
+                    <span class="input-group-text bg-themsie mb-1" id="inputGroupPrepend">
+                        <i class="fab fa-{{s}} fa-fw text-xl ml-2 mt-0"></i>
+                        
+                        </span>
+                    </div>
+                {{f(class="form-control form-control-dark" )}}
+                </div>
+                {% endfor %}              
+            </div>
+            <div class="col-8">
+            <legend class="legend border-bottom">
+                {{ legend }}
+                <i class="fas fa-edit text-3xl ml-2 mt-0"></i>
+            </legend>
+                <div class="form-group">
+                
+                {% set m_name = [
+                    (form.last_name, member.last_name, "Last Name"),
+                    (form.first_name, member.first_name, "First Name"),
+                    (form.middle_name, member.middle_name, "Middle Name"),
+                    ] %}
+                    {% for f,m,label in m_name %}
+                    <div class="input-group">
+                        <div class="input-group-prepend add-anime">
+                        <span class="input-group-text bg-themsie mb-1 text-light text-md" id="inputGroupPrepend">
+                            <i class="fas fa-user-edit fa-fw text-lg mr-2 py-0 mt-0"></i>
+                            {{ label}}
+                            </span>
+                        </div>
+                    {{f(class="form-control form-control-dark" )}}
+                    <div class="invalid-feedback">
+                        {{m}}
+                    </div>
+                    </div>
+                    {% endfor %}
+
+                </div>                                
+                <div class="form-group">
+                    {% set user_fields = [
+                    (form.email, "envelope"),
+                    (form.phone_num, "phone"),
+                    (form.gender, "venus-mars"),
+                    ] %}
+                    
+                {% for f,s in user_fields %}
+                <div class="input-group">
+                    <div class="input-group-prepend add-anime">
+                    <span class="input-group-text bg-themsie mb-1" id="inputGroupPrepend">
+                        <i class="fas fa-{{s}} fa-fw text-xl ml-2 mt-0"></i>
+                        
+                        </span>
+                    </div>
+                {{f(class="form-control form-control-dark" )}}
+                </div>
+                {% endfor %}              
+
+
+                </div>
+            </div>
+                
+            
+        
+                <button type="submit" class="btn btn-block btn-outline-light btn-rounded btn-lg box-shadow bg-themy"
+                    style="border-radius: 9px;">
+                    <h3>
+                        <i class="fas fas fa-user-graduate"></i>
+                        edit member
+                    </h3>
+                </button>
+        </fieldset>
+        <div class="form-group">
+        </div>
+    </form>
+</div>
+{% endblock content %}

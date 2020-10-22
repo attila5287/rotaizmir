@@ -10,14 +10,11 @@
 			"path": "..\\berenice"
 		},
 		{
-			"path": "..\\cheetsheet\\code_snippets\\Python\\Flask_Blog\\12-Error-Pages"
-		},
-		{
 			"path": "..\\displaytracker"
 		}
 	],
 	"settings": {
-		"editor.quickSuggestionsDelay": 5000,
+		"editor.quickSuggestionsDelay": 4500,
 		"editor.fontFamily": " 'Victor Mono', 'FantasqueSansMono Nerd Font',  'Dank Mono'",
 		"markdown.preview.fontFamily": "-Anonymous Prom, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', 'Ubuntu', 'Droid Sans', sans-serif",
 		"terminal.integrated.fontWeightBold": "normal",

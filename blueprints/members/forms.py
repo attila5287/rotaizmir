@@ -37,3 +37,26 @@ class MemberForm(FlaskForm):
     instagram = StringField('instagram', default='')
     twitter = StringField('twitter', default='')
     # picture = FileField('Update Profile Picture', validators=[FileAllowed(['jpg', 'png'])])
+
+class MemberEditForm(FlaskForm):
+    pass
+    user_id  = SelectField('UserID', choices=[('0', '0'), ('1', '1')], )
+    first_name = StringField('first name', validators=[
+                            DataRequired()])
+     
+    middle_name = StringField('middle name')
+    
+    last_name = StringField('last name', validators=[
+                           DataRequired()],)
+    phone_num = StringField('phone_number')
+    email = StringField('email',
+                        validators=[ Email()])
+    gender  = SelectField('gender',choices=[('m', 'Male'), ('f', 'Female')], )
+    is_admin  = SelectField('admin', choices=[('n', 'NO'), ('y', 'YES')], )
+    is_prez  = SelectField('prez',choices=[('n', 'NO'), ('y', 'YES')], )
+    img_url = StringField('image link', )
+    linkedin = StringField('linkedin', )
+    instagram = StringField('instagram', )
+    twitter = StringField('twitter', )
+    # submit = SubmitField('submit', )
+    # picture = FileField('Update Profile Picture', validators=[FileAllowed(['jpg', 'png'])])
