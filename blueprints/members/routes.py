@@ -25,7 +25,6 @@ def inject_icons():
     def icons(label):
         pass
         gallery = { #font awesome icons for member forms
-            "emails": "s fa-envelope", 
             "email": "s fa-envelope", 
             "first_name": "s fa-user-edit", 
             "gender": "s fa-venus-mars", 
@@ -40,7 +39,7 @@ def inject_icons():
             "phone_num": "s fa-phone", 
             "twitter": "b fa-twitter", 
             "user_id": "s fa-user-tag",
-            "fullnames": "s fa-users",
+            "menu": "s fa-sort",
             }
         
         return gallery.get(label, 's fa-edit')

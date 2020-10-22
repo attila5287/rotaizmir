@@ -4,8 +4,8 @@
 <p class="notes mt-1 text-center mb-1">
       <i class="fas fa-info-circle text-xl mr-2"></i>
       {{ i }}
-    </p>
-    {% endfor %}
+</p>
+{% endfor %}
 
     <div class="row no-gutters align-items-center">
       <div class="col-1">
@@ -32,10 +32,10 @@
                           <div class="input-group-prepend add-anime">
                               <span class="input-group-text bg-themsie  text-light text-bold"
                                   id="inputGroupPrepend">
-                                  <i class="fa{{icons(field.id)}} fa-fw ml-2 mt-0"></i>
+                                  <i class="fa{{icons(field.id)}} fa-fw ml-2 mt-0 animated infinite heartBeat"></i>
                               </span>
                           </div>
-                          {{field(class="form-control form-control-dark form-control-sm border-light text-lg custom-select mb-0 shd-themy mr-2" )}}
+                          {{field(class="form-control form-control-dark form-control-lg border-light custom-select shd-themy mr-2" )}}
                       </div>
 
                     </div>
