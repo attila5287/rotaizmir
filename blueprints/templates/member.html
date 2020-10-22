@@ -1,25 +1,20 @@
 {% extends "layout.html" %}
 {% block content %}
 {% for i in instructions %}
-<div class="row align-items-center text-center">
-  
-  <div class="col-md-10 offset-md-1 col-lg-8 offset-lg-2">
-<div class="row">
-  
-    
-  <div class="col">
-    <a type="button" class="btn btn-outline-light border-0 bg-memb{{ m.gender}} btn-block  opac-70 rnd-xl py-4 tri-left" id=""
-  href="{{ url_for('members.show', id=m.id-1) }}"
-  >
-  <i class="fas fa-chevron-left text-3xl"></i>
-  </a>
-  </div>
-  
-  <div class="col-8">
-    <p class="notes mt-1 text-center mb-1">
+<p class="notes mt-1 text-center mb-1">
       <i class="fas fa-info-circle text-xl mr-2"></i>
       {{ i }}
     </p>
+    {% endfor %}
+    <div class="row no-gutters align-items-center">
+      <div class="col-1">
+        <a type="button" class="btn btn-outline-light border-0 bg-memb{{ m.gender}} btn-block  rnd-xl py-5 tri-left" id=""
+      href="{{ url_for('members.show', id=m.id-1) }}"
+      >
+      <i class="fas fa-chevron-left text-3xl"></i>
+      </a>
+      </div>
+      <div class="col-10">
         <div class="content-section pl-4 pt-3 pr-0">
             <fieldset class="form-group">
                 <form method="POST" action="">
@@ -28,24 +23,20 @@
                     {% for field in form %}
                     {% if field.id != 'csrf_token' %}
 
-                    <div class="form-row align-items-center mb-4">
+                    <p class="text-monts text-lg text-center my-0">
+                        {{field.label}}
+                    </p>
+                    <div class="form-group align-items-center mb-4">
+                      <div class="input-group mx-2 mb-0 text-comfo">
+                          <div class="input-group-prepend add-anime">
+                              <span class="input-group-text bg-themsie  text-light text-bold"
+                                  id="inputGroupPrepend">
+                                  <i class="fa{{icons(field.id)}} fa-fw ml-2 mt-0"></i>
+                              </span>
+                          </div>
+                          {{field(class="form-control form-control-dark form-control-sm border-light text-lg custom-select mb-0 shd-themy mr-2" )}}
+                      </div>
 
-                        <div class="col-2">
-                            <p class="text-monts text-sm text-right my-0">
-                                {{field.label}}
-                            </p>
-                        </div>
-                        <div class="col">
-                            <div class="input-group mx-2 mb-0 text-comfo">
-                                <div class="input-group-prepend add-anime">
-                                    <span class="input-group-text bg-themsie  text-light text-bold"
-                                        id="inputGroupPrepend">
-                                        <i class="fa{{icons(field.id)}} fa-fw ml-2 mt-0"></i>
-                                    </span>
-                                </div>
-                                {{field(class="form-control form-control-dark form-control-sm custom-select mb-0 shd-themy mr-2" )}}
-                            </div>
-                        </div>
                     </div>
 
                     {% else %}
@@ -62,21 +53,17 @@
                 </form>           
             </fieldset>
         </div>    
-  </div>
-  
-
-  <div class="col">
-      <a type="button" class="btn btn-outline-light border-0 bg-memb{{ m.gender}} btn-block  opac-70 rnd-xl py-4 tri-right" id=""
-      href="{{ url_for('members.show', id=m.id+1) }}"
-      >
-      <i class="fas fa-chevron-right text-3xl"></i>
-    </a>  
-  </div>  
-</div>
-</div>
-</div>
+      </div>
+      <div class="col-1">
+          <a type="button" class="btn btn-outline-light border-0 bg-memb{{ m.gender}} btn-block  rnd-xl py-5 tri-right" id=""
+          href="{{ url_for('members.show', id=m.id+1) }}"
+          >
+          <i class="fas fa-chevron-right text-3xl"></i>
+        </a>  
+      </div>  
+    </div>
                   
-            {% endfor %}
+            
             <div class="row align-items-center text-center">
 
               <div class="col-10 offset-1 col-md-8 offset-md-2 col-lg-6 offset-lg-3 content-section pb-5">

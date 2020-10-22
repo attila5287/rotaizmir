@@ -25,6 +25,7 @@ def inject_icons():
     def icons(label):
         pass
         gallery = { #font awesome icons for member forms
+            "emails": "s fa-envelope", 
             "email": "s fa-envelope", 
             "first_name": "s fa-user-edit", 
             "gender": "s fa-venus-mars", 
@@ -38,7 +39,8 @@ def inject_icons():
             "middle_name": "s fa-user-edit", 
             "phone_num": "s fa-phone", 
             "twitter": "b fa-twitter", 
-            "user_id": "s fa-user-tag"
+            "user_id": "s fa-user-tag",
+            "fullnames": "s fa-users",
             }
         
         return gallery.get(label, 's fa-edit')
@@ -104,11 +106,14 @@ def show(id):
     
     members = [m for m in Member.query.all()]
     form.menu.choices = [
-        ( m.id, '{}, {} {}'.format(m.last_name, m.first_name, m.middle_name).strip()) for m in members
+        ( m.id, '{}, {} | {}'.format(m.last_name.upper(), str(m.first_name+ ' ' + m.middle_name).title(), m.email).strip()) for m in members
     ]
+    
+    
     if request.method == 'POST':
         pass
-        return redirect(url_for('members.show', id=request.form['menu']))
+        rf = request.form
+        return redirect(url_for('members.show', id=rf['menu']))
 
     elif request.method == 'GET':
         pass
