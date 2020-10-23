@@ -50,7 +50,7 @@
               <small class="ml-auto text-md text-italic text-light">@{{ post.date_posted.strftime('%Y-%m-%d') }}</small>
             </div>
             <hr class="border-light my-0 mx-5">
-            <h4 class="shd-themy "><a class="article-title text-light" href="{{ url_for('posts.post', post_id=post.id) }}">{{ post.title }}</a></h4>
+            <h4 class="shd-theme "><a class="article-title text-light" href="{{ url_for('posts.post', post_id=post.id) }}">{{ post.title }}</a></h4>
             <hr class="mb-2 mt-0 opac-30 border-light px-4">  
             <p class="article-content text-light">{{ post.content }}</p>
           </div>
@@ -60,7 +60,7 @@
     {% for page_num in posts.iter_pages(left_edge=1, right_edge=1, left_current=1, right_current=2) %}
       {% if page_num %}
         {% if posts.page == page_num %}
-          <a class="btn btn-info bg-themsie mb-4" href="{{ url_for('main.home', page=page_num) }}">{{ page_num }}</a>
+          <a class="btn btn-info bg-theme mb-4" href="{{ url_for('main.home', page=page_num) }}">{{ page_num }}</a>
         {% else %}
           <a class="btn btn-outline-light mb-4" href="{{ url_for('main.home', page=page_num) }}">{{ page_num }}</a>
         {% endif %}

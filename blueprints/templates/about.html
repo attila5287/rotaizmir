@@ -36,7 +36,7 @@
 
      <body class="bg-body-mini">
          <header>
-             <nav class="navbar nav-mini navbar-expand navbar-dark fixed-top bg-themy">
+             <nav class="navbar nav-mini navbar-expand navbar-dark fixed-top bg-theme">
                  <a class="navbar-brand bg-transparent border-0 rnd-xl add-anime"
                      href="https://rotaizmir.herokuapp.com/">
                      <img class="m-0 px-0 py-0"
@@ -50,7 +50,7 @@
                      aria-label="Toggle navigation">
                      <span class="navbar-toggler-icon"></span>
                  </button>
-                 <div class="collapse navbar-collapse nav-mini text-center bg-themy text-comfo mb-1"
+                 <div class="collapse navbar-collapse nav-mini text-center bg-theme text-comfo mb-1"
                      id="navbarCollapse">
                      <ul class="nav nav-pills nav-justify nav-mini bg-transparent mr-auto align-items-center">
                          {% if current_user.is_authenticated %}
@@ -63,7 +63,7 @@
                          {% set active_page = active_page|default('new-post') -%}
                          {% for href, id, caption, icon in navigation_bar %}
                          <li class="nav-item">
-                             <a class="nav-link text-light add-anime shd-themy text-md" href="{{href|e }}">
+                             <a class="nav-link text-light add-anime shd-theme text-md" href="{{href|e }}">
                                  <i class="text-lg fas fa-{{icon|e }}"></i>
                                  {{ caption|e }}
                              </a>
@@ -71,7 +71,7 @@
 
                          {% endfor %}
                          <li class="nav-item dropdown">
-                             <a class="nav-link dropdown-toggle text-light add-anime shd-themy text-md" href="#"
+                             <a class="nav-link dropdown-toggle text-light add-anime shd-theme text-md" href="#"
                                  id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
                                  title="public announcements, events, meet-ups...">
                                  <i class="text-lg fas fa-paper-plane" aria-hidden="true"></i>
@@ -91,7 +91,7 @@
                          </li>
 
                          <li class="nav-item dropdown">
-                             <a class="nav-link dropdown-toggle text-light add-anime shd-themy text-md" href="#"
+                             <a class="nav-link dropdown-toggle text-light add-anime shd-theme text-md" href="#"
                                  id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
                                  title="public announcements, events, meet-ups...">
                                  <i class="text-lg fas fa-users" aria-hidden="true"></i>
@@ -123,7 +123,7 @@
       ] -%}
 
                          {% for href, id, caption, icon in navigation_bar %}
-                         <a class="nav-link text-light add-anime shd-themy text-md" href="{{href|e }}">
+                         <a class="nav-link text-light add-anime shd-theme text-md" href="{{href|e }}">
                              <i class="fas fa-{{icon|e }}"></i>
                              {{ caption|e }}
                          </a>
@@ -346,27 +346,27 @@
 
          <footer class="container footer mt-2">
              <nav class="nav nav-pills nav-justified">
-                 <a class="nav-item nav-link add-anime shd-themy rnd-xl" href="https://rotaract2440.org/kulup/23#">
+                 <a class="nav-item nav-link add-anime shd-theme rnd-xl" href="https://rotaract2440.org/kulup/23#">
                      <img class="m-0 bg-light rnd-lg py-0 pl-2 pr-1 add-anime"
                          src="https://raw.githubusercontent.com/attila5287/rota-img/main/site/logo_slab.png"
                          alt="slab-logo" style="height: 2.75rem;">
                  </a>
-                 <a class="nav-item nav-link add-anime shd-themy rnd-xl" href="www.instagram.com/gozteperotaract">
+                 <a class="nav-item nav-link add-anime shd-theme rnd-xl" href="www.instagram.com/gozteperotaract">
                      <h1 class="fab fa-instagram"></h1>
                  </a>
-                 <a class="nav-item nav-link add-anime shd-themy rnd-xl" href="/youtube/not/available">
+                 <a class="nav-item nav-link add-anime shd-theme rnd-xl" href="/youtube/not/available">
                      <h1 class="fab fa-youtube"></h1>
 
                  </a>
-                 <a class="nav-item nav-link add-anime shd-themy rnd-xl" href="www.twitter.com/GoztepeRotaract">
+                 <a class="nav-item nav-link add-anime shd-theme rnd-xl" href="www.twitter.com/GoztepeRotaract">
                      <h1 class="fab fa-twitter"></h1>
 
                  </a>
-                 <a class="nav-item nav-link add-anime shd-themy rnd-xl" href="/linkedin/not/available">
+                 <a class="nav-item nav-link add-anime shd-theme rnd-xl" href="/linkedin/not/available">
                      <h1 class="fab fa-linkedin"></h1>
                  </a>
 
-                 <a class="nav-item nav-link add-anime shd-themy rnd-xl" href="https://gozteperotaract.com">
+                 <a class="nav-item nav-link add-anime shd-theme rnd-xl" href="https://gozteperotaract.com">
                      <img class="m-0 bg-light rnd-lg py-0 pl-2 pr-1"
                          src="https://raw.githubusercontent.com/attila5287/rota-img/main/site/logo_opensdoors_2021.png"
                          alt="footer-logo" style="height: 2.75rem;">

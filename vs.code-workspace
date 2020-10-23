@@ -2,9 +2,6 @@
 	"folders": [
 		{
 			"path": "."
-		},
-		{
-			"path": "..\\references"
 		}
 	],
 	"settings": {
@@ -45,7 +42,7 @@
 		"editor.tabCompletion": "on",
 		"html.format.indentHandlebars": true,
 		"editor.emptySelectionClipboard": false,
-		"python.pythonPath": "C:/Users/DENVER/anaconda3/envs/reg_env/python.exe",
+		"python.pythonPath": "C:\\Users\\DENVER\\anaconda3\\envs\\rota_env\\python.exe",
 		"editor.mouseWheelZoom": true,
 		"editor.autoClosingQuotes": "always",
 		"css.trace.server": "messages",
