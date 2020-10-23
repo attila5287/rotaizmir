@@ -2,6 +2,9 @@
 	"folders": [
 		{
 			"path": "."
+		},
+		{
+			"path": "..\\references\\_best_of\\d3-auto-table"
 		}
 	],
 	"settings": {
@@ -56,7 +59,7 @@
 		"editor.renderLineHighlight": "all",
 		"files.defaultLanguage": "${activeEditorLanguage}",
 		"Save all": true,
-		"editor.wordWrap": "on",
+		"editor.wordWrap": "wordWrapColumn",
 		"editor.occurrencesHighlight": false,
 		"javascript.suggest.completeFunctionCalls": true,
 		"typescript.suggest.completeFunctionCalls": true,
@@ -90,7 +93,6 @@
 		],
 		"typescript.suggest.autoImports": false,
 		"editor.suggest.showModules": false,
-		"emmet.triggerExpansionOnTab": true,
 		"workbench.tree.renderIndentGuides": "always",
 		"editor.wrappingIndent": "indent",
 		"workbench.commandPalette.history": 30,
@@ -101,7 +103,6 @@
 		"editor.renderLineHighlightOnlyWhenFocus": true,
 		"workbench.view.alwaysShowHeaderActions": true,
 		"editor.unfoldOnClickAfterEndOfLine": true,
-		"editor.suggest.shareSuggestSelections": true,
 		"editor.suggestSelection": "recentlyUsedByPrefix",
 		"editor.suggest.showIcons": false,
 		"color-highlight.matchWords": true,
@@ -110,6 +111,8 @@
 		"emmet.showSuggestionsAsSnippets": true,
 		"editor.acceptSuggestionOnEnter": "off",
 		"editor.fontSize": 13,
+		"emmet.triggerExpansionOnTab": true,
+		"html.format.wrapLineLength": 79,
 
 	},
 	"git-autoconfig.configList": [],

@@ -20,10 +20,6 @@ def reg_post_public( gen_username ):
     user = User.query.filter_by(username=gen_username).first()
     if user:
         raise ValidationError('That username is taken. Please choose a different one.')
-    
-    
-    
-    
     hashed_password = bcrypt.generate_password_hash(request.form["password"]).decode('utf-8')
     user = User(
         username = gen_username, 
@@ -276,3 +272,9 @@ def colors_api():
     indexed =  [{c.name: getattr(q, c.name)
           for c in q.__table__.columns} for q in q_all]
     return jsonify(dict(enumerate(indexed)))
+# URL Method Description
+# /users/ GET Gives a list of all users
+# /users/ POST Creates a new user
+# /users/<id> GET Shows a single user
+# /users/<id> PUT Updates a single user
+# /users/<id> DELETE Deletes a single user

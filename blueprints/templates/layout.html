@@ -38,6 +38,7 @@
 
    <body class="bg-body-mini">
      <header>
+       
        <nav class="navbar nav-mini navbar-expand navbar-dark fixed-top bg-theme">
          <a class="navbar-brand bg-transparent border-0 rnd-xl add-anime"
            href="https://rotaizmir.herokuapp.com/">
@@ -45,7 +46,6 @@
              src="https://raw.githubusercontent.com/attila5287/rota-img/main/icons-png/circle_white.png"
              style="max-height: 3rem;" alt="navbar-icon" data-toggle="tooltip"
              title="Göztepe Rotaract Kulübü">
-
          </a>
          <button class="navbar-toggler bg-theme border-light px-1 py-0" type="button" data-toggle="collapse"
            data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false"
@@ -64,13 +64,13 @@
       {% set active_page = active_page|default('new-post') -%}
       {% for href, id, caption, icon in navigation_bar %}
       <li class="nav-item">
-    <a class="nav-link text-light add-anime shd-theme text-md"  href="{{href|e }}">
-                  <i class="text-lg fas fa-{{icon|e }}"></i>
-                  {{ caption|e }}
-    </a>
-              </li>
-              
-              {% endfor %}
+        <a class="nav-link text-light add-anime shd-theme text-md"  href="{{href|e }}">
+          <i class="text-lg fas fa-{{icon|e }}"></i>
+          {{ caption|e }}
+        </a>
+        </li>
+        
+        {% endfor %}
     <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle text-light add-anime shd-theme text-md" href="#" id="dropdown01" data-toggle="dropdown"  aria-haspopup="true" aria-expanded="false"
           title="public announcements, events, meet-ups..."
@@ -123,8 +123,8 @@
             
       {% for href, id, caption, icon in navigation_bar %}
     <a class="nav-link text-light add-anime shd-theme text-md"  href="{{href|e }}">
-                  <i class="fas fa-{{icon|e }}"></i>
-                  {{ caption|e }}
+      <i class="fas fa-{{icon|e }}"></i>
+      {{ caption|e }}
     </a>
               </li>
       {% endfor %}
@@ -137,6 +137,7 @@
        </nav>
 
      </header>
+     
      <main>
      <div class="row no-gutters">
        <div class="col-md-10 offset-1">
@@ -180,7 +181,7 @@
 <aside>
        <!-- Optional JavaScript -->
      <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
      </script>
      <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>
@@ -190,6 +191,7 @@
      <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
      </script>
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/feather-icons/4.9.0/feather.min.js"></script>
 
 </aside>
 

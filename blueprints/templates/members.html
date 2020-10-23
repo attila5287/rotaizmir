@@ -1,14 +1,160 @@
 {% extends "layout.html" %}
 {% block content %}
-    {% if members.items == [] %}
-    <br>
-  <p class="text-light text-center text-lg">
-    <i class="fa fa-arrow-down text-2xl animated infinite heartBeat" aria-hidden="true"></i> These are demo items, only be seen if there are no members in database...
-        <i class="fas fa-id-card bg-"></i>
+<div name="info-wrapper" class="container-fluid">
+  {% for i in info_notes %}
+  <p  class="notes mt-1 text-center mb-1">
+    <i class="fas fa-info-circle text-xl mr-2"></i>
+    {{ i }}
   </p>
+  {% endfor %}
+</div>
 
-    <br>
-    {% set members_demo = [
+{% if members.items != [] %}
+
+<div name="select-menu" class="row no-gutters align-items-center">
+    <div class="content-section col-10 offset-1 col-md-8 offset-md-2 col-lg-6 offset-lg-3">
+      <fieldset class="form-group px-4">
+        <form method="POST" action="">
+          {{ form.hidden_tag() }}
+
+          {% for field in form %}
+          {% if field.id != 'csrf_token' %}
+
+          <p class="text-monts text-lg text-center my-0">
+            {{field.label}}
+          </p>
+
+          <div class="form-group align-items-center mb-4">
+            <div class="input-group mx-2 mb-0 text-comfo">
+              <div class="input-group-prepend add-anime">
+                <span class="input-group-text bg-theme  text-light text-bold" id="inputGroupPrepend">
+                  <i class="fa{{icons(field.id)}} fa-fw ml-2 mt-0 animated infinite heartBeat"></i>
+                </span>
+              </div>
+              {{field(class="form-control form-control-dark form-control-lg border-light custom-select shd-theme mr-2" )}}
+            </div>
+
+          </div>
+
+          {% else %}
+
+          {% endif %}
+
+          {% endfor %}
+          <div class="form-group">
+
+            <input class="btn btn-outline-light btn-block bg-theme rnd-3xl text-monts mt-2 pt-2 pb-3 text-light text-lg"
+              type="submit" value="show selected">
+          </div>
+        </form>
+      </fieldset>
+    </div>
+</div>
+
+<div name="pagination-buttons" class="d-flex flex-row justify-content-center">
+  {% for page_num in members.iter_pages(left_edge=1, right_edge=1, left_current=5, right_current=5) %}
+  {% if page_num %}
+  {% if members.page == page_num %}
+  <a class="btn btn-outline-light bg-transparent disabled border-0 mb-4 text-xl"
+    href="{{ url_for('members.home', page=page_num) }}">
+    {{ page_num }}
+  </a>
+  {% else %}
+  <a class="btn btn-outline-light bg-theme mb-4 text-xl"
+    href="{{ url_for('members.home', page=page_num) }}">{{ page_num }}</a>
+  {% endif %}
+  {% else %}
+  ...
+  {% endif %}
+  {% endfor %}
+
+</div>
+<div name="members-grid" class="row no-gutters">
+  {% for m in members.items %}
+
+  <div class="col-sm-6 col-md-4 col-lg-3 pl-1 pr-2">
+    <article class="media content-section text-light rnd-2xl">
+      <div class="d-flex flex-column align-content-center">
+        <img class="rounded-circle article-img" src="{{ m.img_url  }}" alt="{{ m.id }}-photo">
+        <ul class="list-group list-group-horizontal list-group-flush">
+
+          {% set social_media = [
+          (
+            'instagram',
+            'https://www.instagram.com/{{ m.instagram }}',
+            ),
+            (
+              'twitter',
+              'https://twitter.com/{{ m.twitter}}',
+              ),
+            (
+              'linkedin',
+              'https://tr.linkedin.com/public-profile/in/{{ m.linkedin}}',
+              ),
+          ] %}
+          {% for icon,sc_name in social_media %}
+
+          <a class="list-group-item list-group-item-action pt-0 pb-1 bg-transparent add-anime p-0"
+            href="https://www.instagram.com/{{ sc_name }}">
+            <i class="text-xl pt-1 pb-0 opac-70 fab fa-{{icon}}"></i>
+          </a>
+
+          {% endfor %}
+
+
+        </ul>
+      </div>
+      <div class="media-body">
+        <div class="article-metadata bg-memb{{m.gender}} text-md">
+          <a class="text-capitalize text-justified text-light text-bold p-1 mr-2" href="{{url_for('members.show', id= m.id)}}"
+            title="click to see member in detail">
+            {{m.last_name}},
+            {{m.first_name}}
+            {{m.middle_name}}
+          </a>
+        </div>
+        <a class="text-md text-capitalize">
+          </a>
+
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item bg-transparent py-1">
+            <i class="far fa-envelope mr-2" aria-hidden="true"></i>
+            {{ m.email }}</li>
+          <li class="list-group-item bg-transparent py-1">
+            <i class="fa fa-phone mr-2" aria-hidden="true"></i>
+            0
+            -{{ m.phone_num[:3] }}
+            -{{ m.phone_num[3:6] }}
+            -{{ m.phone_num[6:10] }}
+          </li>
+          <li class="list-group-item bg-transparent py-1">
+            <i class="fa fa-graduation-cap mr-2"></i>
+            MemberID: {{ m.id }}
+          </li>
+          <li class="list-group-item bg-transparent py-1">
+            <i class="fas fa-user-tag mr-2"></i>
+            UserID: {{ m.user_id }}
+          </li>
+
+        </ul>
+      </div>
+    </article>
+
+  </div>
+
+  {% endfor %}
+</div>
+
+{% else %}
+
+<div name="demo-members-wrapper" class="container-fluid">
+  <p class="text-light text-center text-lg">
+  <i class="fa fa-arrow-down text-2xl animated infinite heartBeat" aria-hidden="true"></i> These are demo items, only be
+  seen if there are no members in database...
+  <i class="fas fa-id-card bg-"></i>
+</p>
+<br>
+{% set members_demo = [
     (
       '1369',
       'alp',
@@ -39,153 +185,62 @@
 
 ] -%}
 
-  {% for id,first_name, last_name, email, img_url in members_demo %}
-  <div class="col-sm-6 col-md-4 col-lg-3">
-    <article class="media content-section text-light rnd-2xl">
-      <div class="d-flex flex-column align-content-center">
-      <img class="rounded-circle article-img" 
-      src="https://raw.githubusercontent.com/attila5287/rota-img/main/photos/{{ img_url  }}" alt="memb-{{ id }}-photo" 
-      >
+{% for id,first_name, last_name, email, img_url in members_demo %}
+<div class="col-sm-6 col-md-4 col-lg-3">
+  <article class="media content-section text-light rnd-2xl">
+    <div class="d-flex flex-column align-content-center">
+      <img class="rounded-circle article-img"
+        src="https://raw.githubusercontent.com/attila5287/rota-img/main/photos/{{ img_url  }}"
+        alt="memb-{{ id }}-photo">
       <ul class="list-group list-group-flush">
 
 
-        <a class="list-group-item pt-0 pb-1 bg-transparent" href="https://www.instagram.com/{{ id }}" >
+        <a class="list-group-item pt-0 pb-1 bg-transparent" href="https://www.instagram.com/{{ id }}">
           <i class="fab fa-instagram">@insta_{{id}}</i>
         </a>
 
 
       </ul>
     </div>
-      <div class="media-body text-light">
-        <div class="article-metadata bg-memb{{m.gender}} text-md">
-          <a class="text-capitalize text-justified mr-2" >
-            {{last_name}}, 
-            {{first_name}}
-          </a>
-        </div>
-        <h2><a class="article-title text-md text-capitalize">
+    <div class="media-body text-light">
+      <div class="article-metadata bg-memb{{m.gender}} text-md">
+        <a class="text-capitalize text-justified mr-2">
+          {{last_name}},
+          {{first_name}}
+        </a>
+      </div>
+      <h2><a class="article-title text-md text-capitalize">
         </a></h2>
 
-        <ul class="list-group list-group-flush">
-          <li class="list-group-item bg-transparent py-1"> 
-            <i class="far fa-envelope mr-2" aria-hidden="true"></i>
-            {{ email }}
-          </li>
-          <li class="list-group-item bg-transparent py-1"> 
-            <i class="fa fa-phone mr-2" aria-hidden="true"></i>
-            0
-            -537
-            -228
-            -1880
-          </li>
-          <li class="list-group-item bg-transparent py-1"> 
-            <i class="fa fa-graduation-cap mr-2" ></i>
-            MemberID: {{ id }} 
-          </li>
-          <li class="list-group-item bg-transparent py-1"> 
-            <i class="fas fa-user-tag mr-2"></i>
-            UserID: {{ id*3 }} 
-          </li>
-            
-        </ul>
-      </div>
-    </article>    
-  </div>
-  {% endfor %}
-    {% else %}
-    <div class="row">
-    {% for m in members.items %}
-
-  <div class="col-sm-6 col-md-4 col-lg-3">
-    <article class="media content-section text-light rnd-2xl">
-      <div class="d-flex flex-column align-content-center">
-      <img class="rounded-circle article-img" 
-      src="{{ m.img_url  }}" alt="{{ m.id }}-photo" 
-      >
-      <ul class="list-group list-group-horizontal list-group-flush">
-
-        {% set social_media = [
-          (
-            'instagram',
-            'https://www.instagram.com/{{ m.instagram }}',
-            ),
-            (
-              'twitter',
-              'https://twitter.com/{{ m.twitter}}',
-              ),
-            (
-              'linkedin',
-              'https://tr.linkedin.com/public-profile/in/{{ m.linkedin}}',
-              ),
-          ] %}
-{% for icon,sc_name in social_media %}
-
-<a class="list-group-item list-group-item-action pt-0 pb-1 bg-transparent add-anime p-0" href="https://www.instagram.com/{{ sc_name }}" >
-  <i class="text-xl pt-1 pb-0 opac-70 fab fa-{{icon}}"></i>
-</a>
-
-{% endfor %}        
-
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item bg-transparent py-1">
+          <i class="far fa-envelope mr-2" aria-hidden="true"></i>
+          {{ email }}
+        </li>
+        <li class="list-group-item bg-transparent py-1">
+          <i class="fa fa-phone mr-2" aria-hidden="true"></i>
+          0
+          -537
+          -228
+          -1880
+        </li>
+        <li class="list-group-item bg-transparent py-1">
+          <i class="fa fa-graduation-cap mr-2"></i>
+          MemberID: {{ id }}
+        </li>
+        <li class="list-group-item bg-transparent py-1">
+          <i class="fas fa-user-tag mr-2"></i>
+          UserID: {{ id*3 }}
+        </li>
 
       </ul>
+    </div>
+  </article>
 </div>
-      <div class="media-body text-light">
-        <div class="article-metadata bg-memb{{m.gender}}  text-md">
-          <a class="text-capitalize text-justified mr-2" >
-            {{m.last_name}}, 
-            {{m.first_name}}
-          {{m.middle_name}}
-          </a>
-        </div>
-        <h2><a class="article-title text-md text-capitalize">
-        </a></h2>
-
-        <ul class="list-group list-group-flush">
-          <li class="list-group-item bg-transparent py-1"> 
-            <i class="far fa-envelope mr-2" aria-hidden="true"></i>
-            {{ m.email }}</li>
-          <li class="list-group-item bg-transparent py-1"> 
-            <i class="fa fa-phone mr-2" aria-hidden="true"></i>
-            0
-            -{{ m.phone_num[:3] }}
-            -{{ m.phone_num[3:6] }}
-            -{{ m.phone_num[6:10] }}
-          </li>
-          <li class="list-group-item bg-transparent py-1"> 
-            <i class="fa fa-graduation-cap mr-2" ></i>
-            MemberID: {{ m.id }} 
-          </li>
-          <li class="list-group-item bg-transparent py-1"> 
-            <i class="fas fa-user-tag mr-2"></i>
-            UserID: {{ m.user_id }}
-          </li>
-            
-        </ul>
-      </div>
-    </article>    
-    
-  </div>
-  
-  {% endfor %}
-</div>
-<div class="d-flex flex-row justify-content-center">
-  {% for page_num in members.iter_pages(left_edge=1, right_edge=1, left_current=5, right_current=5) %}
-  {% if page_num %}
-    {% if members.page == page_num %}
-      <a class="btn btn-light disabled bg-transparent border-0 mb-4 text-xl" href="{{ url_for('members.home', page=page_num) }}">
-        {{ page_num }}
-      </a>
-    {% else %}
-      <a class="btn btn-outline-light bg-theme mb-4 text-xl" href="{{ url_for('members.home', page=page_num) }}">{{ page_num }}</a>
-    {% endif %}
-  {% else %}
-    ...
-  {% endif %}
 {% endfor %}
-
 </div>
-  
-    {% endif %}
+
+{% endif %}
 
 
 {% endblock content %}

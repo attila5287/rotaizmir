@@ -19,6 +19,40 @@ from blueprints.members.forms import (
 )
 members = Blueprint('members', __name__)
 
+
+@members.route("/members", methods=[ 'GET', 'POST'])
+def home():
+    pass
+    page = request.args.get('page', 1, type=int)
+    
+    members = Member.query.order_by(
+        Member.id.desc()).paginate(page=page, per_page=24)
+    try:
+        _ = [member for member in members.items]
+    except:
+        members = []
+    form = MemberMenu()
+    all_members = [ m for m in Member.query.all()]
+    form.menu.choices = [
+        ( m.id, '{}, {} | {}'.format(m.last_name.upper(), str(m.first_name+ ' ' + m.middle_name).title(), m.email).strip()) for m in all_members
+    ]
+    if request.method == 'POST':
+        pass
+        rf = request.form
+        return redirect(url_for('members.show', id=rf['menu']))
+    
+    info_notes = [
+        'All members in grid view for other members to browse through. Click/tap on name to see in details or try dropdown menu.',
+        
+    ]
+    access = [
+        'a',
+        'm',
+    ]
+    return render_template('members.html', members=members, 
+                           info_notes = info_notes, form=form)
+
+
 @members.context_processor
 def inject_icons():
     pass
@@ -251,20 +285,6 @@ def table():
     return render_template('members_table.html', members=members, headers=headers, table=table)
 
 
-@members.route("/members")
-def home():
-    pass
-    page = request.args.get('page', 1, type=int)
-    members = Member.query.order_by(
-        Member.id.desc()).paginate(page=page, per_page=24)
-    try:
-        _ = [member for member in members.items]
-    except:
-        members = []
-
-    return render_template('members.html', members=members)
-
-
 @members.route("/members/api")
 def api_all():
     pass
@@ -312,3 +332,10 @@ def db_init():
             db.session.commit()
 
         return jsonify(csv_dict)
+
+# URL Method Description
+# /users/ GET Gives a list of all users
+# /users/ POST Creates a new user
+# /users/<id> GET Shows a single user
+# /users/<id> PUT Updates a single user
+# /users/<id> DELETE Deletes a single user

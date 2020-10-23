@@ -8,7 +8,7 @@
       href="https://raw.githubusercontent.com/attila5287/rota-img/main/icons/favicon.ico" />
 
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" type="text/css" href="/static/styles/vertical-slider.css" />
+    <link rel="stylesheet" type="text/css" href="/static/styles/components/vertical-slider.css" />
     <link rel="stylesheet" type="text/css" href="/static/styles/theme/cerulean.css" />
 
     <link rel="stylesheet" type="text/css" href="/static/styles/main.css">
@@ -215,16 +215,14 @@
             </div>
           </div>
         </div>
-        
         <div class="content-section px-4 mx-4" name="form-section">
-          <form method="POST" action="" id="regpub-form">
-            <fieldset class="text-left p-2">
-              {{ form.hidden_tag() }}
-              <legend class="text-center text-comfo text-md mb-0 pb-0 mt-2">
-                You may be able to change your temporary username when membership approved.
+              <legend class="legend text-center text-comfo text-md mb-0 pb-0 mt-2">
               </legend>
+              <p>
+                You may be able to change your temporary username when membership approved.
+              </p>
 
-            <div class="row py-0 align-items-center" >
+            <div name="preview-section" class="row py-0 align-items-center" >
               <div class="col" id="input-nickname">
                 <input class="rdonly text-lite form-control bg-transparent border-0" type="text" value="aqua"
                   readonly>
@@ -235,8 +233,13 @@
               </div>
               <div class="col text-center rdonly" id="append-numeric">
               </div>
-            </div>
-
+            </div>          
+        </div>
+        
+        <div class="content-section px-4 mx-4" name="form-section">
+          <form method="POST" action="" id="regpub-form">
+            <fieldset class="text-left p-2">
+              {{ form.hidden_tag() }}
             <hr class="border-light mx-5">
               <div class="form-group col-10 offset-1">
                 <i class="fas fa-envelope text-xl"></i>
