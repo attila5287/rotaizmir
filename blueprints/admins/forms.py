@@ -8,6 +8,18 @@ from flask_wtf.file import (
 
 class UserMenu(FlaskForm):
     pass
-    menu  = SelectField('Users Menu', choices=[('0', '0'), ('1', '1')], )
+    menu  = SelectField('Users:', choices=[('0', '0'), ('1', '1')], )
+    submit = SubmitField('Show')
     
+
+
+class TableModeSelect(FlaskForm):
+    pass
+    menu  = SelectField('TableMode: ', 
+                        choices=[
+                            (0, 'default'), 
+                            ], 
+                        default= 0,
+                        )
+    submit = SubmitField('Update')
 

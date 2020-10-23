@@ -36,17 +36,37 @@
   </head>
   <body>
     <nav class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
+      
+      
   <a class="navbar-brand col-md-3 col-lg-2 mr-0 px-3" href="https://rotaizmir.herokuapp.com/">
     <img class="m-0 px-0 py-1"
              src="https://raw.githubusercontent.com/attila5287/rota-img/main/icons-png/circle_white.png"
              style="max-height: 30px;" alt="navbar-icon" data-toggle="tooltip"
              title="Göztepe Rotaract Kulübü">
   </a>
+
   <button class="navbar-toggler position-absolute d-md-none collapsed" type="button" data-toggle="collapse" data-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
-    {{form_user.menu(class="form-control  form-control-dark w-100 custom-select custom-select-sm text-sm py-0")}}
-    {{form_member.menu(class="form-control  form-control-dark w-100 custom-select custom-select-sm text-sm py-0")}}
+  {% set nav_forms = [
+    select_table,
+    select_member,
+    select_user,
+    ] %}
+    {% for form in nav_forms %}
+    <div class="row no-gutters input-group input-group-sm px-2">
+      <div class="col-2 input-group-prepend">
+        {{form.menu.label(class="input-group-text ")}}
+      </div>
+      {{form.menu(class="col form-control form-control-dark custom-select custom-select-sm text-sm py-0")}}
+      <div class="col-2 input-group-append">
+        {{form.submit(class="btn btn-sm btn-outline-light w-100")}}
+      </div>
+    </div>
+    
+    {% endfor %}
+
+    
   <ul class="navbar-nav px-3">
     <li class="nav-item text-nowrap px-2">
       <a class="nav-link text-2xl" href="/logout">
