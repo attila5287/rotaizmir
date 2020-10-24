@@ -76,8 +76,8 @@ def dashboard():
     ]
     
     headers = zip(icons, columns)
-    #these are pagination objects not all on db
-    table =  {
+    #these are pagination objects not all records on db
+    table =  { #per page 20 instead
         modes[0] : [
             {
                 c.name:
@@ -110,6 +110,7 @@ def dashboard():
                             select_user=select_user,
                             select_member=select_member,
                             members=p_members, 
+                            users=p_users, 
                             headers=headers, 
                             table=table[selected_mode],
                             table_mode= selected_mode,
@@ -119,6 +120,7 @@ def dashboard():
                            select_table=select_table,
                            select_user=select_user,
                            select_member=select_member,
+                           users=p_users, 
                            members=p_members, 
                            headers=headers, 
                            table=table[default_mode],
