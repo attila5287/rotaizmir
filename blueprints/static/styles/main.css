@@ -406,17 +406,6 @@ a.article-title:hover {
   -webkit-transform: rotate(180deg);
   transform: rotate(180deg);
 }
-
-.hero-image {
-  background-image: url("https://images8.alphacoders.com/373/thumb-1920-373691.jpg");
-  background-color: #002B36;
-  background-position: top;
-  background-repeat: no-repeat;
-  background-size: contain;
-  position: relative;
-  vertical-align: top;
-  width: 100%;
-}
 .legend {
   text-align: center;
   font-size : 1.75rem;

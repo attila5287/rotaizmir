@@ -20,6 +20,8 @@ body {
   z-index: 100; /* Behind the navbar */
   padding: 48px 0 0; /* Height of navbar */
   box-shadow: inset -1px 0 0 rgba(0, 0, 0, .1);
+  background-color: rgba(200, 200, 200, 0.2);
+  
 }
 
 @media (max-width: 767.98px) {
@@ -28,7 +30,19 @@ body {
   }
 }
 
+.hero-jumbo {
+  /* background-image: url("https://images8.alphacoders.com/373/thumb-1920-373691.jpg"); */
+  background-color: #002B36;
+    border-color: rgba(255, 255, 255, .1);
+  background-position: top;
+  background-repeat: cover;
+  background-size: contain;
+  position: relative;
+  vertical-align: top;
+  width: 100%;
+}
 .sidebar-sticky {
+  background-color: rgba(200, 200, 200, 0.2);
   position: relative;
   top: 0;
   height: calc(100vh - 48px);

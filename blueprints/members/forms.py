@@ -64,7 +64,7 @@ class MemberEditForm(FlaskForm):
 class MemberMenu(FlaskForm):
     pass
     menu  = SelectField('Members', choices=[('0', '0'), ('1', '1')], )
-    submit  = SubmitField('Show')
+    # submit  = SubmitField('Show')
     # emails  = SelectField('Emails', choices=[('0', '0'), ('1', '1')], )
     
 

@@ -1,0 +1,321 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="custom dashboard">
+    <meta name="author" content="@attila5287">
+    <title>Dashboard</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="static/styles/theme/superhero/bootstrap.css" rel="stylesheet">
+    <link href="static/styles/custom/dashboard.css" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="https://use.fontawesome.com/releases/v5.1.1/css/all.css"
+       integrity="sha384-O8whS3fhG2OnA5Kas0Y9l3cfpmYjapjI0E4theH4iuMD+pLhbf6JI0jIMfYcK3yZ" crossorigin="anonymous" />
+
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/4.7.3/d3.js"></script>    
+    
+    <style>
+      .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+      }
+
+      @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+        }
+      }
+    </style>
+    <!-- Custom styles for this template -->
+    <link href="static/styles/custom/dashboard.css" rel="stylesheet">
+  </head>
+  <body>
+    <nav class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
+      
+      
+  <a class="navbar-brand col-md-3 col-lg-2 mr-0 px-3" href="https://rotaizmir.herokuapp.com/">
+    <img class="m-0 px-0 py-1"
+             src="https://raw.githubusercontent.com/attila5287/rota-img/main/icons-png/circle_white.png"
+             style="max-height: 30px;" alt="navbar-icon" data-toggle="tooltip"
+             title="Göztepe Rotaract Kulübü">
+  </a>
+
+  <button class="navbar-toggler position-absolute d-md-none collapsed" type="button" data-toggle="collapse" data-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  {% set nav_forms = [
+    select_table,
+    select_member,
+    select_user,
+    ] %}
+    {% for form in nav_forms %}
+    
+      <div class="row no-gutters input-group input-group-sm px-2">
+        <div class="col-2 input-group-prepend">
+          {{form.menu.label(class="input-group-text ")}}
+        </div>
+        {{form.menu(class="col form-control form-control-dark custom-select custom-select-sm text-sm py-0 rnd-xl")}}
+        <div class="col-2 input-group-append">
+          <a href="{{action}}"
+          class="btn btn-sm btn-outline-light w-100"
+          >
+            
+          </a>
+        </div>
+      </div>
+    {% endfor %}
+
+      
+    
+  <ul class="navbar-nav px-3">
+    <li class="nav-item text-nowrap px-2  py-0 my-0">
+      <a class="nav-link text-2xl" href="/logout">
+        <i class="fas fa-sign-out-alt p-0 m-0" data-toggle="tooltip" title="signout from app"></i>
+      </a>
+    </li>
+  </ul>
+</nav>
+
+<div class="container-fluid">
+  <div class="row">
+    <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
+      <div class="sidebar-sticky pt-3">
+        <ul class="nav flex-column">
+          <li class="nav-item">
+            <a class="nav-link active" href="#">
+              <span data-feather="home"></span>
+              Dashboard <span class="sr-only">(current)</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">
+              <span data-feather="file"></span>
+              Orders
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">
+              <span data-feather="shopping-cart"></span>
+              Products
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">
+              <span data-feather="users"></span>
+              Customers
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">
+              <span data-feather="bar-chart-2"></span>
+              Reports
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">
+              <span data-feather="layers"></span>
+              Integrations
+            </a>
+          </li>
+        </ul>
+
+        <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
+          <span>Saved reports</span>
+          <a class="d-flex align-items-center text-muted" href="#" aria-label="Add a new report">
+            <span data-feather="plus-circle"></span>
+          </a>
+        </h6>
+        <ul class="nav flex-column mb-2">
+          <li class="nav-item">
+            <a class="nav-link" href="#">
+              <span data-feather="file-text"></span>
+              Current month
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">
+              <span data-feather="file-text"></span>
+              Last quarter
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">
+              <span data-feather="file-text"></span>
+              Social engagement
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">
+              <span data-feather="file-text"></span>
+              Year-end sale
+            </a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+    <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-md-4">
+      <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+        <h1 class="h2">
+          @attila5287</h1>
+        <div class="btn-toolbar mb-2 mb-md-0">
+          <div class="btn-group mr-2">
+            <button type="button" class="btn btn-sm btn-outline-secondary">Share</button>
+            <button type="button" class="btn btn-sm btn-outline-secondary">Export</button>
+          </div>
+          <button type="button" class="btn btn-sm btn-outline-secondary dropdown-toggle">
+            <span data-feather="calendar"></span>
+            This week
+          </button>
+        </div>
+      </div>
+
+      <canvas class="my-4 w-100" id="myChart" width="900" height="100"></canvas>
+
+
+      
+      <h2>{{ table_mode }}</h2>
+      <div class="text-center" name="pagination">
+  {% for page_num in members.iter_pages(left_edge=5, right_edge=5, left_current=5, right_current=10) %}
+  {% if page_num %}
+    {% if members.page == page_num %}
+      <a class="btn btn-light disabled bg-transparent border-0 mb-4 text-xl" href="{{ url_for('admins.dashboard', page=page_num) }}" >
+        {{ page_num }}
+
+      </a>
+    {% else %}
+      <a class="btn btn-outline-light bg-theme mb-4 text-xl" href="{{ url_for('admins.dashboard', page=page_num) }}">{{ page_num }}</a>
+    {% endif %}
+  {% else %}
+    ...
+  {% endif %}
+{% endfor %}
+
+</div>      
+<div class="table-responsive">
+<table class="table table-striped table-sm table-hover">
+  <thead class="thead-inverse bg-theme">
+      <tr>
+      {% for hdr_icon,th in headers %}
+      
+      <th class="text-nowrap text-comfo py-3"> 
+        <i class="fa{{hdr_icon }}"></i>
+        {{th}} 
+      </th>
+      
+      {% endfor %} 
+    
+      </tr>
+  </thead>
+  
+  <tbody>
+  
+    {% for row in table %}
+      <tr class=" align-items-base">
+      {% set rowloop = loop %}
+      {% for k,v in row.items() %}
+
+        {% if k =="img_url" %}
+        <td class="align-items-center"
+        id="cell-{{ rowloop.index }}-{{ loop.index }}">
+          
+          <img class="img-thumbnail border-0 add-anime rnd-lg py-0" src="{{ v }}" alt="member-sm-img"
+          style="max-height: 1.5rem;"
+          >
+        </td>
+        
+        
+
+        {% elif k in [ "linkedin", "twitter", "instagram",] %}
+
+        <td class="align-items-center"
+        id="cell-{{ rowloop.index }}-{{ loop.index }}">
+        <a class="shd-theme" href="{{row[k]}}">
+          
+          <i class="text-2xl fab fa-{{k}}" aria-hidden="true"></i>
+
+        </a>
+
+        </td>
+        
+        
+
+        {% elif k in [ "first_name", "last_name", "middle_name",] %}
+
+
+        <td class="align-items-center"
+        id="cell-{{ rowloop.index }}-{{ loop.index }}">
+          {{v.title()}}
+        </td>
+        
+
+        {% elif k in [ "is_admin", "is_prez"] %}
+        {% set icon_dict = {
+          'y' : 'check',
+          'n' : 'times',
+        } %}
+
+
+        <td class="align-items-center"
+        id="cell-{{ rowloop.index }}-{{ loop.index }}">
+          
+          <i class="fas fa-{{  icon_dict[v] }}"></i>
+
+
+        </td>
+        
+
+        {% elif k ==  "gender" %}
+        {% set gender_dict = {
+          'f' : 'female',
+          'm' : 'male',
+        } %}
+
+
+        <td class="align-items-center"
+        id="cell-{{ rowloop.index }}-{{ loop.index }}">
+          
+          <i class="fas fa-{{  gender_dict[v] }}"></i>
+
+
+        </td>
+        
+        
+        {% else %}
+        
+        <td id="cell-{{ rowloop.index }}-{{ loop.index }}">
+          {{ v }}
+        </td>
+        
+        {% endif %}
+
+      {% endfor %}
+      </tr>
+    {% endfor %}
+    </tbody>
+</table>  
+</div>
+
+    </main>
+  </div>
+</div>
+<aside>
+       <!-- Optional JavaScript -->
+     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+       integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
+     </script>
+     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+       integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
+     </script>
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/feather-icons/4.9.0/feather.min.js"></script>
+
+</aside>
+      </body>
+</html>

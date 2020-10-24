@@ -5,6 +5,12 @@
 		},
 		{
 			"path": "..\\references\\_best_of\\d3-auto-table"
+		},
+		{
+			"path": "..\\references\\html\\bootstrap-examples"
+		},
+		{
+			"path": "..\\references\\py"
 		}
 	],
 	"settings": {
@@ -59,7 +65,7 @@
 		"editor.renderLineHighlight": "all",
 		"files.defaultLanguage": "${activeEditorLanguage}",
 		"Save all": true,
-		"editor.wordWrap": "wordWrapColumn",
+		"editor.wordWrap": "bounded",
 		"editor.occurrencesHighlight": false,
 		"javascript.suggest.completeFunctionCalls": true,
 		"typescript.suggest.completeFunctionCalls": true,
@@ -110,7 +116,6 @@
 		"emmet.showExpandedAbbreviation": "inMarkupAndStylesheetFilesOnly",
 		"emmet.showSuggestionsAsSnippets": true,
 		"editor.acceptSuggestionOnEnter": "off",
-		"editor.fontSize": 13,
 		"emmet.triggerExpansionOnTab": true,
 		"html.format.wrapLineLength": 79,
 
