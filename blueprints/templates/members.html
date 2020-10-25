@@ -1,13 +1,6 @@
 {% extends "layout.html" %}
 {% block content %}
-<div name="info-wrapper" class="container-fluid">
-  {% for i in info_notes %}
-  <p  class="notes mt-1 text-center mb-1">
-    <i class="fas fa-info-circle text-xl mr-2"></i>
-    {{ i }}
-  </p>
-  {% endfor %}
-</div>
+
 
 {% if members.items != [] %}
 

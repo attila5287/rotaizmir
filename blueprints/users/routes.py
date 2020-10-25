@@ -98,6 +98,9 @@ def logout():
 def account():
   pass
   form = UpdateAccountForm()
+  js = [
+      ( 'users', 'account', ),
+  ]
   
   if request.method == 'POST':
     pass
@@ -114,7 +117,9 @@ def account():
     form.email.data = current_user.email
   
   return render_template('account.html', title='Account',
-      form=form)
+      form=form,
+      js = js
+      )
 
 
 @users.route("/set/profile/picture/<int:user_id>/<int:img_index>", methods=['GET', 'POST'])

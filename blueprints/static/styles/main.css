@@ -195,7 +195,6 @@ a.article-title:hover {
   border-width: medium;
 }
 
-
 .add-anime {
   transition: ease 0.15s;
 }
@@ -204,7 +203,6 @@ a.article-title:hover {
   transform: scale(1.1, 1.1);
   box-shadow: rgb(111, 216, 230) 5px 15px 15px;
 }
-
 .add-anime:hover:first-child {
   box-shadow: rgb(0, 255, 136)5px 15px 15px;
 }
@@ -554,7 +552,7 @@ a.article-title:hover {
   /* background-blend-mode: normal; */
   /* background-blend-mode: difference; */
   /* background-blend-mode: hard-light; */
-  margin-top: 45px;
+  margin-top: 60px;
   background-position: top;
   background-repeat: repeat;
   /* background-size: auto; */
@@ -631,7 +629,7 @@ thead th:last-child {
 
 .shd-theme {
   border: 0px solid turquoise;
-  box-shadow: 0px 0px 2px #81045c65  ,  inset 0px 0px 2px #e705a365;
+  box-shadow: 0px 0px 2px #04817065  ,  inset 0px 0px 2px #05e7dc65;
   border-radius: 0.75rem;
   background-image: linear-gradient(#cc00ff1e, #001aff0e 60%, #0400ff09);
 }

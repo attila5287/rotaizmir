@@ -27,7 +27,7 @@ def dashboard(table_mode= 0, page_m=1, page_u=1):
     
     table_mode = request.args.get('table_mode', 0, type=int)
     default_mode = modes[table_mode]
-    # modes[int(new_index)]
+    
     page_m = request.args.get('page_m', 1, type=int)
     page_u = request.args.get('page_u', 1, type=int)
     

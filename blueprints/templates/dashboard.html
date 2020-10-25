@@ -62,8 +62,9 @@
           <span class="navbar-toggler-icon"></span>
         </button>
         {% set nav_forms = [
-          select_member,
-          select_user,
+          (select_member, 'member/edit/1') ,
+          (select_user, 'member/1') ,
+          
           ] %}
           <div class="input-group row no-gutters align-items-baseline">
           {% for form in nav_forms %}
