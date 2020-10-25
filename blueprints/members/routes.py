@@ -247,6 +247,7 @@ def csv_feed():
 def table():
     pass
     page = request.args.get('page', 1, type=int)
+    
     members = Member.query.order_by(
         Member.id.desc()).paginate(page=page, per_page=24)
 

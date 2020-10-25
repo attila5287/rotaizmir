@@ -10,8 +10,8 @@
     <link rel="icon" type="image/x-icon" class="favicon"
       href="https://raw.githubusercontent.com/attila5287/rota-img/main/icons/favic0n.ico" />
     <!-- Bootstrap core CSS -->
-    <link href="static/styles/theme/superhero/bootstrap.css" rel="stylesheet">
-    <link href="static/styles/custom/dashboard.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="/static/styles/theme/superhero/bootstrap.css" />
+    <link rel="stylesheet" type="text/css" href="/static/styles/custom/dashboard.css" />
     <link rel="stylesheet" type="text/css"
       href="https://use.fontawesome.com/releases/v5.1.1/css/all.css"
       integrity="sha384-O8whS3fhG2OnA5Kas0Y9l3cfpmYjapjI0E4theH4iuMD+pLhbf6JI0jIMfYcK3yZ"
@@ -184,18 +184,19 @@
               </form>
             </div>
 <h2>{{ table_mode }}</h2>
+
 {% if table_mode == 'Show Members' %}
-<div class="text-center" name="pagination">
+<div class="text-center" name="pagination-members">
 {% for page_num in members.iter_pages(left_edge=5, right_edge=5, left_current=5, right_current=10) %}
 {% if page_num %}
 {% if members.page == page_num %}
-<a class="btn btn-light disabled bg-transparent border-0 mb-4 text-xl" href="{{ url_for('admins.dashboard', page=page_num) }}" >
-  {{ page_num }}
-
-</a>
-{% else %}
-<a class="btn btn-outline-light mb-4 text-xl" href="{{ url_for('admins.dashboard', page=page_num) }}">{{ page_num }}</a>
-{% endif %}
+  <a class="btn btn-light bg-transparent border-0 mb-4 text-xl" href="{{ url_for('admins.dashboard', page_m=page_num,) }}">
+    {{ page_num }}
+  
+  </a>
+  {% else %}
+  <a class="btn btn-outline-light mb-4 text-xl" href="{{ url_for('admins.dashboard', page_m=page_num) }}">{{ page_num }}</a>
+  {% endif %}
 {% else %}
 ...
 {% endif %}
@@ -203,18 +204,22 @@
 
 </div>      
 
-{% else %}
-<div class="text-center" name="pagination">
+{% elif table_mode=='Show Users' %}
+
+<div class="text-center" name="pagination-users">
 {% for page_num in users.iter_pages(left_edge=5, right_edge=5, left_current=5, right_current=10) %}
 {% if page_num %}
 {% if users.page == page_num %}
-<a class="btn btn-light disabled bg-transparent border-0 mb-4 text-xl" href="{{ url_for('admins.dashboard', page=page_num) }}" >
-  {{ page_num }}
 
-</a>
-{% else %}
-<a class="btn btn-outline-light mb-4 text-xl" href="{{ url_for('admins.dashboard', page=page_num) }}">{{ page_num }}</a>
-{% endif %}
+  <a class="btn btn-light bg-transparent border-0 mb-4 text-xl" href="{{ url_for('admins.dashboard', table_mode=1, page_u=page_num,) }}">
+    {{ page_num }}
+  
+  </a>
+
+  {% else %}
+  <a class="btn btn-outline-light mb-4 text-xl" href="{{ url_for('admins.dashboard', table_mode=1,  page_m=1,page_u=page_num) }}">{{ page_num }}</a>
+  {% endif %}
+
 {% else %}
 ...
 {% endif %}
