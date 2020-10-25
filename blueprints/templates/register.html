@@ -1,378 +1,178 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="icon" type="image/x-icon" class="favicon"
-      href="https://raw.githubusercontent.com/attila5287/rota-img/main/icons/favicon.ico" />
+{% extends "layout.html" %}
+{% block content %}
 
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" type="text/css" href="/static/styles/components/vertical-slider.css" />
-    <link rel="stylesheet" type="text/css" href="/static/styles/theme/cerulean.css" />
+<div class="row no-gutters" name="generators">
+  <div class="col-sm-6 col-md-5 offset-md-1" name="nickname-section">
+    <div class="text-right p-0">
+      <!-- <div class="form-row"> -->
+        <div class="form-row">
+          <div class="col-1">
+            <input class="custrange-vertical cv-right mx-0 px-0 ml-1" type="range" id="slider-nn" orient="vertical"
+              min="0" step="1">
+          </div>
 
-    <link rel="stylesheet" type="text/css" href="/static/styles/main.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
-    <link rel="stylesheet" type="text/css" href="https://use.fontawesome.com/releases/v5.1.1/css/all.css"
-      integrity="sha384-O8whS3fhG2OnA5Kas0Y9l3cfpmYjapjI0E4theH4iuMD+pLhbf6JI0jIMfYcK3yZ" crossorigin="anonymous" />
-
-    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/4.7.3/d3.min.js"></script> -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/4.7.3/d3.js"></script>
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3-tip/0.7.1/d3-tip.min.js"></script>
-
-    <!-- FONTS -->
-    <link href='https://fonts.googleapis.com/css?family=Orbitron' rel='stylesheet' type='text/css'>
-    <link href='https://fonts.googleapis.com/css?family=Baloo+2' rel='stylesheet' type='text/css'>
-    <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
-    <link href='https://fonts.googleapis.com/css?family=Roboto+Condensed' rel='stylesheet' type='text/css'>
-    <link href='https://fonts.googleapis.com/css?family=Comfortaa' rel='stylesheet' type='text/css'>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat+Alternates:wght@500&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Lilita+One&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@800&display=swap" rel="stylesheet">
-    <!-- title -->
-    <title>Göztepe Rotaract Kulübü | 2020-21</title>
-  </head>
-  <body class="bg-body-mini">
-    <header>
-      <nav class="navbar nav-mini navbar-expand navbar-dark fixed-top bg-theme">
-        <a class="navbar-brand bg-transparent border-0 rnd-xl add-anime" href="https://rotaizmir.herokuapp.com/">
-          <img class="m-0 px-0 py-0"
-            src="https://raw.githubusercontent.com/attila5287/rota-img/main/icons-png/circle_white.png"
-            style="max-height: 3rem;" alt="navbar-icon" data-toggle="tooltip" title="Göztepe Rotaract Kulübü">
-
-        </a>
-        <button class="navbar-toggler bg-theme  border-light px-1 py-0" type="button" data-toggle="collapse"
-          data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false"
-          aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse nav-mini text-center text-comfo mb-1 bg-theme" id="navbarCollapse">
-          <ul class="nav nav-pills nav-justify nav-mini bg-transparent mr-auto align-items-center">
-            {% if current_user.is_authenticated %}
-
-
-            {% set navigation_bar = [
-            ('/account', 'account', 'Account', 'user-cog'),
-            ('/logout', 'logout', 'Logout', 'sign-out-alt'),
-    ] -%}
-            {% set active_page = active_page|default('new-post') -%}
-            {% for href, id, caption, icon in navigation_bar %}
-            <li class="nav-item">
-              <a class="nav-link text-light add-anime shd-theme text-md" href="{{href|e }}">
-                <i class="text-lg fas fa-{{icon|e }}"></i>
-                {{ caption|e }}
-              </a>
-            </li>
-
-            {% endfor %}
-            <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle text-light add-anime shd-theme text-md" href="#" id="dropdown01"
-                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
-                title="public announcements, events, meet-ups...">
-                <i class="text-lg fas fa-paper-plane" aria-hidden="true"></i>
-                Posts</a>
-
-              <div class="dropdown-menu" aria-labelledby="dropdown01">
-                {% set dd_posts =  [ 
-    ( 'New Post', '/post/new', ),
-    ( 'Posts Home', '/home', ),
-    ] %}
-                {% for caption, href in dd_posts %}
-
-                <a class="dropdown-item" href="{{href}}">
-                  {{ caption }}</a>
-                {% endfor %}
-              </div>
-            </li>
-
-            <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle text-light add-anime shd-theme text-md" href="#" id="dropdown01"
-                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
-                title="public announcements, events, meet-ups...">
-                <i class="text-lg fas fa-users" aria-hidden="true"></i>
-                Members</a>
-
-              <div class="dropdown-menu" aria-labelledby="dropdown01">
-                {% set dd_members =  [ 
-            ('/members', 'Home'),
-            ('/members/file', 'File Upload'),
-            ('/members/table', 'Table'),
-            ('/members/form', 'New Member'),
-            ('/member/1', 'Show Member'),
-    ] %}
-                {% for  href, caption in dd_members %}
-
-                <a class="dropdown-item" href="{{href}}">
-                  {{ caption }}</a>
-                {% endfor %}
-              </div>
-            </li>
-
-
-
-            {% else %}
-            {% set navigation_bar = [
-            ('/register', 'register', 'Register', 'user-plus'),
-('/login', 'login', 'Login', 'sign-in-alt'),
-('/about', 'about', 'About', 'info-circle')
-    ] -%}
-
-            {% for href, id, caption, icon in navigation_bar %}
-            <a class="nav-link text-light add-anime shd-theme text-md" href="{{href|e }}">
-              <i class="fas fa-{{icon|e }}"></i>
-              {{ caption|e }}
+          <div class="col-9" id="nickname-generator">
+          </div>
+          <div class="col-2 text-left">
+            <a type="button" class="nickname-buttons evt-clk btn btn-outline-light btn-block rnd-xl py-4"
+              id="up-btn-nn">
+              <i class="fas fa-chevron-up text-3xl" id="up-icon-nn"></i>
             </a>
-            </li>
-            {% endfor %}
-
-
-            {% endif %}
-
-          </ul>
-        </div>
-      </nav>
-
-    </header>
-    
-    <main>
-        <div class="row no-gutters" name="generators">
-          <div class="col-sm-6 col-md-5 offset-md-1" name="nickname-section">
-            <div class="text-right p-0">
-              <!-- <div class="form-row"> -->
-                <div class="form-row">
-                  <div class="col-1">
-                    <input class="custrange-vertical cv-right mx-0 px-0 ml-1" type="range" id="slider-nn" orient="vertical"
-                      min="0" step="1">
-                  </div>
-
-                  <div class="col-9" id="nickname-generator">
-                  </div>
-                  <div class="col-2 text-left">
-                    <a type="button" class="nickname-buttons evt-clk btn btn-outline-light btn-block rnd-xl py-4"
-                      id="up-btn-nn">
-                      <i class="fas fa-chevron-up text-3xl" id="up-icon-nn"></i>
-                    </a>
-                    <h4 class="fa fa-caret-left animated infinite heartBeat text-light my-0 opac-70" aria-hidden="true"></h4>
-                    <a type="button" class="nickname-buttons evt-clk btn btn-outline-light btn-block rnd-xl py-4 opac-90"
-                      id="down-btn-nn">
-                      <i id="down-icon-nn" class="fas fas fa-chevron-down text-2xl"></i>
-                    </a>                                    
-                    
-                  </div>
-              </div>
-            </div>
+            <h4 class="fa fa-caret-left animated infinite heartBeat text-light my-0 opac-70" aria-hidden="true"></h4>
+            <a type="button" class="nickname-buttons evt-clk btn btn-outline-light btn-block rnd-xl py-4 opac-90"
+              id="down-btn-nn">
+              <i id="down-icon-nn" class="fas fas fa-chevron-down text-2xl"></i>
+            </a>                                    
+            
           </div>
-          <div class="col-sm-6 col-md-5 offset-md-1" name="color-section">
-            <div class="text-right p-0">
-              <!-- <div class="form-row"> -->
-                <div class="form-row">
-                  <div class="col-1">
-                    <input class="custrange-vertical cv-right mx-0 px-0 ml-1" type="range" id="slider-clr" orient="vertical"
-                      min="0" step="1">
-                  </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-6 col-md-5 offset-md-1" name="color-section">
+    <div class="text-right p-0">
+      <!-- <div class="form-row"> -->
+        <div class="form-row">
+          <div class="col-1">
+            <input class="custrange-vertical cv-right mx-0 px-0 ml-1" type="range" id="slider-clr" orient="vertical"
+              min="0" step="1">
+          </div>
 
-                  <div class="col-8" id="color-generator">
+          <div class="col-8" id="color-generator">
 
-                  </div>
-                  <div class="col-1 text-center">
-                    <p class="color-squares">
-                      <i class="fas fa-caret-left text-gold"></i>
-                    </p>
-                    
-                    <p class="color-squares">
-                      <i class="fas fa-caret-left text-gold"></i>
-                    </p>
-                    
-                    <p class="color-squares">
-                      <i class="fas fa-caret-left text-gold"></i>
-                    </p>
-                    
-                    <p class="color-squares">
-                      <i class="fas fa-caret-left text-gold"></i>
-                    </p>
-                    
-                    <p class="color-squares">
-                      <i class="fas fa-caret-left text-gold"></i>
-                    </p>
-                    
-                  </div>
-                  
-                  <div class="col-2 text-left">
-                    <a type="button" class="color-buttons evt-clk btn btn-outline-light btn-block rnd-xl py-4 mt-2"
-                      id="up-btn-clr">
-                      <i class="fas fa-chevron-up text-3xl" id="up-icon-clr"></i>
-                    </a>
-                    <h4 class="fa fa-caret-left animated infinite heartBeat text-light my-0 opac-70" aria-hidden="true"></h4>
-                    <a type="button" class="color-buttons evt-clk btn btn-outline-light btn-block rnd-xl py-4 opac-90"
-                      id="down-btn-clr">
-                      <i id="down-icon-clr" class="fas fas fa-chevron-down text-2xl"></i>
-                    </a>                                    
-                    
-                  </div>
-                </div>
-
-            </div>
+          </div>
+          <div class="col-1 text-center">
+            <p class="color-squares">
+              <i class="fas fa-caret-left text-gold"></i>
+            </p>
+            
+            <p class="color-squares">
+              <i class="fas fa-caret-left text-gold"></i>
+            </p>
+            
+            <p class="color-squares">
+              <i class="fas fa-caret-left text-gold"></i>
+            </p>
+            
+            <p class="color-squares">
+              <i class="fas fa-caret-left text-gold"></i>
+            </p>
+            
+            <p class="color-squares">
+              <i class="fas fa-caret-left text-gold"></i>
+            </p>
+            
+          </div>
+          
+          <div class="col-2 text-left">
+            <a type="button" class="color-buttons evt-clk btn btn-outline-light btn-block rnd-xl py-4 mt-2"
+              id="up-btn-clr">
+              <i class="fas fa-chevron-up text-3xl" id="up-icon-clr"></i>
+            </a>
+            <h4 class="fa fa-caret-left animated infinite heartBeat text-light my-0 opac-70" aria-hidden="true"></h4>
+            <a type="button" class="color-buttons evt-clk btn btn-outline-light btn-block rnd-xl py-4 opac-90"
+              id="down-btn-clr">
+              <i id="down-icon-clr" class="fas fas fa-chevron-down text-2xl"></i>
+            </a>                                    
+            
           </div>
         </div>
-        <div class="content-section px-4 mx-4" name="form-section">
-              <legend class="legend text-center text-comfo text-md mb-0 pb-0 mt-2">
-              </legend>
-              <p>
-                You may be able to change your temporary username when membership approved.
-              </p>
 
-            <div name="preview-section" class="row py-0 align-items-center" >
-              <div class="col" id="input-nickname">
-                <input class="rdonly text-lite form-control bg-transparent border-0" type="text" value="aqua"
-                  readonly>
-              </div>
-              <div class="col" id="input-color">
-                <input class="rdonly text-lite form-control bg-transparent border-0" type="text" value="turqoise"
-                  readonly>
-              </div>
-              <div class="col text-center rdonly" id="append-numeric">
-              </div>
-            </div>          
+    </div>
+  </div>
+</div>
+<div class="content-section px-4 mx-4" name="form-section">
+      <p>
+        You may be able to change your temporary username when membership approved.
+      </p>
+
+    <div name="preview-section" class="row py-0 align-items-center" >
+      <div class="col" id="input-nickname">
+        <input class="rdonly text-lite form-control bg-transparent border-0" type="text" value="aqua"
+          readonly>
+      </div>
+      <div class="col" id="input-color">
+        <input class="rdonly text-lite form-control bg-transparent border-0" type="text" value="turqoise"
+          readonly>
+      </div>
+      <div class="col text-center rdonly" id="append-numeric">
+      </div>
+    </div>          
+</div>
+
+<div class="content-section px-4 mx-4" name="form-section">
+  <form method="POST" action="" id="regpub-form">
+    <fieldset class="text-left p-2">
+      {{ form.hidden_tag() }}
+    <hr class="border-light mx-5">
+      <div class="form-group col-10 offset-1">
+        <i class="fas fa-envelope text-xl"></i>
+        {{ form.email.label(class="text-monts text-xl text-lowercase") }}
+        {% if form.email.errors %}
+        {{ form.email(class="form-control form-control-lg is-invalid") }}
+        <div class="invalid-feedback">
+          {% for error in form.email.errors %}
+          <span>{{ error }}</span>
+          {% endfor %}
         </div>
-        
-        <div class="content-section px-4 mx-4" name="form-section">
-          <form method="POST" action="" id="regpub-form">
-            <fieldset class="text-left p-2">
-              {{ form.hidden_tag() }}
-            <hr class="border-light mx-5">
-              <div class="form-group col-10 offset-1">
-                <i class="fas fa-envelope text-xl"></i>
-                {{ form.email.label(class="text-monts text-xl text-lowercase") }}
-                {% if form.email.errors %}
-                {{ form.email(class="form-control form-control-lg is-invalid") }}
-                <div class="invalid-feedback">
-                  {% for error in form.email.errors %}
-                  <span>{{ error }}</span>
-                  {% endfor %}
-                </div>
-                {% else %}
-                {{ form.email(class="form-control form-control-lg") }}
-                {% endif %}
-              </div>
-              <div class="form-group col-10 offset-1">
-                <i class="text-2xl mr-2 fas fa-lock"></i>
-                {{ form.password.label(class="text-monts text-xl text-lowercase") }}
-                {% if form.password.errors %}
-                {{ form.password(class="form-control form-control-lg is-invalid") }}
-                <div class="invalid-feedback">
-                  {% for error in form.password.errors %}
-                  <span>{{ error }}</span>
-                  {% endfor %}
-                </div>
-                {% else %}
-                {{ form.password(class="form-control form-control-lg") }}
-                {% endif %}
-              </div>
-              <div class="form-group col-10 offset-1">
-                <i class="text-2xl mr-2 fas fa-user-lock"></i>
-                {{ form.confirm_password.label(class="text-monts text-xl text-lowercase") }}
-                {% if form.confirm_password.errors %}
-                {{ form.confirm_password(class="form-control form-control-lg is-invalid") }}
-                <div class="invalid-feedback">
-                  {% for error in form.confirm_password.errors %}
-                  <span>{{ error }}</span>
-                  {% endfor %}
-                </div>
-                {% else %}
-                {{ form.confirm_password(class="form-control form-control-lg") }}
-                {% endif %}
-              </div>
-              <div class="form-group col-10 offset-1">
-                <div class="form-group" id="sign_up_as">
-              </div>
-
-                {% if form.submit.errors %}
-                {{ form.submit(class="form-control form-control-lg is-invalid") }}
-                <div class="invalid-feedback">
-                  {% for error in form.submit.errors %}
-                  <span>{{ error }}</span>
-                  {% endfor %}
-                </div>
-                {% else %}
-                {{ form.submit(class="form-control btn btn-outline-info btn-block text-xl text-light border-0 bg-theme rnd-2xl pt-1 pb-2") }}
-                {% endif %}
-              </div>              
-              
-            </fieldset>
-          </form>
-              <div class="row mb-5" name="already_a_member">
-                <div class="col-10 offset-1 text-center align-items-center text-italic text-light">
-                  Already a user or member? Please sign in
-                  <a class="btn btn-info rnd-lg px-2 pt-1 pb-2" href="{{ url_for('users.login') }}">
-                    <i class="fas fa-sign-in-alt text-light">
-                    </i>
-                    Login
-                  </a>
-                </div>
-              </div>
+        {% else %}
+        {{ form.email(class="form-control form-control-lg") }}
+        {% endif %}
+      </div>
+      <div class="form-group col-10 offset-1">
+        <i class="text-2xl mr-2 fas fa-lock"></i>
+        {{ form.password.label(class="text-monts text-xl text-lowercase") }}
+        {% if form.password.errors %}
+        {{ form.password(class="form-control form-control-lg is-invalid") }}
+        <div class="invalid-feedback">
+          {% for error in form.password.errors %}
+          <span>{{ error }}</span>
+          {% endfor %}
         </div>
-        
+        {% else %}
+        {{ form.password(class="form-control form-control-lg") }}
+        {% endif %}
+      </div>
+      <div class="form-group col-10 offset-1">
+        <i class="text-2xl mr-2 fas fa-user-lock"></i>
+        {{ form.confirm_password.label(class="text-monts text-xl text-lowercase") }}
+        {% if form.confirm_password.errors %}
+        {{ form.confirm_password(class="form-control form-control-lg is-invalid") }}
+        <div class="invalid-feedback">
+          {% for error in form.confirm_password.errors %}
+          <span>{{ error }}</span>
+          {% endfor %}
+        </div>
+        {% else %}
+        {{ form.confirm_password(class="form-control form-control-lg") }}
+        {% endif %}
+      </div>
+      <div class="form-group col-10 offset-1">
+        <div class="form-group" id="sign_up_as">
+      </div>
 
-    </main>
-
-    <footer>
-
-      <nav class="nav nav-pills nav-justified">
-        <a class="nav-item nav-link add-anime shd-theme rnd-xl" href="https://rotaract2440.org/kulup/23#">
-          <img class="m-0 bg-light rnd-lg py-0 pl-2 pr-1 add-anime"
-            src="https://raw.githubusercontent.com/attila5287/rota-img/main/site/logo_slab.png" alt="slab-logo"
-            style="height: 2.75rem;">
-        </a>
-        <a class="nav-item nav-link add-anime shd-theme rnd-xl" href="www.instagram.com/gozteperotaract">
-          <h1 class="fab fa-instagram"></h1>
-        </a>
-        <a class="nav-item nav-link add-anime shd-theme rnd-xl" href="/youtube/not/available">
-          <h1 class="fab fa-youtube"></h1>
-
-        </a>
-        <a class="nav-item nav-link add-anime shd-theme rnd-xl" href="www.twitter.com/GoztepeRotaract">
-          <h1 class="fab fa-twitter"></h1>
-
-        </a>
-        <a class="nav-item nav-link add-anime shd-theme rnd-xl" href="/linkedin/not/available">
-          <h1 class="fab fa-linkedin"></h1>
-        </a>
-
-        <a class="nav-item nav-link add-anime shd-theme rnd-xl" href="https://gozteperotaract.com">
-          <img class="m-0 bg-light rnd-lg py-0 pl-2 pr-1"
-            src="https://raw.githubusercontent.com/attila5287/rota-img/main/site/logo_opensdoors_2021.png"
-            alt="footer-logo" style="height: 2.75rem;">
-        </a>
-
-      </nav>
-
-    </footer>
-
-    <aside>
-      <!-- Optional JavaScript -->
-      <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-      <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
-      </script>
-      <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
-        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
-      </script>
-      <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
-      </script>
-      <script src="/static/register/nicknames.js"></script>
-      <script src="/static/register/colors.js"></script>
-      <script src="/static/register/numbers-countup.js"></script>
-
-
-      <script src="/static/plugins/count-up.js"></script>
-
-      <script src="/static/register/signup-as.js"></script>ss
-
-    </aside>
-
-  </body>
-
-</html>
+        {% if form.submit.errors %}
+        {{ form.submit(class="form-control form-control-lg is-invalid") }}
+        <div class="invalid-feedback">
+          {% for error in form.submit.errors %}
+          <span>{{ error }}</span>
+          {% endfor %}
+        </div>
+        {% else %}
+        {{ form.submit(class="form-control btn btn-outline-info btn-block text-xl text-light border-0 bg-theme rnd-2xl pt-1 pb-2") }}
+        {% endif %}
+      </div>              
+      
+    </fieldset>
+  </form>
+      <div class="row mb-5" name="already_a_member">
+        <div class="col-10 offset-1 text-center align-items-center text-italic text-light">
+          Already a user or member? Please sign in
+          <a class="btn btn-info rnd-lg px-2 pt-1 pb-2" href="{{ url_for('users.login') }}">
+            <i class="fas fa-sign-in-alt text-light">
+            </i>
+            Login
+          </a>
+        </div>
+      </div>
+</div>
+{% endblock %}

@@ -199,6 +199,10 @@ a.article-title:hover {
   transition: ease 0.15s;
 }
 
+.add-anime:focus {
+  transform: scale(1.1, 1.1);
+  box-shadow: rgba(111, 230, 157, 0.794) 5px 15px 15px;
+}
 .add-anime:hover {
   transform: scale(1.1, 1.1);
   box-shadow: rgb(111, 216, 230) 5px 15px 15px;

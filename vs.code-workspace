@@ -11,6 +11,9 @@
 		},
 		{
 			"path": "..\\displaytracker"
+		},
+		{
+			"path": "..\\hn_app-master"
 		}
 	],
 	"settings": {

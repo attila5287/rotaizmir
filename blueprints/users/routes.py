@@ -12,8 +12,6 @@ from blueprints.posts.forms import PostDemo
 
 users = Blueprint('users', __name__)
 
-
-
 @users.route("/reg/post/public/<string:gen_username>", methods=[ 'GET','POST'])
 def reg_post_public( gen_username ):
     pass #function to run when new user registered btn hit
@@ -52,25 +50,6 @@ def reg_post():
     flash('Your account has been created! You are now able to log in', 'success')
     return redirect(url_for('users.login'))
 
-
-# forms to register
-@users.route("/register", methods=['GET', 'POST'])
-def register():
-    if current_user.is_authenticated:
-        return redirect(url_for('main.home'))
-    form = RegistrationForm()
-    # form.username.choices = Nickname.query.all()
-    if form.validate_on_submit():
-        hashed_password = bcrypt.generate_password_hash(form.password.data).decode('utf-8')
-        user = User(username=form.username.data, email=form.email.data, password=hashed_password ,img_url = 0)
-        db.session.add(user)
-        db.session.commit()
-        flash('Your account has been created! You are now able to log in', 'success')
-        return redirect(url_for('users.login'))
-    return render_template('register.html', title='Register', form=form)
-
-
-
 @users.route("/login", methods=['GET', 'POST'])
 def login():
     if current_user.is_authenticated:
@@ -92,36 +71,6 @@ def logout():
     logout_user()
     return redirect(url_for('main.home'))
 
-  
-@users.route("/account", methods=['GET', 'POST'])
-@login_required
-def account():
-  pass
-  form = UpdateAccountForm()
-  js = [
-      ( 'users', 'account', ),
-  ]
-  
-  if request.method == 'POST':
-    pass
-    current_user.username = form.username.data
-    current_user.email = form.email.data
-    db.session.commit()
-    flash('Username and/or Email updated!', 'success')
-    
-
-    return redirect(url_for('users.account'))
-  
-  elif request.method == 'GET':
-    form.username.data = current_user.username
-    form.email.data = current_user.email
-  
-  return render_template('account.html', title='Account',
-      form=form,
-      js = js
-      )
-
-
 @users.route("/set/profile/picture/<int:user_id>/<int:img_index>", methods=['GET', 'POST'])
 @login_required
 def set_profile_pic(user_id, img_index):
@@ -130,27 +79,6 @@ def set_profile_pic(user_id, img_index):
   db.session.commit()
   return redirect( url_for('users.account' ))
   
-# @users.route("/account", methods=['GET', 'POST'])
-# @login_required
-# def account():
-#     form = UpdateAccountForm()
-#     if form.validate_on_submit():
-#         if form.picture.data:
-#             picture_file = save_picture(form.picture.data)
-#             current_user.image_file = picture_file
-#         current_user.username = form.username.data
-#         current_user.email = form.email.data
-#         db.session.commit()
-#         flash('Your account has been updated!', 'success')
-#         return redirect(url_for('users.account'))
-#     elif request.method == 'GET':
-#         form.username.data = current_user.username
-#         form.email.data = current_user.email
-#     image_file = 'static', filename='profile_pics/' + current_user.image_file
-#     return render_template('account.html', title='Account',
-#                            image_file=image_file, form=form)
-
-
 @users.route("/user/<string:username>")
 def user_posts(username):
     page = request.args.get('page', 1, type=int)
@@ -277,9 +205,65 @@ def colors_api():
     indexed =  [{c.name: getattr(q, c.name)
           for c in q.__table__.columns} for q in q_all]
     return jsonify(dict(enumerate(indexed)))
-# URL Method Description
-# /users/ GET Gives a list of all users
-# /users/ POST Creates a new user
-# /users/<id> GET Shows a single user
-# /users/<id> PUT Updates a single user
-# /users/<id> DELETE Deletes a single user
+
+
+
+
+# forms to register
+@users.route("/register", methods=['GET', 'POST'])
+def register():
+    form = RegistrationForm()
+    legend = 'Register'
+    js = [
+        ( 'register', 'nicknames', ),
+        ( 'register', 'colors', ),
+        ( 'register', 'numbers-countup', ),
+        ( 'plugins', 'count-up', ),
+        ( 'register', 'signup-as', ),
+    ]
+
+    if current_user.is_authenticated:
+        return redirect(url_for('users.account'))
+    
+    
+    # form.username.choices = Nickname.query.all()
+    if form.validate_on_submit():
+        hashed_password = bcrypt.generate_password_hash(form.password.data).decode('utf-8')
+        user = User(username=form.username.data, email=form.email.data, password=hashed_password ,img_url = 0)
+        db.session.add(user)
+        db.session.commit()
+        flash('Your account has been created! You are now able to log in', 'success')
+        return redirect(url_for('users.login'))
+    return render_template('register.html', title='Register', form=form, js=js,
+                           legend=legend,
+                           )
+
+  
+@users.route("/account", methods=['GET', 'POST'])
+@login_required
+def account():
+  pass
+  form = UpdateAccountForm()
+  js = [
+      ( 'users', 'account', ),
+  ]
+  
+  if request.method == 'POST':
+    pass
+    current_user.username = form.username.data
+    current_user.email = form.email.data
+    db.session.commit()
+    flash('Username and/or Email updated!', 'success')
+    
+
+    return redirect(url_for('users.account'))
+  
+  elif request.method == 'GET':
+    pass
+    form.username.data = current_user.username
+    form.email.data = current_user.email
+  
+  return render_template('account.html', title='Account',
+      form=form,
+      js = js,
+      )
