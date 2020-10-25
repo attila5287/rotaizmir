@@ -143,61 +143,57 @@
        </nav>
 
      </header>
-     
-     <summary name="info-notes">
-       <div class="container-fluid">
-       {% for i in info_notes %}
-       <p  class="notes mt-1 text-center mb-1">
-         <i class="fas fa-info-circle text-xl mr-2"></i>
-         {{ i }}
-       </p>
-       {% endfor %}
-     </div>
-     </summary>
-     
-     <main name="child-content">
-       <div class="row no-gutters">
+
+     {% if legend %}
+     <legend class="row col-8 offset-2 legend border-bottom text-right mr-4 mt-2">
+       <i class="fas fa-edit text-3xl ml-2 mt-0"></i>
+       {{ legend }}
+      </legend>
+     {% endif %}
+    {% if info_notes %}
+    <summary name="info-notes" class="container-fluid">
+      {% for i in info_notes %}
+      <p  class="notes mt-1 text-center mb-1">
+        <i class="fas fa-info-circle text-xl mr-2"></i>
+        {{ i }}
+      </p>
+      {% endfor %}
+    </summary>
+    {% endif %}
+      
+     <main name="child-content" class="row no-gutters">
         <div class="col-md-10 offset-1">
           {% block content %} {% endblock%}
           </div>
-       </div>
+       
      </main>
     
      <footer class="container footer mt-2">
-
        <nav class="nav nav-pills nav-justified">
-         {% set footer_images=[
-          ('slab-logo', 'rotaract2440.org/kulup/23#', 'logo_slab.png', ),
-          ('open-doors', 'rotaract2440.org/kulup/23#', 'logo_opensdoors_2021.png', ),
+          {% set footer_images=[
+          ('slab-logo',  'logo_slab.png', ),
+          ('open-doors',  'logo_opensdoors_2021.png', ),
           ]  %}
 
-          {% for alt, href, src in footer_images %}
-          <a class="nav-item nav-link add-anime shd-theme rnd-xl" href="https://{{href}}">
-           <img class="m-0 bg-light rnd-lg py-0 pl-2 pr-1 add-anime"
-             src="https://raw.githubusercontent.com/attila5287/rota-img/main/site/{{src}}" alt="{{alt}}"
-             style="height: 2.75rem;">
-         </a>
-
+          {% for alt, src in footer_images %}
+          <a class="nav-item nav-link add-anime shd-theme rnd-xl" href="https://rotaract2440.org/kulup/23#">
+            <img class="m-0 bg-light rnd-lg py-0 pl-2 pr-1 add-anime"
+              src="https://raw.githubusercontent.com/attila5287/rota-img/main/site/{{src}}" alt="{{alt}}"
+              style="height: 2.75rem;">
+          </a>
           {% endfor %}
-
-         <a class="nav-item nav-link add-anime shd-theme rnd-xl" href="https://www.instagram.com/gozteperotaract">
-           <h1 class="fab fa-instagram"></h1>
-         </a>
-         <a class="nav-item nav-link add-anime shd-theme rnd-xl" href="https://youtube/not/available">
-           <h1 class="fab fa-youtube"></h1>
-
-         </a>
-         <a class="nav-item nav-link add-anime shd-theme rnd-xl" href="https://twitter.com/GoztepeRotaract">
-           <h1 class="fab fa-twitter"></h1>
-
-         </a>
-         <a class="nav-item nav-link add-anime shd-theme rnd-xl" href="https://linkedin/not/available">
-           <h1 class="fab fa-linkedin"></h1>
-         </a>
-
-
+          {% set footer_icons = [
+            ('instagram', 'www.instagram.com/gozteperotaract',  ),
+            ('twitter', 'twitter.com/GoztepeRotaract',  ),
+            ('youtube', '',  ),
+            ('linkedin', '',  ),
+            ]   %}
+            {% for icon, url in footer_icons %}
+                     <a class="nav-item nav-link add-anime shd-theme rnd-xl" href="https://{{url}}">
+                       <h1 class="fab fa-{{icon}}"></h1>
+                     </a>
+            {% endfor %}
        </nav>
-
      </footer>
      
      <aside>
@@ -216,7 +212,13 @@
           <script src="https://cdnjs.cloudflare.com/ajax/libs/feather-icons/4.9.0/feather.min.js"></script>
      
      </aside>
-
+     <details name="js-file">
+      {% if js %}
+        {% for folder, file in js %}
+          <script src="/static/{{folder}}/{{file}}.js"></script>
+        {% endfor %}
+      {% endif %}
+    </details>
      
    </body>
 
