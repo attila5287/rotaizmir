@@ -234,6 +234,7 @@ def register():
         db.session.commit()
         flash('Your account has been created! You are now able to log in', 'success')
         return redirect(url_for('users.login'))
+
     return render_template('register.html', title='Register', form=form, js=js,
                            legend=legend,
                            )
@@ -243,6 +244,11 @@ def register():
 @login_required
 def account():
   pass
+  access=[
+        'admins',
+        'members',
+        'users',
+    ]
   form = UpdateAccountForm()
   js = [
       ( 'users', 'account', ),
@@ -266,4 +272,5 @@ def account():
   return render_template('account.html', title='Account',
       form=form,
       js = js,
+      access=access,
       )

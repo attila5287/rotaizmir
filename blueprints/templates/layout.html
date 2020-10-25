@@ -254,6 +254,17 @@
      </details>
      {% endif %}
 
+     {% if access %}
+     <div class="d-flex flex-row justify-content-center">
+       {% for a in access %}
+         <i class="fas fa-key text-sm text-balo mx-2">
+           {{a}}
+         </i>
+       {% endfor %}
+     </div>
+     
+     {% endif %}
+
    </body>
 
  </html>
