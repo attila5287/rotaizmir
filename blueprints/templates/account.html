@@ -38,11 +38,14 @@
 <div class="container errors rnd-xl border-light">
   {% for field_name, field_errors in form.errors|dictsort if field_errors %}
   {% for error in field_errors %}
-  <div class=" py-1 alert alert-warning bg-gradient-danger add-anime border-0 alert-dismissible fade show rnd-xl" role="alert">
-        <p class="text-primary text-italic text-md  my-1">
-          <i class="text-2xl fas fa-exclamation fa-fw animated infinite heartBeat text-theme rnd-sm px-2 py-1"></i>
-          <i class="text-xl text-primary fa {{ icons(form[field_name].id) }} fa-fw"></i>
-        {{ form[field_name].label }}: {{ error }}</p>
+  <div class=" py-1 alert alert-info bg-glass bg-gradient-danger add-anime border-0 alert-dismissible fade show rnd-xl" role="alert">
+        <p class="text-theme text-italic text-lg  my-1 py-0">
+          <i class="text-3xl fas fa-exclamation fa-pull-left animated infinite heartBeat text-theme rnd-sm px-2 py-1"></i>
+          <i class="text-info fa {{ icons(form[field_name].id) }} fa-fw"></i>
+        <i class="text-info">
+          {{ form[field_name].label }}
+        </i> 
+        {{ error }}</p>
     {{msg}}
     <button type="button" class="close text-2xl text-danger" data-dismiss="alert" aria-label="Close">
       <span aria-hidden="true">&times;</span>

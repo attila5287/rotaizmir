@@ -21,37 +21,41 @@
     {% endfor %}
 </div>
 {% endif %}
-      <fieldset class="form-group">
-
+            <fieldset class="form-group">
         <form method="POST" action="">
           {{ form.hidden_tag() }}
 
-          {% for field in form %}
-          {% if field.id == 'csrf_token' %}
-          {% elif field.id == 'img_url' %}
-          ...
-          {% elif field.id == 'submit' %}
-            {{field(class="btn btn-outline-light btn-block bg-theme shd-theme mr-2" )}}
-          {% else %}
-            <p class="text-monts text-lg text-center my-0">
-              {{field.label}}
+            <p class="text-monts text-md text-center my-0">
+              {{form.username.label}}
             </p>
   
             <div class="form-group align-items-center mb-4">
               <div class="input-group mx-2 mb-0 text-comfo">
                 <div class="input-group-prepend add-anime">
                   <span class="input-group-text bg-theme  text-light text-bold" id="inputGroupPrepend">
-                    <i class="fa{{icons(field.id)}} fa-fw ml-2 mt-0"></i>
+                    <i class="fa{{icons(form.username.id)}} fa-fw ml-2 mt-0"></i>
                   </span>
                 </div>
-                {{field(class="form-control form-control-dark form-control-lg shd-theme mr-2" )}}
+                {{form.username(class="form-control form-control-dark form-control-lg shd-theme mr-2" )}}
               </div>
-  
+              
+              <p class="text-monts text-md text-center my-0">
+                {{form.email.label}}
+              </p>
+    
+              <div class="form-group align-items-center mb-4">
+              <div class="input-group mx-2 mb-0 text-comfo">
+                <div class="input-group-prepend add-anime">
+                  <span class="input-group-text bg-theme  text-light text-bold" id="inputGroupPrepend">
+                    <i class="fa{{icons(form.email.id)}} fa-fw ml-2 mt-0"></i>
+                  </span>
+                </div>
+                {{form.email(class="form-control form-control-dark form-control-lg shd-theme mr-2" )}}
+              </div>
+              
+              <div class="form-group align-items-center mb-4">
+                {{form.submit(class="btn btn-outline-light btn-block text-lg bg-theme shd-theme mt-3 mr-2 pt-2 pb-3" )}}
             </div>
-
-          {% endif %}
-
-          {% endfor %}
         </form>
       </fieldset>
 
