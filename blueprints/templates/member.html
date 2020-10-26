@@ -3,7 +3,7 @@
 
 <div class="row no-gutters align-items-center">
   <div class="col-1">
-    <a type="button" class="btn btn-outline-light border-0 bg-memb{{ m.gender}} btn-block  rnd-xl py-5 tri-left" id=""
+    <a type="button" class="shadow btn btn-outline-light border-0 bg-secondary btn-block  rnd-xl py-5 tri-left" id=""
       href="{{ url_for('members.show', id=m.id-1) }}">
       <i class="fas fa-chevron-left text-3xl"></i>
     </a>
@@ -25,13 +25,13 @@
             </p>
   
             <div class="form-group align-items-center mb-4">
-              <div class="input-group mx-2 mb-0 text-comfo">
+              <div class="input-group mx-2 mb-0 ">
                 <div class="input-group-prepend add-anime">
-                  <span class="input-group-text bg-theme  text-light text-bold" id="inputGroupPrepend">
+                  <span class="input-group-text bg-secondary  text-light text-bold" id="inputGroupPrepend">
                     <i class="fa{{icons(field.id)}} fa-fw ml-2 mt-0 animated infinite heartBeat"></i>
                   </span>
                 </div>
-                {{field(class="form-control form-control-dark form-control-lg border-light custom-select shd-theme mr-2" )}}
+                {{field(class="form-control form-control-dark form-control-lg border-light custom-select shadow mr-2" )}}
               </div>
   
             </div>
@@ -42,7 +42,7 @@
           <div class="form-group">
             <div class="row">
               <div class="col-8 offset-2">
-                <input class="btn btn-outline-success btn-block bg-theme rnd-2xl text-monts mt-2 pt-1 pb-3 text-light text-xl"
+                <input class="shadow btn btn-outline-primary btn-block bg-primary rnd-2xl text-monts mt-2 pt-1 pb-3 text-light text-xl border-0"
                   type="submit" value="Submit">
                   
               </div>
@@ -53,7 +53,7 @@
     </div>
   </div>
   <div class="col-1">
-    <a type="button" class="btn btn-outline-light border-0 bg-memb{{ m.gender}} btn-block  rnd-xl py-5 tri-right" id=""
+    <a type="button" class="shadow btn btn-outline-light border-0 bg-secondary btn-block  rnd-xl py-5 tri-right" id=""
       href="{{ url_for('members.show', id=m.id+1) }}">
       <i class="fas fa-chevron-right text-3xl"></i>
     </a>
@@ -67,10 +67,6 @@
       <div class="col-3 text-center">
         <img class="rounded-circle member-img img-fluid p-0" src="{{ m.img_url  }}" alt="{{ m.id }}-photo">
 
-        <hr class="border-secondary mx-5 my-1">
-        <hr class="border-secondary mx-3 my-2">
-        <hr class="border-secondary mx-2 my-2">
-
         <nav class="nav flex-column text-left">
           {% set member_actions = [
                               ( '/member/edit/{}'.format(m.id), 'edit', 'Edit', ), 
@@ -79,9 +75,9 @@
                               ] %}
 
           {% for url, icon, text in member_actions %}
-          <li class="nav-item text-nowrap add-anime rnd-lg border-bottom border-secondary opac-80 mr-2">
-            <a class="nav-link text-comfo text-sm text-italic text-light" href="{{ url }}">
-              <i class="fas fa-{{icon}} fa-fw text-md text-light"></i>
+          <li class="nav-item text-nowrap add-anime rnd-lg border-bottom border-secondary mr-2">
+            <a class="nav-link  text-italic " href="{{ url }}">
+              <i class="fas fa-{{icon}} fa-fw text-md "></i>
               {{text}}
             </a>
           </li>
@@ -91,10 +87,9 @@
         </nav>
 
 
-
       </div>
       <div class="col">
-        <table class="table table-dark table-sm table-hover table-borderless bg-transparent text-light mt-2 mx-2">
+        <table class="table  table-sm table-hover table-borderless bg-transparent mt-2 mx-2">
           <thead class="bg-memb{{m.gender}} text-sm">
             <th scope="col">
               <i class="fas fa-id-card float-left text-xl"></i>
@@ -193,15 +188,14 @@
           <a class="list-group-item list-group-item-action pt-0 pb-1 bg-transparent text-center add-anime rnd-lg p-0"
             href="{{ value }}">
             <div class="d-flex flex-row justify-content-center">
-              <i class="text-3xl text-light pt-1 pb-0 fab fa-{{social}} fa-fw">
+              <i class="text-primary text-3xl pt-1 pb-0 fab fa-{{social}} fa-fw">
               </i>
-              <i class="text-xl text-light disabled pt-1 pb-0 opac-80 fas fa-check fa-fw ml-2">
+              <i class="text-xl text-primary disabled pt-1 pb-0 fas fa-check fa-fw ml-2">
               </i>
             </div>
           </a>
 
           {% else %}
-
           <a class="list-group-item list-group-item-action pt-0 pb-1 bg-transparent p-0">
             <div class="d-flex flex-row justify-content-center">
               <i class="text-3xl text-secondary disabled pt-1 pb-0 opac-50 fab fa-{{social}} fa-fw">
@@ -221,14 +215,4 @@
 
   </div>
 </div>
-
-{% for a in access %}
-
-<p class="notes my-2 text-right">
-  <i class="fas fas fa-key text-xl ">
-    {{ a }}
-  </i>
-</p>
-
-{% endfor %}
 {% endblock content %}

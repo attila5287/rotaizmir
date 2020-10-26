@@ -9,7 +9,7 @@
             {% if field.id == 'csrf_token' %}
             <i class="text-hide">CSRF TOKEN</i>
             {% elif field.type == 'SubmitField' %}
-            {{field(class="btn btn-block btn-outline-light bg-theme mb-0 mr-2" )}}                    
+            {{field(class="btn btn-block btn-outline-primary bg-primary text-light mb-0 mr-2 rnd-xl py-3 shadow-lg " )}}                    
             {% elif field.type == 'SelectField' %}
             <div class="form-row align-items-center mb-4">
     
@@ -21,7 +21,7 @@
                 <div class="col">
                     <div class="input-group mx-2 mb-0 text-comfo">
                         <div class="input-group-prepend add-anime">
-                            <span class="input-group-text bg-theme  text-light text-bold"
+                            <span class="input-group-text bg-secondary  text-light text-bold"
                                 id="inputGroupPrepend">
                                 <i class="fa{{icons(field.id)}} fa-fw ml-2 mt-0"></i>
                             </span>
@@ -41,7 +41,7 @@
                 <div class="col">
                     <div class="input-group mx-2 mb-0 text-comfo">
                         <div class="input-group-prepend add-anime">
-                            <span class="input-group-text bg-theme  text-light text-bold"
+                            <span class="input-group-text bg-secondary  text-light text-bold"
                                 id="inputGroupPrepend">
                                 <i class="fa{{icons(field.id)}} fa-fw ml-2 mt-0"></i>
                             </span>

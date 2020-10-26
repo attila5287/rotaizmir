@@ -21,6 +21,21 @@ members = Blueprint('members', __name__)
 
 
 @members.context_processor
+def inject_colored_rows():
+    pass
+
+    def bg_row(gender):
+        pass
+        gallery = {  # font awesome icons for member forms
+            "f": "table-secondary border-bottom",
+            "m": "table-info border-bottom",
+        }
+
+        return gallery.get(gender, 'table-light')
+
+    return dict(bg_row=bg_row)
+
+@members.context_processor
 def inject_icons():
     pass
 
@@ -130,7 +145,7 @@ def home():
                            members=members,
                            form=form,
                            css=[
-                               ('theme', 'cerulean', ),
+                               ('theme', '/minty/bootstrap', ),
                                ('main', 'main', ),
                            ],
                            info_notes=[
@@ -170,7 +185,7 @@ def show(id):
                            form=form,
                            m=member,
                            css=[
-                               ('theme', 'cerulean', ),
+                               ('theme', '/minty/bootstrap', ),
                                ('main', 'main', ),
                            ],
                            info_notes=[
@@ -222,7 +237,7 @@ def edit(id):
     return render_template('member_edit.html',
                            form=form,
                            css=[
-                               ('theme', 'cerulean', ),
+                               ('theme', '/minty/bootstrap', ),
                                ('main', 'main', ),
                            ],
                            info_notes=[
@@ -282,7 +297,7 @@ def table():
 
     return render_template('members_table.html', members=members, headers=headers, table=table,
                            css=[
-                               ('theme', 'cerulean', ),
+                               ('theme', '/minty/bootstrap', ),
                                ('main', 'main', ),
                            ],
                            info_notes=[
@@ -323,7 +338,7 @@ def add_member():
     return render_template('add_member.html',
                            form=form,
                            css=[
-                               ('theme', 'cerulean', ),
+                               ('theme', '/minty/bootstrap', ),
                                ('main', 'main', ),
                            ],
                            info_notes=[
@@ -365,7 +380,7 @@ def csv_feed():
     return render_template('csv_feed.html',
                            form=form,
                            css=[
-                               ('theme', 'cerulean', ),
+                               ('theme', '/minty/bootstrap', ),
                                ('main', 'main', ),
                            ],
                            info_notes=[

@@ -22,7 +22,7 @@
 {% endif %}
 <div class="row">
     <div class="col-2 col-sm-4 col-lg-2 offset-lg-2" >
-        <img class="border-0 add-anime member-img p-1 shd-theme mb-2" src="{{ member.img_url  }}"
+        <img class="border-0  bg-secondary add-anime member-img p-1 shadow mb-2 rnd-3xl" src="{{ member.img_url  }}"
             alt="{{ member.id }}-photo" style="width: 95%;">
             
     </div>
@@ -37,7 +37,7 @@
             {% if field.id == 'csrf_token' %}
             <i class="text-hide">CSRF TOKEN</i>
             {% elif field.type == 'SubmitField' %}
-            {{field(class="btn btn-block btn-outline-light bg-theme mb-0 mr-2" )}}                    
+            {{field(class="btn btn-block btn-outline-primary bg-primary text-light py-2 border-0 rnd-xl py-2 shadow-lg mb-0 mr-2" )}}                    
             {% elif field.type == 'SelectField' %}
             <div class="form-row align-items-center mb-4">
     
@@ -48,13 +48,13 @@
                 </div>
                 <div class="col">
                     <div class="input-group mx-2 mb-0 text-comfo">
-                        <div class="input-group-prepend add-anime">
-                            <span class="input-group-text bg-theme  text-light text-bold"
+                        <div class="input-group-prepend  bg-secondary add-anime rnd-xl">
+                            <span class="input-group-text rnd-xl text-light text-bold  bg-secondary"
                                 id="inputGroupPrepend">
                                 <i class="fa{{icons(field.id)}} fa-fw ml-2 mt-0"></i>
                             </span>
                         </div>
-                        {{field(class="form-control form-control-dark shd-theme mr-2" )}}
+                        {{field(class="form-control form-control-dark shadow mr-2" )}}
                     </div>
                 </div>
             </div>
@@ -68,13 +68,13 @@
                 </div>
                 <div class="col">
                     <div class="input-group mx-2 mb-0 text-comfo">
-                        <div class="input-group-prepend add-anime">
-                            <span class="input-group-text bg-theme  text-light text-bold"
+                        <div class="input-group-prepend  add-anime">
+                            <span class="input-group-text bg-secondary text-light rnd-xl text-bold"
                                 id="inputGroupPrepend">
                                 <i class="fa{{icons(field.id)}} fa-fw ml-2 mt-0"></i>
                             </span>
                         </div>
-                        {{field(class="form-control form-control-dark form-control-sm mb-0 shd-theme mr-2" )}}
+                        {{field(class="form-control form-control-dark form-control-sm mb-0 shadow mr-2" )}}
                     </div>
                 </div>
             </div>

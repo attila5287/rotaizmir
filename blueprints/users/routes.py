@@ -291,7 +291,7 @@ def account():
                            first_random = first_random,
                            form=form,
                            css=[
-                               ('theme', 'cerulean', ),
+                               ('theme', '/minty/bootstrap', ),
                                ('main', 'main', ),
                            ],
                            info_notes=[
@@ -328,7 +328,7 @@ def login():
     return render_template('login.html',
                            form=form,
                            css=[
-                               ('theme', 'cerulean', ),
+                               ('theme', '/minty/bootstrap', ),
                                ('main', 'main', ),
                            ],
                            info_notes=[
@@ -357,7 +357,7 @@ def userposts_byid(id):
                            posts=posts, 
                            user=user, 
                            css=[
-                               ('theme', 'cerulean', ),
+                               ('theme', '/minty/bootstrap', ),
                                ('main', 'main', ),
                            ],
                            info_notes=[

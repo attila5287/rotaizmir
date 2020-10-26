@@ -42,7 +42,7 @@ def new_post():
     return render_template('create_post.html',
                            form=form,
                            css=[
-                               ('theme', 'cerulean', ),
+                               ('theme', '/minty/bootstrap', ),
                                ('main', 'main', ),
                            ],
                            info_notes=[
@@ -98,7 +98,7 @@ def post(post_id):
     return render_template('post.html', 
                            post=post, 
                            css=[
-                               ('theme', 'cerulean', ),
+                               ('theme', '/minty/bootstrap', ),
                                ('main', 'main', ),
                            ],
                            info_notes=[

@@ -9,7 +9,7 @@
                 <legend class="border-bottom mb-4">Account Info</legend>
                 <div class="form-group">
                     {{ form.csv_file.label(class="form-control-label") }}
-                    {{ form.csv_file(class="form-control-lg rnd-xl shd-theme form-control-file") }}
+                    {{ form.csv_file(class="form-control-lg rnd-xl shadow form-control-file") }}
                     {% if form.csv_file.errors %}
                         {% for error in form.csv_file.errors %}
                             <span class="text-danger">{{ error }}</span>
@@ -19,7 +19,7 @@
                 </div>
             </fieldset>
             <div class="form-group">
-                {{ form.submit(class="btn btn-dark bg-theme btn-lg btn-block", style="border-radius:1rem;") }}
+                {{ form.submit(class="btn btn-secondary btn-lg btn-block  shadow-lg", style="border-radius:1rem;") }}
             </div>
         </form>
     </div>

@@ -11,7 +11,7 @@ def about():
 
     return render_template('about.html',
                            info_notes=[
-        'Follow public announcements, events.',
+        'General instructions for guests',
     ],
         access=[
         'u',
@@ -20,7 +20,7 @@ def about():
         'p',
     ],
         css=[
-        ('theme', 'cerulean', ),
+        ('theme', '/minty/bootstrap', ),
         ('main', 'main', ),
     ],
         js=None,
@@ -47,7 +47,7 @@ def home():
                                'p',
                            ],
                            css=[
-                               ('theme', 'cerulean', ),
+                               ('theme', '/minty/bootstrap', ),
                                ('main', 'main', ),
                            ],
                            js=None,
