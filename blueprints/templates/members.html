@@ -20,7 +20,7 @@
           <div class="form-group align-items-center mb-4">
             <div class="input-group mx-2 mb-0 text-comfo">
               <div class="input-group-prepend add-anime">
-                <span class="input-group-text bg-theme  text-light text-bold" id="inputGroupPrepend">
+                <span class="input-group-text bg-secondary text-light text-bold" id="inputGroupPrepend">
                   <i class="fa{{icons(field.id)}} fa-fw ml-2 mt-0 animated infinite heartBeat"></i>
                 </span>
               </div>
@@ -36,7 +36,7 @@
           {% endfor %}
           <div class="form-group">
 
-            <input class="btn btn-outline-light btn-block bg-theme rnd-3xl text-monts mt-2 pt-2 pb-3 text-light text-lg"
+            <input class="btn btn-outline-light btn-block bg-primary rnd-3xl text-monts mt-2 pt-2 pb-3 text-light text-lg"
               type="submit" value="show selected">
           </div>
         </form>
@@ -53,7 +53,7 @@
     {{ page_num }}
   </a>
   {% else %}
-  <a class="btn btn-outline-light bg-theme mb-4 text-xl"
+  <a class="btn btn-outline-light bg-secondary mb-4 text-xl"
     href="{{ url_for('members.home', page=page_num) }}">{{ page_num }}</a>
   {% endif %}
   {% else %}
@@ -66,7 +66,7 @@
   {% for m in members.items %}
 
   <div class="col-sm-6 col-md-4 col-lg-3 pl-1 pr-2">
-    <article class="media content-section text-light rnd-2xl">
+    <article class="media content-section rnd-2xl">
       <div class="d-flex flex-column align-content-center">
         <img class="rounded-circle article-img" src="{{ m.img_url  }}" alt="{{ m.id }}-photo">
         <ul class="list-group list-group-horizontal list-group-flush">

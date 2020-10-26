@@ -480,14 +480,14 @@ thead tr:last-child {
 
 .jackpot line {
   /* stroke: #5d7afa; */
-  stroke: #e9a960;
+  stroke: #78c2ad;
   stroke-width: 2px;
   stroke-opacity: 0.7;
   stroke-linecap: nice;
 }
 
 .jackpot path {
-  stroke: #e9a960;
+  stroke: #78c2ad;
   stroke-width: 3px;
   stroke-linecap: nice;
   stroke-opacity: 0.3;
@@ -497,8 +497,15 @@ thead tr:last-child {
   font-family: 'Montserrat Alternates', sans-serif;
   font-size: 1.75rem;
   font-weight: bold;
-  text-shadow: 2px 3px #ff14ff6e;
-  fill: #ffffffc2;
+  text-shadow: 2px 1px #f3969b6b;
+  fill: #78c2ad;
+}
+.text-disp  {
+  font-family: 'Montserrat Alternates', sans-serif;
+  font-size: 2.25rem;
+  font-weight: bold;
+  text-shadow: 2px 1px #78c2adc5;
+  fill: #f3969a;
 }
 .tri-right{
   border-radius: 0.5rem 4.5rem 4.5rem 0.5rem;
@@ -526,9 +533,17 @@ thead tr:last-child {
 }
 
 .evt-clk{
-  background-image: linear-gradient(#003cff85 , #fd4085d7  60%, #c70049 );
-  box-shadow: 0px 0px 8px #5d73ee  ,  inset 0px 0px 6px #47a8e0ad;
   border: 0px solid #dddddd;
   border-radius: 1rem;
 }
 
+.text-outlined {
+  font-size : 1.75rem;
+  text-align: center;
+      font-family: 'Montserrat', sans-serif;
+  opacity: 80%;
+  text-shadow: -2px 0 white,
+    0 2px white,
+    2px 0 white,
+    0 -2px white;
+}

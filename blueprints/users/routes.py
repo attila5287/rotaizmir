@@ -231,37 +231,6 @@ def colors_api():
     return jsonify(dict(enumerate(indexed)))
 
 
-# forms to register
-@users.route("/register", methods=['GET', 'POST'])
-def register():
-    form = RegistrationForm()
-    legend = 'Register'
-    js = [
-        ('register', 'nicknames', ),
-        ('register', 'colors', ),
-        ('register', 'numbers-countup', ),
-        ('plugins', 'count-up', ),
-        ('register', 'signup-as', ),
-    ]
-
-    if current_user.is_authenticated:
-        return redirect(url_for('users.account'))
-
-    # form.username.choices = Nickname.query.all()
-    if form.validate_on_submit():
-        hashed_password = bcrypt.generate_password_hash(
-            form.password.data).decode('utf-8')
-        user = User(username=form.username.data,
-                    email=form.email.data, password=hashed_password, img_url=0)
-        db.session.add(user)
-        db.session.commit()
-        flash('Your account has been created! You are now able to log in', 'success')
-        return redirect(url_for('users.login'))
-
-    return render_template('register.html', title='Register', form=form, js=js,
-                           legend=legend,
-                           )
-
 
 @users.route("/account", methods=['GET', 'POST'])
 @login_required
@@ -376,3 +345,49 @@ def userposts_byid(id):
 
                            )
 
+
+# forms to register
+@users.route("/register", methods=['GET', 'POST'])
+def register():
+    form = RegistrationForm()
+    
+    if current_user.is_authenticated:
+        return redirect(url_for('users.account'))
+
+    # form.username.choices = Nickname.query.all()
+    if form.validate_on_submit():
+        hashed_password = bcrypt.generate_password_hash(
+            form.password.data).decode('utf-8')
+        user = User(username=form.username.data,
+                    email=form.email.data, password=hashed_password, img_url=0)
+        db.session.add(user)
+        db.session.commit()
+        flash('Your account has been created! You are now able to log in', 'success')
+        return redirect(url_for('users.login'))
+    return render_template('register.html', 
+                               form=form, 
+                           legend='Register',
+                            css=[
+                                ('theme', '/minty/bootstrap', ),
+                                ('main', 'main', ),
+                            ],
+                            info_notes=[
+                                'Show all posts by the user #{}'.format(id),
+                            ],
+                            access=[
+                                'u',
+                                'm',
+                                'a',
+                                'p',
+                            ],
+                            js = [
+                                ('register', 'nicknames', ),
+                                ('register', 'colors', ),
+                                ('register', 'numbers-countup', ),
+                                ('plugins', 'count-up', ),
+                                ('register', 'signup-as', ),
+                                ],
+                            title='SignUp',
+                            
+
+                            )

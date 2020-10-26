@@ -1,9 +1,15 @@
   render_signup();
   
   function render_signup () {
-    val_nn = d3.select( "#input-nickname" )
-      .select( "input" )
-      .attr( "value" );
+    val_nn = d3
+      .select("#input-nickname")
+      .select("input")
+      .classed(
+        "shadow rdonly text-3xl text-secondary text-monts form-control form-control-dark form-control-lg bg-transparent border-0 text-center",
+        true
+      )
+      .attr("value");
+    
     val_color = '' + d3.select( "#input-color" )
       .select( "input" )
       .attr( "value" );
@@ -29,7 +35,7 @@
       .append("p")
       .attr(
         "class",
-        "text-md text-center text-italic text-light mb-0"
+        "text-outlined text-md text-center text-italic text-light mb-0"
         )
       .text((d) => `How about ${d} for temporary username?`)
       ;

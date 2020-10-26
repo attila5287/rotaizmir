@@ -7,19 +7,19 @@
       <!-- <div class="form-row"> -->
         <div class="form-row">
           <div class="col-1">
-            <input class="custrange-vertical cv-right mx-0 px-0 ml-1" type="range" id="slider-nn" orient="vertical"
+            <input class="shadow custrange-vertical cv-right mx-0 px-0 ml-1" type="range" id="slider-nn" orient="vertical"
               min="0" step="1">
           </div>
 
           <div class="col-9" id="nickname-generator">
           </div>
           <div class="col-2 text-left">
-            <a type="button" class="nickname-buttons evt-clk btn btn-outline-light btn-block rnd-xl py-4"
+            <a type="button" class="nickname-buttons shadow evt-clk btn btn-secondary btn-block rnd-xl py-4"
               id="up-btn-nn">
               <i class="fas fa-chevron-up text-3xl" id="up-icon-nn"></i>
             </a>
-            <h4 class="fa fa-caret-left animated infinite heartBeat text-light my-0 opac-70" aria-hidden="true"></h4>
-            <a type="button" class="nickname-buttons evt-clk btn btn-outline-light btn-block rnd-xl py-4 opac-90"
+            <h4 class="fa fa-caret-left animated infinite heartBeat my-0 opac-70" aria-hidden="true"></h4>
+            <a type="button" class="nickname-buttons shadow evt-clk btn btn-secondary btn-block rnd-xl py-4 opac-90"
               id="down-btn-nn">
               <i id="down-icon-nn" class="fas fas fa-chevron-down text-2xl"></i>
             </a>                                    
@@ -33,7 +33,7 @@
       <!-- <div class="form-row"> -->
         <div class="form-row">
           <div class="col-1">
-            <input class="custrange-vertical cv-right mx-0 px-0 ml-1" type="range" id="slider-clr" orient="vertical"
+            <input class="shadow custrange-vertical cv-right mx-0 px-0 ml-1" type="range" id="slider-clr" orient="vertical"
               min="0" step="1">
           </div>
 
@@ -64,12 +64,12 @@
           </div>
           
           <div class="col-2 text-left">
-            <a type="button" class="color-buttons evt-clk btn btn-outline-light btn-block rnd-xl py-4 mt-2"
+            <a type="button" class="color-buttons shadow evt-clk btn btn-secondary btn-block rnd-xl py-4 mt-2"
               id="up-btn-clr">
               <i class="fas fa-chevron-up text-3xl" id="up-icon-clr"></i>
             </a>
-            <h4 class="fa fa-caret-left animated infinite heartBeat text-light my-0 opac-70" aria-hidden="true"></h4>
-            <a type="button" class="color-buttons evt-clk btn btn-outline-light btn-block rnd-xl py-4 opac-90"
+            <h4 class="fa fa-caret-left animated infinite heartBeat my-0 opac-70" aria-hidden="true"></h4>
+            <a type="button" class="color-buttons shadow evt-clk btn btn-secondary btn-block rnd-xl py-4 opac-90"
               id="down-btn-clr">
               <i id="down-icon-clr" class="fas fas fa-chevron-down text-2xl"></i>
             </a>                                    
@@ -87,11 +87,11 @@
 
     <div name="preview-section" class="row py-0 align-items-center" >
       <div class="col" id="input-nickname">
-        <input class="rdonly text-lite form-control bg-transparent border-0" type="text" value="aqua"
+        <input class="shadow rdonly text-3xl text-secondary text-monts form-control form-control-dark form-control-lg bg-transparent border-0 text-center" type="text" value="aqua"
           readonly>
       </div>
       <div class="col" id="input-color">
-        <input class="rdonly text-lite form-control bg-transparent border-0" type="text" value="turqoise"
+        <input class="shadow rdonly text-outlined form-control bg-transparent border-0" type="text" value="turqoise"
           readonly>
       </div>
       <div class="col text-center rdonly" id="append-numeric">
@@ -150,25 +150,16 @@
         <div class="form-group" id="sign_up_as">
       </div>
 
-        {% if form.submit.errors %}
-        {{ form.submit(class="form-control form-control-lg is-invalid") }}
-        <div class="invalid-feedback">
-          {% for error in form.submit.errors %}
-          <span>{{ error }}</span>
-          {% endfor %}
-        </div>
-        {% else %}
-        {{ form.submit(class="form-control btn btn-outline-info btn-block text-xl text-light border-0 bg-theme rnd-2xl pt-1 pb-2") }}
-        {% endif %}
+        {{ form.submit(class="form-control btn btn-primary btn-block text-xl border-0 rnd-2xl pt-1 pb-2") }}
       </div>              
       
     </fieldset>
   </form>
       <div class="row mb-5" name="already_a_member">
-        <div class="col-10 offset-1 text-center align-items-center text-italic text-light">
+        <div class="col-10 offset-1 text-center align-items-center text-italic">
           Already a user or member? Please sign in
-          <a class="btn btn-info rnd-lg px-2 pt-1 pb-2" href="{{ url_for('users.login') }}">
-            <i class="fas fa-sign-in-alt text-light">
+          <a class="btn btn-secondary btn-lg rnd-lg px-2 pt-1 pb-2" href="{{ url_for('users.login') }}">
+            <i class="fas fa-sign-in-alt">
             </i>
             Login
           </a>
