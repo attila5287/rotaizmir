@@ -33,21 +33,18 @@
       </form>
   
       </div>
-      <div class="col-sm-6 offset-sm-1 content-section">
+      <div class="col-sm-6 offset-sm-1">
     {% if form.errors %}
 <div class="container errors rnd-xl border-light">
   {% for field_name, field_errors in form.errors|dictsort if field_errors %}
   {% for error in field_errors %}
-  <div class="px-5 mx-5 alert alert-danger bg-red border-0 alert-dismissible fade show shadow-lg rnd-3xl" role="alert">
-      <strong>
-
-        <p class="text-lg text-primary  my-1">
-        <i class="text-xl fas fa-exclamation fa-fw animated infinite heartBeat mr-2 text-danger"></i>
-        <i class="text-xl fa{{ icons(form[field_name].id) }} fa-fw mr-2"></i>
+  <div class=" py-1 alert alert-warning bg-gradient-danger add-anime border-0 alert-dismissible fade show rnd-xl" role="alert">
+        <p class="text-primary text-italic text-md  my-1">
+          <i class="text-2xl fas fa-exclamation fa-fw animated infinite heartBeat text-theme rnd-sm px-2 py-1"></i>
+          <i class="text-xl text-primary fa {{ icons(form[field_name].id) }} fa-fw"></i>
         {{ form[field_name].label }}: {{ error }}</p>
-      </strong>
     {{msg}}
-    <button type="button" class="close text-2xl text-light" data-dismiss="alert" aria-label="Close">
+    <button type="button" class="close text-2xl text-danger" data-dismiss="alert" aria-label="Close">
       <span aria-hidden="true">&times;</span>
     </button>
   </div>        
