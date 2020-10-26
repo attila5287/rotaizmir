@@ -70,7 +70,10 @@ i {
 
 
 .content-section {
-  padding: 10px 20px;
+  padding-top: 4rem;
+  padding-right: 2rem;
+  padding-bottom: 4rem;
+  padding-left: 2rem;
   border: 1px solid #dddddd;
   border-radius: 3px;
   margin-bottom: 20px;
@@ -642,6 +645,16 @@ thead th:last-child {
   box-shadow: 0px 0px 0px #5dccee  ,  inset 0px 0px 0px #5dccee;
 }
 
+.border-thembo {
+  border-bottom: 2px solid #e62c704f;
+}
+
+.border-neg {
+  border-bottom: 2px solid #0313a34b;
+}
+.border-theme {
+  border: 2px solid #e62c704f;
+}
 .bg-theme {
   border: 0px solid turquoise;
   box-shadow: 0px 0px 4px #5dccee  ,  inset 0px 0px 2px #5dccee;

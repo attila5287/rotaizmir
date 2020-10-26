@@ -20,271 +20,33 @@ from blueprints.members.forms import (
 members = Blueprint('members', __name__)
 
 
-@members.route("/members", methods=[ 'GET', 'POST'])
-def home():
-    pass
-    page = request.args.get('page', 1, type=int)
-    
-    members = Member.query.order_by(
-        Member.id.desc()).paginate(page=page, per_page=24)
-    try:
-        _ = [member for member in members.items]
-    except:
-        members = []
-    form = MemberMenu()
-    all_members = [ m for m in Member.query.all()]
-    form.menu.choices = [
-        ( m.id, '{}, {} | {}'.format(m.last_name.upper(), str(m.first_name+ ' ' + m.middle_name).title(), m.email).strip()) for m in all_members
-    ]
-    if request.method == 'POST':
-        pass
-        rf = request.form
-        return redirect(url_for('members.show', id=rf['menu']))
-    
-    info_notes = [
-        'All members in grid view for other members to browse through. Click/tap on name to see in details or try dropdown menu.',
-        
-    ]
-    access = [
-        'a',
-        'm',
-    ]
-    return render_template('members.html', members=members, 
-                           info_notes = info_notes, form=form)
-
-
 @members.context_processor
 def inject_icons():
     pass
+
     def icons(label):
         pass
-        gallery = { #font awesome icons for member forms
-            "email": "s fa-envelope", 
-            "first_name": "s fa-user-edit", 
-            "gender": "s fa-venus-mars", 
-            "id": "s fa-id-card", 
-            "img_url": "s fa-image", 
-            "instagram": "b fa-instagram", 
-            "is_admin": "s fa-user-md", 
-            "is_prez": "s fa-user-md", 
-            "last_name": "s fa-user-edit", 
-            "linkedin": "b fa-linkedin", 
-            "middle_name": "s fa-user-edit", 
-            "phone_num": "s fa-phone", 
-            "twitter": "b fa-twitter", 
+        gallery = {  # font awesome icons for member forms
+            "email": "s fa-envelope",
+            "first_name": "s fa-user-edit",
+            "gender": "s fa-venus-mars",
+            "id": "s fa-id-card",
+            "img_url": "s fa-image",
+            "instagram": "b fa-instagram",
+            "is_admin": "s fa-user-md",
+            "is_prez": "s fa-user-md",
+            "last_name": "s fa-user-edit",
+            "linkedin": "b fa-linkedin",
+            "middle_name": "s fa-user-edit",
+            "phone_num": "s fa-phone",
+            "twitter": "b fa-twitter",
             "user_id": "s fa-user-tag",
             "menu": "s fa-sort",
-            }
-        
+        }
+
         return gallery.get(label, 's fa-edit')
-    
+
     return dict(icons=icons)
-
-
-@members.route('/member/edit/<int:id>', methods=['GET', 'POST'])
-def edit(id):
-    pass
-    users = [u for u in User.query.all()]
-    q_all = [Member.query.get_or_404(id)]
-    members = [m for m in q_all]
-    member = [m for m in q_all][0]
-    d = [
-        {
-            c.name: getattr(member, c.name)
-            for c in member.__table__.columns
-        }
-        for member in members
-    ]
-    form = MemberEditForm()
-    
-    if form.validate_on_submit():
-        cast_into_dict = {field.name : field.data for field in form}
-        cast_into_dict.pop('csrf_token', None)
-        d = cast_into_dict.copy()
-        for name, value in d.items():
-            pass
-            setattr(member, name, value) 
-        db.session.commit()
-        return redirect(url_for('members.show', id=member.id))
-        # return jsonify(d)
-    
-    
-    elif request.method == 'GET':
-        form = MemberEditForm(**dict(enumerate(d))[0])
-        form.user_id.choices = [
-            (u.id, '{}|{}'.format(u.email, u.username)) for u in users
-        ]        
-        
-    info = [
-        'Edit member details',
-    ]    
-    access = [
-        'a'
-    ]
-    
-    return render_template('member_edit.html',
-                           title="EditMember#{}".format(id),
-                           legend="Edit Member #{}".format(id),
-                           form = form,
-                           member= member,
-                           info= info,
-                           access= access,
-                           )
-
-@members.route('/member/<int:id>', methods=['GET', 'POST'])
-def show(id):
-    pass
-    form = MemberMenu()
-    member = Member.query.get_or_404(id)
-    
-    members = [m for m in Member.query.all()]
-    form.menu.choices = [
-        ( m.id, '{}, {} | {}'.format(m.last_name.upper(), str(m.first_name+ ' ' + m.middle_name).title(), m.email).strip()) for m in members
-    ]
-    
-    
-    if request.method == 'POST':
-        pass
-        rf = request.form
-        return redirect(url_for('members.show', id=rf['menu']))
-
-    elif request.method == 'GET':
-        pass
-    
-    access = [
-        'a',
-        'm',
-    ]
-    instructions = [
-        'Members gallery, choose arrow buttons or dropdown menu. Members could see other members while only admins are authorized to edit member info or assign tasks.'
-    ]
-    # return jsonify({'k' : mode})
-    return render_template('member.html', form=form, m= member,
-                           instructions=instructions,
-                           access = access,
-                           mode='cerulean', 
-                           )
-
-
-@members.route('/members/test', methods=['GET', 'POST'])
-def tester():
-    pass
-    q_all = [Member.query.first_or_404()]
-
-    members = [m for m in q_all]
-    d = [
-        {
-            c.name: getattr(member, c.name)
-            for c in member.__table__.columns
-        }
-        for member in members
-    ]
-
-    return jsonify(dict(enumerate(d))[0])
-
-
-@members.route('/members/form', methods=['GET', 'POST'])
-def add_member():
-    pass
-    form = MemberForm()
-    if request.method == 'POST':
-        rf = request.form
-
-        cast = [
-            {k: v
-             for k, v in rf.items()
-             }
-        ][0]
-
-        cast.pop('csrf_token', None)
-        # return jsonify(cast)
-
-        member = Member(**cast)
-        db.session.add(member)
-        db.session.commit()
-        flash('Member added to database!', 'success')
-        return redirect(url_for('members.home'))
-
-    return render_template(
-        'add_member.html',
-        form=form,
-        legend='Member Form',
-        notes='add member via forms, one at a time!',
-    )
-
-
-@members.route('/members/file', methods=['GET', 'POST'])
-def csv_feed():
-    form = CSVReaderForm()
-    if request.method == 'POST':
-        csvfile = request.files['csv_file']
-        reader = csv.DictReader(codecs.iterdecode(csvfile, 'windows-1252'))
-        members = [
-            Member(**row,
-                   user_id=0,
-                   is_admin='n',
-                   is_prez='n',
-                   instagram='',
-                   twitter='',
-                   linkedin='',
-                   ) for row in reader
-        ]
-        # print(inventory).
-        db.session.add_all(members)
-        db.session.commit()
-        flash('CSV read successfully!', 'success')
-        return redirect(url_for('members.home'))
-        # return render_template('about.html')
-
-    return render_template(
-        'csv_feed.html',
-        title='CSV Feed',
-        form=form,
-    )
-
-
-@members.route("/members/table")
-def table():
-    pass
-    page = request.args.get('page', 1, type=int)
-    
-    members = Member.query.order_by(
-        Member.id.desc()).paginate(page=page, per_page=24)
-
-    columns = [c.name for c in Member.query.first().__table__.columns]
-    icons = [
-        's fa-id-card',
-        's fa-asterisk',
-        's fa-question-circle',
-        's fa-asterisk',
-        's fa-phone',
-        's fa-envelope',
-        's fa-venus-mars',
-        's fa-stamp',
-        's fa-user-md',
-        's fa-user',
-        's fa-image',
-        'b fa-linkedin',
-        'b fa-twitter',
-        'b fa-instagram',
-    ]
-    headers = zip(icons, columns)
-    table = [
-        {
-            c.name:
-            getattr(member, c.name)
-            for c in member.__table__.columns}
-
-        for member in members.items
-    ]
-
-    try:
-        _ = [member for member in members.items]
-    except:
-        members = []
-
-    return render_template('members_table.html', members=members, headers=headers, table=table)
-
 
 @members.route("/members/api")
 def api_all():
@@ -340,3 +102,280 @@ def db_init():
 # /users/<id> GET Shows a single user
 # /users/<id> PUT Updates a single user
 # /users/<id> DELETE Deletes a single user
+
+
+@members.route("/members", methods=['GET', 'POST'])
+def home():
+    pass
+    page = request.args.get('page', 1, type=int)
+
+    members = Member.query.order_by(
+        Member.id.desc()).paginate(page=page, per_page=24)
+    form = MemberMenu()
+    all_members = [m for m in Member.query.all()]
+    form.menu.choices = [
+        (m.id, '{}, {} | {}'.format(m.last_name.upper(), str(m.first_name + ' ' + m.middle_name).title(), m.email).strip()) for m in all_members
+    ]
+    if request.method == 'POST':
+        pass
+        rf = request.form
+        return redirect(url_for('members.show', id=rf['menu']))
+
+    access = [
+        'a',
+        'm',
+    ]
+
+    return render_template('members.html',
+                           members=members,
+                           form=form,
+                           css=[
+                               ('theme', 'cerulean', ),
+                               ('main', 'main', ),
+                           ],
+                           info_notes=[
+                               'All members in grid view for other members to browse through. Click/tap on name to see in details or try dropdown menu.',
+                           ],
+                           access=[
+                               'm',
+                               'a',
+                               'p',
+                           ],
+                           js=None,
+                           legend='Members Grid',
+                           title='Members',
+
+                           )
+
+@members.route('/member/<int:id>', methods=['GET', 'POST'])
+def show(id):
+    pass
+    form = MemberMenu()
+    member = Member.query.get_or_404(id)
+
+    members = [m for m in Member.query.all()]
+    form.menu.choices = [
+        (m.id, '{}, {} | {}'.format(m.last_name.upper(), str(m.first_name + ' ' + m.middle_name).title(), m.email).strip()) for m in members
+    ]
+
+    if request.method == 'POST':
+        pass
+        rf = request.form
+        return redirect(url_for('members.show', id=rf['menu']))
+
+    elif request.method == 'GET':
+        pass
+
+    return render_template('member.html',
+                           form=form,
+                           m=member,
+                           css=[
+                               ('theme', 'cerulean', ),
+                               ('main', 'main', ),
+                           ],
+                           info_notes=[
+                               'Members gallery, choose arrow buttons or dropdown menu. Members could see other members while only admins are authorized to edit member info or assign tasks.'
+                           ],
+                           access=[
+                               'm',
+                               'a',
+                               'p',
+                           ],
+                           js=None,
+                           legend='View Member ID#{}'.format(id),
+                           title='Member#{}'.format(id),
+                           )
+
+@members.route('/member/edit/<int:id>', methods=['GET', 'POST'])
+def edit(id):
+    pass
+    users = [u for u in User.query.all()]
+    q_all = [Member.query.get_or_404(id)]
+    members = [m for m in q_all]
+    member = [m for m in q_all][0]
+    d = [
+        {
+            c.name: getattr(member, c.name)
+            for c in member.__table__.columns
+        }
+        for member in members
+    ]
+    form = MemberEditForm()
+
+    if form.validate_on_submit():
+        cast_into_dict = {field.name: field.data for field in form}
+        cast_into_dict.pop('csrf_token', None)
+        d = cast_into_dict.copy()
+        for name, value in d.items():
+            pass
+            setattr(member, name, value)
+        db.session.commit()
+        return redirect(url_for('members.show', id=member.id))
+        # return jsonify(d)
+
+    elif request.method == 'GET':
+        form = MemberEditForm(**dict(enumerate(d))[0])
+        form.user_id.choices = [
+            (u.id, '{}|{}'.format(u.email, u.username)) for u in users
+        ]
+
+    return render_template('member_edit.html',
+                           form=form,
+                           css=[
+                               ('theme', 'cerulean', ),
+                               ('main', 'main', ),
+                           ],
+                           info_notes=[
+                               'Edit member details',
+                           ],
+                           access=[
+                               'a',
+                               'p',
+                           ],
+                           js=None,
+                           title="EditM#{}".format(id),
+                           legend="Edit Member #{}".format(id),
+                           member=member,                           
+
+                           )
+
+
+@members.route("/members/table")
+def table():
+    pass
+    page = request.args.get('page', 1, type=int)
+
+    members = Member.query.order_by(
+        Member.id.desc()).paginate(page=page, per_page=24)
+
+    columns = [c.name for c in Member.query.first().__table__.columns]
+    icons = [
+        's fa-id-card',
+        's fa-asterisk',
+        's fa-question-circle',
+        's fa-asterisk',
+        's fa-phone',
+        's fa-envelope',
+        's fa-venus-mars',
+        's fa-stamp',
+        's fa-user-md',
+        's fa-user',
+        's fa-image',
+        'b fa-linkedin',
+        'b fa-twitter',
+        'b fa-instagram',
+    ]
+    headers = zip(icons, columns)
+    table = [
+        {
+            c.name:
+            getattr(member, c.name)
+            for c in member.__table__.columns}
+
+        for member in members.items
+    ]
+
+    try:
+        _ = [member for member in members.items]
+    except:
+        members = []
+
+    return render_template('members_table.html', members=members, headers=headers, table=table,
+                           css=[
+                               ('theme', 'cerulean', ),
+                               ('main', 'main', ),
+                           ],
+                           info_notes=[
+                               'Please login with your email address and password. ',
+                           ],
+                           access=[
+                               'a',
+                               'p',
+                           ],
+                           js=None,
+                           legend='Members Table',
+                           title='Table',
+                           )
+
+
+@members.route('/member/add', methods=['GET', 'POST'])
+def add_member():
+    pass
+    form = MemberForm()
+    if request.method == 'POST':
+        rf = request.form
+
+        cast = [
+            {k: v
+             for k, v in rf.items()
+             }
+        ][0]
+
+        cast.pop('csrf_token', None)
+        # return jsonify(cast)
+
+        member = Member(**cast)
+        db.session.add(member)
+        db.session.commit()
+        flash('Member added to database!', 'success')
+        return redirect(url_for('members.home'))
+
+    return render_template('add_member.html',
+                           form=form,
+                           css=[
+                               ('theme', 'cerulean', ),
+                               ('main', 'main', ),
+                           ],
+                           info_notes=[
+                           'Add member via forms, one at a time!'
+                           ],
+                           access=[
+                               'a',
+                               'p',
+                           ],
+                           js=None,
+                           legend='Member Form',
+                           title='Add Member',
+
+                           )
+
+@members.route('/members/file', methods=['GET', 'POST'])
+def csv_feed():
+    form = CSVReaderForm()
+    if request.method == 'POST':
+        csvfile = request.files['csv_file']
+        reader = csv.DictReader(codecs.iterdecode(csvfile, 'windows-1252'))
+        members = [
+            Member(**row,
+                   user_id=0,
+                   is_admin='n',
+                   is_prez='n',
+                   instagram='',
+                   twitter='',
+                   linkedin='',
+                   ) for row in reader
+        ]
+        # print(inventory).
+        db.session.add_all(members)
+        db.session.commit()
+        flash('CSV read successfully!', 'success')
+        return redirect(url_for('members.home'))
+        # return render_template('about.html')
+
+    return render_template('csv_feed.html',
+                           form=form,
+                           css=[
+                               ('theme', 'cerulean', ),
+                               ('main', 'main', ),
+                           ],
+                           info_notes=[
+                               'Add members in bulk by uploading CSV file ',
+                           ],
+                           access=[
+                               'a',
+                               'p',
+                           ],
+                           js=None,
+                           legend='Upload CSV',
+                           title='CSV Feed',
+                           )

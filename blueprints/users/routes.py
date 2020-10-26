@@ -86,21 +86,6 @@ def reg_post():
     return redirect(url_for('users.login'))
 
 
-@users.route("/login", methods=['GET', 'POST'])
-def login():
-    if current_user.is_authenticated:
-        return redirect(url_for('main.home'))
-    form = LoginForm()
-    if form.validate_on_submit():
-        user = User.query.filter_by(email=form.email.data).first()
-        if user and bcrypt.check_password_hash(user.password, form.password.data):
-            login_user(user, remember=form.remember.data)
-            next_page = request.args.get('next')
-            return redirect(next_page) if next_page else redirect(url_for('users.account'))
-        else:
-            flash('Login Unsuccessful. Please check email and password', 'danger')
-    return render_template('login.html', title='Login', form=form)
-
 
 @users.route("/logout")
 def logout():
@@ -115,7 +100,6 @@ def set_profile_pic(user_id, img_index):
     current_user.img_url = img_index
     db.session.commit()
     return redirect(url_for('users.account'))
-
 
 @users.route("/user/<string:username>")
 def user_posts(username):
@@ -301,13 +285,14 @@ def account():
         pass
         form.username.data = current_user.username
         form.email.data = current_user.email
-
+    
+    first_random = random.randint(0,69)
     return render_template('account.html',
+                           first_random = first_random,
                            form=form,
                            css=[
                                ('theme', 'cerulean', ),
                                ('main', 'main', ),
-                               ('components', 'vertical-slider', ),
                            ],
                            info_notes=[
                                'Above is the current (temporary) picture, hit the button bottom below to change',
@@ -326,3 +311,68 @@ def account():
                            title='{}'.format(current_user.username),
 
                            )
+
+@users.route("/login", methods=['GET', 'POST'])
+def login():
+    if current_user.is_authenticated:
+        return redirect(url_for('main.home'))
+    form = LoginForm()
+    if form.validate_on_submit():
+        user = User.query.filter_by(email=form.email.data).first()
+        if user and bcrypt.check_password_hash(user.password, form.password.data):
+            login_user(user, remember=form.remember.data)
+            next_page = request.args.get('next')
+            return redirect(next_page) if next_page else redirect(url_for('users.account'))
+        else:
+            flash('Login Unsuccessful. Please check email and password', 'danger')
+    return render_template('login.html',
+                           form=form,
+                           css=[
+                               ('theme', 'cerulean', ),
+                               ('main', 'main', ),
+                           ],
+                           info_notes=[
+                               'Please login with your email address and password. ',
+                           ],
+                           access=[
+                               'u',
+                               'm',
+                               'a',
+                               'p',
+                           ],
+                           js=None,
+                           legend='Login Form',
+                           title='Login',
+
+                           )
+
+@users.route("/user/<int:id>")
+def userposts_byid(id):
+    page = request.args.get('page', 1, type=int)
+    user = User.query.get_or_404(id)
+    posts = Post.query.filter_by(author=user)\
+        .order_by(Post.date_posted.desc())\
+        .paginate(page=page, per_page=5)
+    return render_template('user_posts.html', 
+                           posts=posts, 
+                           user=user, 
+                           css=[
+                               ('theme', 'cerulean', ),
+                               ('main', 'main', ),
+                           ],
+                           info_notes=[
+                               'Show all posts by the user #{}'.format(id),
+                           ],
+                           access=[
+                               'u',
+                               'm',
+                               'a',
+                               'p',
+                           ],
+                           js=None,
+                           legend='Posts by {} ({})'.format(user.username, posts.total),
+                           title='User#{} Posts'.format(id),
+                           
+
+                           )
+

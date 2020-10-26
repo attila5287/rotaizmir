@@ -36,6 +36,7 @@ class MemberForm(FlaskForm):
     linkedin = StringField('linkedin', default='')
     instagram = StringField('instagram', default='')
     twitter = StringField('twitter', default='')
+    submit = SubmitField('Add New Member!', )
     # picture = FileField('Update Profile Picture', validators=[FileAllowed(['jpg', 'png'])])
 
 class MemberEditForm(FlaskForm):
@@ -58,7 +59,7 @@ class MemberEditForm(FlaskForm):
     linkedin = StringField('linkedin', )
     instagram = StringField('instagram', )
     twitter = StringField('twitter', )
-    # submit = SubmitField('submit', )
+    submit = SubmitField('submit', )
     # picture = FileField('Update Profile Picture', validators=[FileAllowed(['jpg', 'png'])])
 
 class MemberMenu(FlaskForm):
