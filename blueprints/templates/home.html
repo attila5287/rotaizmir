@@ -1,45 +1,5 @@
 {% extends "layout.html" %}
 {% block content %}
-    {% if posts.items ==[] %}
-    <br>
-  <p class="text-light text-center text-xl">
-    <i class="fa fa-arrow-down text-2xl" aria-hidden="true"></i>
-        These are demo posts only to show up when demonstration required:
-  </p>
-
-    <br>
-    
-    <div class="content-section" >
-      {% set demo_posts = [
-        ( 'welcome!', 'attila', 'attila'),
-        ] -%}
-
-{% for title, content, image in demo_posts %}
-  <article class="media text-light rnd-2xl">
-    <img class="rounded-circle article-img" src="https://raw.githubusercontent.com/attila5287/rota-img/main/profile_pics/{{image}}.png">
-    <div class="media-body text-light">
-      <div class="article-metadata text-light mb-0">
-        <a class="bg-light rnd-xl text-bold mr-2 px-2 py-1" href="">
-          hello-world
-        </a>
-        <small class="text-italic text-light">
-          10/05/2020
-        </small>
-      </div>
-      <hr class="border-light my-0 mx-5">
-      <h2><a class="article-title text-light" href="{{ id }}">
-        {{ title}}
-      </a></h2>
-      <p class="article-content text-light">
-        {{ content }}
-      </p>
-    </div>
-  </article>
-{% endfor %}
-
-    </div>
-    
-    {% else %}
     {% for post in posts.items %}
 
         <article class="media content-section text-light border-light rnd-2xl">
@@ -69,7 +29,6 @@
       {% endif %}
     {% endfor %}
 
-    {% endif %}
 
 
 {% endblock content %}

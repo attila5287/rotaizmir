@@ -1,6 +1,5 @@
  <!DOCTYPE html>
  <html>
-
    <head>
      <!-- Required meta tags -->
      <meta charset="utf-8">
@@ -8,14 +7,15 @@
        content="width=device-width, initial-scale=1, shrink-to-fit=no">
      <link rel="icon" type="image/x-icon" class="favicon"
        href="https://raw.githubusercontent.com/attila5287/rota-img/main/icons/favicon.ico" />
+       {% if css %}
+        {% for folder,file in css %}
+  
+         <link rel="stylesheet" type="text/css"
+           href="{{ url_for('static', filename='/styles/{}/{}.css'.format(folder, file)) }}" />
+        
 
-     <!-- Bootstrap CSS -->
-     <link rel="stylesheet" type="text/css"
-       href="/static/styles/theme/cerulean.css" />
-
-
-     <link rel="stylesheet" type="text/css" href="/static/styles/main.css">
-     <link rel="stylesheet" type="text/css" href="/static/styles/components/vertical-slider.css">
+        {% endfor %}
+       {% endif %}
      <link rel="stylesheet"
        href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
      <link rel="stylesheet" type="text/css"
@@ -26,37 +26,28 @@
      <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/4.7.3/d3.js">
      </script>
 
-     
      <script
-       src="https://cdnjs.cloudflare.com/ajax/libs/d3-tip/0.7.1/d3-tip.min.js">
+       src="https://cdnjs.cloudflare.com/ajax/libs/d3-tip/0.7.1/d3-tip.js">
      </script>
 
-     <!-- FONTS -->
-     <link href='https://fonts.googleapis.com/css?family=Orbitron'
-       rel='stylesheet' type='text/css'>
-     <link href='https://fonts.googleapis.com/css?family=Baloo+2'
-       rel='stylesheet' type='text/css'>
-     <link href='https://fonts.googleapis.com/css?family=Roboto'
-       rel='stylesheet' type='text/css'>
-     <link href='https://fonts.googleapis.com/css?family=Roboto+Condensed'
-       rel='stylesheet' type='text/css'>
-     <link href='https://fonts.googleapis.com/css?family=Comfortaa'
-       rel='stylesheet' type='text/css'>
-     <link
-       href="https://fonts.googleapis.com/css2?family=Nova+Mono&display=swap"
-       rel="stylesheet">
-     <link
-       href="https://fonts.googleapis.com/css2?family=Major+Mono+Display&display=swap"
-       rel="stylesheet">
-     <link
-       href="https://fonts.googleapis.com/css2?family=Montserrat+Alternates:wght@500&display=swap"
-       rel="stylesheet">
-     <link
-       href="https://fonts.googleapis.com/css2?family=Lilita+One&display=swap"
-       rel="stylesheet">
-     <link
-       href="https://fonts.googleapis.com/css2?family=Montserrat:wght@800&display=swap"
-       rel="stylesheet">
+     {% set google_fonts = [
+      'Orbitron',
+      'Baloo+2',
+      'Roboto',
+      'Roboto+Condensed',
+      'Comfortaa',
+      'Nova+Mono&display=swap',
+      'Major+Mono+Display&display=swap',
+      'Lilita+One&display=swap',
+      'Montserrat+Alternates:wght@500&display=swap',
+      'Montserrat:wght@800&display=swap',
+      ] %}
+     
+      {% for font_url in google_fonts %}
+      <link
+        href="https://fonts.googleapis.com/css2?family={{font_url}}"
+        rel="stylesheet">
+      {% endfor %} 
      <!-- title -->
      {% if title %}
      <title>
@@ -64,7 +55,7 @@
      </title>
 
      {% else %}
-     <title>Göztepe Rotaract Kulübü | 2020-21</title>
+     <title>Göztepe Rotaract</title>
 
      {% endif %}
    </head>
@@ -132,20 +123,20 @@
 
              <li class="nav-item dropdown" name="members-dd">
                <a class="nav-link dropdown-toggle text-light add-anime shd-theme text-md"
-                 href="#" id="dropdown01" data-toggle="dropdown"
+                 href="#" id="dropdown02" data-toggle="dropdown"
                  aria-haspopup="true" aria-expanded="false"
-                 title="public announcements, events, meet-ups...">
+                 title="for members, internal events, schedule...">
                  <i class="text-lg fas fa-users" aria-hidden="true"></i>
                  Members</a>
 
-               <div class="dropdown-menu" aria-labelledby="dropdown01">
+               <div class="dropdown-menu" aria-labelledby="dropdown02">
                  {% set dd_members =  [ 
               ('/members', 'Home'),
               ('/members/file', 'File Upload'),
               ('/members/table', 'Table'),
               ('/members/form', 'New Member'),
               ('/member/1', 'Show Member'),
-      ] %}
+              ] %}
                  {% for  href, caption in dd_members %}
 
                  <a class="dropdown-item" href="{{href}}">
@@ -154,7 +145,89 @@
                </div>
              </li>
 
-             {% else %}
+             <li class="nav-item dropdown" name="members-dd">
+               <a class="nav-link dropdown-toggle text-light add-anime shd-theme text-md"
+                 href="#" id="dropdown03" data-toggle="dropdown"
+                 aria-haspopup="true" aria-expanded="false"
+                 title="admins only, edit member details, approve user requests">
+                 <i class="text-lg fas fa-user-md" aria-hidden="true"></i>
+                 Admins
+                </a>
+
+               <div class="dropdown-menu" aria-labelledby="dropdown03">
+                 {% set dd_members =  [ 
+                    ('/admin/dash', 'Dashboard'),
+                    ('/members/file', 'File Upload'),
+                    ('/members/table', 'Table'),
+                    ('/members/form', 'New Member'),
+                    ('/member/1', 'Show Member'),
+                 ] %}
+                 {% for  href, caption in dd_members %}
+
+                 <a class="dropdown-item" href="{{href}}">
+                   {{ caption }}</a>
+                 {% endfor %}
+               </div>
+             </li>
+
+             
+             <li class="nav-item dropdown ml-0" data-toggle="tooltip"
+                 title="access level summary">
+               
+               <a class="nav-link dropdown-toggle text-light"
+                 href="#" id="dropdown04" data-toggle="dropdown"
+                 aria-haspopup="true" aria-expanded="false"
+                 >
+                 <i class="text-sm fas fa-lock animated bounceInRight p-0" aria-hidden="true"></i>
+                </a>
+                
+                <div class="dropdown-menu" aria-labelledby="dropdown04">
+                 <a class="dropdown-item"
+                 data-toggle="tooltip"
+                 title="logged in as user"
+                 >
+                 {{current_user.username}}
+                 </a>
+                 <a class="dropdown-item py-0 text-italic text-xs"
+                 data-toggle="tooltip"
+                 title="logged in as user"
+                 >
+                 {{current_user.email}}
+                 </a>
+                 <a class="dropdown-item dropdown-divider disabled"
+                 ></a>
+
+                  {% set current_access =  [
+                   ('is_admin', 'admin', 'logged in as admin', ),
+                   ('is_member', 'member', 'logged in as member', ),
+                   ('is_prez', 'president', 'logged in as president', ),
+                   ] %}
+                {% for attr,display,tooltip in current_access %}
+                {% if current_user[attr] == 'y' %}
+                 <a class="dropdown-item"
+                 title="{{tooltip}}"
+                 data-toggle="tooltip"
+                 >
+                  {{display}} 
+                  </a>
+                   {% endif %}
+                 {% endfor %}
+                 </div>
+                </li>              
+                <li class="nav-item">
+                  <img src="https://raw.githubusercontent.com/attila5287/rota-img/main/avatars/{{current_user.img_url}}.png" alt="usr-img" style="max-height:30px;"
+                  class="img rounded-circle"
+                  >
+                </li>              
+
+              
+              {% else %}
+                <li class="nav-item">
+                  <a class="nav-link disabled led-sm mx-1 text-white-50"
+                    href="/#">
+                    Guest
+                  </a>
+                </li>
              {% set navigation_bar = [
               ('/register', 'register', 'Register', 'user-plus'),
               ('/login', 'login', 'Login', 'sign-in-alt'),
@@ -197,11 +270,9 @@
      </summary>
      {% endif %}
 
-     <main name="child-content" class="row no-gutters">
-       <div class="col-md-10 offset-1">
-         {% block content %} {% endblock%}
-       </div>
-
+     <main name="content-goes-here">
+         {% block content %} 
+         {% endblock%}
      </main>
 
      <footer class="container footer mt-2">
@@ -255,13 +326,13 @@
      {% endif %}
 
      {% if access %}
-     <div class="d-flex flex-row justify-content-center">
-       {% for a in access %}
-         <i class="fas fa-key text-sm text-balo mx-2">
-           {{a}}
-         </i>
-       {% endfor %}
-     </div>
+       <div name="access" class="d-flex flex-row justify-content-center">
+         {% for a in access %}
+           <i class="fas fa-key text-sm text-balo mx-2">
+             {{a}}
+           </i>
+         {% endfor %}
+       </div>
      
      {% endif %}
 

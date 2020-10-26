@@ -1,108 +1,107 @@
-
 {% extends "layout.html" %}
 {% block content %}
 <div class="card bg-transparent p-0 pb-3 m-0">
   <div class="card-body">
-    <div class="row">
+  <div class="row">
       <div class="col-sm-3 offset-sm-1 text-center content-section">
-        <img class="card-img bg-transparent border-0"
+    <img class="card-img bg-transparent border-0"
           src="https://raw.githubusercontent.com/attila5287/rota-img/main/avatars/{{ current_user.img_url }}.png"
           style="max-width: 10rem;">
   
-          <p class="text-robo text-right text-center mb-0 text-italic text-light text-xs py-0">
-            <i class="fa fa-arrow-up text-2xl fa-pull-left text-secondary mb-2 animated infinite bounceIn delay-1s"
-            aria-hidden="true"></i>
-  
-            Above is the current (temporary) picture, hit the button bottom below to change
-  
-          </p>                  
-          <div id="img_url_index" class="bg-black text-center text-digi text-2xl text-primary">
-            <i class="fas fa-hashtag text-primary ml-2  mt-2 fa-pull-left" aria-hidden="true"></i>
-            <span class="index">0
-            </span>
+          <div id="img_url_index" class="bg-black text-center text-digi text-2xl text-primary my-2">
+      <i class="fas fa-hashtag text-primary ml-2  mt-2 fa-pull-left" aria-hidden="true"></i>
+      <span class="index">0
+      </span>
           </div>
           <p class="text-robo text-center mb-0 text-italic text-light text-xs py-0">
-            <i class="fa fa-arrow-down text-2xl fa-pull-left text-secondary mt-2 animated infinite bounceIn delay-1s"
-            aria-hidden="true"></i>
-  
-            Click (Tap) below picture for more!
+      <i class="fas fa-caret-down text-2xl text-secondary mt-2 animated infinite bounceIn delay-1s"
+      aria-hidden="true"></i>
           </p>
-        <div id="img_on_air">
+    <div id="img_on_air">
           <img class="card-img bg-transparent border-0"
-            src="https://raw.githubusercontent.com/attila5287/rota-img/main/avatars/{{ form.img_url.data }}.png"
-            style="max-width: 12rem;">
-        </div>
+      src="https://raw.githubusercontent.com/attila5287/rota-img/main/avatars/{{ current_user.img_url }}.png"
+      style="max-width: 12rem;">
+    </div>
         
-        <form method="get" action="">
-        <a type="button" id="set-as-profile-pic"
-        data="set/profile/picture/{{current_user.id}}/"
+    <form method="get" action="">
+    <a type="button" id="set-as-profile-pic"
+    data="set/profile/picture/{{current_user.id}}/"
           data-title="set/profile/picture/{{current_user.id}}/"
           class="set_profile_pic btn btn-dark btn-outline-light btn-block bg-theme text-light text-sm text-bold my-2">
           Set as profile pic!
-        </a>
+    </a>
       </form>
   
       </div>
       <div class="col-sm-6 offset-sm-1 content-section">
-        <h2 class="account-heading"></h2>
+    {% if form.errors %}
+<div class="container errors rnd-xl border-light">
+  {% for field_name, field_errors in form.errors|dictsort if field_errors %}
+  {% for error in field_errors %}
+  <div class="px-5 mx-5 alert alert-danger bg-red border-0 alert-dismissible fade show shadow-lg rnd-3xl" role="alert">
+      <strong>
+
+        <p class="text-lg text-primary  my-1">
+        <i class="text-xl fas fa-exclamation fa-fw animated infinite heartBeat mr-2 text-danger"></i>
+        <i class="text-xl fa{{ icons(form[field_name].id) }} fa-fw mr-2"></i>
+        {{ form[field_name].label }}: {{ error }}</p>
+      </strong>
+    {{msg}}
+    <button type="button" class="close text-2xl text-light" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>        
+  {% endfor %}
+  {% endfor %}
+</div>
+{% endif %}
+<div class="row">
+  <div class="col" name="form-part">
+    <div class="content-section pl-4 pt-3 pr-0">
+      <fieldset class="form-group">
         <form method="POST" action="">
           {{ form.hidden_tag() }}
-          <fieldset class="form-group">
-            <legend class="legend text-light text-center text-comfo border-bottom">
+
+            <p class="text-monts text-md text-center my-0">
+              {{form.username.label}}
+            </p>
   
-              <h4 class="text-italic text-light  text-lite px-1 pb-2 rnd-xl">
-                {{ current_user.username }}</h4>
-              <p class="mb-0 text-md text-italic text-robo">
-                {{ current_user.email }}
-  
-              </p>  
-        
-                </legend>
-            <div class="form-group">
-              <span
-                class="form-control-label text-comfo text-md text-light px-4 py-2">
-                <i class="far fa-user text-lite"></i>
-                {{ form.username.label(class="text-lite text-lowercase ml-2") }}
-              </span>
-              {% if form.username.errors %}
-              {{ form.username(class="form-control-dark form-control form-control-dark form-control-lg is-invalid") }}
-              <div class="invalid-feedback">
-                {% for error in form.username.errors %}
-                <span>{{ error }}</span>
-                {% endfor %}
+            <div class="form-group align-items-center mb-4">
+              <div class="input-group mx-2 mb-0 text-comfo">
+                <div class="input-group-prepend add-anime">
+                  <span class="input-group-text bg-theme  text-light text-bold" id="inputGroupPrepend">
+                    <i class="fa{{icons(form.username.id)}} fa-fw ml-2 mt-0"></i>
+                  </span>
+                </div>
+                {{form.username(class="form-control form-control-dark form-control-lg shd-theme mr-2" )}}
               </div>
-              {% else %}
-              {{ form.username(class="form-control-dark form-control form-control-dark form-control-lg") }}
-              {% endif %}
-  
-            </div>
-            <div class="form-group">
-              <span
-                class="form-control-label text-comfo text-md text-light px-4 py-2">
-              <i class="far fa-envelope text-lite"></i>
-                {{ form.username.label(class="text-lite text-lowercase ml-2") }}
-              </span>
-              {% if form.email.errors %}
-              {{ form.email(class="form-control-dark form-control form-control-dark form-control-lg is-invalid") }}
-              <div class="invalid-feedback">
-                {% for error in form.email.errors %}
-                <span>{{ error }}</span>
-                {% endfor %}
+              
+              <p class="text-monts text-md text-center my-0">
+                {{form.email.label}}
+              </p>
+    
+              <div class="form-group align-items-center mb-4">
+              <div class="input-group mx-2 mb-0 text-comfo">
+                <div class="input-group-prepend add-anime">
+                  <span class="input-group-text bg-theme  text-light text-bold" id="inputGroupPrepend">
+                    <i class="fa{{icons(form.email.id)}} fa-fw ml-2 mt-0"></i>
+                  </span>
+                </div>
+                {{form.email(class="form-control form-control-dark form-control-lg shd-theme mr-2" )}}
               </div>
-              {% else %}
-  
-              {{ form.email(class="form-control-dark form-control form-control-dark form-control-lg") }}
-  
-              {% endif %}
+              
+              <div class="form-group align-items-center mb-4">
+                {{form.submit(class="btn btn-outline-light btn-block text-lg bg-theme shd-theme mt-3 mr-2 pt-2 pb-3" )}}
             </div>
-          </fieldset>
-          <div class="form-group">
-            {{ form.submit(class="btn btn-dark btn-outline-light btn-block bg-theme text-light") }}
-          </div>
-          
         </form>
-      </div>
+      </fieldset>
+      </form>
     </div>
+  </div>
+</div>
+
+      </div>
+  </div>
   </div>
 </div>
 {% endblock %}

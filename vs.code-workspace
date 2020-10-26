@@ -2,18 +2,6 @@
 	"folders": [
 		{
 			"path": "."
-		},
-		{
-			"path": "..\\references\\_best_of\\d3-auto-table"
-		},
-		{
-			"path": "..\\references\\html\\bootstrap-examples"
-		},
-		{
-			"path": "..\\displaytracker"
-		},
-		{
-			"path": "..\\hn_app-master"
 		}
 	],
 	"settings": {

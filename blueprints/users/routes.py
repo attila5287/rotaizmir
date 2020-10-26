@@ -6,49 +6,85 @@ from flask import render_template, url_for, flash, redirect, request, Blueprint,
 from flask_login import login_user, current_user, logout_user, login_required
 from blueprints import db, bcrypt
 from blueprints.models import User, Post, Nickname, Member, Color
-from blueprints.users.forms import ( RegistrationForm, LoginForm, UpdateAccountForm, RequestResetForm, ResetPasswordForm )
+from blueprints.users.forms import (
+    RegistrationForm, LoginForm, UpdateAccountForm, RequestResetForm, ResetPasswordForm)
 from blueprints.users.utils import save_picture, send_reset_email
 from blueprints.posts.forms import PostDemo
 
 users = Blueprint('users', __name__)
 
-@users.route("/reg/post/public/<string:gen_username>", methods=[ 'GET','POST'])
-def reg_post_public( gen_username ):
-    pass #function to run when new user registered btn hit
+
+@users.context_processor
+def inject_icons():
+    pass
+
+    def icons(label):
+        pass
+        gallery = {  # font awesome icons for member forms
+            "email": "s fa-envelope",
+            "first_name": "s fa-user-edit",
+            "gender": "s fa-venus-mars",
+            "id": "s fa-id-card",
+            "img_url": "s fa-image",
+            "instagram": "b fa-instagram",
+            "is_admin": "s fa-user-md",
+            "is_prez": "s fa-user-md",
+            "last_name": "s fa-user-edit",
+            "linkedin": "b fa-linkedin",
+            "middle_name": "s fa-user-edit",
+            "phone_num": "s fa-phone",
+            "twitter": "b fa-twitter",
+            "user_id": "s fa-user-tag",
+            "menu": "s fa-sort",
+        }
+
+        return gallery.get(label, 's fa-edit')
+
+    return dict(icons=icons)
+
+
+@users.route("/reg/post/public/<string:gen_username>", methods=['GET', 'POST'])
+def reg_post_public(gen_username):
+    pass  # function to run when new user registered btn hit
     user = User.query.filter_by(username=gen_username).first()
     if user:
-        raise ValidationError('That username is taken. Please choose a different one.')
-    hashed_password = bcrypt.generate_password_hash(request.form["password"]).decode('utf-8')
+        raise ValidationError(
+            'That username is taken. Please choose a different one.')
+    hashed_password = bcrypt.generate_password_hash(
+        request.form["password"]).decode('utf-8')
     user = User(
-        username = gen_username, 
-        email = request.form["email"], 
-        password = hashed_password,
-        img_url = 0,
-        is_member = 'n',
-        is_admin = 'n',
-        )
-    
+        username=gen_username,
+        email=request.form["email"],
+        password=hashed_password,
+        img_url=0,
+        is_member='n',
+        is_admin='n',
+    )
+
     db.session.add(user)
     db.session.commit()
     flash('Your account has been created! You are now able to log in', 'success')
     return redirect(url_for('users.login'))
 
-@users.route("/reg_post", methods=[ 'POST'])
+
+@users.route("/reg_post", methods=['POST'])
 def reg_post():
-    pass #function to run when new user registered btn hit
-    hashed_password = bcrypt.generate_password_hash(request.form["password"]).decode('utf-8')
+    pass  # function to run when new user registered btn hit
+    hashed_password = bcrypt.generate_password_hash(
+        request.form["password"]).decode('utf-8')
     user = User(
-        username = request.form["username"], 
-        email = request.form["email"], 
-        password = hashed_password,
-        img_url = 0,
-        is_member = 'n',
-        is_admin = 'n',
-        )
+        username=request.form["username"],
+        email=request.form["email"],
+        password=hashed_password,
+        img_url=0,
+        is_member='n',
+        is_admin='n',
+    )
     db.session.add(user)
     db.session.commit()
     flash('Your account has been created! You are now able to log in', 'success')
     return redirect(url_for('users.login'))
+
 
 @users.route("/login", methods=['GET', 'POST'])
 def login():
@@ -71,14 +107,16 @@ def logout():
     logout_user()
     return redirect(url_for('main.home'))
 
+
 @users.route("/set/profile/picture/<int:user_id>/<int:img_index>", methods=['GET', 'POST'])
 @login_required
 def set_profile_pic(user_id, img_index):
-  pass
-  current_user.img_url = img_index
-  db.session.commit()
-  return redirect( url_for('users.account' ))
-  
+    pass
+    current_user.img_url = img_index
+    db.session.commit()
+    return redirect(url_for('users.account'))
+
+
 @users.route("/user/<string:username>")
 def user_posts(username):
     page = request.args.get('page', 1, type=int)
@@ -110,16 +148,18 @@ def reset_token(token):
     if user is None:
         flash('That is an invalid or expired token', 'warning')
         return redirect(url_for('users.reset_request'))
-    
+
     form = ResetPasswordForm()
-    
+
     if form.validate_on_submit():
-        hashed_password = bcrypt.generate_password_hash(form.password.data).decode('utf-8')
+        hashed_password = bcrypt.generate_password_hash(
+            form.password.data).decode('utf-8')
         user.password = hashed_password
         db.session.commit()
         flash('Your password has been updated! You are now able to log in', 'success')
         return redirect(url_for('users.login'))
     return render_template('reset_token.html', title='Reset Password', form=form)
+
 
 @users.route("/db/init/nicknames")
 def db_init_nicknames():
@@ -155,7 +195,7 @@ def db_init_nicknames():
 def nicknames_api():
     pass
     q_db = Nickname.query.all()
-    q_all = [ #query all
+    q_all = [  # query all
         n for n in q_db
     ]
     d = [q.nickname for q in q_all]
@@ -197,16 +237,14 @@ def db_init_colors():
 def colors_api():
     pass
     q_db = Color.query.all()
-    q_all = [ #query all
+    q_all = [  # query all
         c for c in q_db
     ]
     random.shuffle(q_all)
-    
-    indexed =  [{c.name: getattr(q, c.name)
-          for c in q.__table__.columns} for q in q_all]
+
+    indexed = [{c.name: getattr(q, c.name)
+                for c in q.__table__.columns} for q in q_all]
     return jsonify(dict(enumerate(indexed)))
-
-
 
 
 # forms to register
@@ -215,21 +253,22 @@ def register():
     form = RegistrationForm()
     legend = 'Register'
     js = [
-        ( 'register', 'nicknames', ),
-        ( 'register', 'colors', ),
-        ( 'register', 'numbers-countup', ),
-        ( 'plugins', 'count-up', ),
-        ( 'register', 'signup-as', ),
+        ('register', 'nicknames', ),
+        ('register', 'colors', ),
+        ('register', 'numbers-countup', ),
+        ('plugins', 'count-up', ),
+        ('register', 'signup-as', ),
     ]
 
     if current_user.is_authenticated:
         return redirect(url_for('users.account'))
-    
-    
+
     # form.username.choices = Nickname.query.all()
     if form.validate_on_submit():
-        hashed_password = bcrypt.generate_password_hash(form.password.data).decode('utf-8')
-        user = User(username=form.username.data, email=form.email.data, password=hashed_password ,img_url = 0)
+        hashed_password = bcrypt.generate_password_hash(
+            form.password.data).decode('utf-8')
+        user = User(username=form.username.data,
+                    email=form.email.data, password=hashed_password, img_url=0)
         db.session.add(user)
         db.session.commit()
         flash('Your account has been created! You are now able to log in', 'success')
@@ -239,38 +278,51 @@ def register():
                            legend=legend,
                            )
 
-  
+
 @users.route("/account", methods=['GET', 'POST'])
 @login_required
 def account():
-  pass
-  access=[
-        'admins',
-        'members',
-        'users',
-    ]
-  form = UpdateAccountForm()
-  js = [
-      ( 'users', 'account', ),
-  ]
-  
-  if request.method == 'POST':
     pass
-    current_user.username = form.username.data
-    current_user.email = form.email.data
-    db.session.commit()
-    flash('Username and/or Email updated!', 'success')
+    form = UpdateAccountForm()
+    formdata_posted = (request.method == 'POST')
+    if formdata_posted and form.validate_on_submit():
+        pass
+        if form.errors:
+            pass
+            current_user.username = form.username.data
+            current_user.email = form.email.data
+            db.session.commit()
+            flash('Username and/or Email updated!', 'success')
+            return redirect(url_for('users.account'))
+            
     
 
-    return redirect(url_for('users.account'))
-  
-  elif request.method == 'GET':
-    pass
-    form.username.data = current_user.username
-    form.email.data = current_user.email
-  
-  return render_template('account.html', title='Account',
-      form=form,
-      js = js,
-      access=access,
-      )
+    elif request.method == 'GET':
+        pass
+        form.username.data = current_user.username
+        form.email.data = current_user.email
+
+    return render_template('account.html',
+                           form=form,
+                           css=[
+                               ('theme', 'cerulean', ),
+                               ('main', 'main', ),
+                               ('components', 'vertical-slider', ),
+                           ],
+                           info_notes=[
+                               'Above is the current (temporary) picture, hit the button bottom below to change',
+                               'Click (or Tap) below picture for next suggestion or hit the button to use image!',
+                           ],
+                           access=[
+                               'u',
+                               'm',
+                               'a',
+                               'p',
+                           ],
+                           js=[
+                               ('users', 'account', ),
+                           ],
+                           legend='{}'.format(current_user.username),
+                           title='{}'.format(current_user.username),
+
+                           )
