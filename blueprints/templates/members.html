@@ -36,7 +36,7 @@
           {% endfor %}
           <div class="form-group">
 
-            <input class="btn btn-outline-light btn-block bg-primary rnd-3xl text-monts mt-2 pt-2 pb-3 text-light text-lg"
+            <input class="btn btn-outline-light btn-block bg-primary rnd-3xl text-monts mt-2 pt-3 pb-4 text-light text-lg shadow border-0"
               type="submit" value="show selected">
           </div>
         </form>
@@ -48,12 +48,12 @@
   {% for page_num in members.iter_pages(left_edge=1, right_edge=1, left_current=5, right_current=5) %}
   {% if page_num %}
   {% if members.page == page_num %}
-  <a class="btn btn-outline-light bg-transparent disabled border-0 mb-4 text-xl"
+  <a class="btn btn-outline-secondary bg-transparent disabled border-med mb-4 text-xl mx-3"
     href="{{ url_for('members.home', page=page_num) }}">
     {{ page_num }}
   </a>
   {% else %}
-  <a class="btn btn-outline-light bg-secondary mb-4 text-xl"
+  <a class="btn btn-outline-light bg-secondary mb-4 text-xl mr-2 shadow"
     href="{{ url_for('members.home', page=page_num) }}">{{ page_num }}</a>
   {% endif %}
   {% else %}
@@ -140,7 +140,7 @@
 
 {% else %}
 
-<div name="demo-members-wrapper" class="container-fluid">
+<div class="container" name="members">
   <p class="text-light text-center text-lg">
   <i class="fa fa-arrow-down text-2xl animated infinite heartBeat" aria-hidden="true"></i> These are demo items, only be
   seen if there are no members in database...

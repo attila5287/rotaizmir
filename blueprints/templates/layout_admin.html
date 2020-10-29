@@ -1,4 +1,3 @@
-{% set demo_mode='on' %}
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -57,10 +56,6 @@
     <!-- Custom styles for this template -->
   </head>
   <body>
-    <style>
-    .sidebar {
-  padding: 1.5rem 0rem 0rem 0rem;}
-    </style>
     <header>
       <nav
         class="navbar navbar-dark sticky-top bg-primary flex-md-nowrap p-0 shadow">
@@ -81,38 +76,8 @@
           aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
-{% if select_member %}
-{% if select_user %}
-        {% set nav_forms = [
-          (select_member, 'member/edit/1') ,
-          (select_user, 'member/1') ,
-          
-          ] %}
-        <div
-          class="input-group input-group-sm row no-gutters align-items-center">
-          {% for form, href in nav_forms %}
-          <div class="col">
-            <div class="input-group">
-              <div class="input-group-prepend py-0">
-                <span
-                  class="input-group-text text-light text-sm btn bg-primary border-0 py-0">
-                  {{form.menu.label}}
-                </span>
-              </div>
-              {{form.menu(class="form-control form-control-dark custom-select custom-select-sm text-left text-sm pl-0  py-0")}}
-              <div class="input-group-append py-0 ">
-                <a class="btn btn-sm btn-secondary border-0 rnd-md"
-                  href="action">
-                  <i class="fas fa-search px-2 py-0 text-sm"></i>
-                </a>
-              </div>
-            </div>
-          </div>
-          {% endfor %}
-        </div>
 
-{% endif %}
-{% endif %}
+
 
       </nav>
     </header>
@@ -138,18 +103,13 @@
                     <span class="text-sm text-monts text-light">
                       {{current_user.username}}
                     </span>
-                    
-                    
-                    
+
+
+
                     {% else %}
-                    <img
-                    src="https://raw.githubusercontent.com/attila5287/rota-img/main/profile_pics/attila.png"
-                    alt="usr-img" style="max-height:3rem;"
-                    class="img rounded-circle">
-                    <span class="text-sm text-monts text-light">
-                      demo_mode: {{demo_mode}}
-                    </span>
-                    
+                    <i class="fas fa-user-md"></i>
+                    Demo
+
                     {% endif %}
 
                   </a>
@@ -161,72 +121,63 @@
               <ul class="list-group mx-4">
 
                 {% set side_bar = [
-                  (None, '', 'guests',  None),
+                  ('public', '', 'guests',  None),
                   ('public', '/login', 'Login', 'user-cog'),
                   ('public', '/register',  'Register', 'sign-out-alt'),
-                  (None, '', 'users',  None),
+                  ('is_authenticated', '', 'users',  None),
                   ('is_authenticated', '/account', 'Account', 'user-cog'),
                   ('is_authenticated', '/logout',  'Logout', 'sign-out-alt'),
-                  (None, '', 'posts',  None),
+                  ('is_authenticated', '', 'posts',  None),
                   ('is_authenticated', '/post/new','New Post',  'paper-plane'),
                   ('is_authenticated', '/home', 'Posts Home', 'envelope',),
-                  (None, '', 'members',  None),
+                  ('is_member', '', 'members',  None),
                   ('is_member', '/members', 'Home', 'users', ),
                   ('is_member', '/members/table', 'Table', 'table', ),
                   ('is_member', '/member/1', 'Show Member', 'fas fas fa-file-video', ),
                   ('is_admin', '/members/file', 'File Upload', 'file-excel', ),
                   ('is_admin', '/members/form', 'New Member', 'user-plus', ),
-                  (None, '', 'Admins', '', ),
+                  ('is_admin', '', 'Admins', '', ),
                   ('is_admin', '/admin/dash', 'Admin', 'user-md', ),
                 ] -%}
 
                 {% for access_level, href, caption, icon in side_bar %}
-                {% if demo_mode == 'on' %}
-                {% if access_level or access_level == 'public' or current_user[access_level] or current_user[access_level]=='y' %}
-                {% set accessible = ' anim' %}
+
+                {% if access_level == 'public' or current_user[access_level] or current_user[access_level]=='y' %}
+                {% set accessible = '' %}
                 {% else %}
                 {% set accessible = ' disabled' %}
                 {% endif %}
-                
+
                 {% if  url_for(request.endpoint) == href %}
                 <p class="text-light">
                 </p>
                 {% set highlighted = ' bg-light text-primary' %}
                 {% endif %}
-                
-                <a class="list-group-item list-group-item-action bg-transparent side-title text-light border-0 m-0 p-0 {{accessible}}" href="{{href}}">
-                  <div class="d-flex flex-row justify-content-between rnd-lg {{highlighted}}">
+
+                <a class="list-group-item list-group-item-action bg-transparent side-title text-light border-0 anim m-0 p-0 {{accessible}}" href="{{href}}">
+                  <div class="d-flex flex-row justify-content-between {{highlighted}}">
                   
-                  <span class="ml-2 mt-1 text-bold text-md">
+                  <span>
                     {{caption}}
                   </span>
-                  <span class="fa-stack text-mini fa-2x text-center mr-2 anim">
-                    {% if icon %}
-                    <i class="fas fa-square fa-stack-2x fa-fw text-light opac-70"></i>
-                    <i
-                      class="fas fa-{{icon}} fa-stack-1x fa-fw fa-inverse text-primary"></i>
-                    {% endif %}
-                  </span>                  
-                </div>
-                </a>
+
+
+              <span class="fa-stack text-mini fa-2x text-center mr-2 anim">
+                {% if icon %}
+                <i class="fas fa-square fa-stack-2x fa-fw text-light opac-70"></i>
+                <i
+                  class="fas fa-{{icon}} fa-stack-1x fa-fw fa-inverse text-primary"></i>
                 {% endif %}
-                {% endfor %}
-              <hr class="my-1">
+              </span>                  
+  
+</div>
+
+                </a>
+              {% endfor %}
+              <hr class="my-5">
             </ul>
-            <hr class="border-light border-med opac-30">
-                        {% if access %}
-              <details name="access" class="d-flex flex-column justify-content-center text-light ml-2">
-                {% for a in access %}
-                <i class="fas fa-key text-sm ml-2 mr-2 text-light pt-1">
-                  {{a}}
-                </i>
-                {% endfor %}
-              </details>
-              {% endif %}
             </div>
-            
           </nav>
-          
         </aside>
 
         <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-md-4">
@@ -308,7 +259,16 @@
     </mark>
     {% endif %}
 
-    
+    {% if access %}
+    <details name="access" class="d-flex flex-row justify-content-center">
+      {% for a in access %}
+      <i class="fas fa-key text-md text-balo mx-2">
+        {{a}}
+      </i>
+      {% endfor %}
+    </details>
+    {% endif %}
+
 
   </body>
 

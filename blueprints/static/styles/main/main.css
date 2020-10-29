@@ -1,3 +1,8 @@
+.bg-body{
+  margin-top: 60px;
+  background-image: linear-gradient(180deg, #ffffff0c, #c2787807);
+}
+
 :root {
    --blue: #007bff;
   --indigo: #6610f2;
@@ -22,15 +27,11 @@
   --dark: #343a40;
   --breakpoint-xs: 0;
 }
-html {
-  font-size: 0.85rem;
+
+.bg-pink {
+ background-color : -pink;
 }
 
-@media (min-width: 768px) {
-  html {
-    font-size: 1.1rem;
-  }
-}
 .member-img{
   font-size: 2.25rem;
   text-anchor: middle;
@@ -39,12 +40,13 @@ html {
   -ms-user-select: none;
   user-select: none;
 }
-  
-  @media (min-width: 768px) {
+
+@media (min-width: 768px) {
   .member-img {
     font-size: 4.5rem;
   }
 }
+
 @media (min-width: 768px) {
   .article-img {
     font-size: 3.5rem;
@@ -77,10 +79,6 @@ html {
   user-select: none;
 }
 
-.bg-body{
-  margin-top: 60px;
-  background-image: linear-gradient(180deg, #9efcff13, #78c2ad21);
-}
 
 .content-section {
   padding-top: 3rem;
@@ -92,6 +90,7 @@ html {
   filter: none;
   border: 2px solid #f3969b26;
   box-shadow: 0 0.5rem 0.75rem #f3969b52;  
+  box-shadow: 0 0.5rem 0.75rem #289b7a3d;  
 }
 
 .article-title {
@@ -184,42 +183,6 @@ a.article-title:hover {
 
 .border-med {
   border-width: medium;
-}
-
-.add-anime {
-  transition: ease 0.15s;
-}
-
-.add-anime:focus {
-  transform: scale(1.1, 1.1);
-  box-shadow: rgba(111, 230, 157, 0.794) 5px 15px 15px;
-}
-.add-anime:hover {
-  transform: scale(1.1, 1.1);
-  box-shadow: rgb(111, 216, 230) 5px 15px 15px;
-}
-.add-anime:hover:first-child {
-  box-shadow: rgb(0, 255, 136)5px 15px 15px;
-}
-
-.add-anime:hover:nth-last-child(4) {
-  box-shadow: rgb(230, 111, 137) 5px 15px 15px;
-}
-
-.add-anime:hover:nth-last-child(3) {
-  box-shadow: rgb(111, 230, 141) 5px 15px 15px;
-}
-
-.add-anime:hover:nth-last-child(2) {
-  box-shadow: rgb(0, 225, 255) 5px 15px 15px;
-}
-
-.add-anime:hover:nth-last-child(1) {
-  box-shadow: rgb(228, 151, 8) 5px 15px 15px;
-}
-
-.add-anime:hover:last-child {
-  box-shadow: rgb(111, 230, 161) 5px 15px 15px;
 }
 
 .text-bold {
@@ -340,16 +303,15 @@ a.article-title:hover {
 .rnd-3xl {
   border-radius: 16px;
 }
+
 .legend {
-  text-align: left;
-  font-size : 2.25rem;
-  font-style : normal;
+  font-size : 2.50rem;
+  font-style : bold;
   font-family: 'Montserrat Alternates', sans-serif;
-  opacity: 90%;
   color: #78c2ad;
   color: #f3969a;
+  text-shadow: 3px 3px #f3969b4b;
   text-shadow: 3px 3px #78c2ad52;
-  
 }
 
 
@@ -546,4 +508,78 @@ thead tr:last-child {
     0 2px white,
     2px 0 white,
     0 -2px white;
+}
+
+.add-anime:hover {
+	box-shadow:  #78c2ad2a 0px 15px 15px;
+	color: #2aa198;
+	transform: scale(1.1, 1.1);
+}
+.add-anime:hover:first-child {
+	box-shadow: rgb(177, 159, 238) -5px 15px 15px;
+}
+.add-anime:hover:last-child {
+	box-shadow: rgb(230, 194, 111) 5px 15px 15px;
+}
+
+.lumen{
+  background-color: transparent;
+  box-shadow: 0 0 0 0.2rem rgba(56, 157, 196, 0.5);
+}
+
+.txt-shd{
+  text-shadow: 3px 3px #00e1ff38;
+}
+
+.side-title {
+  font-family: 'Montserrat Alternates', sans-serif;
+}      
+.anim {
+  margin-left: 1rem;
+  margin-right: 1rem;
+}
+
+.anim:hover {
+  box-shadow: #78c2ad2a 0px 15px 15px;
+  transform: scale(1.1, 1.1);
+  
+}
+
+.anim:hover {
+  box-shadow: rgb(0, 255, 255) -5px 15px 15px;
+}
+
+.anim:hover:first-child {
+  box-shadow: rgb(145, 255, 209) -5px 15px 15px;
+}
+
+.anim:hover:last-child {
+  box-shadow: rgb(255, 154, 188) 5px 15px 15px;
+}
+
+.sidebar {
+  padding: 1rem 0rem 0rem 0rem;
+  /* Height of navbar */
+  background-image: linear-gradient(#438d78, #78c2ad 45%, #00815c);
+  box-shadow: 0px 0px 0px #f3969b3f, inset 0px 10px 10px #f3969b46;
+}
+
+.sidebar-sticky {
+  height: calc(100vh - 30px);
+}
+
+
+.legend {
+  font-size: 2.0rem;
+}
+
+.fa-stack {
+  font-size: 1.50rem;
+}
+.text-mini {
+  font-size: 1.0rem;
+}
+
+i {
+  vertical-align: middle;
 }

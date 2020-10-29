@@ -24,7 +24,7 @@ def about():
         ('main', 'main', ),
     ],
         js=None,
-        legend='Public Posts',
+        legend='About App',
         title='About'
     )
 
@@ -52,5 +52,5 @@ def home():
                            ],
                            js=None,
                            legend='Public Posts',
-                           title='Public Posts',
+                           title='Home | Public',
                            )

@@ -1,169 +1,214 @@
 {% extends "layout.html" %}
 {% block content %}
-
-<div class="row no-gutters" name="generators">
-  <div class="col-sm-6 col-md-5 offset-md-1" name="nickname-section">
-    <div class="text-right p-0">
-      <!-- <div class="form-row"> -->
-        <div class="form-row">
-          <div class="col-1">
-            <input class="shadow custrange-vertical cv-right mx-0 px-0 ml-1" type="range" id="slider-nn" orient="vertical"
-              min="0" step="1">
-          </div>
-
-          <div class="col-9" id="nickname-generator">
-          </div>
-          <div class="col-2 text-left">
-            <a type="button" class="nickname-buttons shadow evt-clk btn btn-secondary btn-block rnd-xl py-4"
-              id="up-btn-nn">
-              <i class="fas fa-chevron-up text-3xl" id="up-icon-nn"></i>
-            </a>
-            <h4 class="fa fa-caret-left animated infinite heartBeat my-0 opac-70" aria-hidden="true"></h4>
-            <a type="button" class="nickname-buttons shadow evt-clk btn btn-secondary btn-block rnd-xl py-4 opac-90"
-              id="down-btn-nn">
-              <i id="down-icon-nn" class="fas fas fa-chevron-down text-2xl"></i>
-            </a>                                    
-            
-          </div>
-      </div>
-    </div>
-  </div>
-  <div class="col-sm-6 col-md-5 offset-md-1" name="color-section">
-    <div class="text-right p-0">
-      <!-- <div class="form-row"> -->
-        <div class="form-row">
-          <div class="col-1">
-            <input class="shadow custrange-vertical cv-right mx-0 px-0 ml-1" type="range" id="slider-clr" orient="vertical"
-              min="0" step="1">
-          </div>
-
-          <div class="col-8" id="color-generator">
-
-          </div>
-          <div class="col-1 text-center">
-            <p class="color-squares">
-              <i class="fas fa-caret-left text-gold"></i>
-            </p>
-            
-            <p class="color-squares">
-              <i class="fas fa-caret-left text-gold"></i>
-            </p>
-            
-            <p class="color-squares">
-              <i class="fas fa-caret-left text-gold"></i>
-            </p>
-            
-            <p class="color-squares">
-              <i class="fas fa-caret-left text-gold"></i>
-            </p>
-            
-            <p class="color-squares">
-              <i class="fas fa-caret-left text-gold"></i>
-            </p>
-            
-          </div>
-          
-          <div class="col-2 text-left">
-            <a type="button" class="color-buttons shadow evt-clk btn btn-secondary btn-block rnd-xl py-4 mt-2"
-              id="up-btn-clr">
-              <i class="fas fa-chevron-up text-3xl" id="up-icon-clr"></i>
-            </a>
-            <h4 class="fa fa-caret-left animated infinite heartBeat my-0 opac-70" aria-hidden="true"></h4>
-            <a type="button" class="color-buttons shadow evt-clk btn btn-secondary btn-block rnd-xl py-4 opac-90"
-              id="down-btn-clr">
-              <i id="down-icon-clr" class="fas fas fa-chevron-down text-2xl"></i>
-            </a>                                    
-            
-          </div>
-        </div>
-
-    </div>
-  </div>
-</div>
-<div class="content-section px-4 mx-4" name="form-section">
-      <p>
-        You may be able to change your temporary username when membership approved.
-      </p>
-
-    <div name="preview-section" class="row py-0 align-items-center" >
-      <div class="col" id="input-nickname">
-        <input class="shadow rdonly text-3xl text-secondary text-monts form-control form-control-dark form-control-lg bg-transparent border-0 text-center" type="text" value="aqua"
-          readonly>
-      </div>
-      <div class="col" id="input-color">
-        <input class="shadow rdonly text-outlined form-control bg-transparent border-0" type="text" value="turqoise"
-          readonly>
-      </div>
-      <div class="col text-center rdonly" id="append-numeric">
-      </div>
-    </div>          
-</div>
-
-<div class="content-section px-4 mx-4" name="form-section">
-  <form method="POST" action="" id="regpub-form">
-    <fieldset class="text-left p-2">
-      {{ form.hidden_tag() }}
-    <hr class="border-light mx-5">
-      <div class="form-group col-10 offset-1">
-        <i class="fas fa-envelope text-xl"></i>
-        {{ form.email.label(class="text-monts text-xl text-lowercase") }}
-        {% if form.email.errors %}
-        {{ form.email(class="form-control form-control-lg is-invalid") }}
-        <div class="invalid-feedback">
-          {% for error in form.email.errors %}
-          <span>{{ error }}</span>
-          {% endfor %}
-        </div>
-        {% else %}
-        {{ form.email(class="form-control form-control-lg") }}
-        {% endif %}
-      </div>
-      <div class="form-group col-10 offset-1">
-        <i class="text-2xl mr-2 fas fa-lock"></i>
-        {{ form.password.label(class="text-monts text-xl text-lowercase") }}
-        {% if form.password.errors %}
-        {{ form.password(class="form-control form-control-lg is-invalid") }}
-        <div class="invalid-feedback">
-          {% for error in form.password.errors %}
-          <span>{{ error }}</span>
-          {% endfor %}
-        </div>
-        {% else %}
-        {{ form.password(class="form-control form-control-lg") }}
-        {% endif %}
-      </div>
-      <div class="form-group col-10 offset-1">
-        <i class="text-2xl mr-2 fas fa-user-lock"></i>
-        {{ form.confirm_password.label(class="text-monts text-xl text-lowercase") }}
-        {% if form.confirm_password.errors %}
-        {{ form.confirm_password(class="form-control form-control-lg is-invalid") }}
-        <div class="invalid-feedback">
-          {% for error in form.confirm_password.errors %}
-          <span>{{ error }}</span>
-          {% endfor %}
-        </div>
-        {% else %}
-        {{ form.confirm_password(class="form-control form-control-lg") }}
-        {% endif %}
-      </div>
-      <div class="form-group col-10 offset-1">
-        <div class="form-group" id="sign_up_as">
-      </div>
-
-        {{ form.submit(class="form-control btn btn-primary btn-block text-xl border-0 rnd-2xl pt-1 pb-2") }}
-      </div>              
-      
-    </fieldset>
-  </form>
-      <div class="row mb-5" name="already_a_member">
-        <div class="col-10 offset-1 text-center align-items-center text-italic">
-          Already a user or member? Please sign in
-          <a class="btn btn-secondary btn-lg rnd-lg px-2 pt-1 pb-2" href="{{ url_for('users.login') }}">
-            <i class="fas fa-sign-in-alt">
-            </i>
-            Login
-          </a>
-        </div>
-      </div>
+<div class="container">
+  <div class="content-section row no-gutters" name="generators">
+   <div name="nickname-section" class="col-sm-6 col-md-5 offset-md-1" >
+     <div class="text-right p-0">
+       <!-- <div class="form-row"> -->
+         <div class="form-row">
+           <div class="col-1">
+             <input class="shadow custrange-vertical cv-right mx-0 px-0 ml-1" type="range" id="slider-nn" orient="vertical"
+               min="0" step="1">
+           </div>
+ 
+           <div class="col-9" id="nickname-generator">
+           </div>
+           <div class="col-2 text-left">
+             <a type="button" class="nickname-buttons shadow evt-clk btn btn-secondary btn-block rnd-xl py-4"
+               id="up-btn-nn">
+               <i class="fas fa-chevron-up text-3xl" id="up-icon-nn"></i>
+             </a>
+             <h4 class="fa fa-caret-left animated infinite heartBeat my-0 opac-70" aria-hidden="true"></h4>
+             <a type="button" class="nickname-buttons shadow evt-clk btn btn-secondary btn-block rnd-xl py-4 opac-90"
+               id="down-btn-nn">
+               <i id="down-icon-nn" class="fas fas fa-chevron-down text-2xl"></i>
+             </a>                                    
+             
+           </div>
+       </div>
+     </div>
+   </div>
+   <div class="col-sm-6 col-md-5 offset-md-1" name="color-section">
+     <div class="text-right p-0">
+       <!-- <div class="form-row"> -->
+         <div class="form-row">
+           <div class="col-1">
+             <input class="shadow custrange-vertical cv-right mx-0 px-0 ml-1" type="range" id="slider-clr" orient="vertical"
+               min="0" step="1">
+           </div>
+ 
+           <div class="col-8" id="color-generator">
+ 
+           </div>
+           <div class="col-1 text-center">
+             <p class="color-squares">
+               <i class="fas fa-caret-left text-gold"></i>
+             </p>
+             
+             <p class="color-squares">
+               <i class="fas fa-caret-left text-gold"></i>
+             </p>
+             
+             <p class="color-squares">
+               <i class="fas fa-caret-left text-gold"></i>
+             </p>
+             
+             <p class="color-squares">
+               <i class="fas fa-caret-left text-gold"></i>
+             </p>
+             
+             <p class="color-squares">
+               <i class="fas fa-caret-left text-gold"></i>
+             </p>
+             
+           </div>
+           
+           <div class="col-2 text-left">
+             <a type="button" class="color-buttons shadow evt-clk btn btn-secondary btn-block rnd-xl py-4 mt-2"
+               id="up-btn-clr">
+               <i class="fas fa-chevron-up text-3xl" id="up-icon-clr"></i>
+             </a>
+             <h4 class="fa fa-caret-left animated infinite heartBeat my-0 opac-70" aria-hidden="true"></h4>
+             <a type="button" class="color-buttons shadow evt-clk btn btn-secondary btn-block rnd-xl py-4 opac-90"
+               id="down-btn-clr">
+               <i id="down-icon-clr" class="fas fas fa-chevron-down text-2xl"></i>
+             </a>                                    
+             
+           </div>
+         </div>
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+         
+     </div>
+   </div>
+ </div>
+ 
+ <blockquote class="blockquote text-sm text-italic d-flex flex-row justify-content-around">
+ {% set instructions = [
+  'Choose a nickname using buttons',
+  'Then a color as the second part',
+  ]  %}
+ 
+  {% for i  in instructions %}
+  <p class="mb-0 text-wrap">
+    <i class="fas fa-chevron-up text-md">
+    </i>
+     {{i}} </p>
+  {% endfor %}
+ </blockquote>
+ <div class="content-section mx-4" name="prevw-section">
+     <h1 class="fas fa-dice text-md text-comfo text-secondary text-3xl align-items-center">
+     </h1>
+       <div class="text-md text-comfo" id="sign_up_as">
+       </div>
+         <hr class="mx-4">
+ 
+     <div name="preview-section" class="row py-0 align-items-center" >
+       <div class="col" id="input-nickname">
+         <input class="shadow rdonly text-3xl text-secondary text-monts form-control form-control-dark form-control-lg bg-transparent border-0 text-center" type="text" value="aqua"
+           readonly>
+       </div>
+       <div class="col" id="input-color">
+         <input class="shadow rdonly text-outlined form-control bg-transparent border-0" type="text" value="turqoise"
+           readonly>
+       </div>
+       <div class="col text-center rdonly" id="append-numeric">
+       </div>
+     </div>          
+ 
+       <blockquote class="blockquote text-sm text-italic d-flex flex-row justify-content-between">
+     {% set instructi0ns = [
+       'First part is the nickname generator ',
+       'Then choose a color as the second part',
+       'Numbers will be generated randomly',]  %}
+ 
+       {% for i  in instructi0ns %}
+       <p class="mb-0 text-wrap">
+         <i class="fas fa-info-circle">
+         </i>
+          {{i}} </p>
+       {% endfor %}
+   </blockquote>
+ </div>
+ 
+ <div class="content-section mx-4" name="form-section">
+   <form method="POST" action="" id="regpub-form">
+     <fieldset class="text-left p-2">
+       {{ form.hidden_tag() }}
+     <hr class="border-light mx-5">
+       <div class="form-group col-10 offset-1">
+         <i class="fas fa-envelope text-xl"></i>
+         {{ form.email.label(class="text-monts text-xl text-lowercase") }}
+         {% if form.email.errors %}
+         {{ form.email(class="form-control form-control-lg is-invalid") }}
+         <div class="invalid-feedback">
+           {% for error in form.email.errors %}
+           <span>{{ error }}</span>
+           {% endfor %}
+         </div>
+         {% else %}
+         {{ form.email(class="form-control form-control-lg") }}
+         {% endif %}
+       </div>
+       <div class="form-group col-10 offset-1">
+         <i class="text-2xl mr-2 fas fa-lock"></i>
+         {{ form.password.label(class="text-monts text-xl text-lowercase") }}
+         {% if form.password.errors %}
+         {{ form.password(class="form-control form-control-lg is-invalid") }}
+         <div class="invalid-feedback">
+           {% for error in form.password.errors %}
+           <span>{{ error }}</span>
+           {% endfor %}
+         </div>
+         {% else %}
+         {{ form.password(class="form-control form-control-lg") }}
+         {% endif %}
+       </div>
+       <div class="form-group col-10 offset-1">
+         <i class="text-2xl mr-2 fas fa-user-lock"></i>
+         {{ form.confirm_password.label(class="text-monts text-xl text-lowercase") }}
+         {% if form.confirm_password.errors %}
+         {{ form.confirm_password(class="form-control form-control-lg is-invalid") }}
+         <div class="invalid-feedback">
+           {% for error in form.confirm_password.errors %}
+           <span>{{ error }}</span>
+           {% endfor %}
+         </div>
+         {% else %}
+         {{ form.confirm_password(class="form-control form-control-lg") }}
+         {% endif %}
+       </div>
+       <div class="form-group col-10 offset-1">
+         {{ form.submit(class="form-control btn btn-primary btn-block text-xl border-0 rnd-2xl pt-1 pb-2") }}
+       </div>              
+       
+     </fieldset>
+   </form>
+       <div class="row mb-5" name="already_a_member">
+         <div class="col-10 offset-1 text-center align-items-center text-italic">
+           Already a user or member? Please sign in
+           <a class="btn btn-secondary btn-lg rnd-lg px-2 pt-1 pb-2" href="{{ url_for('users.login') }}">
+             <i class="fas fa-sign-in-alt">
+             </i>
+             Login
+           </a>
+         </div>
+       </div>
+ </div>
 </div>
 {% endblock %}

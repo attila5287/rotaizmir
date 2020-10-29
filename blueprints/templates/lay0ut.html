@@ -1,0 +1,390 @@
+ <!DOCTYPE html>
+ <html>
+   <head>
+     <!-- Required meta tags -->
+     <meta charset="utf-8">
+     <meta name="viewport"
+       content="width=device-width, initial-scale=1, shrink-to-fit=no">
+     <link rel="icon" type="image/x-icon" class="favicon"
+       href="https://raw.githubusercontent.com/attila5287/rota-img/main/icons/favicon.ico" />
+       {% if css %}
+        {% for folder,path in css %}
+         <link rel="stylesheet" type="text/css"
+           href="{{ url_for('static', filename='/styles/{}/{}.css'.format(folder, path)) }}" />
+           
+           {% endfor %}
+
+        {% else %}
+
+           {% set  css = [
+            ('theme', '/minty/bootstrap', ),
+            ('main', 'main', ),
+            ]
+            %}
+            {% for folder, path in css %}
+            <link rel="stylesheet" type="text/css"
+              href="{{ url_for('static', filename='/styles/{}/{}.css'.format(folder, path)) }}" />
+            
+        {% endfor %}
+
+
+       {% endif %}
+     <link rel="stylesheet"
+       href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
+     <link rel="stylesheet" type="text/css"
+       href="https://use.fontawesome.com/releases/v5.1.1/css/all.css"
+       integrity="sha384-O8whS3fhG2OnA5Kas0Y9l3cfpmYjapjI0E4theH4iuMD+pLhbf6JI0jIMfYcK3yZ"
+       crossorigin="anonymous" />
+
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/4.7.3/d3.js">
+     </script>
+
+     <script
+       src="https://cdnjs.cloudflare.com/ajax/libs/d3-tip/0.7.1/d3-tip.js">
+     </script>
+
+     {% set google_fonts = [
+      'Orbitron',
+      'Baloo+2',
+      'Roboto',
+      'Roboto+Condensed',
+      'Comfortaa',
+      'Nova+Mono&display=swap',
+      'Major+Mono+Display&display=swap',
+      'Lilita+One&display=swap',
+      'Montserrat+Alternates:wght@500&display=swap',
+      'Montserrat:wght@800&display=swap',
+      ] %}
+     
+      {% for font_url in google_fonts %}
+      <link
+        href="https://fonts.googleapis.com/css2?family={{font_url}}"
+        rel="stylesheet">
+      {% endfor %} 
+     <!-- title -->
+     {% if title %}
+     <title>
+       {{title}}
+     </title>
+
+     {% else %}
+     <title>Göztepe Rotaract</title>
+
+     {% endif %}
+   </head>
+   <body class="bg-body">
+     <header>
+       <nav
+         class="navbar navbar-expand navbar-dark fixed-top bg-primary flex-nowrap">
+         <a class="navbar-brand bg-transparent border-0 rnd-xl add-anime"
+           href="https://rotaizmir.herokuapp.com/">
+           <img class="m-0 px-0 py-0"
+             src="https://raw.githubusercontent.com/attila5287/rota-img/main/icons-png/circle_white.png"
+             style="max-height: 36px;" alt="navbar-icon" data-toggle="tooltip"
+             title="Göztepe Rotaract Kulübü">
+         </a>
+         <button class="navbar-toggler bg-dark border-light px-1 py-0"
+           type="button" data-toggle="collapse" data-target="#navbarCollapse"
+           aria-controls="navbarCollapse" aria-expanded="false"
+           aria-label="Toggle navigation">
+           <span class="navbar-toggler-icon"></span>
+         </button>
+         <div
+           class="collapse navbar-collapse text-center text-comfo bg-transparent mb-1 ml-2"
+           id="navbarCollapse">
+           <ul
+             class="nav nav-pills nav-justify bg-transparent mr-auto align-items-center">
+             {% if current_user.is_authenticated %}
+
+
+             {% set navigation_bar = [
+              ('/account', 'account', 'Account', 'user-cog'),
+              ('/logout', 'logout', 'Logout', 'sign-out-alt'),
+              ] -%}
+             {% set active_page = active_page|default('new-post') -%}
+             {% for href, id, caption, icon in navigation_bar %}
+             <li class="nav-item">
+              <a class="nav-link text-light add-anime  text-md"
+                 href="{{href|e }}">
+                 <i class="text-lg fas fa-{{icon|e }}"></i>
+                 {{ caption|e }}
+               </a>
+             </li>
+
+             {% endfor %}
+             <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle text-light add-anime  text-md"
+                 href="#" id="dropdown01" data-toggle="dropdown"
+                 aria-haspopup="true" aria-expanded="false"
+                 title="public announcements, events, meet-ups...">
+                 <i class="text-lg fas fa-paper-plane" aria-hidden="true"></i>
+                 Posts</a>
+
+               <div class="dropdown-menu" aria-labelledby="dropdown01">
+                 {% set dd_posts =  [ 
+      ( 'New Post', '/post/new', ),
+      ( 'Posts Home', '/home', ),
+      ] %}
+                 {% for caption, href in dd_posts %}
+
+                 <a class="dropdown-item" href="{{href}}">
+                   {{ caption }}</a>
+                 {% endfor %}
+               </div>
+             </li>
+
+             <li class="nav-item dropdown" name="members-dd">
+               <a class="nav-link dropdown-toggle text-light add-anime  text-md"
+                 href="#" id="dropdown02" data-toggle="dropdown"
+                 aria-haspopup="true" aria-expanded="false"
+                 title="for members, internal events, schedule...">
+                 <i class="text-lg fas fa-users" aria-hidden="true"></i>
+                 Members</a>
+
+               <div class="dropdown-menu" aria-labelledby="dropdown02">
+                 {% set dd_members =  [ 
+              ('/members', 'Home'),
+              ('/members/file', 'File Upload'),
+              ('/members/table', 'Table'),
+              ('/members/form', 'New Member'),
+              ('/member/1', 'Show Member'),
+              ] %}
+                 {% for  href, caption in dd_members %}
+
+                 <a class="dropdown-item" href="{{href}}">
+                   {{ caption }}</a>
+                 {% endfor %}
+               </div>
+             </li>
+
+             <li class="nav-item dropdown" name="members-dd">
+               <a class="nav-link dropdown-toggle text-light add-anime  text-md"
+                 href="#" id="dropdown03" data-toggle="dropdown"
+                 aria-haspopup="true" aria-expanded="false"
+                 title="admins only, edit member details, approve user requests">
+                 <i class="text-lg fas fa-user-md" aria-hidden="true"></i>
+                 Admins
+                </a>
+
+               <div class="dropdown-menu" aria-labelledby="dropdown03">
+                 {% set dd_members =  [ 
+                    ('/admin/dash', 'Dashboard'),
+                    ('/members/file', 'File Upload'),
+                    ('/members/table', 'Table'),
+                    ('/members/form', 'New Member'),
+                    ('/member/1', 'Show Member'),
+                 ] %}
+                 {% for  href, caption in dd_members %}
+
+                 <a class="dropdown-item" href="{{href}}">
+                   {{ caption }}</a>
+                 {% endfor %}
+               </div>
+             </li>
+
+                <li class="nav-item">
+                  <img src="https://raw.githubusercontent.com/attila5287/rota-img/main/avatars/{{current_user.img_url}}.png" alt="usr-img" style="max-height:30px;"
+                  class="img rounded-circle"
+                  >
+                </li>              
+             
+             <li class="nav-item dropdown ml-0" data-toggle="tooltip"
+                 title="access level summary">
+               
+               <a class="nav-link dropdown-toggle text-light"
+                 href="#" id="dropdown04" data-toggle="dropdown"
+                 aria-haspopup="true" aria-expanded="false"
+                 >
+                 <i class="text-primary text-sm fas fa-lock animated bounceInRight p-0" aria-hidden="true"></i>
+                </a>
+                
+                <div class="dropdown-menu" aria-labelledby="dropdown04">
+                 <a class="dropdown-item"
+                 data-toggle="tooltip"
+                 title="logged in as user"
+                 >
+                 {{current_user.username}}
+                 </a>
+                 <a class="dropdown-item py-0 text-italic text-xs"
+                 data-toggle="tooltip"
+                 title="logged in as user"
+                 >
+                 {{current_user.email}}
+                 </a>
+                 <a class="dropdown-item dropdown-divider disabled"
+                 ></a>
+
+                  {% set current_access =  [
+                    ('is_prez', 'president', 'logged in as president', ),
+                   ('is_admin', 'admin', 'logged in as admin', ),
+                   ('is_member', 'member', 'logged in as member', ),
+                   ] %}
+                {% for attr,display,tooltip in current_access %}
+                {% if current_user[attr] == 'y' %}
+                
+                 <a class="dropdown-item py-0"
+                 title="{{tooltip}}"
+                 data-toggle="tooltip"
+                 >
+                  ├ {{display}} &#10003;
+                  </a>
+                  
+                  {% endif %}
+                  {% endfor %}
+                  
+                 <a class="dropdown-item pt-0"
+                 title="authenticated user"
+                 data-toggle="tooltip"
+                 >
+                  └ user 
+                    &#10003;
+                  </a>
+                 </div>
+                </li>              
+
+              
+              {% else %}
+
+                <li class="nav-item">
+                  <a class="nav-link disabled mx-1 text-white-50"
+                    href="/#">
+                    <i class="fas fa-lock text-bold"></i>
+                    Guest
+                  </a>
+                </li>
+
+             {% set navigation_bar = [
+              ('/register', 'register', 'Register', 'user-plus'),
+              ('/login', 'login', 'Login', 'sign-in-alt'),
+            ('/about', 'about', 'About', 'info-circle')
+              ] -%}
+
+             {% for href, id, caption, icon in navigation_bar %}
+             <a class="nav-link text-light add-anime  text-md"
+               href="{{href|e }}">
+               <i class="fas fa-{{icon|e }}"></i>
+               {{ caption|e }}
+             </a>
+             </li>
+             {% endfor %}
+
+
+             {% endif %}
+
+           </ul>
+         </div>
+       </nav>
+     </header>
+     
+     <style>
+       .fa-stack { font-size: 2.25rem; }
+       i { vertical-align: middle; }
+     </style>
+     
+     <legend name="with-info-notes" class="container">
+         <p class="legend text-nowrap text-center mb-0">
+           <span class="fa-stack fa-3x text-center">
+             <i class="fas fa-square fa-stack-2x fa-fw text-secondary"></i>
+             <i class="fas fa-map-marked-alt fa-stack-1x fa-fw text-light fa-inverse"></i>
+           </span>
+           {% if legend %}
+               {{ '{} '.format(legend) }}
+               {% else %}
+               
+               {{ '{} '.format('Göztepe Rotaract') }}
+               
+           {% endif %}                  
+         </p>
+         {% if info_notes %}
+
+         <div class="d-flex flex-row justify-content-center align-items-center">
+           <span class="text-info fa-stack fa-2x text-center mr-2 txt-shd">
+             <i class="fas fa-square  fa-fw fa-stack-2x "></i>
+             <i class="fas fa-info fa-stack-1x fa-inverse fa-fw"></i>
+            </span>
+               <ul class="text-md list-group list-group-flush border-top py-2 border-info border-top mt-3 pt-1 px-0 mx-0">
+                 {% for i in info_notes %}
+                 <li class="list-group-item bg-transparent  d-flex justify-content-between align-items-center pt-1 pl-3 border-0 ml-2">
+                   <span class="fas fas fa-play  text-info text-md mr-2"></span>
+                    {{ i }}
+                   
+                 </li>
+                 {% endfor %}
+               </ul>           
+                         
+          </div>
+
+         {% endif %}
+     </legend>
+
+     <main name="content-goes-here">
+         {% block content %} 
+         {% endblock%}
+     </main>
+
+     <footer class="container footer mt-2">
+       <nav class="nav nav-pills nav-justified">
+         {% set footer_images=[
+          ('slab-logo',  'logo_slab.png', ),
+          ('open-doors',  'logo_opensdoors_2021.png', ),
+          ]  %}
+
+         {% for alt, src in footer_images %}
+         <a class="nav-item nav-link add-anime  rnd-xl"
+           href="https://rotaract2440.org/kulup/23#"
+           >
+           <img class="m-0 rnd-lg py-0 pl-2 pr-1 add-anime"
+             src="https://raw.githubusercontent.com/attila5287/rota-img/main/site/{{src}}"
+             alt="{{alt}}" style="height: 2.75rem;">
+         </a>
+         {% endfor %}
+         {% set footer_icons = [
+            ('instagram', 'www.instagram.com/gozteperotaract',  ),
+            ('twitter', 'twitter.com/GoztepeRotaract',  ),
+            ('youtube', '',  ),
+            ('linkedin', '',  ),
+            ]   %}
+         {% for icon, url in footer_icons %}
+         <a class="nav-item nav-link add-anime  rnd-xl"
+           href="https://{{url}}">
+           <h1 class="fab fa-{{icon}}"></h1>
+         </a>
+         {% endfor %}
+       </nav>
+     </footer>
+     
+     <aside>
+      <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
+      </script>
+      <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
+      </script>
+      <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
+      </script>     
+     </aside>
+
+     {% if js %}
+     <mark name="js-file">
+       {% for folder, file in js %}
+        <script src="{{ url_for('static', filename='{}/{}.js'.format(folder, file)) }}"></script>
+       {% endfor %}
+     </mark>
+     {% endif %}
+
+     {% if access %}
+       <details name="access" class="d-flex flex-row justify-content-center">
+         {% for a in access %}
+           <i class="fas fa-key text-md text-balo mx-2">
+             {{a}}
+           </i>
+         {% endfor %}
+       </details>
+     
+     {% endif %}
+
+   </body>
+
+ </html>

@@ -2,7 +2,6 @@
   width: 4rem;
   height: 4rem;
   margin-top: -0.25rem;
-  background-color: #2FA4E7;
   border: 0;
   border-radius: 1rem;
   -webkit-transition: background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, -webkit-box-shadow 0.15s ease-in-out;
@@ -18,7 +17,7 @@
   width: 0.35rem;
   color: transparent;
   cursor: pointer;
-  background-color: #e9a960;
+  background-color: #ffffff17;
   border-color: transparent;
   border-radius: 1rem;
 }
@@ -26,7 +25,7 @@
   height: 90%;
   width: 0.20rem;
   padding-bottom: 1rem;
-  background-color: #e9a960;
+  background-color: #78c2ad;
   
   -webkit-appearance: none;
      -moz-appearance: none;
@@ -81,12 +80,7 @@
   height: 1.25rem;
   color: white;
   border-radius: 1.00rem 1.00rem 1.00rem 1.00rem;
-  background-image: -webkit-gradient(linear, left top, left bottom, from(#d564df), color-stop(60%, #6c14fb), to(#380885));
-
-  background-image: linear-gradient(#f277f6, #6a2470 60%, #531e55);
-  background-image: linear-gradient(#fb5391c7 , #e41c65de  60%, #a31d4ef3 );
-  background-image: linear-gradient(#fb3872ef, #9c04a1a2 60%, #9500a3ea);
-  
+  background-color: #f3969a;
   -webkit-transition: background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, -webkit-box-shadow 0.15s ease-in-out;
   transition: background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, -webkit-box-shadow 0.15s ease-in-out;
   transition: background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
@@ -94,6 +88,7 @@
   -moz-appearance: none;
   appearance: none;
 }
+
 @media (prefers-reduced-motion: reduce) {
   .custrange-vertical::-moz-range-thumb {
     -webkit-transition: none;

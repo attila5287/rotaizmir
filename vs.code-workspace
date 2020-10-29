@@ -2,6 +2,9 @@
 	"folders": [
 		{
 			"path": "."
+		},
+		{
+			"path": "..\\references\\html\\bootstrap-examples"
 		}
 	],
 	"settings": {
@@ -103,9 +106,8 @@
 		"editor.suggestSelection": "recentlyUsedByPrefix",
 		"editor.suggest.showIcons": false,
 		"color-highlight.matchWords": true,
-		"editor.snippetSuggestions": "top",
+		"editor.snippetSuggestions": "bottom",
 		"emmet.showExpandedAbbreviation": "never",
-		"emmet.showSuggestionsAsSnippets": true,
 		"editor.acceptSuggestionOnEnter": "off",
 		"emmet.triggerExpansionOnTab": true,
 		"html.format.wrapLineLength": 79,

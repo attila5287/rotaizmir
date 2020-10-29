@@ -21,9 +21,8 @@ members = Blueprint('members', __name__)
 
 
 @members.context_processor
-def inject_colored_rows():
+def inject_css_class():
     pass
-
     def bg_row(gender):
         pass
         gallery = {  # font awesome icons for member forms
@@ -301,7 +300,7 @@ def table():
                                ('main', 'main', ),
                            ],
                            info_notes=[
-                               'Please login with your email address and password. ',
+                               'Members, Table View. ',
                            ],
                            access=[
                                'a',
@@ -342,7 +341,7 @@ def add_member():
                                ('main', 'main', ),
                            ],
                            info_notes=[
-                           'Add member via forms, one at a time!'
+                           'Add member with forms, one at a time!'
                            ],
                            access=[
                                'a',

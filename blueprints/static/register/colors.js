@@ -108,7 +108,9 @@ d3.json("/colors/api", function (err, data) {
           true
         )
         .attr( "id", "input-clr")
-        .attr( "value", `-${color_on_air}-` );
+        // .attr( "readonly", )
+        .attr( "value", `-${color_on_air}-` )
+        ;
       
         
       
@@ -132,7 +134,8 @@ d3.json("/colors/api", function (err, data) {
       let new_index = +this.value;
 
       jackpotRight(new_index, axisGroup, height, data, width);
-    });
+    } );
+    
     d3.selectAll( '.color-buttons' )
       .on( "click", function (  ) {
         // d3.event.preventDefault();

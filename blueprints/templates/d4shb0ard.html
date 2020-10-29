@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 
   <head>
@@ -10,7 +10,8 @@
     <link rel="icon" type="image/x-icon" class="favicon"
       href="https://raw.githubusercontent.com/attila5287/rota-img/main/icons/favic0n.ico" />
     <!-- Bootstrap core CSS -->
-    <link rel="stylesheet" type="text/css" href="/static/styles/theme/minty/bootstrap.css" />
+    <link rel="stylesheet" type="text/css" href="/static/styles/theme/superhero/bootstrap.css" />
+    <link rel="stylesheet" type="text/css" href="/static/styles/custom/dashboard.css" />
     <link rel="stylesheet" type="text/css"
       href="https://use.fontawesome.com/releases/v5.1.1/css/all.css"
       integrity="sha384-O8whS3fhG2OnA5Kas0Y9l3cfpmYjapjI0E4theH4iuMD+pLhbf6JI0jIMfYcK3yZ"
@@ -18,15 +19,8 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/4.7.3/d3.js">
     </script>
-    <title>
-      admin/Göztepe Rotaract Kulübü
-    </title>
-    
+    <title>Dashboard</title>
 
-    <link rel="stylesheet" type="text/css" href="/static/styles/main/main.css" />
-    <link rel="stylesheet" type="text/css" href="/static/styles/custom/dashboard.css" />
-
-    
     <style>
       .bd-placeholder-img {
         font-size: 1.125rem;
@@ -44,12 +38,13 @@
       }
     </style>
     <!-- Custom styles for this template -->
+    <link href="static/styles/custom/dashboard.css" rel="stylesheet">
   </head>
 
   <body>
     <header>
       <nav
-        class="navbar navbar-dark sticky-top bg-primary flex-md-nowrap p-0 shadow">
+        class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
         <a class="navbar-brand bg-transparent border-0 col-md-3 col-lg-2 mr-0 px-3"
            href="https://rotaizmir.herokuapp.com/">
 
@@ -74,11 +69,11 @@
           <div class="input-group row no-gutters align-items-baseline">
           {% for form, href in nav_forms %}
             <div class="input-group-prepend col-auto">
-              <span class="input-group-text text-md bg-primary border-0">{{form.menu.label}}</span>
+              <span class="input-group-text">{{form.menu.label}}</span>
             </div>
             {{form.menu(class="form-control form-control-dark custom-select custom-select-sm col py-0")}}
             <div class="input-group-append col-auto">
-              <a class="btn btn-sm btn-sm btn-outline-light" href="action">
+              <a class="btn btn-sm btn-outline-light" href="action">
                 <i class="fas fa-search px-3"></i>
               </a>
 
@@ -184,64 +179,24 @@
               </h1>
               <form action="" method="POST">
                 <div class="form-group form-row flex-nowrap">
-                  {{select_table.mode(class=" custom-select custom-select-sm shadow-lg border-0")}}
-                  {{select_table.submit(class="btn btn-sm btn-sm btn-primary shadow-lg")}}
+                  {{select_table.mode(class="form-control form-control-dark custom-select")}}
+                  {{select_table.submit(class="btn btn-sm btn-outline-light")}}
                 </div>
               </form>
             </div>
 <h2>{{ table_mode }}</h2>
-  {% set mode = table_mode  %}
-
-  {% set pag ={
-    'Show Members' :
-    {
-      'module': 'members', 
-      'pag_obj': members, 
-      'arg': 'page_u', 
-    },
-    'Show Users' :
-    {
-      'module': 'users', 
-      'pag_obj': users, 
-      'arg': 'page_m', 
-    }
-
-  },
-
-%}
-{% for object in list %}
-<div class="container text-center" name="pagination-members">
-{% for page_num in members.iter_pages(left_edge=5, right_edge=5, left_current=5, right_current=10) %}
-{% if page_num %}
-{% if members.page == page_num %}
-  <a class="btn btn-outline-secondary mb-4 shadow-lg border-secondary text-lg" href="{{ url_for('admins.dashboard', page_m=page_num, ) }}">
-    {{ page_num }}
-  
-  </a>
-  {% else %}
-  <a class="btn btn-sm btn-secondary btn-sm border-0 shadow mb-4" href="{{ url_for('admins.dashboard', page_m=page_num) }}">{{ page_num }}</a>
-  {% endif %}
-{% else %}
-...
-{% endif %}
-{% endfor %}
-
-</div>      
-
-{% endfor %}
-
 
 {% if table_mode == 'Show Members' %}
-<div class="container text-center" name="pagination-members">
+<div class="text-center" name="pagination-members">
 {% for page_num in members.iter_pages(left_edge=5, right_edge=5, left_current=5, right_current=10) %}
 {% if page_num %}
 {% if members.page == page_num %}
-  <a class="btn btn-outline-secondary mb-4 shadow-lg border-secondary text-lg" href="{{ url_for('admins.dashboard', page_m=page_num, ) }}">
+  <a class="btn btn-light bg-transparent border-0 mb-4 text-xl" href="{{ url_for('admins.dashboard', page_m=page_num,) }}">
     {{ page_num }}
   
   </a>
   {% else %}
-  <a class="btn btn-sm btn-secondary btn-sm border-0 shadow mb-4" href="{{ url_for('admins.dashboard', page_m=page_num) }}">{{ page_num }}</a>
+  <a class="btn btn-outline-light mb-4 text-xl" href="{{ url_for('admins.dashboard', page_m=page_num) }}">{{ page_num }}</a>
   {% endif %}
 {% else %}
 ...
@@ -257,13 +212,13 @@
 {% if page_num %}
 {% if users.page == page_num %}
 
-  <a class="btn btn-outline-secondary mb-4 shadow-lg border-secondary text-lg" href="{{ url_for('admins.dashboard', table_mode=1, page_u=page_num,) }}">
+  <a class="btn btn-light bg-transparent border-0 mb-4 text-xl" href="{{ url_for('admins.dashboard', table_mode=1, page_u=page_num,) }}">
     {{ page_num }}
   
   </a>
 
   {% else %}
-  <a class="btn btn-sm btn-secondary btn-sm border-0 shadow mb-4" href="{{ url_for('admins.dashboard', table_mode=1, page_m=1,page_u=page_num) }}">{{ page_num }}</a>
+  <a class="btn btn-outline-light mb-4 text-xl" href="{{ url_for('admins.dashboard', table_mode=1,  page_m=1,page_u=page_num) }}">{{ page_num }}</a>
   {% endif %}
 
 {% else %}
@@ -313,9 +268,9 @@
 
         <td class="align-items-center"
         id="cell-{{ rowloop.index }}-{{ loop.index }}">
-        <a class="opac-70" href="{{row[k]}}">
+        <a class="shd-theme" href="{{row[k]}}">
           
-          <i class="text-lg fab fa-{{k}}" aria-hidden="true"></i>
+          <i class="text-2xl fab fa-{{k}}" aria-hidden="true"></i>
 
         </a>
 

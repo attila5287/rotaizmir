@@ -82,23 +82,51 @@ def dashboard(table_mode= 0, page_m=1, page_u=1):
         new_index = request.form['mode']
         selected_mode = modes[int(new_index)]
         
-        return render_template('dashboard.html',
-                            select_table=select_table,
-                            select_user=select_user,
-                            select_member=select_member,
-                            members=p_members, 
-                            users=p_users, 
-                            table=table[selected_mode],
-                            table_mode= selected_mode,
-                            )
-    
-
-    return render_template('dashboard.html',
-                           select_table=select_table,
-                           select_user=select_user,
-                           select_member=select_member,
-                           users=p_users, 
-                           members=p_members, 
-                           table=table[default_mode],
-                           table_mode= modes[table_mode],
-                           )
+        return render_template(
+            'adm_tables.html',
+            select_table=select_table,
+            select_user=select_user,
+            select_member=select_member,
+            members=p_members, 
+            users=p_users, 
+            table=table[selected_mode],
+            table_mode= selected_mode,
+            css=[('theme', '/minty/bootstrap', ),
+                ('main', 'main', ),
+                ('custom', 'dashboard', ),
+            ],
+            info_notes=[
+                'Admin dashboard, approve membership request from users, ',
+            ],
+            access=[
+                'a',
+                'p',
+            ],
+            js=None,
+            title='AdminTables',
+            legend='AdminTables',
+            )
+    return render_template(
+        'adm_tables.html',
+                        select_table=select_table,
+                        select_user=select_user,
+                        select_member=select_member,
+                        members=p_members, 
+                        users=p_users, 
+                        table=table[default_mode],
+                        table_mode= default_mode,
+                        css=[('theme', '/minty/bootstrap', ),
+                            ('main', 'main', ),
+                            ('custom', 'dashboard', ),
+                        ],
+                        info_notes=[
+                            'Admin dashboard, approve membership request from users, ',
+                        ],
+                        access=[
+                            'a',
+                            'p',
+                        ],
+                        js=None,
+                        title='AdminTables',
+                        legend='AdminTables',
+                        )

@@ -276,8 +276,8 @@ def account():
                            js=[
                                ('users', 'account', ),
                            ],
-                           legend='{}'.format(current_user.username),
-                           title='{}'.format(current_user.username),
+                           legend='Edit User Account',
+                           title='Account',
 
                            )
 
@@ -370,9 +370,13 @@ def register():
                             css=[
                                 ('theme', '/minty/bootstrap', ),
                                 ('main', 'main', ),
+                                ('components', 'vertical-slider', ),
+                                
                             ],
                             info_notes=[
-                                'Show all posts by the user #{}'.format(id),
+                                'Your email and password will be used for login',
+                                'Choose your display name by random generators below',
+
                             ],
                             access=[
                                 'u',

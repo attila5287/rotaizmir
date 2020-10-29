@@ -8,6 +8,7 @@
         "shadow rdonly text-3xl text-secondary text-monts form-control form-control-dark form-control-lg bg-transparent border-0 text-center",
         true
       )
+      .attr("readonly", true)
       .attr("value");
     
     val_color = '' + d3.select( "#input-color" )
@@ -35,7 +36,7 @@
       .append("p")
       .attr(
         "class",
-        "text-outlined text-md text-center text-italic text-light mb-0"
+        "text-md text-center text-italic mb-0"
         )
       .text((d) => `How about ${d} for temporary username?`)
       ;

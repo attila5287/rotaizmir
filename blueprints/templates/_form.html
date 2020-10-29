@@ -1,82 +1,80 @@
 
-{% extends "layout.html" %}
-{% block content %}
-    {% if form.errors %}
-    <div class="container errors rnd-xl border-light">
-      {% for field_name, field_errors in form.errors|dictsort if field_errors %}
-      {% for error in field_errors %}
-      <div class="w-75 opac-90 px-2 py-1 alert alert-info content-section add-anime border-0 alert-dismissible fade show rnd-xl" role="alert">
-        <i class="text-3xl text-theme fas fa-exclamation fa-pull-left animated infinite heartBeat  rnd-sm mt-3 ml-3 mr-3"></i>
-          <p class="text-comfo text-info text-italic text-md text-bold border-neg my-0 px-0 pt-1 pb-0 mb-0 ml-3 pl-3  w-50 rnd-2xl">
-            <i class="text-info fa {{ icons(form[field_name].id) }} fa-fw p-0 m-0"></i>
-            {{ form[field_name].label }}
-        </p>
-            <blockquote class="blockquote text-bold text-left ml-4">
-              <footer class="blockquote-footer text-italic text-info ">{{ error }}</footer>
-            </blockquote>
-        <button type="button" class="close text-2xl" data-dismiss="alert" aria-label="Close">
-          <i class="fas fa-times text-theme"></i>
-        </button>
-      </div>        
-      {% endfor %}
-      {% endfor %}
-    </div>
-    {% endif %}
-    <div class="content-section col-10 offset-1 col-sm-8 offset-sm-2 col-lg-6 offset-3">
-            <fieldset class="form-group">
-        <form method="POST" action="">
-            {{ form.hidden_tag() }}
-    
-            {% for field in form %}
-            {% if field.id == 'csrf_token' %}
-            <i class="text-hide">CSRF TOKEN</i>
-            {% elif field.type == 'SubmitField' %}
-            {{field(class="btn btn-block btn-outline-light bg-theme mb-0 mr-2" )}}                    
-            {% elif field.type == 'SelectField' %}
-            <div class="form-row align-items-center mb-4">
-    
-                <div class="col-2">
-                    <p class="text-monts text-sm text-right my-0">
-                        {{field.label}}
-                    </p>
-                </div>
-                <div class="col">
-                    <div class="input-group mx-2 mb-0 text-comfo">
-                        <div class="input-group-prepend add-anime">
-                            <span class="input-group-text bg-theme  text-light text-bold"
-                                id="inputGroupPrepend">
-                                <i class="fa{{icons(field.id)}} fa-fw ml-2 mt-0"></i>
-                            </span>
+<div class="col-10 col-sm-8 col-lg-6" name="form-part">
+            <div class="content-section pl-4 pt-3 pr-0">
+                <fieldset class="form-group">
+            <form method="POST" action="">
+                {{ form.hidden_tag() }}
+        
+                {% for field in form %}
+                {% if field.id == 'csrf_token' %}
+                <i class="text-hide">CSRF TOKEN</i>
+                {% elif field.type == 'SubmitField' %}
+                {{field(class="btn btn-block btn-outline-primary bg-primary text-light py-2  rnd-xl py-2 shadow-lg mb-0 mr-2" )}}                    
+                {% elif field.type == 'SelectField' %}
+                <div class="form-row align-items-center mb-4">
+        
+                    <div class="col-2">
+                        <p class="text-monts text-sm text-right my-0">
+                            {{field.label}}
+                        </p>
+                    </div>
+                    <div class="col">
+                        <div class="input-group mx-2 mb-0 text-comfo">
+                            <div class="input-group-prepend add-anime rnd-xl">
+                                <span class="input-group-text rnd-xl text-bold"
+                                    id="inputGroupPrepend">
+                                    <i class="text-secondary fa{{icons(field.id)}} fa-fw ml-2 mt-0"></i>
+                                </span>
+                            </div>
+                            {{field(class="form-control form-control-dark shadow mr-2" )}}
                         </div>
-                        {{field(class="form-control form-control-dark shd-theme mr-2" )}}
                     </div>
                 </div>
-            </div>
-            {% else %}
-            <div class="form-row align-items-center mb-4">
-    
-                <div class="col-2">
-                    <p class="text-monts text-sm text-right my-0">
-                        {{field.label}}
-                    </p>
-                </div>
-                <div class="col">
-                    <div class="input-group mx-2 mb-0 text-comfo">
-                        <div class="input-group-prepend add-anime">
-                            <span class="input-group-text bg-theme  text-light text-bold"
-                                id="inputGroupPrepend">
-                                <i class="fa{{icons(field.id)}} fa-fw ml-2 mt-0"></i>
-                            </span>
+                {% else %}
+                <div class="form-row align-items-center mb-4">
+        
+                    <div class="col-2">
+                        <p class="text-monts text-sm text-right my-0">
+                            {{field.label}}
+                        </p>
+                    </div>
+                    <div class="col">
+                        <div class="input-group mx-2 mb-0 text-comfo">
+                            <div class="input-group-prepend  add-anime">
+                                <span class="input-group-text bg-secondary text-light rnd-xl text-bold"
+                                    id="inputGroupPrepend">
+                                    <i class="fa{{icons(field.id)}} fa-fw ml-2 mt-0"></i>
+                                </span>
+                            </div>
+                            {{field(class="form-control form-control-dark form-control-sm mb-0 shadow mr-2" )}}
                         </div>
-                        {{field(class="form-control form-control-dark form-control-sm mb-0 shd-theme mr-2" )}}
                     </div>
                 </div>
+        
+                {% endif %}
+        
+                {% endfor %}
+            </form>           
+                </fieldset>
             </div>
-    
-            {% endif %}
-    
-            {% endfor %}
-        </form>           
-            </fieldset>        
-    </div>
-{% endblock content %}
+        </div>
+
+
+<div class="container errors">
+        {% for field_name, field_errors in form.errors|dictsort if field_errors %}
+        {% for error in field_errors %}
+        <div class="px-5 mx-5 alert alert-secondary border-0 alert-dismissible fade show rnd-3xl" role="alert">
+                <strong>
+
+                    <p class="text-lg my-1">
+                    <i class="text-xl fa{{ icons(form[field_name].id) }} fa-fw animated infinite heartBeat mr-2"></i>
+                    {{ form[field_name].label }}: {{ error }}</p>
+                </strong>
+            {{msg}}
+            <button type="button" class="close text-2xl text-light" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>        
+        {% endfor %}
+        {% endfor %}
+</div>

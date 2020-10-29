@@ -1,6 +1,7 @@
 {% extends "layout.html" %}
 {% block content %}
-
+<div class="container" name="members-table">
+  
 
 {% if members.items == [] %}
 <p class="text-light text-center text-lg">
@@ -131,6 +132,7 @@
 
 {% endif %}
   
+</div>
 
 
 {% endblock content %}
