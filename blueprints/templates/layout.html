@@ -158,6 +158,12 @@
                   <hr class="border-light border-med opac-30">
                 </li>
               </ul>
+              <style>
+              .bg-silver{
+                  background-image: linear-gradient(to right, rgb(120, 194, 173) , rgb(255, 255, 255));
+                    box-shadow:0px 0px 20px 0px rgb(120,194,173) inset;  
+              }
+              </style>
               <ul class="list-group mx-4">
 
                 {% set side_bar = [
@@ -186,11 +192,11 @@
                 {% if access_level or access_level == 'public' or current_user[access_level] or current_user[access_level]=='y' %}
                 {% set accessible = ' anim text-lowercase ml-2' %}
                 {% else %}
-                {% set accessible = ' disabled text-uppercase mt-2 ml-0' %}
+                {% set accessible = ' disabled text-capitalize mt-2 ml-0' %}
                 {% endif %}
                 
                 {% if  url_for(request.endpoint) == href %}
-                {% set highlighted = 'bg-light text-primary' %}
+                {% set highlighted = 'bg-silver text-light' %}
                 {% endif %}
                 
                 <a class="list-group-item list-group-item-action bg-transparent side-title text-light border-0 m-0 p-0 {{accessible}}" href="{{href}}">
