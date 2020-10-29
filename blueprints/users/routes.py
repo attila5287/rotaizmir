@@ -370,8 +370,6 @@ def register():
                             css=[
                                 ('theme', '/minty/bootstrap', ),
                                 ('main', 'main', ),
-                                ('components', 'vertical-slider', ),
-                                
                             ],
                             info_notes=[
                                 'Your email and password will be used for login',
