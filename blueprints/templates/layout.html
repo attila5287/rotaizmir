@@ -161,38 +161,36 @@
               <ul class="list-group mx-4">
 
                 {% set side_bar = [
-                  ('public', '/about', 'about',  'info'),
                   (None, '', 'guests',  None),
-                  ('public', '/login', 'Login', 'user-cog'),
-                  ('public', '/register',  'Register', 'sign-out-alt'),
+                  ('public', '/about', '├about',  'info'),
+                  ('public', '/login', '├Login', 'user-cog'),
+                  ('public', '/register',  '└Register', 'sign-out-alt'),
                   (None, '', 'users',  None),
-                  ('is_authenticated', '/account', 'Account', 'user-cog'),
-                  ('is_authenticated', '/logout',  'Logout', 'sign-out-alt'),
+                  ('is_authenticated', '/account', '├Account', 'user-cog'),
+                  ('is_authenticated', '/logout',  '└Logout', 'sign-out-alt'),
                   (None, '', 'posts',  None),
-                  ('is_authenticated', '/post/new','New Post',  'paper-plane'),
-                  ('is_authenticated', '/home', 'Posts Home', 'envelope',),
+                  ('is_authenticated', '/post/new','├New Post',  'paper-plane'),
+                  ('is_authenticated', '/home', '└Posts Home', 'envelope',),
                   (None, '', 'members',  None),
-                  ('is_member', '/members', 'Home', 'users', ),
-                  ('is_member', '/members/table', 'Table', 'table', ),
-                  ('is_member', '/member/1', 'Show Member', 'fas fas fa-file-video', ),
-                  ('is_admin', '/members/file', 'File Upload', 'file-excel', ),
-                  ('is_admin', '/members/form', 'New Member', 'user-plus', ),
-                  (None, '', 'Admins', '', ),
-                  ('is_admin', '/admin/dash', 'Admin', 'user-md', ),
+                  ('is_member', '/members', '├Grid', 'users', ),
+                  ('is_member', '/members/table', '├Table', 'table', ),
+                  ('is_member', '/member/1', '├Show Member', 'fas fas fa-file-video', ),
+                  ('is_admin', '/members/file', '├File Upload', 'file-excel', ),
+                  ('is_admin', '/members/form', '└New Member', 'user-plus', ),
+                  (None, '', 'admins', '', ),
+                  ('is_admin', '/admin/dash', '└Dashboard', 'user-md', ),
                 ] -%}
 
                 {% for access_level, href, caption, icon in side_bar %}
                 {% if demo_mode == 'on' %}
                 {% if access_level or access_level == 'public' or current_user[access_level] or current_user[access_level]=='y' %}
-                {% set accessible = ' anim' %}
+                {% set accessible = ' anim text-lowercase' %}
                 {% else %}
-                {% set accessible = ' disabled' %}
+                {% set accessible = ' disabled text-uppercase mt-2' %}
                 {% endif %}
                 
                 {% if  url_for(request.endpoint) == href %}
-                <p class="text-light">
-                </p>
-                {% set highlighted = ' bg-light text-primary' %}
+                {% set highlighted = 'bg-light text-primary' %}
                 {% endif %}
                 
                 <a class="list-group-item list-group-item-action bg-transparent side-title text-light border-0 m-0 p-0 {{accessible}}" href="{{href}}">
