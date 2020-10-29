@@ -184,9 +184,9 @@
                 {% for access_level, href, caption, icon in side_bar %}
                 {% if demo_mode == 'on' %}
                 {% if access_level or access_level == 'public' or current_user[access_level] or current_user[access_level]=='y' %}
-                {% set accessible = ' anim text-lowercase' %}
+                {% set accessible = ' anim text-lowercase ml-2' %}
                 {% else %}
-                {% set accessible = ' disabled text-uppercase mt-2' %}
+                {% set accessible = ' disabled text-uppercase mt-2 ml-0' %}
                 {% endif %}
                 
                 {% if  url_for(request.endpoint) == href %}
@@ -196,7 +196,7 @@
                 <a class="list-group-item list-group-item-action bg-transparent side-title text-light border-0 m-0 p-0 {{accessible}}" href="{{href}}">
                   <div class="d-flex flex-row justify-content-between rnd-lg {{highlighted}}">
                   
-                  <span class="ml-2 mt-1 text-bold text-md">
+                  <span class="mt-1 text-bold text-md">
                     {{caption}}
                   </span>
                   <span class="fa-stack text-mini fa-2x text-center mr-2 anim">
