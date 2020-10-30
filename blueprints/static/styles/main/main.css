@@ -546,7 +546,11 @@ thead tr:last-child {
 }
 
 .anim:hover {
-  box-shadow: rgb(0, 255, 255) -5px 15px 15px;
+  box-shadow:rgb(145, 223, 226) -5px 15px 15px,inset 1px 1px 2px #dcfbffc9;
+  background-color: white;
+  color: cadetblue;
+  border-radius: 0.5rem;
+  
 }
 
 .anim:hover:first-child {
