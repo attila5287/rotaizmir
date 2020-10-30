@@ -26,8 +26,8 @@ def inject_css_class():
     def bg_row(gender):
         pass
         gallery = {  # font awesome icons for member forms
-            "f": "table-secondary border-bottom",
-            "m": "table-info border-bottom",
+            "f": "bg-secondary border-bottom",
+            "m": "bg-info border-bottom",
         }
 
         return gallery.get(gender, 'table-light')
@@ -51,7 +51,7 @@ def inject_icons():
             "is_prez": "s fa-user-md",
             "last_name": "s fa-user-edit",
             "linkedin": "b fa-linkedin",
-            "middle_name": "s fa-user-edit",
+            "middle_name": "s fa-question-circle",
             "phone_num": "s fa-phone",
             "twitter": "b fa-twitter",
             "user_id": "s fa-user-tag",
@@ -269,28 +269,24 @@ def table():
         Member.id.desc()).paginate(page=page, per_page=24)
 
     columns = [c.name for c in Member.query.first().__table__.columns]
-    icons = [
-        's fa-id-card',
-        's fa-asterisk',
-        's fa-question-circle',
-        's fa-asterisk',
-        's fa-phone',
-        's fa-envelope',
-        's fa-venus-mars',
-        's fa-stamp',
-        's fa-user-md',
-        's fa-user',
-        's fa-image',
-        'b fa-linkedin',
-        'b fa-twitter',
-        'b fa-instagram',
+    
+    required_cols = [
+        "img_url", 
+        "id", 
+        "first_name", 
+        "middle_name", 
+        "last_name",
+        "linkedin",
+        "twitter", 
+        "instagram",
+        "gender",
     ]
-    headers = zip(icons, columns)
+    headers = required_cols
     table = [
         {
-            c.name:
-            getattr(member, c.name)
-            for c in member.__table__.columns}
+            c:
+            getattr(member, c)
+            for c in required_cols}
 
         for member in members.items
     ]

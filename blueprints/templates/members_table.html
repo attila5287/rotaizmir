@@ -11,7 +11,7 @@
 
     {% else %}
 
-<div class="text-center">
+<div class="offset-1" name="pag_buttons">
   {% for page_num in members.iter_pages(left_edge=1, right_edge=1, left_current=5, right_current=5) %}
   {% if page_num %}
     {% if members.page == page_num %}
@@ -28,25 +28,50 @@
 {% endfor %}
 
 </div>
-<table class="col-10 offset-1 table table-hover table-sm  mt-3 rnd-2xl text-bold">
-  <thead class="thead-inverse bg-primary text-light rnd-xl disabled text-capitalize">
+<table class="table table-hover text-light table-responsive text-bold table-bordered">
+  <thead class="text-capitalize">
       <tr>
-      {% for hdr_icon,th in headers %}
-      
-      <th class="text-nowrap text-comfo py-4"> 
-        <i class="fa{{hdr_icon }}"></i>
+        <th class="text-sm text-comfo bg-primary text-light add-anime pt-2 pb-3"> 
+          View
+        </th>
+        
+      {% for header in headers %}
+      {% if header !="gender" and header!='id'%}
+      <th class="text-center text-sm text-comfo bg-primary text-light add-anime pt-2 pb-3"> 
+        <i class="fa{{icons(header) }} text-xl opac-70"></i>
         {{th}} 
       </th>
-      
+      {% else %}
+      {% endif %}
+            
       {% endfor %} 
     
       </tr>
   </thead>
   
-  <tbody>
+<style>
+thead th:last-child {
+  border-radius: 0 0.75rem 0 0;
+}
+thead th:first-child {
+  border-radius: 0.75rem 0 0 0;
+}
+
+</style>
+
+  <tbody>`
   
     {% for row in table %}
       <tr class=" align-items-base {{bg_row(row.gender)}}">
+        <th scope="row" class="bg-transparent">
+          <span>
+            <a href="{{url_for('members.show', id=row.id)}}">
+              <i class="text-light opac-50 text-lg fas fa-search-plus" aria-hidden="true"></i>
+            </a>
+          </span>
+        </th>
+
+
       {% set rowloop = loop %}
       {% for k,v in row.items() %}
 
@@ -65,7 +90,7 @@
 
         <td class="align-items-center"
         id="cell-{{ rowloop.index }}-{{ loop.index }}">
-        <a class="shadow" href="{{row[k]}}">
+        <a class="shadow add-anime" href="{{row[k]}}">
           
           <i class="text-light opac-50 text-2xl fab fa-{{k}}" aria-hidden="true"></i>
 
@@ -100,21 +125,7 @@
         </td>
         
 
-        {% elif k ==  "gender" %}
-        {% set gender_dict = {
-          'f' : 'female',
-          'm' : 'male',
-        } %}
-
-
-        <td class="align-items-center"
-        id="cell-{{ rowloop.index }}-{{ loop.index }}">
-          
-          <i class="fas fa-{{  gender_dict[v] }}"></i>
-
-
-        </td>
-        
+        {% elif k ==  'gender' or k=='id' %}
         
         {% else %}
         
@@ -127,7 +138,8 @@
       {% endfor %}
       </tr>
     {% endfor %}
-    </tbody>
+  </tbody>
+
 </table>  
 
 {% endif %}
