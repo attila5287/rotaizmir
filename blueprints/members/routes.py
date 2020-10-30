@@ -281,7 +281,17 @@ def table():
         "instagram",
         "gender",
     ]
-    headers = required_cols
+    headers = [
+        "img_url", 
+        "id", 
+        "first_name", 
+        "middle_name", 
+        "last_name",
+        "linkedin",
+        "twitter", 
+        "instagram",
+        "gender",
+    ]
     table = [
         {
             c:
