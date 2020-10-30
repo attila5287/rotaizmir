@@ -13,6 +13,62 @@ from blueprints.members.forms import MemberMenu
 
 admins = Blueprint('admins', __name__)
 
+@admins.route('/admin/tables/users', methods= [ 'GET', 'POST'])
+@admins.route('/admin/tables/users/<int:page_u>', methods= [ 'GET', 'POST'])
+def users_table( page_u=1):
+    pass
+    page_u = request.args.get('page_u', 1, type=int)
+    
+    select_table = TableModeSelect()
+    select_user = UserMenu()
+    select_member = MemberMenu()
+    all_members = [u for u in Member.query.all()]
+    all_users = [u for u in User.query.all()]
+    
+    select_user.menu.choices = [
+        (u.id, '{} | {}'.format(u.username.lower(), u.email).strip()) for u in all_users
+    ]
+    select_member.menu.choices = [
+        ( m.id, '{}, {} | {}'.format(m.last_name.upper(), str(m.first_name+ ' ' + m.middle_name).title(), m.email).strip()) for m in all_members
+    ]        
+    
+    p_users = User.query.order_by(
+        User.id.desc()).paginate(page=page_u, per_page=20, error_out=False)
+
+    #these are pagination objects not all records on db
+     #per page 20 instead
+    table =  [
+        {
+            c.name:
+            getattr(user, c.name)
+            for c in user.__table__.columns}
+
+        for user in p_users.items
+        ]
+    
+    return render_template(
+        'adm_tbl_usr.html',
+                        select_user=select_user,
+                        select_member=select_member,
+                        users=p_users, 
+                        table=table,
+                        css=[('theme', '/minty/bootstrap', ),
+                            ('main', 'main', ),
+                            ('custom', 'dashboard', ),
+                        ],
+                        info_notes=[
+                            'Admin dashboard, approve membership request from users, ',
+                        ],
+                        access=[
+                            'a',
+                            'p',
+                        ],
+                        js=None,
+                        title='AdminTablesUser',
+                        legend='Admin Tables User',
+                        )
+
+
 @admins.route('/admin/dash', methods= [ 'GET', 'POST'])
 @admins.route('/admin/dash/<int:table_mode>/<int:page_m>/<int:page_u>', methods= [ 'GET', 'POST'])
 # @login_required
@@ -166,7 +222,9 @@ def approve_member(id):
             for k,v in d.items():
                 res[k] = v
         success_msg = 'user account {} is now a member'.format(res['username'])
-        return jsonify({'status': success_msg})
+        db.session.commit()
+        return redirect(url_for('admins.users_table'))
+        # return jsonify({'status': success_msg})
 
 
 @admins.route('/link/user/<int:user_id>/<int:member_id>', methods= [ 'GET', 'POST'])
