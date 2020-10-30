@@ -112,7 +112,6 @@ def db_init():
 
 # URL Method Description
 # /users/ GET Gives a list of all users
-# /users/ POST Creates a new user
 # /users/<id> GET Shows a single user
 # /users/<id> PUT Updates a single user
 # /users/<id> DELETE Deletes a single user
@@ -161,8 +160,10 @@ def home():
 
                            )
 
+@members.route('/member', methods=['GET', 'POST'])
+@members.route('/member/', methods=['GET', 'POST'])
 @members.route('/member/<int:id>', methods=['GET', 'POST'])
-def show(id):
+def show(id=1):
     pass
     form = MemberMenu()
     member = Member.query.get_or_404(id)
@@ -200,9 +201,12 @@ def show(id):
                            title='Member#{}'.format(id),
                            )
 
+@members.route('/member/edit', methods=['GET', 'POST'])
+@members.route('/member/edit/', methods=['GET', 'POST'])
 @members.route('/member/edit/<int:id>', methods=['GET', 'POST'])
-def edit(id):
+def edit(id=1):
     pass
+
     users = [u for u in User.query.all()]
     q_all = [Member.query.get_or_404(id)]
     members = [m for m in q_all]

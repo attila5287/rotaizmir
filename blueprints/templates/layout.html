@@ -181,8 +181,9 @@
                   ('is_member', '/members', '├ Grid', 'users', ),
                   ('is_member', '/members/table', '├ Table', 'table', ),
                   ('is_member', '/member/1', '├ Show Member', 'fas fas fa-file-video', ),
+                  ('is_admin', '/member/edit', '├ Edit Member', 'fas fas fa-user-edit', ),
                   ('is_admin', '/members/file', '├ File Upload', 'file-excel', ),
-                  ('is_admin', '/members/form', '└ New Member', 'user-plus', ),
+                  ('is_admin', '/member/add', '└ New Member', 'user-plus', ),
                   (None, '', 'admins', '', ),
                   ('is_admin', '/admin/dash', '└ Dashboard', 'user-md', ),
                 ] -%}
@@ -200,7 +201,8 @@
                 {% endif %}
                 
                 <a class="list-group-item list-group-item-action bg-transparent side-title text-light border-0 m-0 p-0 {{accessible}}" href="{{href}}">
-                  <div class="d-flex flex-row justify-content-between rnd-lg {{highlighted}}">
+
+                  <div class="d-flex flex-row justify-content-between rnd-xl {{highlighted}}">
                   
                   <span class="mt-1 text-bold text-md">
                     {{caption}}
@@ -212,7 +214,8 @@
                       class="fas fa-{{icon}} fa-stack-1x fa-fw fa-inverse text-primary"></i>
                     {% endif %}
                   </span>                  
-                </div>
+                  </div>
+                  
                 </a>
                 {% endif %}
                 {% endfor %}

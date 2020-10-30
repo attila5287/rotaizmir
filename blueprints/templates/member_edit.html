@@ -39,7 +39,7 @@
                 {% if field.id == 'csrf_token' %}
                 <i class="text-hide">CSRF TOKEN</i>
                 {% elif field.type == 'SubmitField' %}
-                {{field(class="btn btn-block btn-outline-primary bg-primary text-light py-2 border-0 rnd-xl py-2 shadow-lg mb-0 mr-2" )}}                    
+                {{field(class="btn btn-block btn-primary text-light text-xl py-2 border-0 rnd-xl shadow-lg" )}}                    
                 {% elif field.type == 'SelectField' %}
                 <div class="form-row align-items-center mb-4">
         
@@ -51,12 +51,12 @@
                     <div class="col">
                         <div class="input-group mx-2 mb-0 text-comfo">
                             <div class="input-group-prepend add-anime rnd-xl">
-                                <span class="input-group-text rnd-xl text-bold"
+                                <span class="input-group-text rnd-xl text-bold bg-secondary"
                                     id="inputGroupPrepend">
-                                    <i class="text-secondary fa{{icons(field.id)}} fa-fw ml-2 mt-0"></i>
+                                    <i class="text-light fa{{icons(field.id)}} fa-fw ml-2 mt-0"></i>
                                 </span>
                             </div>
-                            {{field(class="form-control form-control-dark shadow mr-2" )}}
+                            {{field(class="custom-select custom-select-sm shadow mr-2" )}}
                         </div>
                     </div>
                 </div>
@@ -70,13 +70,13 @@
                     </div>
                     <div class="col">
                         <div class="input-group mx-2 mb-0 text-comfo">
-                            <div class="input-group-prepend  add-anime">
+                            <div class="input-group-prepend  add-anime rnd-xl">
                                 <span class="input-group-text bg-secondary text-light rnd-xl text-bold"
                                     id="inputGroupPrepend">
                                     <i class="fa{{icons(field.id)}} fa-fw ml-2 mt-0"></i>
                                 </span>
                             </div>
-                            {{field(class="form-control form-control-dark form-control-sm mb-0 shadow mr-2" )}}
+                            {{field(class="form-control form-control-sm mb-0 shadow mr-2" )}}
                         </div>
                     </div>
                 </div>
@@ -86,6 +86,17 @@
                 {% endfor %}
             </form>           
                 </fieldset>
+                <div class="btn-group d-flex flex-row" role="group" aria-label="Button group">
+                    <a class="btn btn-secondary shadow text-lg" type="button" href="{{url_for('members.show', id=member.id )}}">
+                        <i class="fas fa-times"></i>
+                        Discard&Leave
+                    </a>
+                    <a class="btn btn-info shadow text-lg" type="button" href="{{url_for('members.edit', id=member.id )}}">
+                        <i class="fas fa-undo"></i>
+                        Reset&Edit
+                    </a>
+                    
+                </div>
             </div>
         </div>
     </div>
