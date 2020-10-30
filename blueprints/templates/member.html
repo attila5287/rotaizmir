@@ -62,156 +62,81 @@
   <div class="row align-items-center text-center">
 
     <div class="col-10 offset-1 col-md-8 offset-md-2 col-lg-6 offset-lg-3 content-section pb-5">
-
-      <div class="row">
-        <div class="col-3 text-center">
-          <img class="rounded-circle member-img img-fluid p-0" src="{{ m.img_url  }}" alt="{{ m.id }}-photo">
-
-          <nav class="nav flex-column text-left">
+<div class="row">
+        <div class="col-6 text-center">
+        <img class="rounded-circle member-img img-fluid p-0" src="{{ m.img_url  }}" alt="{{ m.id }}-photo">
+      </div>
+      <div class="col-6 text-center">
+                  <nav class="nav flex-column text-left">
             {% set member_actions = [
-                                ( '/member/edit/{}'.format(m.id), 'edit', 'Edit', ), 
-                                ( '/member/edit/{}'.format(m.id), 'clipboard-list', 'Tasks', ), 
-                                ( '/member/edit/{}'.format(m.id), 'award', 'Achievements', ), 
+              ('https://{}'.format(m.twitter),'twitter'),
+              ('https://{}'.format(m.instagram),'instagram'),
+              ('https://{}'.format(m.linkedin),'linkedin'),
                                 ] %}
 
-            {% for url, icon, text in member_actions %}
-            <li class="nav-item text-nowrap add-anime rnd-lg border-bottom border-secondary mr-2">
-              <a class="nav-link  text-italic " href="{{ url }}">
-                <i class="fas fa-{{icon}} fa-fw text-md "></i>
-                {{text}}
+            {% for url, icon in member_actions %}
+            {% if url !='https://' %}
+            <li class="nav-item text-nowrap add-anime rnd-lg border-bottom border-primary mr-2 my-3">
+              <a class="nav-link text-center text-italic  text-lg " href="{{ url }}">
+                <i class="fab fa-{{icon}} fa-fw text-3xl"></i>
               </a>
             </li>
+            {% else %}
+              <li class="nav-item text-nowrap disabled rnd-lg border-bottom border-secondary mr-2 my-3">
+                <a class="nav-link text-center text-italic  text-lg " href="{{ url }}">
+                  <i class="fab fa-{{icon}} text-secondary opac-50 fa-fw text-3xl"></i>
+                </a>
+              </li>
+            
+            {% endif %}
 
 
             {% endfor %}
           </nav>
-
-
-        </div>
-        <div class="col">
-          <table class="table  table-sm table-hover table-borderless bg-transparent mt-2 mx-2">
-            <thead class="bg-memb{{m.gender}} text-sm">
-              <th scope="col">
-                <i class="fas fa-id-card float-left text-xl"></i>
-              </th>
-              <th scope="col">
-                Full Name
-              </th>
-              <th scope="col" class="text-uppercase">
-                {{m.last_name}},
-                {{m.first_name}}
-                {{m.middle_name}}
-              </th>
-
-            </thead>
-            <tbody class="bg-transparent text-sm">
-              <tr>
-                <th scope="row" class="bg-memb{{m.gender}}">
-                  <i class="fas fa-envelope"></i>
-                </th>
-                <td class="bg-memb{{ m.gender}}">Email</td>
-                <td class="">
-                  {{m.email }}</td>
-              </tr>
-              <tr>
-                <th scope="row" class="bg-memb{{m.gender}}">
-                  <i class="fas fa-phone"></i>
-                </th>
-                <td class="bg-memb{{ m.gender}}">Phone</td>
-                <td class="">
-                  0
-                  -{{ m.phone_num[:3] }}
-                  -{{ m.phone_num[3:6] }}
-                  -{{ m.phone_num[6:10] }}
-                </td>
-              </tr>
-
-              <tr>
-                <th scope="row" class="bg-memb{{m.gender}}">
-                  <i class="fas fa-graduation-cap"></i>
-                </th>
-                <td class="bg-memb{{ m.gender}}">Member ID</td>
-                <td class="">
-                  {{m.id }}</td>
-              </tr>
-              <tr>
-                <th scope="row" class="bg-memb{{m.gender}}">
-                  <i class="fas fa-user-tag"></i>
-                </th>
-                <td class="bg-memb{{ m.gender}}">User ID</td>
-                <td class=" text-italic">
-                  {% if m.user_id != 0 %}
-                  <i class="fas fa-check text-memb{{m.gender}}"></i>
-                  {{m.user_id}}
-
-                  {% else %}
-
-                  <i class="fas fa-times text-memb{{m.gender}}"></i>
-                  Not a user yet
-                  {% endif %}
-                </td>
-
-
-              </tr>
-              <tr>
-                <th scope="row" class="bg-memb{{m.gender}}">
-                  <i class="fas fa-user-md"></i>
-                </th>
-                <td class="bg-memb{{ m.gender}}">Admin?</td>
-                <td class=" text-italic">
-                  {% if m.is_admin != 'n' %}
-                  <i class="fas fa-check text-memb{{m.gender}}"></i>
-                  {{m.user_id}}
-
-                  {% else %}
-
-                  <i class="fas fa-times text-memb{{m.gender}}"></i>
-                  Not an admin
-                  {% endif %}
-                </td>
-
-
-              </tr>
-            </tbody>
-          </table>
-          <ul class="list-group list-group-horizontal list-group-flush  mt-2 mb-4 mx-4">
-
-
-            {% set values = [
-                          (m.twitter,'twitter'),
-                          (m.instagram,'instagram'),
-                          (m.linkedin,'linkedin'),
-                          ] %}
-            {% for value, social in values %}
-
-            {% if value != '' %}
-            <a class="list-group-item list-group-item-action pt-0 pb-1 bg-transparent text-center add-anime rnd-lg p-0"
-              href="{{ value }}">
-              <div class="d-flex flex-row justify-content-center">
-                <i class="text-primary text-3xl pt-1 pb-0 fab fa-{{social}} fa-fw">
-                </i>
-                <i class="text-xl text-primary disabled pt-1 pb-0 fas fa-check fa-fw ml-2">
-                </i>
-              </div>
-            </a>
-
-            {% else %}
-            <a class="list-group-item list-group-item-action pt-0 pb-1 bg-transparent p-0">
-              <div class="d-flex flex-row justify-content-center">
-                <i class="text-3xl text-secondary disabled pt-1 pb-0 opac-50 fab fa-{{social}} fa-fw">
-                </i>
-
-                <i class="text-xl text-secondary disabled pt-1 pb-0 opac-50 fas fa-times fa-fw ml-1">
-                </i>
-              </div>
-
-            </a>
-            {% endif %}
-            {% endfor %}
-
-          </ul>
-        </div>
       </div>
+</div>
+        <table class="table table-hover table-light table-sm table-borderless bg-transparent mt-2">
+          <thead class="text-sm text-light">
+            <th scope="col" class="{{bg_row(m.gender)}} ">
+              <i class="fas fa-id-card float-left text-xl"></i>
+            </th>
+            <th scope="col" class="{{bg_row(m.gender)}} ">
+              Full Name
+            </th>
+            <th scope="col" class="{{bg_row(m.gender)}} text-uppercase">
+              {{m.last_name}},
+              {{m.first_name}}
+              {{m.middle_name}}
+            </th>
+
+          </thead>
+
+          {% set member_visible= [
+            ('asterisk',m.first_name,'First Name', ),
+            ('question',m.middle_name,'Middle Name',),
+            ('asterisk',m.last_name,'Last Name', ),
+            ] %}
+          
+            <tbody class="bg-transparent text-sm">
+              
+              
+              
+              {% for icon,value,label in member_visible %}
+              
+              <tr>
+                <th scope="row" class="{{bg_row( m.gender)}} text-light">
+                  <i class="fas fa-{{icon}}"></i>
+                </th>
+
+                <td class="{{ bg_row(m.gender)}} text-light text-left">{{label}}</td>
+
+
+                <td class="text-left text-uppercase"> {{value}}</td>
+              </tr>
+              {% endfor %}
+
+          </tbody>
+        </table>
 
     </div>
   </div>

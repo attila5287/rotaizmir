@@ -399,6 +399,10 @@ tbody td:nth-child(6) {
 tbody td:last-child {
   border-radius: 0 0.75rem 0.75rem 0;
 }
+thead th:first-child {
+  border-radius: 0.75rem 0 0 0.75rem;
+}
+
 
 thead th:nth-child(2) {
   border-radius: 0 0 0 0;
@@ -420,7 +424,9 @@ thead th:nth-child(6) {
   border-radius: 0 0 0 0;
 }
 
-
+thead th:last-child {
+  border-radius: 0 0.75rem 0.75rem 0;
+}
 .bg-rowf {
   background-image: linear-gradient(180deg, #ff74b5b2, #e83e8c);
 } 

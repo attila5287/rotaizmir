@@ -50,8 +50,7 @@ class MemberEditForm(FlaskForm):
     last_name = StringField('last name', validators=[
                            DataRequired()],)
     phone_num = StringField('phone_number')
-    email = StringField('email',
-                        validators=[ Email()])
+    email = StringField('email')
     gender  = SelectField('gender',choices=[('m', 'Male'), ('f', 'Female')], )
     is_admin  = SelectField('admin', choices=[('n', 'NO'), ('y', 'YES')], )
     is_prez  = SelectField('prez',choices=[('n', 'NO'), ('y', 'YES')], )

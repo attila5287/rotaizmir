@@ -130,3 +130,48 @@ def dashboard(table_mode= 0, page_m=1, page_u=1):
                         title='AdminTables',
                         legend='AdminTables',
                         )
+
+
+@admins.route('/make/admin/<int:id>', methods= [ 'GET', 'POST'])
+@admins.route('/make/admin/<int:id>/', methods= [ 'GET', 'POST'])
+def make_admin(id=1):
+    pass
+    user = User.query.get_or_404(id)
+    user.is_admin = True
+    return jsonify({'status' : 'success'})
+
+
+@admins.route('/membership/approved/<int:id>', methods= [ 'GET', 'POST'])
+@admins.route('/membership/approved/<int:id>/', methods= [ 'GET', 'POST'])
+def approve_member(id):
+    pass
+    user = User.query.get_or_404(id)
+    if user.is_member == 'y':
+        pass
+        return jsonify(
+            {
+             'status':'action not necessary',
+             'user ID #{}'.format(id):'already a member',
+             }
+            )
+    else:
+        pass
+        user.is_member = 'y'
+    
+        cast = [{
+            c.name : getattr(user, c.name)
+        } for c in user.__table__.columns]
+        res={}
+        for d in cast:
+            for k,v in d.items():
+                res[k] = v
+        success_msg = 'user account {} is now a member'.format(res['username'])
+        return jsonify({'status': success_msg})
+
+
+@admins.route('/link/user/<int:user_id>/<int:member_id>', methods= [ 'GET', 'POST'])
+@admins.route('/link/user/<int:user_id>/<int:member_id>/', methods= [ 'GET', 'POST'])
+def link_user(user_id, member_id):
+    pass
+    success_msg = 'user account #{} is now linked to member profile #{}'.format(user_id, member_id)
+    return jsonify({'status':success_msg})

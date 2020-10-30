@@ -27,10 +27,10 @@ def inject_css_class():
         pass
         gallery = {  # font awesome icons for member forms
             "f": "bg-secondary border-bottom",
-            "m": "bg-info border-bottom",
+            "m": "bg-primary border-bottom",
         }
 
-        return gallery.get(gender, 'table-light')
+        return gallery.get(gender, 'bg-light')
 
     return dict(bg_row=bg_row)
 

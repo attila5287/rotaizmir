@@ -1,90 +1,200 @@
 {% extends "layout.html" %}
 {% block content %}
-{% if form.errors %}
-<div class="container errors">
-        {% for field_name, field_errors in form.errors|dictsort if field_errors %}
-        {% for error in field_errors %}
-        <div class="px-5 mx-5 alert alert-secondary border-0 alert-dismissible fade show rnd-3xl" role="alert">
-                <strong>
+{% set demo_mode = 'off' %}
 
-                    <p class="text-lg my-1">
-                    <i class="text-xl fa{{ icons(form[field_name].id) }} fa-fw animated infinite heartBeat mr-2"></i>
-                    {{ form[field_name].label }}: {{ error }}</p>
-                </strong>
-            {{msg}}
+{% if current_user.is_admin == 'y' or (current_user.is_member =='y' and current_user.id == member.user_id)  or demo_mode == 'on'%}
+
+    <div class="container" name="memb-edit-forms">
+        {% if form.errors %}
+        <div class="container errors">
+        {% for field_name, field_errors in form.errors|dictsort if field_errors %}
+            {% for error in field_errors %}
+            <div class="px-5 mx-5 alert alert-secondary border-0 alert-dismissible fade show rnd-3xl" role="alert">
+                    <strong>
+
+                        <p class="text-lg my-1">
+                        <i class="text-xl fa{{ icons(form[field_name].id) }} fa-fw animated infinite heartBeat mr-2"></i>
+                        {{ form[field_name].label }}: {{ error }}</p>
+                    </strong>
+                {{msg}}
+                <button type="button" class="close text-2xl text-light" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>        
+            {% endfor %}
+            {% endfor %}
+        </div>
+        {% endif %}
+        <div class="row">
+            <div class="col-2 col-sm-4 col-lg-2 offset-lg-2" >
+                <img class="border-0  bg-secondary add-anime member-img p-1 shadow mb-2 rnd-3xl" src="{{ member.img_url  }}"
+                    alt="{{ member.id }}-photo" style="width: 95%;">
+                    
+            </div>
+        
+            <div class="col-10 col-sm-8 col-lg-6" name="form-part">
+                <div class="content-section pl-4 pt-3 pr-0">
+                    <fieldset class="form-group">
+                        <form method="POST" action="">
+                            {{ form.hidden_tag() }}
+                    
+                            {% for field in form %}
+                            {% if field.id == 'csrf_token' %}
+                            <i class="text-hide">CSRF TOKEN</i>
+                            {% elif field.type == 'SubmitField' %}
+                            {{field(class="btn btn-block btn-primary text-light text-xl py-2 border-0 rnd-xl shadow-lg" )}}                    
+                            {% elif field.type == 'SelectField' %}
+                            <div class="form-row align-items-center mb-4">
+                    
+                                <div class="col-2">
+                                    <p class="text-monts  text-right my-0">
+                                        {{field.label}}
+                                    </p>
+                                </div>
+                                <div class="col">
+                                    <div class="input-group mx-2 mb-0 ">
+                                        <div class="input-group-prepend add-anime rnd-xl">
+                                            <span class="input-group-text rnd-xl text-bold bg-secondary"
+                                                id="inputGroupPrepend">
+                                                <i class="text-light fa{{icons(field.id)}} fa-fw ml-2 mt-0"></i>
+                                            </span>
+                                        </div>
+                                        {{field(class="custom-select custom-select-sm shadow mr-2" )}}
+                                    </div>
+                                </div>
+                            </div>
+                            {% else %}
+                            <div class="form-row align-items-center mb-4">
+                    
+                                <div class="col-2">
+                                    <p class="text-monts  text-right my-0">
+                                        {{field.label}}
+                                    </p>
+                                </div>
+                                <div class="col">
+                                    <div class="input-group mx-2 mb-0 ">
+                                        <div class="input-group-prepend  add-anime rnd-xl">
+                                            <span class="input-group-text bg-secondary text-light rnd-xl text-bold"
+                                                id="inputGroupPrepend">
+                                                <i class="fa{{icons(field.id)}} fa-fw ml-2 mt-0"></i>
+                                            </span>
+                                        </div>
+                                        {{field(class="form-control form-control-sm mb-0 shadow mr-2" )}}
+                                    </div>
+                                </div>
+                            </div>
+                    
+                            {% endif %}
+                    
+                            {% endfor %}
+                        </form>           
+                    </fieldset>
+                    <div class="btn-group d-flex flex-row" role="group" aria-label="Button group">
+                        <a class="btn btn-secondary shadow text-lg" type="button" href="{{url_for('members.show', id=member.id )}}">
+                            <i class="fas fa-times"></i>
+                            Discard&Leave
+                        </a>
+                        <a class="btn btn-info shadow text-lg" type="button" href="{{url_for('members.edit', id=member.id )}}">
+                            <i class="fas fa-undo"></i>
+                            Reset&Edit
+                        </a>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    {% else %}
+    <div class="container" name="security-chk"> 
+        <div class="col-8 offset-2 alert alert-success text-center border-0 alert-dismissible fade show rnd-3xl" role="alert">
+            <p class="text-md my-1">
+                 not authorized
+            </p>
             <button type="button" class="close text-2xl text-light" data-dismiss="alert" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
             </button>
-        </div>        
-        {% endfor %}
-        {% endfor %}
-</div>
-
-{% endif %}
-<div class="container">
-    <div class="row">
+        </div>
+    </div>
+    <div class="row no-gutters">
         <div class="col-2 col-sm-4 col-lg-2 offset-lg-2" >
-            <img class="border-0  bg-secondary add-anime member-img p-1 shadow mb-2 rnd-3xl" src="{{ member.img_url  }}"
-                alt="{{ member.id }}-photo" style="width: 95%;">
+            <img class="border-0 bg-transparent add-anime member-img p-0 m-0 shadow mb-2 rounded-circle opac-50" src="https://raw.githubusercontent.com/attila5287/rota-img/main/profile_pics/attila.png"
+                alt="dev-notes" style="width: 95%;">
+                
+                {% set notes = [ 
+                    'This is an exact replica of the requested form. ',
+                    'Members could edit themselves',
+                    'Admins could also edit members',
+                    ] %}
+                    {% for note in notes %}
+                    <p class="text-bold text-italic text-info">
+                        <i class="fas fa-info-circle"></i> 
+                        {{note}}
+                    </p>
+                    
+                    {% endfor %}
                 
         </div>
     
         <div class="col-10 col-sm-8 col-lg-6" name="form-part">
             <div class="content-section pl-4 pt-3 pr-0">
                 <fieldset class="form-group">
-            <form method="POST" action="">
-                {{ form.hidden_tag() }}
-        
-                {% for field in form %}
-                {% if field.id == 'csrf_token' %}
-                <i class="text-hide">CSRF TOKEN</i>
-                {% elif field.type == 'SubmitField' %}
-                {{field(class="btn btn-block btn-primary text-light text-xl py-2 border-0 rnd-xl shadow-lg" )}}                    
-                {% elif field.type == 'SelectField' %}
-                <div class="form-row align-items-center mb-4">
-        
-                    <div class="col-2">
-                        <p class="text-monts text-sm text-right my-0">
+                    <form method="POST" action="">
+                        {{ form.hidden_tag() }}
+                
+                        {% for field in form %}
+                        {% if field.id == 'csrf_token' %}
+                        <i class="text-hide">CSRF TOKEN</i>
+                        {% elif field.type == 'SubmitField' %}
+                        <a class="btn btn-block btn-primary text-light text-xl py-2 border-0 rnd-xl shadow-lg disabled">
                             {{field.label}}
-                        </p>
-                    </div>
-                    <div class="col">
-                        <div class="input-group mx-2 mb-0 text-comfo">
-                            <div class="input-group-prepend add-anime rnd-xl">
-                                <span class="input-group-text rnd-xl text-bold bg-secondary"
-                                    id="inputGroupPrepend">
-                                    <i class="text-light fa{{icons(field.id)}} fa-fw ml-2 mt-0"></i>
+                        </a>
+                        {% elif field.type == 'SelectField' %}
+                        <div class="form-row align-items-center mb-4">
+                
+                            <div class="col-2">
+                                <span class="text-monts text-left tet-sm my-0">
+                                    {{field.label}}
                                 </span>
                             </div>
-                            {{field(class="custom-select custom-select-sm shadow mr-2" )}}
+                            <div class="col">
+                                <div class="input-group mx-2 mb-0 ">
+                                    <div class="input-group-prepend  add-anime rnd-xl">
+                                        <span class="input-group-text bg-secondary text-light rnd-xl text-bold"
+                                            id="inputGroupPrepend">
+                                            <i class="fa{{icons(field.id)}} fa-fw ml-2 mt-0"></i>
+                                        </span>
+                                    </div>
+                                    <input class="custom-select custom-select-sm mb-0 shadow mr-2 text-muted text-italic" type="text" name=""value="select {{field.id}}"  readonly>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                </div>
-                {% else %}
-                <div class="form-row align-items-center mb-4">
-        
-                    <div class="col-2">
-                        <p class="text-monts text-sm text-right my-0">
-                            {{field.label}}
-                        </p>
-                    </div>
-                    <div class="col">
-                        <div class="input-group mx-2 mb-0 text-comfo">
-                            <div class="input-group-prepend  add-anime rnd-xl">
-                                <span class="input-group-text bg-secondary text-light rnd-xl text-bold"
-                                    id="inputGroupPrepend">
-                                    <i class="fa{{icons(field.id)}} fa-fw ml-2 mt-0"></i>
+                
+                        {% else %}
+                        <div class="form-row align-items-center mb-4">
+                
+                            <div class="col-2">
+                                <span class="text-monts text-left tet-sm my-0">
+                                    {{field.label}}
                                 </span>
                             </div>
-                            {{field(class="form-control form-control-sm mb-0 shadow mr-2" )}}
+                            <div class="col">
+                                <div class="input-group mx-2 mb-0 ">
+                                    <div class="input-group-prepend  add-anime rnd-xl">
+                                        <span class="input-group-text bg-secondary text-light rnd-xl text-bold"
+                                            id="inputGroupPrepend">
+                                            <i class="fa{{icons(field.id)}} fa-fw ml-2 mt-0"></i>
+                                        </span>
+                                    </div>
+                                    <input class="form-control form-control-sm mb-0 shadow mr-2 text-muted text-italic" type="text" name=""value="type {{field.id}} here"  value="not authorized" readonly>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                </div>
-        
-                {% endif %}
-        
-                {% endfor %}
-            </form>           
+                
+                        {% endif %}
+                
+                        {% endfor %}
+                    </form>           
                 </fieldset>
                 <div class="btn-group d-flex flex-row" role="group" aria-label="Button group">
                     <a class="btn btn-secondary shadow text-lg" type="button" href="{{url_for('members.show', id=member.id )}}">
@@ -99,9 +209,19 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div>    
+
+
+
+
     
-</div>
+{% endif %}
+    
+
+
+
+
+
 
 
 
