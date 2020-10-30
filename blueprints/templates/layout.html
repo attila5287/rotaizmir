@@ -149,6 +149,12 @@
                     <span class="text-sm text-monts text-light">
                       demo_mode: {{demo_mode}}
                     </span>
+                    <span>
+                      <a class="ml-4 text-light text-center" href="https://github.com/attila5287/">
+                        <i class="fab fa-github-square text-xl"></i>
+                        by @attila5287</a>
+                    </span>
+
                     
                     {% endif %}
 
@@ -158,45 +164,39 @@
                   <hr class="border-light border-med opac-30">
                 </li>
               </ul>
-              <style>
-              .bg-silver{
-                  background-image: linear-gradient(to right, rgb(120, 194, 173) , rgb(255, 255, 255));
-                    box-shadow:0px 0px 20px 0px rgb(120,194,173) inset;  
-              }
-              </style>
               <ul class="list-group mx-4">
 
                 {% set side_bar = [
                   (None, '', 'guests',  None),
-                  ('public', '/about', '├about',  'info'),
-                  ('public', '/login', '├Login', 'user-cog'),
-                  ('public', '/register',  '└Register', 'sign-out-alt'),
+                  ('public', '/about', '├ about',  'info'),
+                  ('public', '/login', '├ Login', 'user-cog'),
+                  ('public', '/register',  '└ Register', 'sign-out-alt'),
                   (None, '', 'users',  None),
-                  ('is_authenticated', '/account', '├Account', 'user-cog'),
-                  ('is_authenticated', '/logout',  '└Logout', 'sign-out-alt'),
+                  ('is_authenticated', '/account', '├ Account', 'user-cog'),
+                  ('is_authenticated', '/logout',  '└ Logout', 'sign-out-alt'),
                   (None, '', 'posts',  None),
-                  ('is_authenticated', '/post/new','├New Post',  'paper-plane'),
-                  ('is_authenticated', '/home', '└Posts Home', 'envelope',),
+                  ('is_authenticated', '/post/new','├ New Post',  'paper-plane'),
+                  ('is_authenticated', '/home', '└ Posts Home', 'envelope',),
                   (None, '', 'members',  None),
-                  ('is_member', '/members', '├Grid', 'users', ),
-                  ('is_member', '/members/table', '├Table', 'table', ),
-                  ('is_member', '/member/1', '├Show Member', 'fas fas fa-file-video', ),
-                  ('is_admin', '/members/file', '├File Upload', 'file-excel', ),
-                  ('is_admin', '/members/form', '└New Member', 'user-plus', ),
+                  ('is_member', '/members', '├ Grid', 'users', ),
+                  ('is_member', '/members/table', '├ Table', 'table', ),
+                  ('is_member', '/member/1', '├ Show Member', 'fas fas fa-file-video', ),
+                  ('is_admin', '/members/file', '├ File Upload', 'file-excel', ),
+                  ('is_admin', '/members/form', '└ New Member', 'user-plus', ),
                   (None, '', 'admins', '', ),
-                  ('is_admin', '/admin/dash', '└Dashboard', 'user-md', ),
+                  ('is_admin', '/admin/dash', '└ Dashboard', 'user-md', ),
                 ] -%}
 
                 {% for access_level, href, caption, icon in side_bar %}
                 {% if demo_mode == 'on' %}
                 {% if access_level or access_level == 'public' or current_user[access_level] or current_user[access_level]=='y' %}
-                {% set accessible = ' anim text-lowercase ml-2' %}
+                  {% set accessible = ' anim text-lowercase ml-2' %}
                 {% else %}
-                {% set accessible = ' disabled text-capitalize mt-2 ml-0' %}
+                  {% set accessible = ' disabled text-capitalize mt-2 ml-0' %}
                 {% endif %}
                 
                 {% if  url_for(request.endpoint) == href %}
-                {% set highlighted = 'bg-silver text-light' %}
+                {% set highlighted = 'bg-side text-light' %}
                 {% endif %}
                 
                 <a class="list-group-item list-group-item-action bg-transparent side-title text-light border-0 m-0 p-0 {{accessible}}" href="{{href}}">
@@ -278,9 +278,45 @@
 
           </legend>
           {% block content %}{% endblock %}
+          <footer class="container footer mt-2">
+            <nav class="nav nav-pills nav-justified">
+              {% set footer_images=[
+               ('slab-logo',  'logo_slab.png', ),
+               ('open-doors',  'logo_opensdoors_2021.png', ),
+               ]  %}
+     
+              {% for alt, src in footer_images %}
+              <a class="nav-item nav-link add-anime  rnd-xl"
+                href="https://rotaract2440.org/kulup/23#"
+                >
+                <img class="m-0 rnd-lg py-0 pl-2 pr-1 add-anime"
+                  src="https://raw.githubusercontent.com/attila5287/rota-img/main/site/{{src}}"
+                  alt="{{alt}}" style="height: 2.75rem;">
+              </a>
+              {% endfor %}
+              {% set footer_icons = [
+                 ('instagram', 'www.instagram.com/gozteperotaract',  ),
+                 ('twitter', 'twitter.com/GoztepeRotaract',  ),
+                 ('youtube', '',  ),
+                 ('linkedin', '',  ),
+                 ]   %}
+              {% for icon, url in footer_icons %}
+              <a class="nav-item nav-link add-anime  rnd-xl"
+                href="https://{{url}}">
+                <h1 class="fab fa-{{icon}}"></h1>
+              </a>
+              {% endfor %}
+            </nav>
+          </footer>
         </main>
+
+     
+        
       </div>
     </div>
+
+
+
     <aside>
       <!-- Optional JavaScript -->
       <!-- jQuery first, then Popper.js, then Bootstrap JS -->

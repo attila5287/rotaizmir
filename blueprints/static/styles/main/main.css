@@ -740,3 +740,7 @@ input[type=range][orient=vertical]
     -webkit-appearance: slider-vertical; /* WebKit */
     padding: 0 5px;
 }
+.bg-side{
+  background-image: linear-gradient(to right, rgb(120, 194, 173) , rgb(255, 255, 255));
+    box-shadow:0px 0px 20px 0px rgb(120,194,173) inset;  
+  }
