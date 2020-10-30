@@ -18,7 +18,6 @@
           {% for field in form %}
           {% if field.id == 'csrf_token' %}
           
-          {% elif field.id == 'submit' %}
           
           {% else %}
             <p class="text-monts text-lg text-center my-0">
@@ -32,7 +31,7 @@
                     <i class="fa{{icons(field.id)}} fa-fw ml-2 mt-0 animated infinite heartBeat"></i>
                   </span>
                 </div>
-                {{field(class="form-control  form-control-lg border-light custom-select shadow mr-2" )}}
+                {{field(class="border-light custom-select shadow mr-2" )}}
               </div>
 
             </div>

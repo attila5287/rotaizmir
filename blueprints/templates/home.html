@@ -1,34 +1,39 @@
 {% extends "layout.html" %}
 {% block content %}
-    {% for post in posts.items %}
+<div class="container text-center" name="pags">
+  {% for page_num in posts.iter_pages(left_edge=1, right_edge=1, left_current=1, right_current=2) %}
+  {% if page_num %}
+    {% if posts.page == page_num %}
+      <a class="btn btn-outline-secondary bg-theme mb-4" href="{{ url_for('main.home', page=page_num) }}">{{ page_num }}</a>
+    {% else %}
+      <a class="btn btn-sm btn-secondary mb-4" href="{{ url_for('main.home', page=page_num) }}">{{ page_num }}</a>
+    {% endif %}
+  {% else %}
+    ...
+  {% endif %}
+{% endfor %}
+</div>
 
-        <article class="media content-section  border-light rnd-2xl">
-          <img class="rounded-circle article-img" src="https://raw.githubusercontent.com/attila5287/regropoly-img/master/avatars/{{post.author.img_url}}.png">
-          <div class="media-body ">
-            <div class="article-metadata mb-0">
-            <a class="rnd-xl text-bold text-theme mr-2 px-2 pb-1 mb-0" href="{{ url_for('users.user_posts', username=post.author.username) }}">{{ post.author.username }}</a> 
-              <small class="ml-auto text-md text-italic ">@{{ post.date_posted.strftime('%Y-%m-%d') }}</small>
-            </div>
-            <hr class="border-light my-0 mx-5">
-            <h4 class="shd-theme "><a class="article-title " href="{{ url_for('posts.post', post_id=post.id) }}">{{ post.title }}</a></h4>
-            <hr class="mb-2 mt-0 opac-30 border-light px-4">  
-            <p class="article-content ">{{ post.content }}</p>
-          </div>
-        </article>
-
-    {% endfor %}
-    {% for page_num in posts.iter_pages(left_edge=1, right_edge=1, left_current=1, right_current=2) %}
-      {% if page_num %}
-        {% if posts.page == page_num %}
-          <a class="btn btn-secondary bg-theme mb-4" href="{{ url_for('main.home', page=page_num) }}">{{ page_num }}</a>
-        {% else %}
-          <a class="btn btn-outline-light mb-4" href="{{ url_for('main.home', page=page_num) }}">{{ page_num }}</a>
-        {% endif %}
-      {% else %}
-        ...
-      {% endif %}
-    {% endfor %}
-
+<div class="row" name="posts">
+  {% for post in posts.items %}
+<div class="col-sm-6">
+  <article class="media content-section  border-light rnd-2xl">
+    <img class="rounded-circle article-img" src="https://raw.githubusercontent.com/attila5287/regropoly-img/master/avatars/{{post.author.img_url}}.png">
+    <div class="media-body ">
+      <div class="article-metadata mb-0">
+      <a class="rnd-xl text-bold text-theme mr-2 px-2 pb-1 mb-0" href="{{ url_for('users.user_posts', username=post.author.username) }}">{{ post.author.username }}</a> 
+        <small class="ml-auto text-md text-italic ">@{{ post.date_posted.strftime('%Y-%m-%d') }}</small>
+      </div>
+      <hr class="border-light my-0 mx-5">
+      <h4 class="shd-theme "><a class="article-title " href="{{ url_for('posts.post', post_id=post.id) }}">{{ post.title }}</a></h4>
+      <hr class="mb-2 mt-0 opac-30 border-light px-4">  
+      <p class="article-content ">{{ post.content }}</p>
+    </div>
+  </article>
+</div>
+  {% endfor %}
+  
+</div>
 
 
 {% endblock content %}

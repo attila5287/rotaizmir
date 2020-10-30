@@ -15,12 +15,12 @@
   {% for page_num in members.iter_pages(left_edge=1, right_edge=1, left_current=5, right_current=5) %}
   {% if page_num %}
     {% if members.page == page_num %}
-      <a class="btn btn-secondary disabled bg-transparent text-dark border-0 mb-4 text-xl" href="{{ url_for('members.table', page=page_num) }}">
+      <a class="btn btn-outline-secondary disabled mb-4 text-lg shadow" href="{{ url_for('members.table', page=page_num) }}">
         {{ page_num }}
 
       </a>
     {% else %}
-      <a class="btn btn-primary mb-4 text-xl" href="{{ url_for('members.table', page=page_num) }}">{{ page_num }}</a>
+      <a class="btn btn-sm btn-secondary mb-4 shadow" href="{{ url_for('members.table', page=page_num) }}">{{ page_num }}</a>
     {% endif %}
   {% else %}
     ...
@@ -29,7 +29,7 @@
 
 </div>
 <table class="col-10 offset-1 table table-hover table-sm  mt-3 rnd-2xl text-bold">
-  <thead class="thead-inverse bg-primary text-capitalize">
+  <thead class="thead-inverse bg-primary text-light rnd-xl disabled text-capitalize">
       <tr>
       {% for hdr_icon,th in headers %}
       
@@ -54,7 +54,7 @@
         <td class="align-items-center"
         id="cell-{{ rowloop.index }}-{{ loop.index }}">
           
-          <img class="img-thumbnail border-info bg-info add-anime rnd-lg py-0" src="{{ v }}" alt="mem-img"
+          <img class="rounded-circle img-thumbnail border-info bg-info add-anime rnd-lg py-0" src="{{ v }}" alt="mem-img"
           style="max-height: 2.0rem;"
           >
         </td>
@@ -67,7 +67,7 @@
         id="cell-{{ rowloop.index }}-{{ loop.index }}">
         <a class="shadow" href="{{row[k]}}">
           
-          <i class="text-2xl fab fa-{{k}}" aria-hidden="true"></i>
+          <i class="text-light opac-50 text-2xl fab fa-{{k}}" aria-hidden="true"></i>
 
         </a>
 

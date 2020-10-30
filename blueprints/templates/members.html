@@ -2,7 +2,6 @@
 {% block content %}
 
 
-{% if members.items != [] %}
 
 <div name="select-menu" class="row no-gutters align-items-center">
     <div class="content-section col-10 offset-1 col-md-8 offset-md-2 col-lg-6 offset-lg-3">
@@ -12,7 +11,8 @@
 
           {% for field in form %}
           {% if field.id != 'csrf_token' %}
-
+          
+          
           <p class="text-monts text-lg text-center my-0">
             {{field.label}}
           </p>
@@ -24,15 +24,13 @@
                   <i class="fa{{icons(field.id)}} fa-fw ml-2 mt-0 animated infinite heartBeat"></i>
                 </span>
               </div>
-              {{field(class="form-control  form-control-lg  custom-select shadow mr-2" )}}
+              {{field(class="custom-select shadow mr-2" )}}
             </div>
 
           </div>
 
           {% else %}
-
           {% endif %}
-
           {% endfor %}
           <div class="form-group">
 
@@ -44,16 +42,16 @@
     </div>
 </div>
 
-<div name="pagination-buttons" class="d-flex flex-row justify-content-center">
+<div name="pagination-buttons" class="container text-center">
   {% for page_num in members.iter_pages(left_edge=1, right_edge=1, left_current=5, right_current=5) %}
   {% if page_num %}
   {% if members.page == page_num %}
-  <a class="btn btn-outline-secondary bg-transparent disabled border-med mb-4 text-xl mx-3"
+  <a class="btn btn-outline-secondary disabled border-med text-lg  mb-4 mx-3"
     href="{{ url_for('members.home', page=page_num) }}">
     {{ page_num }}
   </a>
   {% else %}
-  <a class="btn btn-outline-light bg-secondary mb-4 text-xl mr-2 shadow"
+  <a class="btn btn-sm btn-secondary shadow mb-4"
     href="{{ url_for('members.home', page=page_num) }}">{{ page_num }}</a>
   {% endif %}
   {% else %}
@@ -62,10 +60,12 @@
   {% endfor %}
 
 </div>
+
+
 <div name="members-grid" class="row no-gutters">
   {% for m in members.items %}
 
-  <div class="col-sm-6 col-md-4 col-lg-3 pl-1 pr-2">
+  <div class="col-md-6 col-lg-4 pr-1">
     <article class="media content-section rnd-2xl">
       <div class="d-flex flex-column align-content-center">
         <img class="rounded-circle article-img" src="{{ m.img_url  }}" alt="{{ m.id }}-photo">
@@ -137,103 +137,6 @@
 
   {% endfor %}
 </div>
-
-{% else %}
-
-<div class="container" name="members">
-  <p class="text-light text-center text-lg">
-  <i class="fa fa-arrow-down text-2xl animated infinite heartBeat" aria-hidden="true"></i> These are demo items, only be
-  seen if there are no members in database...
-  <i class="fas fa-id-card bg-"></i>
-</p>
-<br>
-{% set members_demo = [
-    (
-      '1369',
-      'alp',
-      'tekin',
-      'alp_e6650@ephix.com',
-      '/m/5.jpg', 
-      ),
-      (
-        '2869',
-        'boyga',
-        'kose',
-        'boyga_s8210@citytech.com',
-        '/m/51.jpg',
-      ),
-      (
-        '3450',
-        'cigdem',
-      'ates',
-      'cigdem_y16250@ephix.com',
-      '/f/25.jpg',),
-      (
-        '4296',
-        'damla',
-        'arslan',
-        'damla_y18440@dex.net',
-        '/f/66.jpg',
-      )
-
-] -%}
-
-{% for id,first_name, last_name, email, img_url in members_demo %}
-<div class="col-sm-6 col-md-4 col-lg-3">
-  <article class="media content-section text-light rnd-2xl">
-    <div class="d-flex flex-column align-content-center">
-      <img class="rounded-circle article-img"
-        src="https://raw.githubusercontent.com/attila5287/rota-img/main/photos/{{ img_url  }}"
-        alt="memb-{{ id }}-photo">
-      <ul class="list-group list-group-flush">
-
-
-        <a class="list-group-item pt-0 pb-1 bg-transparent" href="https://www.instagram.com/{{ id }}">
-          <i class="fab fa-instagram">@insta_{{id}}</i>
-        </a>
-
-
-      </ul>
-    </div>
-    <div class="media-body text-light">
-      <div class="article-metadata bg-memb{{m.gender}} text-md">
-        <a class="text-capitalize text-justified mr-2">
-          {{last_name}},
-          {{first_name}}
-        </a>
-      </div>
-      <h2><a class="article-title text-md text-capitalize">
-        </a></h2>
-
-      <ul class="list-group list-group-flush">
-        <li class="list-group-item bg-transparent py-1">
-          <i class="far fa-envelope mr-2" aria-hidden="true"></i>
-          {{ email }}
-        </li>
-        <li class="list-group-item bg-transparent py-1">
-          <i class="fa fa-phone mr-2" aria-hidden="true"></i>
-          0
-          -537
-          -228
-          -1880
-        </li>
-        <li class="list-group-item bg-transparent py-1">
-          <i class="fa fa-graduation-cap mr-2"></i>
-          MemberID: {{ id }}
-        </li>
-        <li class="list-group-item bg-transparent py-1">
-          <i class="fas fa-user-tag mr-2"></i>
-          UserID: {{ id*3 }}
-        </li>
-
-      </ul>
-    </div>
-  </article>
-</div>
-{% endfor %}
-</div>
-
-{% endif %}
 
 
 {% endblock content %}

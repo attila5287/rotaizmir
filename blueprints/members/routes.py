@@ -118,12 +118,13 @@ def db_init():
 
 
 @members.route("/members", methods=['GET', 'POST'])
+@members.route("/members/", methods=['GET', 'POST'])
 def home():
     pass
     page = request.args.get('page', 1, type=int)
 
     members = Member.query.order_by(
-        Member.id.desc()).paginate(page=page, per_page=24)
+        Member.id.asc()).paginate(page=page, per_page=24)
     form = MemberMenu()
     all_members = [m for m in Member.query.all()]
     form.menu.choices = [
@@ -259,6 +260,7 @@ def edit(id=1):
 
 
 @members.route("/members/table")
+@members.route("/members/table/")
 def table():
     pass
     page = request.args.get('page', 1, type=int)
