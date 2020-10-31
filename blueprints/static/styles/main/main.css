@@ -773,3 +773,11 @@ input[type=range][orient=vertical]
   padding: 10px;
   margin: auto;
 } 
+
+
+.mini {
+  width: 100%;
+  margin: auto;
+  max-width: 440px;
+  padding: 10px;
+} 
