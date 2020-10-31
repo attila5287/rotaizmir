@@ -1,80 +1,81 @@
 
 <div class="col-10 col-sm-8 col-lg-6" name="form-part">
-            <div class="content-section pl-4 pt-3 pr-0">
-                <fieldset class="form-group">
-            <form method="POST" action="">
-                {{ form.hidden_tag() }}
-        
-                {% for field in form %}
-                {% if field.id == 'csrf_token' %}
-                <i class="text-hide">CSRF TOKEN</i>
-                {% elif field.type == 'SubmitField' %}
-                {{field(class="btn btn-block btn-outline-primary bg-primary text-light py-2  rnd-xl py-2 shadow-lg mb-0 mr-2" )}}                    
-                {% elif field.type == 'SelectField' %}
-                <div class="form-row align-items-center mb-4">
-        
-                    <div class="col-2">
-                        <p class="text-monts text-sm text-right my-0">
-                            {{field.label}}
-                        </p>
+    <div class="content-section pl-4 pt-3 pr-0">
+        <fieldset class="form-group">
+    <form method="POST" action="">
+        {{ form.hidden_tag() }}
+
+        {% for field in form %}
+        {% if field.id == 'csrf_token' %}
+        <i class="text-hide">CSRF TOKEN</i>
+        {% elif field.type == 'SubmitField' %}
+        {{field(class="btn btn-block btn-outline-primary bg-primary text-light py-2  rnd-xl py-2 shadow-lg mb-0 mr-2" )}}                    
+        {% elif field.type == 'SelectField' %}
+        <div class="form-row align-items-center mb-4">
+
+            <div class="col-2">
+                <p class="text-monts text-sm text-right my-0">
+                    {{field.label}}
+                </p>
+            </div>
+            <div class="col">
+                <div class="input-group mx-2 mb-0 text-comfo">
+                    <div class="input-group-prepend add-anime rnd-xl">
+                        <span class="input-group-text rnd-xl text-bold"
+                            id="inputGroupPrepend">
+                            <i class="text-secondary fa{{icons(field.id)}} fa-fw ml-2 mt-0"></i>
+                        </span>
                     </div>
-                    <div class="col">
-                        <div class="input-group mx-2 mb-0 text-comfo">
-                            <div class="input-group-prepend add-anime rnd-xl">
-                                <span class="input-group-text rnd-xl text-bold"
-                                    id="inputGroupPrepend">
-                                    <i class="text-secondary fa{{icons(field.id)}} fa-fw ml-2 mt-0"></i>
-                                </span>
-                            </div>
-                            {{field(class="form-control form-control-dark shadow mr-2" )}}
-                        </div>
-                    </div>
+                    {{field(class="form-control  shadow mr-2" )}}
                 </div>
-                {% else %}
-                <div class="form-row align-items-center mb-4">
-        
-                    <div class="col-2">
-                        <p class="text-monts text-sm text-right my-0">
-                            {{field.label}}
-                        </p>
+            </div>
+        </div>
+        {% else %}
+        <div class="form-row align-items-center mb-4">
+
+            <div class="col-2">
+                <p class="text-monts text-sm text-right my-0">
+                    {{field.label}}
+                </p>
+            </div>
+            <div class="col">
+                <div class="input-group mx-2 mb-0 text-comfo">
+                    <div class="input-group-prepend  add-anime">
+                        <span class="input-group-text bg-secondary text-light rnd-xl text-bold"
+                            id="inputGroupPrepend">
+                            <i class="fa{{icons(field.id)}} fa-fw ml-2 mt-0"></i>
+                        </span>
                     </div>
-                    <div class="col">
-                        <div class="input-group mx-2 mb-0 text-comfo">
-                            <div class="input-group-prepend  add-anime">
-                                <span class="input-group-text bg-secondary text-light rnd-xl text-bold"
-                                    id="inputGroupPrepend">
-                                    <i class="fa{{icons(field.id)}} fa-fw ml-2 mt-0"></i>
-                                </span>
-                            </div>
-                            {{field(class="form-control form-control-dark form-control-sm mb-0 shadow mr-2" )}}
-                        </div>
-                    </div>
+                    {{field(class="form-control  form-control-sm mb-0 shadow mr-2" )}}
                 </div>
-        
-                {% endif %}
-        
-                {% endfor %}
-            </form>           
-                </fieldset>
             </div>
         </div>
 
+        {% endif %}
+
+        {% endfor %}
+    </form>           
+        </fieldset>
+    </div>
+</div>
+
 
 <div class="container errors">
-        {% for field_name, field_errors in form.errors|dictsort if field_errors %}
-        {% for error in field_errors %}
-        <div class="px-5 mx-5 alert alert-secondary border-0 alert-dismissible fade show rnd-3xl" role="alert">
-                <strong>
+{% for field_name, field_errors in form.errors|dictsort if field_errors %}
+{% for error in field_errors %}
+<div class="px-5 mx-5 alert alert-secondary border-0 alert-dismissible fade show rnd-3xl" role="alert">
+        <strong>
 
-                    <p class="text-lg my-1">
-                    <i class="text-xl fa{{ icons(form[field_name].id) }} fa-fw animated infinite heartBeat mr-2"></i>
-                    {{ form[field_name].label }}: {{ error }}</p>
-                </strong>
-            {{msg}}
-            <button type="button" class="close text-2xl text-light" data-dismiss="alert" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-            </button>
-        </div>        
-        {% endfor %}
-        {% endfor %}
+            <p class="text-lg my-1">
+            <i class="text-xl fa{{ icons(form[field_name].id) }} fa-fw animated infinite heartBeat mr-2"></i>
+            {{ form[field_name].label }}: {{ error }}</p>
+        </strong>
+    {{msg}}
+    <button type="button" class="close text-2xl text-light" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>        
+{% endfor %}
+{% endfor %}
 </div>
+    

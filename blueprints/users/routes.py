@@ -36,6 +36,7 @@ def inject_icons():
             "twitter": "b fa-twitter",
             "user_id": "s fa-user-tag",
             "menu": "s fa-sort",
+            "picture": "s fa-image",
         }
 
         return gallery.get(label, 's fa-edit')
@@ -264,8 +265,8 @@ def account():
                                ('main', 'main', ),
                            ],
                            info_notes=[
-                               'Above is the current (temporary) picture, hit the button bottom below to change',
-                               'Click (or Tap) below picture for next suggestion or hit the button to use image!',
+                               'On left is the current (temporary) picture,',
+                               'Click (or Tap) suggested picture for next suggestion or hit the button to !',
                            ],
                            access=[
                                'u',

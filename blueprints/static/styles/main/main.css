@@ -765,3 +765,11 @@ input[type=range][orient=vertical]
   background-image: linear-gradient(to right, rgb(120, 194, 173) , rgb(255, 255, 255));
     box-shadow:0px 0px 20px 0px rgb(120,194,173) inset;  
   }
+  
+
+.form-mini {
+  width: 100%;
+  max-width: 440px;
+  padding: 10px;
+  margin: auto;
+} 

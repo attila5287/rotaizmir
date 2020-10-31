@@ -5,6 +5,12 @@
 		},
 		{
 			"path": "..\\references\\html\\bootstrap-examples"
+		},
+		{
+			"path": "..\\references\\_best_of\\d3-auto-table\\HW14-javascript"
+		},
+		{
+			"path": "..\\references\\html\\bs-dashboard\\material-dashboard-master"
 		}
 	],
 	"settings": {
