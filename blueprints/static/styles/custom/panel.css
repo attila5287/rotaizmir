@@ -1,0 +1,77 @@
+.panel {
+  font-size: .875rem;
+}
+.panel {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  word-wrap: break-word;
+  background-color: #fff;
+  background-clip: border-box;
+  border: 1px solid #eeeeee;
+  border-radius: 0.25rem;
+}
+
+.panel>hr {
+  margin-right: 0;
+  margin-left: 0;
+}
+.panel form {
+  margin: 0;
+}
+
+
+.panel .panel-header-primary .panel-icon{
+  background: linear-gradient(60deg, #93d6c3, #52a890);
+}  
+.panel .panel-header-secondary .panel-icon{
+  background: linear-gradient(60deg, #f3aeb2, #f3878c);
+}  
+.panel .panel-header {
+  border-bottom: none;
+  background: transparent;
+}
+.panel {
+  border: 0;
+  margin-bottom: 30px;
+  margin-top: 30px;
+  border-radius: 6px;
+  color: #333333;
+  background: #fff;
+  width: 100%;
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
+}
+
+.panel-asym .panel-header {
+  margin-bottom: 0;
+  margin-top: 0;
+}
+
+.panel-asym .panel-header.panel-header-icon i {
+  font-size: 36px;
+  line-height: 56px;
+  width: 56px;
+  height: 56px;
+  text-align: center;
+}
+
+.panel .panel-header-icon .panel-icon{
+  border-radius: 3px;
+  background-color: #999999;
+  padding: 15px;
+  margin-top: -20px;
+  margin-right: 15px;
+  float: left;
+}
+
+.panel [class*="panel-header-"] {
+  margin: -10px 15px 0;
+  padding: 0;
+  position: relative;
+}
+
+.panel .panel-header {
+  border-bottom: none;
+  background: transparent;
+}
