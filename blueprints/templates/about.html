@@ -1,15 +1,14 @@
 {% extends "layout.html" %}
 {% block content %}
 <style>
-    .tab-pane {
-        font-style: italic;
-        color: fff;
-    }
+
 </style>
-<div class="panel panel-asym  mini shadow-lg p-2 pb-5">
+<div class="panel panel-asym  mini shadow-lg p-2 pt-0 pb-5">
     <div class="panel-header panel-header-secondary panel-header-icon">
-        <div class="panel-icon shadow-lg">
-            <i class="fas fa-award text-light"></i>
+        <div class="panel-icon img-shd opac-70 shadow">
+            <img class="article-img border-0 m-0 p-0"
+                src="https://raw.githubusercontent.com/attila5287/rota-img/main/logos/logo_circle.png"
+                alt="">
         </div>
         <h3 class="panel-title text-right mt-4 ">Welcome!</h3>
         <hr class="border-secondary my-0">
@@ -17,23 +16,12 @@
     </div>
     <div class="row">
         <div class="col-3 text-center">
-            <img class="article-img border-0 ml-2"
-                src="https://raw.githubusercontent.com/attila5287/rota-img/main/profile_pics/alara.png"
-                alt="">
 
-            <div class="text-center mb-2">
-                <p class="text-muted text-bold text-italic mb-0 mt-1">Alara T.
-                </p>
-                <hr class="my-0 mx-3">
-                <small class="text-muted text-bold text-italic mb-0 mt-1">
-                    pres.2020/21
-                </small>
-            </div>
 
             <ul class="nav flex-column nav-pills text-bold tet-lg" id="myTab"
                 role="tablist" name="welcome-headers">
                 <li class="nav-item">
-                    <a class="nav-link d-flex flex-row justify-content-between active"
+                    <a class="nav-link d-flex flex-row justify-content-between my-2 pt-1 pb-2 active"
                         id="guest-tab" data-toggle="tab" href="#guest"
                         role="tab" aria-controls="guest" aria-selected="true">
 
@@ -44,7 +32,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link d-flex flex-row justify-content-between"
+                    <a class="nav-link d-flex flex-row justify-content-between my-2 pt-1 pb-2"
                         id="user-tab" data-toggle="tab" href="#user" role="tab"
                         aria-controls="user" aria-selected="false">
                         <i class="fas fa-user-clock">
@@ -53,7 +41,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link d-flex flex-row justify-content-between"
+                    <a class="nav-link d-flex flex-row justify-content-between my-2 pt-1 pb-2"
                         id="member-tab" data-toggle="tab" href="#member"
                         role="tab" aria-controls="member"
                         aria-selected="false">
@@ -65,7 +53,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link d-flex flex-row justify-content-between"
+                    <a class="nav-link d-flex flex-row justify-content-between my-2 pt-1 pb-2"
                         id="admin-tab" data-toggle="tab" href="#admin"
                         role="tab" aria-controls="admin" aria-selected="false">
                         <i class="fas fa-user-graduate">
@@ -82,7 +70,7 @@
                     aria-labelledby="guest-tab">
 
                     <div class="progress float-bottom my-3">
-                        <div class="progress-bar progress-bar-striped progress-bar-animated bg-secondary"
+                        <div class="progress-bar progress-bar-striped progress-bar-animated bg-primary"
                             role="progressbar" aria-valuenow="25"
                             aria-valuemin="0" aria-valuemax="100"
                             style="width: 25%"></div>
@@ -130,7 +118,7 @@
                 <div class="tab-pane" id="user" role="tabpanel"
                     aria-labelledby="user-tab">
                     <div class="progress my-3">
-                        <div class="progress-bar progress-bar-striped progress-bar-animated bg-secondary"
+                        <div class="progress-bar progress-bar-striped progress-bar-animated bg-primary"
                             role="
                                     progressbar" aria-valuenow="50"
                             aria-valuemin="0" aria-valuemax="100"
@@ -163,7 +151,7 @@
                     aria-labelledby="member-tab">
 
                     <div class="progress float-bottom my-3">
-                        <div class="progress-bar progress-bar-striped progress-bar-animated bg-secondary"
+                        <div class="progress-bar progress-bar-striped progress-bar-animated bg-primary"
                             role="progressbar" aria-valuenow="95"
                             aria-valuemin="0" aria-valuemax="100"
                             style="width: 95%"></div>
@@ -204,7 +192,7 @@
                 <div class="tab-pane" id="admin" role="tabpanel"
                     aria-labelledby="admin-tab">
                     <div class="progress float-bottom my-3">
-                        <div class="progress-bar progress-bar-striped progress-bar-animated bg-secondary"
+                        <div class="progress-bar progress-bar-striped progress-bar-animated bg-primary"
                             role="progressbar" aria-valuenow="95"
                             aria-valuemin="0" aria-valuemax="100"
                             style="width: 95%"></div>

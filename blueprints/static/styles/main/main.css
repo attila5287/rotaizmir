@@ -879,3 +879,11 @@ input[type=range][orient=vertical]
 .panel-title {
   margin-bottom: 0.5rem;
 }
+    .tab-pane {
+        font-style: italic;
+        color: rgb(100, 100, 100);
+    }
+  .img-shd  img {
+  -webkit-filter: drop-shadow(5px 5px 5px rgb(255, 255, 255));
+  filter: drop-shadow(5px 5px 5px rgb(255, 255, 255));
+}
