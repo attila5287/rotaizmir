@@ -2,15 +2,15 @@
 {% block content %}
 
 <div class="container text-center" name="pagination-members">
-{% for page_num in members.iter_pages(left_edge=5, right_edge=5, left_current=5, right_current=10) %}
+{% for page_num in members.iter_pages(left_edge=5, right_edge =5, left_current=5, right_current=10) %}
 {% if page_num %}
 {% if members.page == page_num %}
-  <a class="btn btn-outline-secondary mb-4 shadow-lg border-secondary text-lg" href="{{ url_for('admins.dashboard', page_m=page_num, ) }}">
+  <a class="btn btn-outline-secondary mb-4 shadow-lg border-secondary text-lg" href="{{ url_for('admins.members_table', page=page_num, ) }}">
     {{ page_num }}
   
   </a>
   {% else %}
-  <a class="btn btn-sm btn-secondary btn-sm border-0 shadow mb-4" href="{{ url_for('admins.dashboard', page_m=page_num) }}">{{ page_num }}</a>
+  <a class="btn btn-sm btn-secondary btn-sm border-0 shadow mb-4" href="{{ url_for('admins.members_table', page=page_num) }}">{{ page_num }}</a>
   {% endif %}
 {% else %}
 ...

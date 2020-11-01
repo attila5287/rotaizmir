@@ -1,16 +1,16 @@
 {
 	"folders": [
 		{
+			"name": "rotaizmir",
 			"path": "."
 		},
 		{
-			"path": "..\\references\\html\\bootstrap-examples"
-		},
-		{
+			"name": "HW14-javascript",
 			"path": "..\\references\\_best_of\\d3-auto-table\\HW14-javascript"
 		},
 		{
-			"path": "..\\references\\html\\bs-dashboard\\material-dashboard-master"
+			"name": "bootstrap-examples",
+			"path": "..\\references\\html\\bootstrap-examples"
 		}
 	],
 	"settings": {
