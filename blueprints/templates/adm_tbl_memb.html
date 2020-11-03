@@ -1,16 +1,16 @@
-{% extends "layout.html" %}
+{% extends 'layout.html' %}
 {% block content %}
 
-<div class="container text-center" name="pagination-members">
+<div class='container text-center' name='pagination-members'>
 {% for page_num in members.iter_pages(left_edge=5, right_edge =5, left_current=5, right_current=10) %}
 {% if page_num %}
 {% if members.page == page_num %}
-  <a class="btn btn-outline-secondary mb-4 shadow-lg border-secondary text-lg" href="{{ url_for('admins.members_table', page=page_num, ) }}">
+  <a class='btn btn-outline-secondary mb-4 shadow-lg border-secondary text-lg' href='{{ url_for('admins.members_table', page=page_num, ) }}'>
     {{ page_num }}
   
   </a>
   {% else %}
-  <a class="btn btn-sm btn-secondary btn-sm border-0 shadow mb-4" href="{{ url_for('admins.members_table', page=page_num) }}">{{ page_num }}</a>
+  <a class='btn btn-sm btn-secondary btn-sm border-0 shadow mb-4' href='{{ url_for('admins.members_table', page=page_num) }}'>{{ page_num }}</a>
   {% endif %}
 {% else %}
 ...
@@ -19,18 +19,26 @@
 
 </div>      
 
-<div class="table-responsive" name="table-memb">
-  <table class="table table-striped table-sm table-hover">
+<div class='table-responsive' name='table-memb'>
+  <table class='table table-striped table-sm table-hover'>
 
-    <thead class="thead-inverse border-top border-light">
+    <thead>
         <tr>
-        {% for hdr_icon,th in headers %}
+        {% for header in headers %}
+
+        {% if header in [ 'linkedin', 'twitter', 'instagram', 'phone_num', 'email','gender', 'image_file', 'img_url', ]  %}
         
-        <th class="text-nowrap text-comfo py-3"> 
-          <i class="fa{{hdr_icon }}"></i>
-          {{th}} 
-        </th>
-        
+        <th class='bg-primary text-light py-3 text-center'> 
+            <i class='text-xl fa{{icons(header)}}' aria-hidden='true'></i>
+          </th>        
+          
+        {% else %}
+
+          <th class='bg-primary text-light py-3 text-center'> 
+            {{ header.title().replace('_',' ') }} 
+          </th>
+
+        {% endif %}
         {% endfor %} 
       
         </tr>
@@ -38,28 +46,28 @@
     <tbody>
     
       {% for row in table %}
-        <tr class=" align-items-base">
+        <tr class=' align-items-base'>
         {% set rowloop = loop %}
         {% for k,v in row.items() %}
 
-          {% if k =="img_url" %}
-          <td class="align-items-center"
-          id="cell-{{ rowloop.index }}-{{ loop.index }}">
+          {% if k =='img_url' %}
+          <td class='align-items-center'
+          id='cell-{{ rowloop.index }}-{{ loop.index }}'>
             
-            <img class="img-thumbnail border-0 add-anime rnd-lg py-0 opac-50 rounded-circle" src="{{ v }}" alt="img"
-            style="max-height: 1.75rem;"
+            <img class='img-thumbnail border-0 add-anime rnd-lg py-0 opac-50 rounded-circle' src='{{ v }}' alt='img'
+            style='max-height: 1.75rem;'
             >
           </td>
           
           
 
-          {% elif k in [ "linkedin", "twitter", "instagram",] %}
+          {% elif k in [ 'linkedin', 'twitter', 'instagram',] %}
 
-          <td class="align-items-center"
-          id="cell-{{ rowloop.index }}-{{ loop.index }}">
-          <a class="opac-70" href="{{row[k]}}">
+          <td class='align-items-center'
+          id='cell-{{ rowloop.index }}-{{ loop.index }}'>
+          <a class='opac-70' href='{{row[k]}}'>
             
-            <i class="text-lg fab fa-{{k}}" aria-hidden="true"></i>
+            <i class='text-lg fab fa-{{k}}' aria-hidden='true'></i>
 
           </a>
 
@@ -67,42 +75,42 @@
           
           
 
-          {% elif k in [ "first_name", "last_name", "middle_name",] %}
+          {% elif k in [ 'first_name', 'last_name', 'middle_name',] %}
 
 
-          <td class="align-items-center"
-          id="cell-{{ rowloop.index }}-{{ loop.index }}">
+          <td class='align-items-center'
+          id='cell-{{ rowloop.index }}-{{ loop.index }}'>
             {{v.title()}}
           </td>
           
 
-          {% elif k in [ "is_admin", "is_prez"] %}
+          {% elif k in [ 'is_admin', 'is_prez'] %}
           {% set icon_dict = {
             'y' : 'check',
             'n' : 'times',
           } %}
 
 
-          <td class="align-items-center"
-          id="cell-{{ rowloop.index }}-{{ loop.index }}">
+          <td class='align-items-center'
+          id='cell-{{ rowloop.index }}-{{ loop.index }}'>
             
-            <i class="fas fa-{{  icon_dict[v] }}"></i>
+            <i class='fas fa-{{  icon_dict[v] }}'></i>
 
 
           </td>
           
 
-          {% elif k ==  "gender" %}
+          {% elif k ==  'gender' %}
           {% set gender_dict = {
             'f' : 'female',
             'm' : 'male',
           } %}
 
 
-          <td class="align-items-center"
-          id="cell-{{ rowloop.index }}-{{ loop.index }}">
+          <td class='align-items-center'
+          id='cell-{{ rowloop.index }}-{{ loop.index }}'>
             
-            <i class="fas fa-{{  gender_dict[v] }}"></i>
+            <i class='fas fa-{{  gender_dict[v] }}'></i>
 
 
           </td>
@@ -110,7 +118,7 @@
           
           {% else %}
           
-          <td id="cell-{{ rowloop.index }}-{{ loop.index }}">
+          <td id='cell-{{ rowloop.index }}-{{ loop.index }}'>
             {{ v }}
           </td>
           

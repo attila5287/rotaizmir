@@ -150,11 +150,7 @@
                     <span class="text-sm text-monts text-light">
                       demo_mode: {{demo_mode}}
                     </span>
-                    <span>
-                      <a class="ml-4 text-light text-center" href="https://github.com/attila5287/">
-                        <i class="fab fa-github text-lg"></i>
-                        by @attila5287</a>
-                    </span>
+
 
                     
                     {% endif %}
@@ -186,7 +182,8 @@
                   ('is_admin', '/members/file', '├ File Upload', 'file-excel', ),
                   ('is_admin', '/member/add', '└ New Member', 'user-plus', ),
                   (None, '', 'admins', '', ),
-                  ('is_admin', '/admin/dash', '└ Dashboard', 'user-md', ),
+                  ('is_admin', '/admin/tables/users', '└ Users', 'user-md', ),
+                  ('is_admin', '/admin/tables/members', '└ Members', 'user-md', ),
                 ] -%}
 
                 {% for access_level, href, caption, icon in side_bar %}

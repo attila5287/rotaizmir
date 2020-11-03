@@ -1,246 +1,241 @@
 {% extends "layout.html" %}
 {% block content %}
-<style>
+<style></style>
 
-</style>
-<div class="panel panel-asym  mini shadow-lg p-2 pt-0 pb-5">
-    <div class="panel-header panel-header-secondary panel-header-icon">
-        <div class="panel-icon img-shd opac-70 shadow">
-            <img class="article-img border-0 m-0 p-0"
-                src="https://raw.githubusercontent.com/attila5287/rota-img/main/logos/logo_circle.png"
-                alt="">
-        </div>
-        <h3 class="panel-title text-right mt-4 ">Welcome!</h3>
-        <hr class="border-secondary my-0">
-        <p class="text-right mr-4">App Instructions:</p>
+<div class="panel panel-asym mini shadow-lg px-0 pt-0 pb-5">
+  <div class="panel-header panel-header-secondary panel-header-icon">
+    <div class="panel-icon img-shd opac-70 shadow">
+      <img class="article-img border-0 m-0 p-0"
+        src="https://raw.githubusercontent.com/attila5287/rota-img/main/logos/logo_circle.png"
+        alt="">
     </div>
-    <div class="row">
-        <div class="col-3 text-center">
+    <h3 class="panel-title text-right mt-4 ">Welcome!</h3>
+    <hr class="border-secondary my-0">
+    <p class="text-right mr-4">App Instructions:</p>
+  </div>
+  <div class="row">
+    <div class="col-3 text-center">
+      <ul class="nav flex-column nav-pills text-bold text-sm" id="myTab"
+        role="tablist" name="welcome-headers">
+        <li class="nav-item">
+          <a class="nav-link d-flex flex-row justify-content-between my-2 pt-1 pb-2 active"
+            id="guest-tab" data-toggle="tab" href="#guest"
+            role="tab" aria-controls="guest" aria-selected="true">
+            <i class="fas fa-user-lock" aria-hidden="true">
+            </i>
+            Guest
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link d-flex flex-row justify-content-between my-2 pt-1 pb-2"
+            id="user-tab" data-toggle="tab" href="#user" role="tab"
+            aria-controls="user" aria-selected="false">
+            <i class="fas fa-user-clock">
+            </i>
+            User
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link d-flex flex-row justify-content-between my-2 pt-1 pb-2"
+            id="member-tab" data-toggle="tab" href="#member"
+            role="tab" aria-controls="member"
+            aria-selected="false">
+            <i class="fas fa-user-check">
+            </i>
 
+            Member
 
-            <ul class="nav flex-column nav-pills text-bold tet-lg" id="myTab"
-                role="tablist" name="welcome-headers">
-                <li class="nav-item">
-                    <a class="nav-link d-flex flex-row justify-content-between my-2 pt-1 pb-2 active"
-                        id="guest-tab" data-toggle="tab" href="#guest"
-                        role="tab" aria-controls="guest" aria-selected="true">
-
-
-                        <i class="fas fa-user-lock" aria-hidden="true">
-                        </i>
-                        Guest
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link d-flex flex-row justify-content-between my-2 pt-1 pb-2"
-                        id="user-tab" data-toggle="tab" href="#user" role="tab"
-                        aria-controls="user" aria-selected="false">
-                        <i class="fas fa-user-clock">
-                        </i>
-                        User
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link d-flex flex-row justify-content-between my-2 pt-1 pb-2"
-                        id="member-tab" data-toggle="tab" href="#member"
-                        role="tab" aria-controls="member"
-                        aria-selected="false">
-                        <i class="fas fa-user-check">
-                        </i>
-
-                        Member
-
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link d-flex flex-row justify-content-between my-2 pt-1 pb-2"
-                        id="admin-tab" data-toggle="tab" href="#admin"
-                        role="tab" aria-controls="admin" aria-selected="false">
-                        <i class="fas fa-user-graduate">
-                        </i>
-                        Admin
-                    </a>
-                </li>
-            </ul>
-        </div>
-        <div class="col-9">
-
-            <div class="tab-content" name="welcome-txt-instructions">
-                <div class="tab-pane active" id="guest" role="tabpanel"
-                    aria-labelledby="guest-tab">
-
-                    <div class="progress float-bottom my-3">
-                        <div class="progress-bar progress-bar-striped progress-bar-animated bg-primary"
-                            role="progressbar" aria-valuenow="25"
-                            aria-valuemin="0" aria-valuemax="100"
-                            style="width: 25%"></div>
-                    </div>
-                    <i class="fa fa-caret-right" aria-hidden="true"></i>
-                    Welcome Guest! Please
-
-                    <a class="" href="/register">
-                        <i class="fa fa-user-plus" aria-hidden="true">
-                            Register
-                        </i>
-                    </a>
-                    or already have an account? Please
-
-                    <a class="" href="/login">
-                        <i class="fa fa-sign-in-alt" aria-hidden="true">
-                            Login
-                        </i>
-                    </a> ?
-
-                    <hr class="border-med my-2 mx-5 opac-70">
-                    <i class="fa fa-caret-right" aria-hidden="true"></i>
-                    Guests don't have much options except
-                    <a class="" href="/home">
-                        <i class="fas fa-home" aria-hidden="true">
-                            Posts
-                        </i>
-                    </a>
-                    page for public events, announcements etc.
-
-                    <hr class="border-med my-2 mx-5 opac-70">
-                    <i class="fa fa-caret-right" aria-hidden="true"></i>
-
-
-                    Still trying to figure out how it works? You're at the
-                    right place
-
-                    <a class="" href="/about">
-                        <i class="fa fa-map-marked-alt" aria-hidden="true">
-                            About
-                        </i>
-                    </a>
-
-                </div>
-                <div class="tab-pane" id="user" role="tabpanel"
-                    aria-labelledby="user-tab">
-                    <div class="progress my-3">
-                        <div class="progress-bar progress-bar-striped progress-bar-animated bg-primary"
-                            role="
-                                    progressbar" aria-valuenow="50"
-                            aria-valuemin="0" aria-valuemax="100"
-                            style="width: 50%"></div>
-                    </div>
-                    <i class="fa fa-caret-right" aria-hidden="true"></i>
-                    Seems like already done with registration process and <i>
-                        successfully</i>
-                    completed first
-                    <a class="" href="/login">
-                        <i class="fa fa-sign-in-alt" aria-hidden="true">
-                            Login
-                        </i>
-                    </a> ?
-                    <hr class="border-secondary my-1 mx-5">
-                    <i class="fa fa-caret-right" aria-hidden="true"></i>
-                    Still not done yet! Users need permission to
-                    activate their member status on database. No worries and
-                    expect an approval
-                    within twenty-four-hours or so.
-
-                    <hr class="border-secondary my-1 mx-5">
-                    <i class="fa fa-caret-right" aria-hidden="true"></i> In the
-                    meantime waiting
-                    for the approval, random user-names will be generated by
-                    the app as suggestions
-                    along with profile pictures for temporary use!
-                </div>
-                <div class="tab-pane" id="member" role="tabpanel"
-                    aria-labelledby="member-tab">
-
-                    <div class="progress float-bottom my-3">
-                        <div class="progress-bar progress-bar-striped progress-bar-animated bg-primary"
-                            role="progressbar" aria-valuenow="95"
-                            aria-valuemin="0" aria-valuemax="100"
-                            style="width: 95%"></div>
-                    </div>
-
-                    <i class="fa fa-caret-right" aria-hidden="true"></i>
-                    Congratulations, got approval for full member status!
-                    <hr class="border-secondary my-1 mx-5">
-                    <i class="fa fa-caret-right" aria-hidden="true"></i>
-                    Members could upload profile pictures by visiting their
-
-                    <a class="" href="/login">
-                        <i class="fas fa-user-cog" aria-hidden="true">
-                            Account
-                        </i>
-                    </a>
-                    along with their user-name etc.
-                    <hr class="border-secondary my-1 mx-5">
-                    <i class="fa fa-caret-right" aria-hidden="true"></i>
-                    Moreover, members will be able to
-
-                    <a class="" href="/post/new">
-                        <i class="fas fa-paper-plane" aria-hidden="true">
-                            Post
-                        </i>
-                    </a>
-                    open-group messages or contact other members.
-
-
-                    <hr class="border-secondary my-1 mx-5">
-                    <i class="fa fa-caret-right" aria-hidden="true"></i>
-                    Lastly, they will join events, create events or mark status
-                    of tasks assigned
-                    to them.
-
-                </div>
-
-                <div class="tab-pane" id="admin" role="tabpanel"
-                    aria-labelledby="admin-tab">
-                    <div class="progress float-bottom my-3">
-                        <div class="progress-bar progress-bar-striped progress-bar-animated bg-primary"
-                            role="progressbar" aria-valuenow="95"
-                            aria-valuemin="0" aria-valuemax="100"
-                            style="width: 95%"></div>
-                    </div>
-
-                    <i class="fa fa-caret-right" aria-hidden="true"></i>
-                    Lastly, we have admins who may create group events,
-                    assignments notifying other
-                    members.
-                    <hr class="border-secondary my-1 mx-5">
-                    <i class="fa fa-caret-right" aria-hidden="true"></i>
-                    Admins may also upload CSV files (Excel tables~) to
-
-                    <a class="" href="/csv/upload">
-                        <i class="fas fa-file-excel" aria-hidden="true">
-                            CSV-feed
-                        </i>
-                    </a>
-                    for bulk emails.
-                    <hr class="border-secondary my-1 mx-5">
-                    <i class="fa fa-caret-right" aria-hidden="true"></i>
-
-                    Might prefer adding members to database manually by fil ng
-                    out forms at
-                    <a class="" href="/csv/upload">
-                        <i class="fa fa-list-alt" aria-hidden="true">
-                            MemberForm
-                        </i>
-                    </a>
-
-
-                    <hr class="border-secondary my-1 mx-5">
-                    <i class="fa fa-caret-right" aria-hidden="true"></i>
-
-                    Generate reports or visualize data dynamically by freshly
-                    updated
-                    <a class="" href="/csv/upload">
-                        <i class="fa fa-chart-line" aria-hidden="true">
-                            Dashboard
-                        </i>
-                    </a>
-
-
-
-                </div>
-            </div>
-        </div>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link d-flex flex-row justify-content-between my-2 pt-1 pb-2"
+            id="admin-tab" data-toggle="tab" href="#admin"
+            role="tab" aria-controls="admin" aria-selected="false">
+            <i class="fas fa-user-graduate">
+            </i>
+            Admin
+          </a>
+        </li>
+      </ul>
     </div>
+    <div class="col-9">
+
+      <div class="tab-content" name="welcome-txt-instructions">
+        <div class="tab-pane active" id="guest" role="tabpanel"
+          aria-labelledby="guest-tab">
+
+          <div class="progress float-bottom my-3">
+            <div class="progress-bar progress-bar-striped progress-bar-animated bg-primary"
+              role="progressbar" aria-valuenow="25"
+              aria-valuemin="0" aria-valuemax="100"
+              style="width: 25%"></div>
+          </div>
+          <i class="fa fa-caret-right" aria-hidden="true"></i>
+          Welcome Guest! Please
+
+          <a class="" href="/register">
+            <i class="fa fa-user-plus" aria-hidden="true">
+              Register
+            </i>
+          </a>
+          or already have an account? Please
+
+          <a class="" href="/login">
+            <i class="fa fa-sign-in-alt" aria-hidden="true">
+              Login
+            </i>
+          </a> ?
+
+          <hr class="border-med my-2 mx-5 opac-70">
+          <i class="fa fa-caret-right" aria-hidden="true"></i>
+          Guests don't have much options except
+          <a class="" href="/home">
+            <i class="fas fa-home" aria-hidden="true">
+              Posts
+            </i>
+          </a>
+          page for public events, announcements etc.
+
+          <hr class="border-med my-2 mx-5 opac-70">
+          <i class="fa fa-caret-right" aria-hidden="true"></i>
+
+
+          Still trying to figure out how it works? You're at the
+          right place
+
+          <a class="" href="/about">
+            <i class="fa fa-map-marked-alt" aria-hidden="true">
+              About
+            </i>
+          </a>
+
+        </div>
+        <div class="tab-pane" id="user" role="tabpanel"
+          aria-labelledby="user-tab">
+          <div class="progress my-3">
+            <div class="progress-bar progress-bar-striped progress-bar-animated bg-primary"
+              role="
+                  progressbar" aria-valuenow="50"
+              aria-valuemin="0" aria-valuemax="100"
+              style="width: 50%"></div>
+          </div>
+          <i class="fa fa-caret-right" aria-hidden="true"></i>
+          Seems like already done with registration process and <i>
+            successfully</i>
+          completed first
+          <a class="" href="/login">
+            <i class="fa fa-sign-in-alt" aria-hidden="true">
+              Login
+            </i>
+          </a> ?
+          <hr class="border-secondary my-1 mx-5">
+          <i class="fa fa-caret-right" aria-hidden="true"></i>
+          Still not done yet! Users need permission to
+          activate their member status on database. No worries and
+          expect an approval
+          within twenty-four-hours or so.
+
+          <hr class="border-secondary my-1 mx-5">
+          <i class="fa fa-caret-right" aria-hidden="true"></i> In the
+          meantime waiting
+          for the approval, random user-names will be generated by
+          the app as suggestions
+          along with profile pictures for temporary use!
+        </div>
+        <div class="tab-pane" id="member" role="tabpanel"
+          aria-labelledby="member-tab">
+
+          <div class="progress float-bottom my-3">
+            <div class="progress-bar progress-bar-striped progress-bar-animated bg-primary"
+              role="progressbar" aria-valuenow="95"
+              aria-valuemin="0" aria-valuemax="100"
+              style="width: 95%"></div>
+          </div>
+
+          <i class="fa fa-caret-right" aria-hidden="true"></i>
+          Congratulations, got approval for full member status!
+          <hr class="border-secondary my-1 mx-5">
+          <i class="fa fa-caret-right" aria-hidden="true"></i>
+          Members could upload profile pictures by visiting their
+
+          <a class="" href="/login">
+            <i class="fas fa-user-cog" aria-hidden="true">
+              Account
+            </i>
+          </a>
+          along with their user-name etc.
+          <hr class="border-secondary my-1 mx-5">
+          <i class="fa fa-caret-right" aria-hidden="true"></i>
+          Moreover, members will be able to
+
+          <a class="" href="/post/new">
+            <i class="fas fa-paper-plane" aria-hidden="true">
+              Post
+            </i>
+          </a>
+          open-group messages or contact other members.
+
+
+          <hr class="border-secondary my-1 mx-5">
+          <i class="fa fa-caret-right" aria-hidden="true"></i>
+          Lastly, they will join events, create events or mark status
+          of tasks assigned
+          to them.
+
+        </div>
+
+        <div class="tab-pane" id="admin" role="tabpanel"
+          aria-labelledby="admin-tab">
+          <div class="progress float-bottom my-3">
+            <div class="progress-bar progress-bar-striped progress-bar-animated bg-primary"
+              role="progressbar" aria-valuenow="95"
+              aria-valuemin="0" aria-valuemax="100"
+              style="width: 95%"></div>
+          </div>
+
+          <i class="fa fa-caret-right" aria-hidden="true"></i>
+          Lastly, we have admins who may create group events,
+          assignments notifying other
+          members.
+          <hr class="border-secondary my-1 mx-5">
+          <i class="fa fa-caret-right" aria-hidden="true"></i>
+          Admins may also upload CSV files (Excel tables~) to
+
+          <a class="" href="/csv/upload">
+            <i class="fas fa-file-excel" aria-hidden="true">
+              CSV-feed
+            </i>
+          </a>
+          for bulk emails.
+          <hr class="border-secondary my-1 mx-5">
+          <i class="fa fa-caret-right" aria-hidden="true"></i>
+
+          Might prefer adding members to database manually by fil ng
+          out forms at
+          <a class="" href="/csv/upload">
+            <i class="fa fa-list-alt" aria-hidden="true">
+              MemberForm
+            </i>
+          </a>
+
+
+          <hr class="border-secondary my-1 mx-5">
+          <i class="fa fa-caret-right" aria-hidden="true"></i>
+
+          Generate reports or visualize data dynamically by freshly
+          updated
+          <a class="" href="/csv/upload">
+            <i class="fa fa-chart-line" aria-hidden="true">
+              Dashboard
+            </i>
+          </a>
+
+
+
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
 
 

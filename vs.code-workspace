@@ -9,8 +9,10 @@
 			"path": "..\\references\\_best_of\\d3-auto-table\\HW14-javascript"
 		},
 		{
-			"name": "bootstrap-examples",
-			"path": "..\\references\\html\\bootstrap-examples"
+			"path": "..\\tolga"
+		},
+		{
+			"path": "..\\uda-nano\\p1-personal-blog-web"
 		}
 	],
 	"settings": {
