@@ -42,6 +42,20 @@ def inject_icons():
 
     return dict(icons=icons)
 
+@admins.route('/fix/user/images', methods= [ 'GET', 'POST'])
+def fix_user_images():
+    pass
+    users = User.query.all()
+    for u in users:
+        pass
+        u.image_file = 'default.png'
+    
+    db.session.commit()    
+    return jsonify({
+        'status' : 'success'
+    })
+
+
 
 @admins.route('/a/t/u', methods= [ 'GET', 'POST'])
 @admins.route('/a/t/u/', methods= [ 'GET', 'POST'])
