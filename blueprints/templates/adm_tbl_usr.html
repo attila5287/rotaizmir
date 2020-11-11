@@ -20,48 +20,24 @@
 {% endif %}
 {% endfor %}
 </div>      
-
 <style>
-.bg-darkodd {
-  color: #fff;
-  background-color: rgba(0, 0, 0, 0.555);
-}
-.bg-darkeven {
-  color: #fff;
-  background-color: rgba(0, 0, 0, 0.750);
-  
-}
-
-.table-hov3r  tbody tr:hover {
-  font-weight:bold;
-  color: white;
-  font-size:1rem;
-  text-shadow: 1px 1px 1px #008031;
-  
-}
-
 </style>
 <div class="table-responsive" name="table-usr">
-
-  <table class="table table-sm table-hov3r table-borderless rnd-2xl shadow">
-
+  <table class="table table-hov3r table-light table-bordered rnd-2xl shadow">
     <thead>
-        <tr>
+      <tr>
         {% for header in headers %}
-
-          <th class="bg-primary text-sm text-comfo text-nonbold text-light text-center pt-1 pb-2 border-right align-top"> 
+          <th class="bg-primary text-comfo text-nonbold text-light text-center pt-2 pb-3 border-right align-top"> 
             <i class="text-xl fa{{icons(header)}}" aria-hidden="true"></i>
             {{ header.title().replace("_"," ") }} 
           </th>
         {% endfor %} 
-        
-        </tr>
+      </tr>
     </thead>
-
     <tbody>
       {% for user in table %}
 
-        <tr class="{{loop.cycle('tr-even', 'tr-odd')}}"> 
+        <tr> 
 
         {% set rowloop = loop %}
         {% for k,v in user.items() %}
@@ -70,9 +46,10 @@
           <td class="text-center bg-dark{{rowloop.cycle('odd', 'even')}}"
           id="cell-{{ rowloop.index }}-{{ loop.index }}" >
             
-            <img class="img-thumbnail border-0 add-anime py-0 opac-80 rounded-circle" src="https://raw.githubusercontent.com/attila5287/rota-img/main/profile_pics/{{v}}" alt="img"
-            style="max-height: 1.75rem;"
+            <img class="rnd-xl border-0 m-0 p-0" src="https://raw.githubusercontent.com/attila5287/rota-img/main/profile_pics/{{v}}" alt="img"
+            style="max-height: 2.75rem;"
             >
+
           </td>
           
 
@@ -80,7 +57,7 @@
           <td class="text-center bg-dark{{rowloop.cycle('odd', 'even')}}"
           id="cell-{{ rowloop.index }}-{{ loop.index }}">
             
-            <img class="img-thumbnail border-0 add-anime py-0 opac-80 rounded-circle" src="https://raw.githubusercontent.com/attila5287/rota-img/main/avatars/{{v}}.png" alt="img"
+            <img class="border-0 m-0 p-0 opac-80 rounded-circle" src="https://raw.githubusercontent.com/attila5287/rota-img/main/avatars/{{v}}.png" alt="img"
             style="max-height: 1.75rem;"
             >
           </td>
@@ -88,7 +65,7 @@
           {% elif k in [ "linkedin", "twitter", "instagram",] %}
           <td class="text-center bg-dark{{rowloop.cycle('odd', 'even')}}"
           id="cell-{{ rowloop.index }}-{{ loop.index }}">
-          <a class="opac-70 text-center" href="{{user[k]}}">
+          <a class="text-center" href="{{user[k]}}">
             
             <i class="text-lg fab fa-{{k}}" aria-hidden="true"></i>
 
@@ -107,7 +84,7 @@
           <td class="text-center bg-dark{{rowloop.cycle('odd', 'even')}}"
           id="cell-{{ rowloop.index }}-{{ loop.index }}">
             
-            <i class="fas fa-{{  icon_dict[v] }}"></i>
+            <i class="text-2xl fas fa-{{  icon_dict[v] }}"></i>
 
 
           </td>
@@ -121,7 +98,7 @@
 
           <td class="pl-2 bg-dark{{rowloop.cycle('odd', 'even')}}"
           id="cell-{{ rowloop.index }}-{{ loop.index }}">
-            <i class="fas fa-{{  gender_dict[v] }}"></i>
+            <i class="text-2xl fas fa-{{  gender_dict[v] }}"></i>
           </td>
           
 
@@ -137,18 +114,18 @@
           {% endif %}
 
           {% endfor %}
-            <td class="bg-dark{{rowloop.cycle('odd', 'even')}}"> 
+            <td class="text-center bg-dark{{rowloop.cycle('odd', 'even')}}"> 
 
               {% if not user.is_member == "y" %}
               <span>
                 <a href="{{url_for('admins.approve_member', id= user.id)}}">
-                  <i class="fas fa-user-plus text-lg opac-80"></i>
+                  <i class="text-2xl fas fa-user-plus text-lg"></i>
                 </a>
               </span>
               {% else %}
                 <span>
                   <a href="{{url_for('admins.cancel_member', id= user.id)}}">
-                    <i class="fas fa-user-slash text-lg text-secondary opac-50"></i>
+                    <i class="text-2xl fas fa-user-slash text-lg text-secondary text-center"></i>
                   </a>
                 </span>
               {% endif %}

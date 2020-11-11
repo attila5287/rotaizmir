@@ -108,7 +108,6 @@ d3.json("/colors/api", function (err, data) {
           true
         )
         .attr( "id", "input-clr")
-        // .attr( "readonly", )
         .attr( "value", `-${color_on_air}-` )
         ;
       

@@ -284,6 +284,7 @@ def account():
 
 @users.route("/login", methods=['GET', 'POST'])
 def login():
+    pass
     if current_user.is_authenticated:
         return redirect(url_for('main.home'))
     form = LoginForm()

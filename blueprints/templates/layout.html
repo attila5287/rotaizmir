@@ -9,17 +9,17 @@
     <meta name="author" content="@attila5287">
     <link rel="icon" type="image/x-icon" class="favicon"
       href="https://raw.githubusercontent.com/attila5287/rota-img/main/icons/favic0n.ico" />
-    <!-- Bootstrap core CSS -->
     <link rel="stylesheet" type="text/css"
       href="/static/styles/theme/minty/bootstrap.css" />
-    <link rel="stylesheet" type="text/css"
+      
+      <link rel="stylesheet" type="text/css"
       href="https://use.fontawesome.com/releases/v5.1.1/css/all.css"
       integrity="sha384-O8whS3fhG2OnA5Kas0Y9l3cfpmYjapjI0E4theH4iuMD+pLhbf6JI0jIMfYcK3yZ"
       crossorigin="anonymous" />
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.css" integrity="sha512-phGxLIsvHFArdI7IyLjv14dchvbVkEDaH95efvAae/y2exeWBQCQDpNFbOTdV1p4/pIa/XtbuDCnfhDEIXhvGQ==" crossorigin="anonymous" />
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/4.7.3/d3.js">
-    </script>
+      
+      <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/4.7.3/d3.js"></script>
 
     {% set google_fonts = [
       'Orbitron',
@@ -82,38 +82,39 @@
           aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
-{% if select_member %}
-{% if select_user %}
-        {% set nav_forms = [
-          (select_member, 'member/edit/1') ,
-          (select_user, 'member/1') ,
-          
-          ] %}
-        <div
-          class="input-group input-group-sm row no-gutters align-items-center">
-          {% for form, href in nav_forms %}
-          <div class="col">
-            <div class="input-group">
-              <div class="input-group-prepend py-0">
-                <span
-                  class="input-group-text text-light text-sm btn bg-primary border-0 py-0">
-                  {{form.menu.label}}
-                </span>
-              </div>
-              {{form.menu(class="form-control form-control-dark custom-select custom-select-sm text-left text-sm pl-0  py-0")}}
-              <div class="input-group-append py-0 ">
-                <a class="btn btn-sm btn-secondary border-0 rnd-md"
-                  href="action">
-                  <i class="fas fa-search px-2 py-0 text-sm"></i>
-                </a>
-              </div>
-            </div>
-          </div>
-          {% endfor %}
-        </div>
 
-{% endif %}
-{% endif %}
+        {% if select_member %}
+          {% if select_user %}
+            
+          {% set nav_forms = [
+              (select_member, 'member/edit/1') ,
+              (select_user, 'member/1') ,
+              ] %}
+              
+            <div class="input-group input-group-sm row no-gutters align-items-center">
+              {% for form, href in nav_forms %}
+              <div class="col">
+                <div class="input-group">
+                  <div class="input-group-prepend py-0">
+                    <span
+                      class="input-group-text text-light text-sm btn bg-primary border-0 py-0">
+                      {{form.menu.label}}
+                    </span>
+                  </div>
+                  {{form.menu(class="form-control form-control-dark custom-select custom-select-sm text-left text-sm pl-0  py-0")}}
+                  <div class="input-group-append py-0 ">
+                    <a class="btn btn-sm btn-secondary border-0 rnd-md"
+                      href="action">
+                      <i class="fas fa-search px-2 py-0 text-sm"></i>
+                    </a>
+                  </div>
+                </div>
+              </div>
+              {% endfor %}
+            </div>
+          {% endif %}
+        {% endif %}
+
 
       </nav>
     </header>
@@ -180,7 +181,7 @@
                   ('is_admin', '/members/file', '├ File Upload', 'file-excel', ),
                   ('is_admin', '/member/add', '└ New Member', 'user-plus', ),
                   (None, '', 'admins', '', ),
-                  ('is_admin', '/admin/tables/users', '└ Users', 'user-md', ),
+                  ('is_admin', '/admin/tables/users', '├ Users', 'user-md', ),
                   ('is_admin', '/admin/tables/members', '└ Members', 'user-md', ),
                 ] -%}
 

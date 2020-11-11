@@ -112,7 +112,7 @@
   {% endfor %}
  </blockquote>
  <div class="content-section mx-4" name="prevw-section">
-     <h1 class="fas fa-dice text-md text-comfo text-secondary text-3xl align-items-center">
+     <h1 class="fas fa-dice text-md text-secondary text-3xl ">
      </h1>
        <div class="text-md text-comfo" id="sign_up_as">
        </div>
@@ -131,14 +131,14 @@
        </div>
      </div>          
  
-       <blockquote class="blockquote text-sm text-italic d-flex flex-row justify-content-between">
+       <blockquote class="blockquote text-sm text-italic d-flex flex-row justify-content-around">
      {% set instructi0ns = [
        'First part is the nickname generator ',
        'Then choose a color as the second part',
        'Numbers will be generated randomly',]  %}
  
        {% for i  in instructi0ns %}
-       <p class="mb-0 text-wrap">
+       <p class="mb-0 text-wrap mt-2">
          <i class="fas fa-info-circle">
          </i>
           {{i}} </p>

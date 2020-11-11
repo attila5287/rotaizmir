@@ -11,22 +11,24 @@ def about():
 
     return render_template('about.html',
                            info_notes=[
-        'General instructions for guests',
-    ],
-        access=[
-        'u',
-        'm',
-        'a',
-        'p',
-    ],
-        css=[
-        ('theme', '/minty/bootstrap', ),
-        ('main', 'main', ),
-    ],
-        js=None,
-        legend='About App',
-        title='About'
-    )
+                            'General instructions for guests',
+                            ],
+                            access=[
+                                'u',
+                                'm',
+                                'a',
+                                'p',
+                            ],
+                            css=[
+                                ('theme', '/minty/bootstrap', ),
+                                ('main', 'main', ),
+                            ],
+                            js = [
+                                ('about', 'sunburst', ),
+                            ],        
+                            legend='About App',
+                            title='About',
+                            )
 
 
 @ main.route("/home")

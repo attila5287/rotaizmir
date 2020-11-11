@@ -5,14 +5,11 @@
 			"path": "."
 		},
 		{
-			"name": "HW14-javascript",
-			"path": "..\\references\\_best_of\\d3-auto-table\\HW14-javascript"
+			"name": "bootstrap-examples",
+			"path": "..\\references\\html_ex\\bootstrap-examples"
 		},
 		{
-			"path": "..\\tolga"
-		},
-		{
-			"path": "..\\uda-nano\\p1-personal-blog-web"
+			"path": "..\\displaytracker"
 		}
 	],
 	"settings": {

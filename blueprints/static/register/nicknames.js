@@ -1,7 +1,8 @@
 d3.json("/nicknames/api", function (err, data) {
   const n = Object.keys(data).length;
 
-  let genRandID = (n_samples) => Math.floor(Math.random() * n_samples);
+  let genRandID = (n_samples) => Math.floor(Math.random() * 
+  n_samples);
   const first_random = genRandID(n);
   d3.select("#slider-nn")
     .attr("min", 0)

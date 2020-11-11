@@ -1,0 +1,33 @@
+LAYOUT.HTML
+main/
+    ├ about
+    ├ home
+    └ register
+
+users/
+    ├ login
+    ├ account
+    └ user_posts
+
+members/
+      ├ member
+      ├ members
+      ├ members_table
+      ├ member_edit
+      ├ add_member
+      └ csv_feed
+
+posts/
+      ├ post
+      └ create_post
+
+/TODO/
+users ┐
+      ├ reset_token
+      └ reset_request
+
+/TODO/      
+/errors/
+      ├ 404.html
+      └ custom-default
+DASHBOARD.HTML
