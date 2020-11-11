@@ -9,9 +9,15 @@
     <meta name="author" content="@attila5287">
     <link rel="icon" type="image/x-icon" class="favicon"
       href="https://raw.githubusercontent.com/attila5287/rota-img/main/icons/favic0n.ico" />
-    <link rel="stylesheet" type="text/css"
+      {% if theme %}
+      <link rel="stylesheet" type="text/css"
+      href="/static/styles/theme/{{theme}}/bootstrap.css" />
+      {% else %}
+      <link rel="stylesheet" type="text/css"
       href="/static/styles/theme/minty/bootstrap.css" />
       
+      {% endif %}
+
       <link rel="stylesheet" type="text/css"
       href="https://use.fontawesome.com/releases/v5.1.1/css/all.css"
       integrity="sha384-O8whS3fhG2OnA5Kas0Y9l3cfpmYjapjI0E4theH4iuMD+pLhbf6JI0jIMfYcK3yZ"
@@ -58,21 +64,20 @@
     <!-- Custom styles for this template -->
   </head>
   <body>
-    <style>
-    .sidebar {
-  padding: 1.5rem 0rem 0rem 0rem;}
-    </style>
+    <style></style>
     <header>
-      <nav
+      <nav 
         class="navbar navbar-dark sticky-top bg-primary flex-md-nowrap p-0 shadow">
-        <a class="navbar-brand bg-transparent border-0 col-md-3 col-lg-2 mr-0"
+        <a class="navbar-brand bg-transparent border-0 col-sm-2 col-md-3 col-lg-2 mr-0"
           href="https://rotaizmir.herokuapp.com/">
 
           <img class="m-0 px-0 py-0"
             src="https://raw.githubusercontent.com/attila5287/rota-img/main/icons-png/circle_white.png"
             style="max-height: 2.00rem;" alt="navbar-icon"
             data-toggle="tooltip" title="Göztepe Rotaract Kulübü">
-          Göztepe Rotaract Kulübü
+          
+          <a href="/change/"></a>
+
         </a>
 
 
@@ -118,12 +123,8 @@
 
       </nav>
     </header>
-
-    
     <div class="container-fluid">
       <div class="row">
-
-        
         <aside name="sticky-sidebar">
           <nav id="sidebarMenu"
             class="col-md-3 col-lg-2 d-md-block bg-aside sidebar collapse">
