@@ -1,6 +1,11 @@
 {% extends "layout.html" %}
 {% block content %}
-<style></style>
+<style>
+  .sun{
+    width: 100%;
+  }
+</style>
+
 
 <div class="panel panel-asym mini shadow-lg pb-5">
   <div class="panel-header panel-header-secondary panel-header-icon">
@@ -14,10 +19,11 @@
     <p class="text-right text-muted text-italic text-sm mr-2">App instructions for guests, users, members and admins.</p>
   </div>
   <div class="row no-gutters">
-    <div class="col-3 pr-1">
+    <div class="col-3">
       <ul class="nav flex-column nav-tabs text-bold text-italic text-sm my-2" id="myTab"
         role="tablist" name="welcome-headers">
         <li class="nav-item">
+          
           <a class="nav-link d-flex flex-row align-items-center justify-content-between my-2 pt-1 pb-2 active"
             id="guest-tab" data-toggle="tab" href="#guest"
             role="tab" aria-controls="guest" aria-selected="true">
@@ -25,8 +31,10 @@
             </i>
             Guest
           </a>
+
         </li>
         <li class="nav-item">
+
           <a class="nav-link d-flex flex-row align-items-center justify-content-between my-2 pt-1 pb-2"
             id="user-tab" data-toggle="tab" href="#user" role="tab"
             aria-controls="user" aria-selected="false">
@@ -34,18 +42,19 @@
             </i>
             User
           </a>
+
         </li>
         <li class="nav-item">
+
           <a class="nav-link d-flex flex-row align-items-center justify-content-between my-2 pt-1 pb-2"
             id="member-tab" data-toggle="tab" href="#member"
             role="tab" aria-controls="member"
             aria-selected="false">
             <i class="text-xl fas fa-user-check">
             </i>
-
             Member
-
           </a>
+
         </li>
         <li class="nav-item">
           <a class="nav-link d-flex flex-row align-items-center justify-content-between my-2 pt-1 pb-2"
@@ -234,6 +243,7 @@
     </div>
   </div>
 </div>
-
+  <div class="sun text-center" id="sunburst">
+</div>
 
 {% endblock %}
