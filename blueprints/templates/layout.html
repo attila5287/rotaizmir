@@ -64,7 +64,14 @@
     <!-- Custom styles for this template -->
   </head>
   <body>
-    <style></style>
+    <style>
+        .sidebar {
+  padding: 2.25rem 0rem 0rem 0rem;
+  /* Height of navbar */
+  background-image: linear-gradient(#438d78, #78c2ad 45%, #00815c);
+  box-shadow: 0px 0px 0px #f3969b3f, inset 0px 10px 10px #f3969b46;
+}
+    </style>
     <header>
       <nav 
         class="navbar navbar-dark sticky-top bg-primary flex-md-nowrap p-0 shadow">
@@ -127,7 +134,7 @@
         <aside name="sticky-sidebar">
           <nav id="sidebarMenu"
             class="col-md-3 col-lg-2 d-md-block bg-aside sidebar collapse">
-            <div class="sidebar-sticky bg-transparent pt-3">
+            <div class="sidebar-sticky bg-transparent pt-0">
               <ul class="nav flex-column">
                 <li class="nav-item mt-2">
                   <a class="nav-link disabled ml-2 mr-1">
@@ -201,15 +208,17 @@
 
                   <div class="d-flex flex-row justify-content-between rnd-xl {{highlighted}}">
                   
-                  <span class="mt-1 text-bold text-md">
+                  <span class="text-md mt-1 text-bold text-md">
                     {{caption}}
                   </span>
                   <span class="fa-stack text-mini fa-2x text-center mr-2 anim">
+
                     {% if icon %}
-                    <i class="far fa-circle fa-stack-2x fa-fw text-primary opac-40"></i>
+                    <i class="fas fa-circle-notch fa-stack-2x fa-fw text-light opac-30"></i>
                     <i
                       class="fas fa-{{icon}} fa-stack-1x fa-fw fa-inverse text-light"></i>
                     {% endif %}
+                    
                   </span>                  
                   </div>
                   

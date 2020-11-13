@@ -4,8 +4,8 @@ $( document ).ready( () => {
   sunBurnMeUp();
   
   function sunBurnMeUp () {
-    var labels = ['guest', 'user', 'member', 'admin'];
-    var parents = ["", "guest", "user", "member", "admin"];
+    var labels = ['Guest', 'User', 'Member', 'admin'];
+    var parents = ["", "Guest", "User", "Member", "admin"];
     var data = [{
       type: "sunburst",
       labels: labels,
@@ -23,7 +23,8 @@ $( document ).ready( () => {
           width: 2
         }
       },
-    }];
+    } ];
+      
     var layout = {
       plot_bgcolor: "rgb(255,255,255,0)",
       paper_bgcolor: "rgb(255,255,255,0)",
@@ -34,14 +35,12 @@ $( document ).ready( () => {
         b: 0,
         t: 0,
       },
-
       padding: {
         l: 0,
         r: 0,
         b: 0,
         t: 0,
       },
-
       sunburstcolorway: [
         "#78c2ad",
         "#00ddc9",
