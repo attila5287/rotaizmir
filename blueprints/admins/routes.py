@@ -87,6 +87,8 @@ def users_table():
     'is_member',
     'is_prez',
     'make_member',
+    'make_admin',
+    'make_prez',
   ]
     
   return render_template(
@@ -234,3 +236,82 @@ def cancel_member(id):
     db.session.commit()
     return redirect(url_for('admins.users_table'))
     # return jsonify({'status': success_msg})
+
+@admins.route('/admin/approved/<int:id>', methods= [ 'GET', 'POST'])
+@admins.route('/admin/approved/<int:id>/', methods= [ 'GET', 'POST'])
+def approve_admin(id):
+  pass
+  user = User.query.get_or_404(id)
+  if not user.is_admin != 'y':
+    pass
+    return jsonify(
+      {'status':'action not necessary',
+       'user ID #{}'.format(id):'already a admin',
+       }
+    )
+  else:
+    pass
+    user.is_admin = 'y'
+    db.session.commit()
+    return redirect(url_for('admins.users_table'))
+    # return jsonify({'status': success_msg})
+
+
+
+@admins.route('/admin/cancelled/<int:id>', methods= [ 'GET', 'POST'])
+@admins.route('/admin/cancelled/<int:id>/', methods= [ 'GET', 'POST'])
+def cancel_admin(id):
+  pass
+  user = User.query.get_or_404(id)
+  if not user.is_admin != 'n':
+    pass
+    return jsonify(
+      {
+             'status':'action not necessary',
+             'user ID #{}'.format(id):'not an admin',
+             }
+      )
+  else:
+    pass
+    user.is_admin = 'n'
+    db.session.commit()
+    return redirect(url_for('admins.users_table'))
+
+@admins.route('/prez/approved/<int:id>', methods= [ 'GET', 'POST'])
+@admins.route('/prez/approved/<int:id>/', methods= [ 'GET', 'POST'])
+def approve_prez(id):
+  pass
+  user = User.query.get_or_404(id)
+  if not user.is_prez != 'y':
+    pass
+    return jsonify(
+      {'status':'action not necessary',
+       'user ID #{}'.format(id):'already a admin',
+       }
+    )
+  else:
+    pass
+    user.is_prez = 'y'
+    db.session.commit()
+    return redirect(url_for('admins.users_table'))
+    # return jsonify({'status': success_msg})
+
+
+@admins.route('/prez/cancelled/<int:id>', methods= [ 'GET', 'POST'])
+@admins.route('/prez/cancelled/<int:id>/', methods= [ 'GET', 'POST'])
+def cancel_prez(id):
+  pass
+  user = User.query.get_or_404(id)
+  if not user.is_prez != 'n':
+    pass
+    return jsonify(
+      {
+             'status':'action not necessary',
+             'user ID #{}'.format(id):'not an admin',
+             }
+      )
+  else:
+    pass
+    user.prez = 'n'
+    db.session.commit()
+    return redirect(url_for('admins.users_table'))
