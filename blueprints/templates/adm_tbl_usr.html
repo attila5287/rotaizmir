@@ -27,6 +27,7 @@
   <table class="table table-hov3r table-light table-bordered rnd-2xl shadow">
     <thead>
       <tr>
+        
         {% for header in headers %}
           <th class="bg-primary text-comfo text-nonbold text-light text-center pt-2 pb-3 border-right align-top"> 
             <i class="text-xl fa{{icons(header)}}" aria-hidden="true"></i>
@@ -43,7 +44,13 @@
         {% set rowloop = loop %}
         {% for k,v in user.items() %}
 
-          {% if k =="image_file"  %} 
+          {% if k == "id" %} 
+          <th class="pl-3 bg-primary text-light text-xl" id="cell-{{ rowloop.index }}-{{ loop.index }}" scope="row" style="vertical-align: middle;">
+            <i class="fas fa-user-tag text-lg"></i>
+            {{ v }}
+          </th>
+          
+          {% elif k =="image_file"  %} 
           <td class="text-center bg-dark{{rowloop.cycle('odd', 'even')}}"
           id="cell-{{ rowloop.index }}-{{ loop.index }}" >
             
@@ -77,15 +84,15 @@
           {% elif k in [ "is_member", "is_admin", "is_prez"] %}
           
           {% set icon_dict = {
-            "y" : "check text-primary",
-            "n" : "times text-secondary opac-70",
+            "y" : "check text-success opac-50",
+            "n" : "times text-danger opac-50",
           } %}
 
 
           <td class="text-center bg-dark{{rowloop.cycle('odd', 'even')}}"
           id="cell-{{ rowloop.index }}-{{ loop.index }}">
             
-            <i class="text-2xl fas fa-{{  icon_dict[v] }}"></i>
+            <i class="text-lg fas fa-{{  icon_dict[v] }}"></i>
 
 
           </td>

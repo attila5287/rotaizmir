@@ -164,7 +164,7 @@
                   <hr class="border-light border-med opac-30">
                 </li>
               </ul>
-              <ul class="list-group mx-4">
+              <ul class="list-group mx-4 mt-0 pt-0">
 
                 {% set side_bar = [
                   (None, '', 'guests',  None),
@@ -198,27 +198,25 @@
                 {% endif %}
                 
                 {% if  url_for(request.endpoint) == href %}
-                {% set highlighted = 'bg-side text-light' %}
+                  {% set highlighted = 'bg-side text-light' %}
                 {% endif %}
                 
-                <a class="list-group-item list-group-item-action bg-transparent side-title text-light border-0 m-0 p-0 {{accessible}}" href="{{href}}">
+                <a class="list-group-item list-group-item-light list-group-item-action bg-transparent text-light side-title border-0 m-0 mt-1 p-0 {{accessible}}" href="{{href}}">
 
                   <div class="d-flex flex-row justify-content-between rnd-xl {{highlighted}}">
-                  
-                  <span class="text-md mt-1 text-bold text-md">
-                    {{caption}}
-                  </span>
-                  <span class="fa-stack text-mini fa-2x text-center mr-2 anim">
-
-                    {% if icon %}
-                    <i class="fas fa-circle-notch fa-stack-2x fa-fw text-light opac-30"></i>
-                    <i
-                      class="fas fa-{{icon}} fa-stack-1x fa-fw fa-inverse text-light"></i>
-                    {% endif %}
-                    
-                  </span>                  
+                    <span class="text-md mt-1 text-bold text-md">
+                      {{caption}}
+                    </span>
+                    <span class="fa-stack text-mini fa-2x text-center mr-2">
+  
+                      {% if icon %}
+                      <i class="fas fa-circle-notch fa-stack-2x fa-fw text-light opac-30"></i>
+                      <i
+                        class="fas fa-{{icon}} fa-stack-1x fa-fw fa-inverse text-light"></i>
+                      {% endif %}
+                      
+                    </span>                  
                   </div>
-                  
                 </a>
                 {% endif %}
                 {% endfor %}

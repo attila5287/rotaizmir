@@ -478,31 +478,16 @@ thead th:last-child {
   margin-left: 1rem;
   margin-right: 1rem;
 }
-
 .anim:hover {
-  box-shadow: #78c2ad2a 0px 15px 15px;
-  transform: scale(1.1, 1.1);
-  
-}
-
-.anim:hover {
-  box-shadow:rgb(145, 223, 226) -5px 15px 15px,inset 1px 1px 2px #dcfbffc9;
-  background-color: white;
+  box-shadow:rgb(99, 226, 192) -5px 15px 15px,inset 4px 1px 4px 4px #ffffff55;
+  background-color: rgba(255, 255, 255, 0);
   color: cadetblue;
   border-radius: 0.5rem;
-  
-}
-
-.anim:hover:first-child {
-  box-shadow: rgb(145, 255, 209) -5px 15px 15px;
-}
-
-.anim:hover:last-child {
-  box-shadow: rgb(255, 154, 188) 5px 15px 15px;
-}
+  text-transform: uppercase !important;
+}  
 
 .sidebar {
-padding: 1.75rem 0rem 0rem 0rem;
+padding: 1rem 0rem 0rem 0rem;
 /* Height of navbar */
 background-image: linear-gradient(#438d78, #78c2ad 45%, #00815c);
 box-shadow: 0px 0px 0px #f3969b3f, 
@@ -812,19 +797,20 @@ input[type=range][orient=vertical]
   filter: drop-shadow(5px 5px 5px rgb(255, 255, 255));
 }
 .bg-darkodd {
-  background-color: rgba(0, 0, 0, 0.151);
+  background-color: rgba(0, 0, 0, 0.125);
 }
 .bg-darkeven {
-  background-color: rgba(0, 0, 0, 0.198);
+  background-color: rgba(0, 0, 0, 0.155);
 }
 .table-hov3r  tbody tr:hover {
   color: rgb(255, 255, 255);
-  background-color: #bdffeb;
+  background-color: #67ffd146;
   font-style: normal;
   font-weight:bold;
   font-size:0.85rem;    
-  text-shadow: 2px 2px 2px #c6ffe7;
+  text-shadow: 2px 2px 2px #ffffff;
 }
+ 
 .table-hov3r  tbody {
   font-style:italic;
 }
@@ -832,12 +818,15 @@ input[type=range][orient=vertical]
   text-align: center;
   vertical-align: middle;
   font-weight: bold;
-  text-shadow: 0px 0px 0px #ffffff;
+  text-shadow: 0px 0px 0px #ffffffa2;
   transition-timing-function: ease-in-out;
   transition-delay: 0.10s;
   background-color: #f7fffd;
-  color: rgb(170, 25, 85);
   color: rgb(45, 129, 97);
-  box-shadow: inset 0.20rem 0.20rem 0.40rem 0.40rem  rgba(92, 204, 170, 0.424);
+  box-shadow: inset 0.20rem 0.20rem 0.60rem 0.60rem  rgba(92, 204, 170, 0.424);
 }
 
+.table-hov3r  tbody td  {
+  text-align: center;
+  vertical-align: middle;
+}
