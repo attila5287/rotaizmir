@@ -7,17 +7,15 @@ from flask_login import login_user, current_user, logout_user, login_required
 from blueprints import db, bcrypt
 from blueprints.models import User, Post, Nickname, Member, Color
 from blueprints.users.forms import (
-    RegistrationForm, LoginForm, UpdateAccountForm, RequestResetForm, ResetPasswordForm)
+    RegistrationForm, LoginForm, UpdateAccountForm, RequestResetForm, ResetPasswordForm) 
 from blueprints.users.utils import save_picture, send_reset_email
 from blueprints.posts.forms import PostDemo
 
 users = Blueprint('users', __name__)
 
-
 @users.context_processor
 def inject_icons():
     pass
-
     def icons(label):
         pass
         gallery = {  # font awesome icons for member forms
@@ -86,13 +84,10 @@ def reg_post():
     flash('Your account has been created! You are now able to log in', 'success')
     return redirect(url_for('users.login'))
 
-
-
 @users.route("/logout")
 def logout():
     logout_user()
     return redirect(url_for('main.home'))
-
 
 @users.route("/set/profile/picture/<int:user_id>/<int:img_index>", methods=['GET', 'POST'])
 @login_required
@@ -102,13 +97,17 @@ def set_profile_pic(user_id, img_index):
     db.session.commit()
     return redirect(url_for('users.account'))
 
-@users.route("/user/<string:username>")
-def user_posts(username):
+@users.route("/user/<int:id>")
+@users.route("/user/<int:id>/")
+def user_posts(id):
+    pass
     page = request.args.get('page', 1, type=int)
-    user = User.query.filter_by(username=username).first_or_404()
+    user = User.query.get_or_404(id)
+    
     posts = Post.query.filter_by(author=user)\
         .order_by(Post.date_posted.desc())\
         .paginate(page=page, per_page=5)
+
     return render_template('user_posts.html', posts=posts, user=user)
 
 

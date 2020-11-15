@@ -1,0 +1,78 @@
+
+.opac-100 {
+  opacity: 1;
+}
+
+.opac-90 {
+  opacity: 0.9;
+}
+
+.opac-80 {
+  opacity: 0.8;
+}
+
+.opac-70 {
+  opacity: 0.7;
+}
+
+.opac-60 {
+  opacity: 0.6;
+}
+
+.opac-50 {
+  opacity: 0.5;
+}
+
+.opac-40 {
+  opacity: 0.4;
+}
+.opac-30 {
+  opacity: 0.3;
+}
+.opac-20 {
+  opacity: 0.2;
+}
+.opac-10 {
+  opacity: 0.1;
+}
+
+.border-med {
+  border-width: medium;
+}
+
+.bg-black {
+  background-color: black;
+}
+
+
+.rnd-arc {
+  border-radius: 49% 49% 7% 7% ;
+}
+
+.rnd-qtr {
+  border-radius: 7% / 13%;
+}
+
+.rnd-half {
+  border-radius: 50% / 50%;
+}
+
+.rnd-md {
+  border-radius: 4px;
+}
+.rnd-lg {
+  border-radius: 6px;
+}
+
+.rnd-xl {
+  border-radius: 8px;
+}
+
+.rnd-2xl {
+  border-radius: 12px;
+}
+
+.rnd-3xl {
+  border-radius: 16px;
+}
+

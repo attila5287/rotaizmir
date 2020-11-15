@@ -83,3 +83,10 @@
 .text-shd {
   text-shadow: 2px 2px 2px #0000001c;
 }
+
+.text-membf {
+  color:#e83e8c ;
+}
+.text-membm {
+  color:#007bff ;
+}

@@ -13,7 +13,6 @@ from blueprints.members.forms import MemberMenu
 
 admins = Blueprint('admins', __name__)
 
-
 @admins.context_processor
 def inject_icons():
   pass
@@ -67,8 +66,8 @@ def users_table():
   p_users = User.query.order_by(
     User.id.desc()).paginate(page=page, per_page=20, error_out=False)
 
-  #these are pagination objects not all records on db
-     #per page 20 instead
+  # these are pagination objects not all records on db
+  # per page 20 instead
   table =  [
     {
       c.name:
@@ -77,42 +76,35 @@ def users_table():
 
     for user in p_users.items
     ]
-  headers = [
-    'id',
-    'username',
-    'email',
-    'image_file',
-    'img_url',
-    'is_admin',
-    'is_member',
-    'is_prez',
-    'make_member',
-    'make_admin',
-    'make_prez',
-  ]
-    
+  
+  user_requests = {
+    'for_member' :   [1,  3,4, ] ,
+    'for_admin'  :   [  2,3,4, ],
+    'for_prez'   :   [1,  3,4, ],
+  }
+  
   return render_template(
     'adm_tbl_usr.html',
-            select_user=select_user,
-            select_member=select_member,
-            users=p_users, 
-            table=table,
-            css=[('theme', '/minty/bootstrap', ),
-              ('main', 'main', ),
-              ('custom', 'dashboard', ),
-            ],
-            info_notes=[
-              'Admin dashboard, approve membership request from users or make a user admin.',
-            ],
-            access=[
-              'a',
-              'p',
-            ],
-            js=None,
-            title='AdminTablesUser',
-            legend='Admin Tables User',
-            headers=headers,
-            )
+    select_user=select_user,
+    select_member=select_member,
+    users=p_users, 
+    table=table,
+    css=[('theme', '/minty/bootstrap', ),
+      ('main', 'main', ),
+      ('custom', 'dashboard', ),
+    ],
+    info_notes=[
+      'Admin dashboard, approve membership request from users or make a user admin.',
+    ],
+    access=[
+      'a',
+      'p',
+    ],
+    js=None,
+    title='AdminTablesUser',
+    legend='Admin Tables User',
+    user_requests = user_requests,
+    )
 
 @admins.route('/a/t/m', methods= [ 'GET', 'POST'])
 @admins.route('/a/t/m/', methods= [ 'GET', 'POST'])
@@ -144,8 +136,8 @@ def members_table():
     {
       c.name:
       getattr(member, c.name)
-      for c in member.__table__.columns}
-
+      for c in member.__table__.columns
+      }
     for member in p_members.items
     ]
   headers = [
@@ -216,7 +208,6 @@ def approve_member(id):
     return redirect(url_for('admins.users_table'))
     # return jsonify({'status': success_msg})
 
-
 @admins.route('/membership/cancelled/<int:id>', methods= [ 'GET', 'POST'])
 @admins.route('/membership/cancelled/<int:id>/', methods= [ 'GET', 'POST'])
 def cancel_member(id):
@@ -256,8 +247,6 @@ def approve_admin(id):
     return redirect(url_for('admins.users_table'))
     # return jsonify({'status': success_msg})
 
-
-
 @admins.route('/admin/cancelled/<int:id>', methods= [ 'GET', 'POST'])
 @admins.route('/admin/cancelled/<int:id>/', methods= [ 'GET', 'POST'])
 def cancel_admin(id):
@@ -295,7 +284,6 @@ def approve_prez(id):
     db.session.commit()
     return redirect(url_for('admins.users_table'))
     # return jsonify({'status': success_msg})
-
 
 @admins.route('/prez/cancelled/<int:id>', methods= [ 'GET', 'POST'])
 @admins.route('/prez/cancelled/<int:id>/', methods= [ 'GET', 'POST'])
