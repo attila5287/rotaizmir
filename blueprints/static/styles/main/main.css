@@ -4,9 +4,8 @@
 @import "series.css";  
 @import "panel.css";  
 
-.bg-body{
-  margin-top: 60px;
-  background-image: linear-gradient(180deg, #ffffff0c, #c2787807);
+.body{
+  padding-top: 5rem;
 }
 
 .member-img{

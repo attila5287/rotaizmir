@@ -20,8 +20,8 @@
 {% endif %}
 {% endfor %}
 </div>      
-
 <style> 
+
 
 </style>
 
@@ -40,8 +40,7 @@
     'member_request',
     'admin_request',
     'prez_request',
-  ]
-     %}
+  ] %}
 
 <div class="table-responsive" name="table-usr">
   <table class="table table-hov3r table-light table-bordered rnd-2xl shadow">
@@ -58,16 +57,15 @@
       </tr>
     </thead>
     <tbody>
+      
       {% for user in table %}
-
-        <tr> 
-
+      <tr> 
         {% set rowloop = loop %}
         {% for k,v in user.items() %}
         
           {% if k == "id" %} 
           
-          <th class="pl-3 bg-primary text-light text-xl opac-90" id="cell-{{ rowloop.index }}-{{ loop.index }}" scope="row" style="vertical-align: middle;">
+          <th class="pl-3 bg-primary text-light text-lg opac-90" id="cell-{{ rowloop.index }}-{{ loop.index }}" scope="row" style="vertical-align: middle;">
             {{ v }}
           </th>
           
@@ -91,6 +89,7 @@
             >
           </td>
           
+
           {% elif k in [ "linkedin", "twitter", "instagram",] %}
           <td class="text-center bg-dark{{rowloop.cycle('odd', 'even')}}"
           id="cell-{{ rowloop.index }}-{{ loop.index }}">
@@ -109,13 +108,10 @@
             "n" : "times text-danger opac-50",
           } %}
 
-
           <td class="text-center bg-dark{{rowloop.cycle('odd', 'even')}}"
           id="cell-{{ rowloop.index }}-{{ loop.index }}">
             
             <i class="text-lg fas fa-{{  icon_dict[v] }} fa-fw"></i>
-
-
           </td>
           
 
@@ -135,10 +131,10 @@
           
           
           {% else %}
-          
-          <td class="pl-3 bg-dark{{rowloop.cycle('odd', 'even')}}" id="cell-{{ rowloop.index }}-{{ loop.index }}" >
-            {{ v }}
-          </td>
+            
+            <td class="text-md text-dark bg-dark{{rowloop.cycle('odd', 'even')}}" id="cell-{{ rowloop.index }}-{{ loop.index }}" >
+              {{ v }}
+            </td>
           
           {% endif %}
 
@@ -196,60 +192,55 @@
               {% endif %}
             </td>
 
-            
-            
             {% for label, list in user_requests.items() %}
 
-            {% if user.id in list %}
+              {% if user.id in list %}
             
-            <td class="text-center bg-dark{{rowloop.cycle('odd', 'even')}}">
-              <div class="btn-group-vertical" role="group" aria-label="Vertical button group">
+              <td class="text-center bg-dark{{rowloop.cycle('odd', 'even')}}">
+                <div class="btn-group-vertical" role="group" aria-label="Vertical button group">
+                  <div class="btn-group" role="group" aria-label="Button group">
+                    
+                    <a class="btn btn-outline-secondary" type="button">
+                      <i class="fas fa-comments text-shdlite text-lg fa-fw"></i>
+                    </a>
+                    <a class="btn btn-outline-success" type="button">
+                      <i class="fas fa-stamp text-shdlite text-lg fa-fw"></i>
+                    </a>
+                  </div>
+                  <div class="btn-group" role="group" aria-label="Button group">
+                    <a class="btn btn-outline-danger" type="button">
+                      <i class="fas fa-gavel text-shdlite text-lg fa-fw"></i>
+                    </a>
+                    <a class="btn btn-outline-info" type="button">
+                      <i class="fas fa-balance-scale text-shdlite text-lg fa-fw"></i>
+                    </a>
+                    
+                  </div>
+                  
+                </div>
+              </td>
+              
+              {% else %}
+
+              <td class="text-center bg-dark{{rowloop.cycle('odd', 'even')}}">
                 <div class="btn-group" role="group" aria-label="Button group">
                   
-                  <button class="btn btn-block btn-outline-success" type="button">
-                    <i class="fas fa-stamp text-shdlite text-lg"></i>
-                  </button>
+                  <a class="btn btn-outline-primary border-0" type="button">
+                    <i class="fas fa-envelope text-xl opac-70"></i>
+                  </a>
+                  <a class="btn btn-outline-info border-0" type="button">
+                    <i class="fas fa-comment-dots text-xl opac-70"></i>
+                  </a>
                 </div>
-
-              <div class="btn-group" role="group" aria-label="Button group">
-                <button class="btn btn-outline-secondary" type="button">
-                  <i class="fas fa-gavel text-shdlite text-lg"></i>
-                </button>
-                <button class="btn btn-outline-info" type="button">
-                  <i class="fas fa-balance-scale text-shdlite text-lg"></i>
-                </button>
-                
-              </div>
-
-              </div>
-
-            </td>
-            
-            {% else %}
-
-            <td class="text-center bg-dark{{rowloop.cycle('odd', 'even')}}">
-              <div class="btn-group" role="group" aria-label="Button group">
-                
-                <button class="btn btn-outline-primary border-0" type="button">
-                  <i class="fas fa-envelope text-xl opac-70"></i>
-                </button>
-                <button class="btn btn-outline-info border-0" type="button">
-                  <i class="fas fa-comment-dots text-xl opac-70"></i>
-                </button>
-              </div>
-            
-            
-            </td>
-            
-            {% endif %}
+              
+              
+              </td>
+              
+              {% endif %}
 
             {% endfor %}
-            
-
-            
-            
-            
-        </tr>
+      </tr>
+      
       {% endfor %}
     </tbody>
   </table>  
