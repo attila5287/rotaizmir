@@ -78,9 +78,9 @@ def users_table():
     ]
   
   user_requests = {
-    'for_member' :   [1,  3,4, ] ,
-    'for_admin'  :   [  2,3,4, ],
-    'for_prez'   :   [1,  3,4, ],
+    'for_member' : [1,  3,4,], 
+    'for_admin'  : [  2,3,4,], 
+    'for_prez'   : [1,  3,4,], 
   }
   
   return render_template(

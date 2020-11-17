@@ -369,3 +369,6 @@ input[type=range][orient=vertical]
   .shd-decline {
   box-shadow: 0 0.5rem 0.75rem #25e9774d;  
 }
+.align-middle {
+  vertical-align: middle;
+}

@@ -1,5 +1,14 @@
 {% extends "layout.html" %}
 {% block content %}
+<style> 
+</style>
+
+
+
+
+
+
+
 
 <div class="text-center" name="pagination-users">
 {% for page_num in users.iter_pages(left_edge=5, right_edge=5, left_current=5, right_current=10) %}
@@ -20,10 +29,6 @@
 {% endif %}
 {% endfor %}
 </div>      
-<style> 
-
-
-</style>
 
 {% set headers = [
     'id',
@@ -40,7 +45,11 @@
     'member_request',
     'admin_request',
     'prez_request',
-  ] %}
+    'user_message',
+    'admin_notes',
+] %}
+
+
 
 <div class="table-responsive" name="table-usr">
   <table class="table table-hov3r table-light table-bordered rnd-2xl shadow">
@@ -59,28 +68,30 @@
     <tbody>
       
       {% for user in table %}
+
       <tr> 
+
         {% set rowloop = loop %}
+
         {% for k,v in user.items() %}
         
           {% if k == "id" %} 
           
-          <th class="pl-3 bg-primary text-light text-lg opac-90" id="cell-{{ rowloop.index }}-{{ loop.index }}" scope="row" style="vertical-align: middle;">
+          <th class="bg-primary text-light text-md" id="cell-{{ rowloop.index }}-{{ loop.index }}" scope="row" style="vertical-align: middle;">
             {{ v }}
           </th>
           
-          {% elif k =="image_file"  %} 
+          {% elif k =="image_file"  %}
+          
           <td class="text-center bg-dark{{rowloop.cycle('odd', 'even')}}"
           id="cell-{{ rowloop.index }}-{{ loop.index }}" >
-            
             <img class="rnd-xl border-0 m-0 p-0" src="https://raw.githubusercontent.com/attila5287/rota-img/main/profile_pics/{{v}}" alt="img"
             style="max-height: 2.75rem;"
             >
-
           </td>
           
-
           {% elif k =="img_url" %}
+          
           <td class="text-center bg-dark{{rowloop.cycle('odd', 'even')}}"
           id="cell-{{ rowloop.index }}-{{ loop.index }}">
             
@@ -193,52 +204,51 @@
             </td>
 
             {% for label, list in user_requests.items() %}
-
               {% if user.id in list %}
-            
+              
               <td class="text-center bg-dark{{rowloop.cycle('odd', 'even')}}">
-                <div class="btn-group-vertical" role="group" aria-label="Vertical button group">
+
+                
+                {% set req_btns = [
+                  ('', 'gavel', 'danger', ),
+                  ('', 'sticky-note', 'secondary', ),
+                  ('', 'balance-scale', 'info', ),
+                  ('', 'stamp', 'primary', ),
+                  ]  %}
+
                   <div class="btn-group" role="group" aria-label="Button group">
-                    
-                    <a class="btn btn-outline-secondary" type="button">
-                      <i class="fas fa-comments text-shdlite text-lg fa-fw"></i>
-                    </a>
-                    <a class="btn btn-outline-success" type="button">
-                      <i class="fas fa-check text-shdlite text-lg fa-fw"></i>
-                    </a>
+
+                    {% for href, icon, style in req_btns  %}
+
+                      <a class="btn pt-0 pb-1 px-1 border-0 btn-lg btn-{{style}} rnd-2xl" type="button">
+                        <i class="fas fa-{{icon}} text-shdlite text-lg fa-fw"></i>
+                      </a>
+
+                    {% endfor %}
+
                   </div>
-                  <div class="btn-group" role="group" aria-label="Button group">
-                    <a class="btn btn-outline-danger" type="button">
-                      <i class="fas fa-times text-shdlite text-lg fa-fw"></i>
-                    </a>
-                    <a class="btn btn-outline-info" type="button">
-                      <i class="fas fa-balance-scale text-shdlite text-lg fa-fw"></i>
-                    </a>
-                    
-                  </div>
-                  
-                </div>
+                
               </td>
               
               {% else %}
-
-              <td class="text-center bg-dark{{rowloop.cycle('odd', 'even')}}">
-                <div class="btn-group" role="group" aria-label="Button group">
-                  
-                  <a class="btn btn-outline-primary border-0" type="button">
-                    <i class="fas fa-envelope text-xl opac-70"></i>
-                  </a>
-                  <a class="btn btn-outline-info border-0" type="button">
-                    <i class="fas fa-comment-dots text-xl opac-70"></i>
-                  </a>
-                </div>
               
-              
+              <td class="p-0 text-center bg-dark{{rowloop.cycle('odd', 'even')}}">
+                <i class="fas fa-ellipsis-h text-2xl opac-70" data-toggle="tooltip" data-placement="right" title="user has no request"></i>
               </td>
-              
-              {% endif %}
 
+              {% endif %}
             {% endfor %}
+            
+            <td class="p-0 text-center bg-dark{{rowloop.cycle('odd', 'even')}}">
+              <a class="fas fa-book-open text-2xl" href="#"></a>
+            </td>
+            
+            <th class="p-0 text-center bg-primary">
+              <a class="fas fa-sticky-note text-light text-2xl opac-70" href="#"></a>
+            </th>
+
+
+
       </tr>
       
       {% endfor %}
@@ -246,4 +256,24 @@
   </table>  
 </div>
 
+<nav class="nav nav-fill col-8 offset-2">
+  {% set table_legend = [
+    ('decline request', 'gavel', 'danger', ),
+    ('note for board', 'sticky-note', 'secondary', ),
+    ('pending review', 'balance-scale', 'info', ),
+    ('approve request', 'stamp', 'primary', ),
+    ]  %}
+  
+    {% for info,icon,style in table_legend %}
+    <li class="nav-item text-italic text-lg">
+      <a class="nav-link disabled mb-0">
+        <button class="btn btn-{{style}} p-1 mb-0" type="button">
+          <i class="fas fa-{{icon}}"></i>
+        </button>
+      </a>
+      {{info}}
+    </li>
+    
+    {% endfor %}
+</nav>   
 {% endblock %}
