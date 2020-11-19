@@ -187,21 +187,19 @@
 
                 
                 {% set req_btns = [
-                  ('', 'gavel', 'danger', ),
-                  ('', 'sticky-note', 'secondary', ),
-                  ('', 'balance-scale', 'info', ),
-                  ('', 'stamp', 'primary', ),
+                  ('', 'decline request', 'gavel', 'danger', ),
+                  ('', 'leave a note', 'sticky-note', 'secondary', ),
+                  ('', 'pending review', 'balance-scale', 'info', ),
+                  ('', 'approve', 'stamp', 'primary', ),
                   ]  %}
 
                 <div class="btn-group" role="group" aria-label="Button group">
 
-
-                  {% for href, icon, style in req_btns  %}
-
-                    <a class="btn pt-0 pb-1 px-1 border-0 btn-lg btn-{{style}} rnd-2xl opac-80" type="button">
+                  {% for href, tooltip, icon, style in req_btns  %}
+                    <a class="btn pt-0 pb-1 px-1 border-0 btn-{{style}} rnd-2xl opac-80" type="button"
+                    data-toggle="tooltip" data-placement="right" title="{{tooltip}}">
                       <i class="fas fa-{{icon}} text-shdlite text-lg fa-fw"></i>
                     </a>
-
                   {% endfor %}
 
                 </div>
@@ -211,18 +209,18 @@
               {% else %}
               
               <td class="p-0 text-center bg-dark{{rowloop.cycle('odd', 'even')}}"> 
-                <i class="fas fa-ellipsis-h text-2xl opac-70" data-toggle="tooltip" data-placement="right" title="user has no request"></i>
+                <i class="fas fa-ellipsis-h text-lg opac-70" data-toggle="tooltip" data-placement="right" title="user has no request"></i>
               </td>
 
               {% endif %}
             {% endfor %}
             
             <td class="p-0 text-center bg-dark{{rowloop.cycle('odd', 'even')}}">
-              <a class="fas fa-book-open text-2xl" href="#"></a>
+              <a class="fas fa-book-open text-lg" href="#"></a>
             </td>
             
             <th class="p-0 text-center bg-primary">
-              <a class="fas fa-sticky-note text-light text-2xl opac-70" href="#"></a>
+              <a class="fas fa-sticky-note text-light text-md opac-70" href="#"></a>
             </th>
       </tr>
       
@@ -235,12 +233,12 @@
   <nav class="nav nav-fill col-8 offset-2">
     
     {% set table_legend = [
-      ('admin notes','sticky-note', 'primary', ), 
-      ('user notes','book-open', 'dark opac-50', ), 
-      ('cancel memb/adm/prez','user-slash', 'secondary', ), 
       ('make admin','user-md', 'primary', ), 
       ('make member','user-check', 'primary', ), 
+      ('cancel memb/adm/prez','user-slash', 'secondary', ), 
       ('make prez','user-graduate', 'primary', ), 
+      ('user notes','book-open', 'dark opac-50', ), 
+      ('admin notes','sticky-note', 'primary', ), 
     ]  %}
   
     {% for info,icon,style in table_legend %}

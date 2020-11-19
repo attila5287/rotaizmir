@@ -7,7 +7,7 @@ from flask import (
 from flask_login import (
   login_user, current_user, logout_user, login_required)
 from blueprints import db
-from blueprints.models import Member, User
+from blueprints.models import Member, User, Note, Request
 from blueprints.admins.forms import UserMenu, TableModeSelect
 from blueprints.members.forms import MemberMenu
 
@@ -285,6 +285,7 @@ def approve_prez(id):
     return redirect(url_for('admins.users_table'))
     # return jsonify({'status': success_msg})
 
+
 @admins.route('/prez/cancelled/<int:id>', methods= [ 'GET', 'POST'])
 @admins.route('/prez/cancelled/<int:id>/', methods= [ 'GET', 'POST'])
 def cancel_prez(id):
@@ -303,3 +304,10 @@ def cancel_prez(id):
     user.prez = 'n'
     db.session.commit()
     return redirect(url_for('admins.users_table'))
+
+@admins.route('/a/n', methods= [ 'GET', 'POST'])
+@admins.route('/a/n/', methods= [ 'GET', 'POST'])
+def all_notes():
+  pass
+
+  return  jsonify( {'all' : 'notes'})

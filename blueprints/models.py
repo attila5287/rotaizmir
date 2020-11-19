@@ -9,14 +9,17 @@ from flask_login import UserMixin
 def load_user(user_id):
     return User.query.get(int(user_id))
 
-
 class User(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(20), unique=True, nullable=False)
     email = db.Column(db.String(120), unique=True, nullable=False)
     image_file = db.Column(db.String(32), nullable=False, default='default.png')
     password = db.Column(db.String(60), nullable=False)
+    
+    # collect user posts, adm_notes and requests
     posts = db.relationship('Post', backref='author', lazy=True)
+    notes = db.relationship('Note', backref='by_user', lazy=True)
+    requests = db.relationship('Request', backref='by_admin', lazy=True)
     
     # generate random int
     img_url = db.Column(db.Integer, nullable=False, default =0)
@@ -40,7 +43,6 @@ class User(db.Model, UserMixin):
     def __repr__(self):
         return f"User('{self.username}', '{self.email}', '{self.image_file}')"
 
-
 class Post(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(100), nullable=False)
@@ -55,7 +57,6 @@ class Nickname(db.Model):
     pass
     id = db.Column(db.Integer, primary_key=True)
     nickname = db.Column(db.String(256), nullable=False)
-    
 
 class Color(db.Model):
     pass
@@ -63,8 +64,6 @@ class Color(db.Model):
     color = db.Column(db.String(16), nullable=False)
     colorcode = db.Column(db.String(8), nullable=False)
     
-
-
 class Member(db.Model): 
     pass
     id =  db.Column(db.Integer, nullable=False, primary_key=True)
@@ -81,3 +80,18 @@ class Member(db.Model):
     linkedin =  db.Column(db.String(256), nullable=True)
     twitter =  db.Column(db.String(256), nullable=True)
     instagram =  db.Column(db.String(256), nullable=True)
+
+class Request(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    category = db.Column(db.String(100), nullable=False)
+    date_posted = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
+    content = db.Column(db.Text, nullable=False)
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
+    
+class Note(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    category = db.Column(db.String(100), nullable=False)
+    date_posted = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
+    content = db.Column(db.Text, nullable=False)
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
+    admin_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)    
