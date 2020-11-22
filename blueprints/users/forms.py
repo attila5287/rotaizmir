@@ -90,3 +90,9 @@ class PrezRequestForm(FlaskForm):
     category = StringField('prez',default='prez')
     content = TextAreaField('content', validators=[DataRequired()])
     submit = SubmitField('submit request')
+    
+class PrezRequestForm(FlaskForm):
+    content = TextAreaField('content', validators=[DataRequired()])
+    submit = SubmitField('submit request')
+    
+

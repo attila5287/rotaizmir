@@ -234,7 +234,11 @@
             </td>
             
             <th class="p-0 text-center bg-primary">
-              <a class="fas fa-sticky-note text-light text-md opac-70" href="#"></a>
+              <form method="POST" action="/a/{{current_user.id}}/n/{{user.id}}">
+                {{form.content(class="form-control form-control-sm")}}
+              {{form.submit(class="form-control form-control-sm")}}
+              </form>
+              
             </th>
       </tr>
       

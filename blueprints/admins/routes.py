@@ -8,7 +8,7 @@ from flask_login import (
   login_user, current_user, logout_user, login_required)
 from blueprints import db
 from blueprints.models import Member, User, Note, Request
-from blueprints.admins.forms import UserMenu, TableModeSelect
+from blueprints.admins.forms import UserMenu, TableModeSelect, AdminNoteForm
 from blueprints.members.forms import MemberMenu
 
 admins = Blueprint('admins', __name__)
@@ -81,9 +81,11 @@ def users_table():
     'for_admin'  : [  2,3,4,], 
     'for_prez'   : [1,  3,4,], 
   }
+  form = AdminNoteForm()
   
   return render_template(
     'adm_tbl_usr.html',
+    form = form,
     select_user=select_user,
     select_member=select_member,
     users=p_users, 
@@ -304,10 +306,22 @@ def cancel_prez(id):
     db.session.commit()
     return redirect(url_for('admins.users_table'))
 
-@admins.route('/a/n', methods= [ 'GET', 'POST'])
-@admins.route('/a/n/', methods= [ 'GET', 'POST'])
-def all_notes():
+@admins.route('/a/<int:adm_id>/n/<int:usr_id>', methods= [ 'GET', 'POST'])
+@admins.route('/admin/<int:adm_id>/note/<int:usr_id>', methods= [ 'GET', 'POST'])
+def sticky_note(adm_id, usr_id):
   pass
-  note = Note.query()
+  note = Note(
+    category = 'admin',
+    content = 'test',
+    admin_id = adm_id,
+    user_id = usr_id,
+  )
+  db.session.add(note)
+  db.session.commit()
 
-  return  jsonify( {'all' : 'notes'})
+
+  return  jsonify( {
+    'req_f' : 'request.form',
+    'adm' : adm_id,
+    'usr' : usr_id,
+    })
