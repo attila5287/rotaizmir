@@ -329,3 +329,13 @@ def sticky_note(adm_id, usr_id):
     return redirect(url_for('admins.users_table'))
 
 
+
+
+@admins.route('/delete/note/<int:id>')
+def delete_note(id):
+    pass
+    note = Note.query.get_or_404(id)
+    
+    db.session.delete(note)
+    db.session.commit()
+    return redirect(url_for('admins.users_table'))
