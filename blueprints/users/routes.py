@@ -429,5 +429,5 @@ def send_request_for(request_type, user_id):
                 )
     db.session.add(usr_req)
     db.session.commit()
-    flash('{} request sent by user {} confirmed'.format(request_type, user_id), 'success')    
+    flash('User {} {} request delivered'.format(user_id, request_type, ), 'success')    
     return redirect(url_for('users.user_requests'))
