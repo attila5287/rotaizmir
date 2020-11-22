@@ -397,37 +397,51 @@ def account():
 
                            )
 
-@users.route('/u/r')
-@users.route('/user/requests')
-@users.route('/user/requests/')
+@users.route('/u/r', methods=['GET','POST'])
+@users.route('/user/requests', methods=['GET','POST'])
+@users.route('/user/requests/', methods=['GET','POST'])
+@login_required
 def user_requests():
     pass
     member_form = MemberRequestForm()
     admin_form = AdminRequestForm()
     prez_form = PrezRequestForm()
+    active_requests = Request.query.filter_by(by_user=current_user).all()
+    
+    formdata_posted = (request.method == 'POST')
+    if formdata_posted:
+        pass
+        usr_req = Request(
+            category=request.form['category'],
+            content=request.form['content'],
+            user_id=current_user.id,
+                    )
+        db.session.add(usr_req)
+        db.session.commit()
+        flash('User {} {} request delivered'.format(current_user.id, request.form['category'], ), 'success')    
+        return redirect(url_for('users.user_requests'))        
+    
+    
 
     return render_template('user_reqs.html',
                            member_form=member_form,
                            admin_form=admin_form,
                            prez_form=prez_form,
                            legend='User Requests',
+                           active_requests=active_requests,
                            info_notes = [
                              'Send requests for user account authorization',
                              'Check recently made requests',
                            ],
                            )
 
-@users.route('/user/<int:user_id>/requests/<string:request_type>', methods=['GET','POST'])
-@login_required
-def send_request_for(request_type, user_id):
+
+
+@users.route('/delete/request/<int:id>')
+def delete_request(id):
     pass
+    req = Request.query.get_or_404(id)
     
-    usr_req = Request(
-        category=request_type,
-        content=request.form['content'],
-        user_id=user_id,
-                )
-    db.session.add(usr_req)
+    db.session.delete(req)
     db.session.commit()
-    flash('User {} {} request delivered'.format(user_id, request_type, ), 'success')    
     return redirect(url_for('users.user_requests'))

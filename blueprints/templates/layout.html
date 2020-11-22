@@ -290,21 +290,23 @@
           </legend>
 
 {% with messages = get_flashed_messages(with_categories=true) %}
+  
   {% if messages %}
-  <div class="alert alert-dismissible alert-{{ category }} border-{{ category }} shadow-lg">
-    
-    <ul class="list-group my-0">
-    {% for category, message in messages %}
-      <li class="list-group-item list-group-item-{{ category }}">{{ message }}
-        <button type="button" class="close pt-2" data-dismiss="alert">
-          <i class="fas fa-times text-xl pt-0"></i>
-        </button>
 
-      </li>
-    {% endfor %}
-    </ul>
-    
-</div>
+    <div class="form-mini alert alert-dismissible alert-{{ category }} border-0 bg-transparent">
+      
+      <ul class="list-group my-0">
+      {% for category, message in messages %}
+        <li class="list-group-item list-group-item-{{ category }}">{{ message }}
+          <button type="button" class="close pt-2" data-dismiss="alert">
+            <i class="fas fa-times text-xl pt-0"></i>
+          </button>
+
+        </li>
+      {% endfor %}
+      </ul>
+      
+  </div>
 
   {% endif %}
 {% endwith %}

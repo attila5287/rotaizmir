@@ -77,16 +77,16 @@ class ResetPasswordForm(FlaskForm):
 
 
 class MemberRequestForm(FlaskForm):
-    category = StringField('member', validators=[DataRequired()], default='member')
+    category = StringField('member',default='member')
     content = TextAreaField('content', validators=[DataRequired()])
     submit = SubmitField('request')
     
 class AdminRequestForm(FlaskForm):
-    category = StringField('admin', validators=[DataRequired()], default='admin')
+    category = StringField('admin',default='admin')
     content = TextAreaField('content', validators=[DataRequired()])
-    submit = SubmitField('request')
+    submit = SubmitField('submit request')
     
 class PrezRequestForm(FlaskForm):
-    category = StringField('prez', validators=[DataRequired()], default='prez')
+    category = StringField('prez',default='prez')
     content = TextAreaField('content', validators=[DataRequired()])
-    submit = SubmitField('request')
+    submit = SubmitField('submit request')

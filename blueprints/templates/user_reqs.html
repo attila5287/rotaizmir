@@ -1,8 +1,65 @@
 {% extends "layout.html" %}
 {% block content %}
+<div class="container" name=>
+  {% set status_legend = [
+    ('envelope', 'sent', ),
+    ('envelope-open', 'received', ),
+    ('balance-scale', 'pending review', ),
+    ('stamp', 'approved', ),
+    ('gavel', 'declined', ),
+    ('comments', 'responded', ),
+    ] %}
+    <div class="form-mini d-flex flex-row justify-content-between align-items-center pt-0">
+  
+    {% for icon, status in status_legend %}
+    
+          <i class="fas fa-{{icon}} text-lg" ></i>
+          <i>
+            {{status}}
+
+          </i>
 
 
-<div class="card-group d-flex flex-row justify-content-between form-mini" name="status-summary">
+
+        {% endfor %}
+      </div>
+  
+</div>
+  
+
+<hr class="form-mini border-med mb-0">
+{% for req in active_requests %}
+
+  <div class="form-mini d-flex flex-row justify-content-between align-items-center pt-0">
+    <h1 class="far far fa-envelope fa-pull-left"></h1>
+    {{req.content}} 
+    
+    <p class="mb-0">
+      <a href="{{url_for('users.delete_request', id= req.id)}}" class="far fa-times-circle text-secondary fa-pull-right text-2xl">
+      </a>
+
+      <br>
+      <i>
+        for 
+      </i>
+      
+      <strong>
+        {{req.category}}
+      </strong>
+      
+      <br>
+    <i> @ </i>
+    {{req.date_posted.date()}}
+
+    </p>
+    
+    
+  </div>
+
+
+{% endfor %}
+<hr class="form-mini border-med mb-0">
+<div class="card-group d-flex flex-row justify-content-between form-mini mt-0" name="user-request-forms">
 
   {% set user_stats = [
     ( 'is_member', 'member', 'user-graduate',  member_form ),
@@ -12,32 +69,51 @@
   
   {% for status, header, icon, form in user_stats %}
   {% if current_user[status] == 'y' %}
-    <div class="card border-0 text-center">
-      <div class="mt-2 card-header bg-transparent p-0 py-2 border-0 text-primary text-bold text-comfo shadow">{{header}}</div>
-      <div class="card-body m-0 p-0">
-        <h1 class="my-4 card-title fas fa-{{icon}} text-primary opac-50"></h1>
-        <p class="card-text text-italic text-primary opac-80 mt-2">Already a {{header}} </p>
-      </div>
+
+  <div class="card border-0 text-center mt-0">
+    <div class="card-body align-items-center mb-0">
+      
+      <form method="POST" action="">
+        <div class="form-group py-0 mb-0">
+          <select class="custom-select text-primary text-center  text-comfo border-0 mb-2" id="category" name="category" value="{{header}}" >
+            <option value="{{header}}" selected>{{header}}</option>
+          </select>
+          
+        </div>  
+        <h1 class="mt-2 card-title fas fa-{{icon}} text-primary opac-50"></h1>
+        <hr class="border-primary my-0 mx-2">
+        <div class="form-group py-0 mb-0">
+          <textarea class="form-control text-center text-italic text-primary border-0 bg-transparent" readonly>Already a member!</textarea>
+        </div>  
+        <div class="form-group py-0 mb-0">
+          <a class="btn btn-outline-primary btn-block border-0 text-italic disabled mt-2">
+            <i class="far fa-check-circle text-2xl"></i>
+          </a>
+        </div>  
+        
+      </form>
+
     </div>
+  </div>
   {% else %}
     <div class="card border-0 text-center">
-      <div class="card-header bg-transparent pb-0 mb-0 align-baseline  text-secondary text-capitalize text-center bottom-bottom border-secondary mx-2 opac-80"> 
-          {{header}} 
-      </div>
       <div class="card-body align-items-center mb-0">
-        <h1 class="mt-2 card-title fas fa-{{icon}} text-secondary opac-50"></h1>
-
-        <form method="POST" action="{{url_for('users.send_request_for', user_id=current_user.id, request_type=header)}}">
+        
+        <form method="POST" action="">
+          <div class="form-group py-0 mb-0">
+            <select class="custom-select text-secondary text-center  text-comfo border-0 shadow mb-2" id="category" name="category" value="{{header}}" >
+              <option value="{{header}}" selected>{{header}}</option>
+            </select>
+            
+          </div>  
+          <h1 class="mt-2 card-title fas fa-{{icon}} text-secondary opac-50"></h1>
           <div class="form-group py-0 mb-0">
             {{form.content(class="form-control  text-italic mb-0" ) }}
           </div>  
           <div class="form-group py-0 mb-0">
-            {{form.submit(class="btn btn-outline-primary border-0 mb-0" ) }}
+            {{form.submit(class="btn btn-outline-primary btn-block border-0 shadow mt-2" ) }}
           </div>  
-  <!--         
-          <div class="form-group py-0 mb-0">
-            <a href="/user/{{current_user.id}}/requests/{{header}}" class="btn btn-outline-primary border-0 mb-0" >action</a>
-          </div>   -->
+          
         </form>
   
       </div>
