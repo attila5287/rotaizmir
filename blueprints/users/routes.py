@@ -1,3 +1,4 @@
+from datetime import datetime
 import random
 from random import shuffle
 import csv
@@ -5,11 +6,11 @@ import requests
 from flask import render_template, url_for, flash, redirect, request, Blueprint, jsonify
 from flask_login import login_user, current_user, logout_user, login_required
 from blueprints import db, bcrypt
-from blueprints.models import User, Post, Nickname, Member, Color
+from blueprints.models import User, Post, Nickname, Member, Color, Request
 from blueprints.users.forms import (
     RegistrationForm, LoginForm, UpdateAccountForm, RequestResetForm, ResetPasswordForm) 
 from blueprints.users.utils import save_picture, send_reset_email
-from blueprints.posts.forms import PostDemo
+from blueprints.users.forms import MemberRequestForm, AdminRequestForm, PrezRequestForm
 
 users = Blueprint('users', __name__)
 
@@ -41,7 +42,6 @@ def inject_icons():
 
     return dict(icons=icons)
 
-
 @users.route("/reg/post/public/<string:gen_username>", methods=['GET', 'POST'])
 def reg_post_public(gen_username):
     pass  # function to run when new user registered btn hit
@@ -64,7 +64,6 @@ def reg_post_public(gen_username):
     db.session.commit()
     flash('Your account has been created! You are now able to log in', 'success')
     return redirect(url_for('users.login'))
-
 
 @users.route("/reg_post", methods=['POST'])
 def reg_post():
@@ -231,56 +230,6 @@ def colors_api():
     return jsonify(dict(enumerate(indexed)))
 
 
-
-@users.route("/account", methods=['GET', 'POST'])
-@login_required
-def account():
-    pass
-    form = UpdateAccountForm()
-    formdata_posted = (request.method == 'POST')
-    if formdata_posted and form.validate_on_submit():
-        pass
-        if form.errors:
-            pass
-            current_user.username = form.username.data
-            current_user.email = form.email.data
-            db.session.commit()
-            flash('Username and/or Email updated!', 'success')
-            return redirect(url_for('users.account'))
-            
-    
-
-    elif request.method == 'GET':
-        pass
-        form.username.data = current_user.username
-        form.email.data = current_user.email
-    
-    first_random = random.randint(0,69)
-    return render_template('account.html',
-                           first_random = first_random,
-                           form=form,
-                           css=[
-                               ('theme', '/minty/bootstrap', ),
-                               ('main', 'main', ),
-                           ],
-                           info_notes=[
-                               'On left is the current (temporary) picture,',
-                               'Click (or Tap) suggested picture for next suggestion or hit the button to !',
-                           ],
-                           access=[
-                               'u',
-                               'm',
-                               'a',
-                               'p',
-                           ],
-                           js=[
-                               ('users', 'account', ),
-                           ],
-                           legend='Edit User Account',
-                           title='Account',
-
-                           )
-
 @users.route("/login", methods=['GET', 'POST'])
 def login():
     pass
@@ -361,7 +310,9 @@ def register():
         hashed_password = bcrypt.generate_password_hash(
             form.password.data).decode('utf-8')
         user = User(username=form.username.data,
-                    email=form.email.data, password=hashed_password, img_url=0)
+                    email=form.email.data, 
+                    password=hashed_password, 
+                    img_url=0)
         db.session.add(user)
         db.session.commit()
         flash('Your account has been created! You are now able to log in', 'success')
@@ -376,7 +327,6 @@ def register():
                             info_notes=[
                                 'Your email and password will be used for login',
                                 'Choose your display name by random generators below',
-
                             ],
                             access=[
                                 'u',
@@ -395,3 +345,92 @@ def register():
                             
 
                             )
+
+@users.route("/account", methods=['GET', 'POST'])
+@login_required
+def account():
+    pass
+    form = UpdateAccountForm()
+    
+    formdata_posted = (request.method == 'POST')
+    
+    if formdata_posted and form.validate_on_submit():
+        pass
+        if form.errors:
+            pass
+            current_user.username = form.username.data
+            current_user.email = form.email.data
+            db.session.commit()
+            flash('Username and/or Email updated!', 'success')
+            return redirect(url_for('users.account'))
+            
+    
+
+    elif request.method == 'GET':
+        pass
+        form.username.data = current_user.username
+        form.email.data = current_user.email
+    
+    first_random = random.randint(0,69)
+    return render_template('account.html',
+                           first_random = first_random,
+                           form=form,
+                           css=[
+                               ('theme', '/minty/bootstrap', ),
+                               ('main', 'main', ),
+                           ],
+                           info_notes=[
+                               'On left is the current (temporary) picture,',
+                               'Click (or Tap) suggested picture for next suggestion or hit the button to !',
+                           ],
+                           access=[
+                               'u',
+                               'm',
+                               'a',
+                               'p',
+                           ],
+                           js=[
+                               ('users', 'account', ),
+                           ],
+                           legend='Edit User Account',
+                           title='Account',
+
+                           )
+
+@users.route('/u/r')
+@users.route('/user/requests')
+@users.route('/user/requests/')
+def user_requests():
+    pass
+    member_form = MemberRequestForm()
+    admin_form = AdminRequestForm()
+    prez_form = PrezRequestForm()
+
+    return render_template('user_reqs.html',
+                           member_form=member_form,
+                           admin_form=admin_form,
+                           prez_form=prez_form,
+                           legend='User Requests',
+                           info_notes = [
+                             'Send requests for user account authorization',
+                             'Check recently made requests',
+                           ],
+                           )
+
+@users.route('/user/<int:user_id>/requests/<string:request_type>', methods=['GET','POST'])
+@login_required
+def send_request_for(request_type, user_id):
+    pass
+    
+    usr_req = Request(
+        category=request_type,
+        content=request_type + ' request',
+        user_id=user_id,
+                )
+    db.session.add(usr_req)
+    db.session.commit()
+        
+    return jsonify({
+        'request_type': request_type,
+        'request_form': request.form,
+        })

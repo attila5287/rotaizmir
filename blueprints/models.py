@@ -4,7 +4,6 @@ from flask import current_app
 from blueprints import db, login_manager
 from flask_login import UserMixin
 
-
 @login_manager.user_loader
 def load_user(user_id):
     return User.query.get(int(user_id))
@@ -16,12 +15,12 @@ class User(db.Model, UserMixin):
     image_file = db.Column(db.String(32), nullable=False, default='default.png')
     password = db.Column(db.String(60), nullable=False)
     
-    # collect user posts, adm_notes and requests
+    # Collect user posts, adm_notes and requests
     posts = db.relationship('Post', backref='author', lazy=True)
     notes = db.relationship('Note', backref='by_user', lazy=True)
     requests = db.relationship('Request', backref='by_admin', lazy=True)
     
-    # generate random int
+    # Generate random int
     img_url = db.Column(db.Integer, nullable=False, default =0)
     is_admin = db.Column(db.String(32), nullable=False, default='n')
     is_member = db.Column(db.String(32), nullable=False, default='n')
@@ -82,6 +81,7 @@ class Member(db.Model):
     instagram =  db.Column(db.String(256), nullable=True)
 
 class Request(db.Model):
+    pass
     id = db.Column(db.Integer, primary_key=True)
     category = db.Column(db.String(100), nullable=False)
     date_posted = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
@@ -93,5 +93,4 @@ class Note(db.Model):
     category = db.Column(db.String(100), nullable=False)
     date_posted = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
     content = db.Column(db.Text, nullable=False)
-    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
     admin_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)    

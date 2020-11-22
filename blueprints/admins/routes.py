@@ -42,7 +42,6 @@ def inject_icons():
 
   return dict(icons=icons)
 
-
 @admins.route('/a/t/u', methods= [ 'GET', 'POST'])
 @admins.route('/a/t/u/', methods= [ 'GET', 'POST'])
 @admins.route('/admin/tables/users', methods= [ 'GET', 'POST'])
@@ -309,5 +308,6 @@ def cancel_prez(id):
 @admins.route('/a/n/', methods= [ 'GET', 'POST'])
 def all_notes():
   pass
+  note = Note.query()
 
   return  jsonify( {'all' : 'notes'})

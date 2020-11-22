@@ -3,9 +3,9 @@
 
 <div class="card-group d-flex flex-row justify-content-between form-mini" name="status-summary">
   {% set user_statii = [
-    ( 'is_member', 'Member', 'user-graduate', '/request/memb/{{current_user.id}}',  ),
-    ( 'is_admin', 'Admin', 'user-md', '/request/admin/{}'.format(current_user.id),  ),
-    ( 'is_prez', 'Prez', 'fas fa-graduation-cap', '/request/prez/{{current_user.id}}',  ),
+    ( 'is_member', 'Member', 'user-graduate', '/user/requests',  ),
+    ( 'is_admin', 'Admin', 'user-md', 'user/requests'.format(current_user.id),  ),
+    ( 'is_prez', 'Prez', 'fas fa-graduation-cap', 'user/requests',  ),
       ] %}
       {% for status, header, icon, href in user_statii %}
       {% if current_user[status] == 'y' %}

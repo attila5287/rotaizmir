@@ -200,9 +200,6 @@
                     {% set accessible = ' disabled text-capitalize mt-1 ml-0' %}
                   {% endif %}
                 
-                {% if  url_for(request.endpoint) == href %}
-                  {% set highlighted = 'bg-side text-light' %}
-                {% endif %}
                 
               <a class="list-group-item list-group-item-light list-group-item-action bg-transparent text-light side-title border-0 m-0 mt-1 p-0 {{accessible}}" href="{{href}}">
 

@@ -1,39 +1,52 @@
 {% extends "layout.html" %}
 {% block content %}
-<div class="container text-center" name="pags">
-  {% for page_num in posts.iter_pages(left_edge=1, right_edge=1, left_current=1, right_current=2) %}
-  {% if page_num %}
-    {% if posts.page == page_num %}
-      <a class="btn btn-outline-secondary bg-theme mb-4" href="{{ url_for('main.home', page=page_num) }}">{{ page_num }}</a>
-    {% else %}
-      <a class="btn btn-sm btn-secondary mb-4" href="{{ url_for('main.home', page=page_num) }}">{{ page_num }}</a>
-    {% endif %}
-  {% else %}
-    ...
-  {% endif %}
-{% endfor %}
-</div>
 
-<div class="row" name="posts">
-  {% for post in posts.items %}
-<div class="col-sm-6">
-  <article class="media content-section  border-light rnd-2xl">
-    <img class="rounded-circle article-img" src="https://raw.githubusercontent.com/attila5287/regropoly-img/master/avatars/{{post.author.img_url}}.png">
-    <div class="media-body ">
-      <div class="article-metadata mb-0">
-      <a class="rnd-xl text-bold text-theme mr-2 px-2 pb-1 mb-0" href="{{ url_for('users.user_posts', id=post.author.id) }}">{{ post.author.username }}</a> 
-        <small class="ml-auto text-md text-italic ">@{{ post.date_posted.strftime('%Y-%m-%d') }}</small>
-      </div>
-      <hr class="border-light my-0 mx-5">
-      <h4 class="shd-theme "><a class="article-title " href="{{ url_for('posts.post', post_id=post.id) }}">{{ post.title }}</a></h4>
-      <hr class="mb-2 mt-0 opac-30 border-light px-4">  
-      <p class="article-content ">{{ post.content }}</p>
-    </div>
-  </article>
-</div>
-  {% endfor %}
+
+<div class="card-group d-flex flex-row justify-content-between form-mini" name="status-summary">
+
+  {% set user_stats = [
+    ( 'is_member', 'member', 'user-graduate',  member_form ),
+    ( 'is_admin',  'admin', 'user-md', admin_form),
+    ( 'is_prez',   'prez', 'fas fa-graduation-cap', prez_form ),
+      ] %}
   
+  {% for status, header, icon, form in user_stats %}
+  {% if current_user[status] == 'y' %}
+    <div class="card border-0 text-center">
+      <div class="mt-2 card-header bg-transparent p-0 py-2 border-0 text-primary text-bold text-comfo shadow">{{header}}</div>
+      <div class="card-body m-0 p-0">
+        <h1 class="my-4 card-title fas fa-{{icon}} text-primary opac-50"></h1>
+        <p class="card-text text-italic text-primary opac-80 mt-2">Already a {{header}} </p>
+      </div>
+    </div>
+  {% else %}
+    <div class="card border-0 text-center">
+      <div class="card-header bg-transparent pb-0 mb-0 align-baseline  text-secondary text-capitalize text-center bottom-bottom border-secondary mx-2 opac-80"> 
+          {{header}} 
+      </div>
+      <div class="card-body align-items-center mb-0">
+        <h1 class="mt-2 card-title fas fa-{{icon}} text-secondary opac-50"></h1>
+        <form method="get" action="/user/{{current_user.id}}/requests/{{header}}">
+        <div class="form-group py-0 mb-0">
+          {{form.content(class="form-control  text-italic mb-0" ) }}
+        </div>  
+        <div class="form-group py-0 mb-0">
+          {{form.submit(class="btn btn-outline-primary border-0 mb-0" ) }}
+        </div>  
+<!--         
+        <div class="form-group py-0 mb-0">
+          <a href="/user/{{current_user.id}}/requests/{{header}}" class="btn btn-outline-primary border-0 mb-0" >action</a>
+        </div>   -->
+
+        </form>
+  
+      </div>
+    </div>
+    
+  {% endif %}
+  
+  {% endfor %}
+
 </div>
 
-
-{% endblock content %}
+{% endblock %}

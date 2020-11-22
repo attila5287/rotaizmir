@@ -27,8 +27,6 @@ def inject_icons():
     return dict(icons=icons)
 
 
-
-
 @posts.route("/post/new", methods=['GET', 'POST'])
 @login_required
 def new_post():

@@ -189,14 +189,28 @@
                 {% set req_btns = [
                   ('', 'decline request', 'gavel', 'danger', ),
                   ('', 'leave a note', 'sticky-note', 'secondary', ),
-                  ('', 'pending review', 'balance-scale', 'info', ),
-                  ('', 'approve', 'stamp', 'primary', ),
                   ]  %}
 
                 <div class="btn-group" role="group" aria-label="Button group">
 
                   {% for href, tooltip, icon, style in req_btns  %}
-                    <a class="btn pt-0 pb-1 px-1 border-0 btn-{{style}} rnd-2xl opac-80" type="button"
+                    <a class="btn pt-0 pb-1 px-1 border-0 btn-{{style}} rnd-lg opac-80" type="button"
+                    data-toggle="tooltip" data-placement="right" title="{{tooltip}}">
+                      <i class="fas fa-{{icon}} text-shdlite text-lg fa-fw"></i>
+                    </a>
+                  {% endfor %}
+
+                </div>
+                
+                {% set req_btns = [
+                  ('', 'pending review', 'balance-scale', 'info', ),
+                  ('', 'approve', 'stamp', 'primary', ),
+                  ]  %}
+
+                <div class="btn-group mt-1" role="group" aria-label="Button group">
+
+                  {% for href, tooltip, icon, style in req_btns  %}
+                    <a class="btn pt-0 pb-1 px-1 border-0 btn-{{style}} rnd-lg opac-80" type="button"
                     data-toggle="tooltip" data-placement="right" title="{{tooltip}}">
                       <i class="fas fa-{{icon}} text-shdlite text-lg fa-fw"></i>
                     </a>

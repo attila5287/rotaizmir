@@ -5,14 +5,7 @@
 			"path": "."
 		},
 		{
-			"name": "bootstrap-examples",
-			"path": "..\\references\\html_ex\\bootstrap-examples"
-		},
-		{
 			"path": "..\\references\\_best_of\\d3-auto-table\\HW14-javascript"
-		},
-		{
-			"path": "..\\displaytracker"
 		}
 	],
 	"settings": {

@@ -1,6 +1,6 @@
 from flask_wtf import FlaskForm
 from flask_wtf.file import FileField, FileAllowed
-from wtforms import StringField, PasswordField, SubmitField, BooleanField, SelectField
+from wtforms import StringField, PasswordField, SubmitField, BooleanField, SelectField, TextAreaField
 from wtforms.validators import DataRequired, Length, Email, EqualTo, ValidationError
 from flask_login import current_user
 from blueprints.models import User
@@ -74,3 +74,19 @@ class ResetPasswordForm(FlaskForm):
                                      validators=[DataRequired(), EqualTo('password')])
     submit = SubmitField('Reset Password')
 
+
+
+class MemberRequestForm(FlaskForm):
+    category = StringField('member', validators=[DataRequired()], default='member')
+    content = TextAreaField('content', validators=[DataRequired()])
+    submit = SubmitField('request')
+    
+class AdminRequestForm(FlaskForm):
+    category = StringField('admin', validators=[DataRequired()], default='admin')
+    content = TextAreaField('content', validators=[DataRequired()])
+    submit = SubmitField('request')
+    
+class PrezRequestForm(FlaskForm):
+    category = StringField('prez', validators=[DataRequired()], default='prez')
+    content = TextAreaField('content', validators=[DataRequired()])
+    submit = SubmitField('request')
