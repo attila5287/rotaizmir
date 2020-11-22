@@ -424,13 +424,10 @@ def send_request_for(request_type, user_id):
     
     usr_req = Request(
         category=request_type,
-        content=request_type + ' request',
+        content=request.form['content'],
         user_id=user_id,
                 )
     db.session.add(usr_req)
     db.session.commit()
-        
-    return jsonify({
-        'request_type': request_type,
-        'request_form': request.form,
-        })
+    flash('{} request sent by user {} confirmed'.format(request_type, user_id), 'success')    
+    return redirect(url_for('users.user_requests'))

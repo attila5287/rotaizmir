@@ -287,6 +287,26 @@
             {% endif %}
 
           </legend>
+          {% with messages = get_flashed_messages() %}
+            {% if messages %}
+      <div class="w-75 opac-90 px-2 py-1 alert alert-info content-section add-anime border-0 alert-dismissible fade show rnd-xl" role="alert">
+        
+
+            <ul class=flashes>
+            {% for message in messages %}
+              <li>{{ message }}</li>
+            {% endfor %}
+            </ul>
+            
+            <button type="button" class="close text-2xl" data-dismiss="alert" aria-label="Close">
+              <i class="fas fa-times text-theme"></i>
+            </button>
+          </div> 
+          
+          {% endif %}
+        {% endwith %}          
+        
+
           {% block content %}{% endblock %}
           <footer class="container footer mt-2">
             <nav class="nav nav-pills nav-justified">
