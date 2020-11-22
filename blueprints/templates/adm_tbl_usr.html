@@ -2,6 +2,66 @@
 {% block content %}
 
 <style></style>
+{% for req in admin_notes %}
+
+  <div class="form-mini d-flex flex-row justify-content-between align-items-center pt-0">
+    <h1 class="fas fa-user-md fa-pull-left"></h1>
+    {{req.content}} 
+    
+    <p class="mb-0">
+      <a href="{{url_for('users.delete_request', id= req.id)}}" class="far fa-times-circle text-secondary fa-pull-right text-2xl">
+      </a>
+
+      <br>
+      <i>
+        for 
+      </i>
+      
+      <strong>
+        {{req.category}}
+      </strong>
+      
+      <br>
+    <i> @ </i>
+    {{req.date_posted.date()}}
+
+    </p>
+    
+    
+  </div>
+
+
+{% endfor %}
+{% for req in active_requests %}
+
+  <div class="form-mini d-flex flex-row justify-content-between align-items-center pt-0">
+    <h1 class="far far fa-envelope fa-pull-left"></h1>
+    {{req.content}} 
+    
+    <p class="mb-0">
+      <a href="{{url_for('users.delete_request', id= req.id)}}" class="far fa-times-circle text-secondary fa-pull-right text-2xl">
+      </a>
+
+      <br>
+      <i>
+        for 
+      </i>
+      
+      <strong>
+        {{req.category}}
+      </strong>
+      
+      <br>
+    <i> @ </i>
+    {{req.date_posted.date()}}
+
+    </p>
+    
+    
+  </div>
+
+
+{% endfor %}
 
 <div class="text-center" name="pagination-users">
 {% for page_num in users.iter_pages(left_edge=5, right_edge=5, left_current=5, right_current=10) %}
@@ -235,8 +295,9 @@
             
             <th class="p-0 text-center bg-primary">
               <form method="POST" action="/a/{{current_user.id}}/n/{{user.id}}">
-                {{form.content(class="form-control form-control-sm")}}
-              {{form.submit(class="form-control form-control-sm")}}
+                {{form.category(class="custom-select border-0")}}
+                {{form.content(class="form-control  form-control-sm border-0 opac-80")}}
+              {{form.submit(class="form-control form-control-sm border-0")}}
               </form>
               
             </th>

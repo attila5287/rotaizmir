@@ -23,7 +23,9 @@ class TableModeSelect(FlaskForm):
 class AdminNoteForm(FlaskForm):
     category = SelectField(
                         choices=[
-                            (0, 'default'), 
+                            ('member', 'M', ), 
+                            ('admin', 'A', ), 
+                            ('prez', 'P', ), 
                             ], 
                         default= 0,
                            )

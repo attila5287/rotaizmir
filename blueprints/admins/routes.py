@@ -82,9 +82,12 @@ def users_table():
     'for_prez'   : [1,  3,4,], 
   }
   form = AdminNoteForm()
-  
+  active_requests = Request.query.all()
+  admin_notes = Note.query.filter_by(by_admin=current_user).all()
   return render_template(
     'adm_tbl_usr.html',
+    active_requests = active_requests,
+    admin_notes = admin_notes,
     form = form,
     select_user=select_user,
     select_member=select_member,
@@ -319,9 +322,10 @@ def sticky_note(adm_id, usr_id):
       admin_id = adm_id,
       user_id = usr_id,
     )
+    
     db.session.add(note)
     db.session.commit()
-    
+
     return redirect(url_for('admins.users_table'))
 
 
