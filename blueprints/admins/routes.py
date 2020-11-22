@@ -310,18 +310,18 @@ def cancel_prez(id):
 @admins.route('/admin/<int:adm_id>/note/<int:usr_id>', methods= [ 'GET', 'POST'])
 def sticky_note(adm_id, usr_id):
   pass
-  note = Note(
-    category = 'admin',
-    content = 'test',
-    admin_id = adm_id,
-    user_id = usr_id,
-  )
-  db.session.add(note)
-  db.session.commit()
+  formdata_posted = (request.method == 'POST')
+  if formdata_posted:
+    note = Note(
+      # category = request.form['category'],
+      category = 'admin',
+      content = request.form['content'],
+      admin_id = adm_id,
+      user_id = usr_id,
+    )
+    db.session.add(note)
+    db.session.commit()
+    
+    return redirect(url_for('admins.users_table'))
 
 
-  return  jsonify( {
-    'req_f' : 'request.form',
-    'adm' : adm_id,
-    'usr' : usr_id,
-    })
