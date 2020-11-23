@@ -9,6 +9,9 @@
 		},
 		{
 			"path": "..\\references\\html_ex\\bootstrap-examples"
+		},
+		{
+			"path": "..\\displaytracker"
 		}
 	],
 	"settings": {

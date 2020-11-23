@@ -1,30 +1,81 @@
 {% extends "layout.html" %}
 {% block content %}
+<style> </style>
 
-<style></style>
-{% for note in admin_notes %}
+{% set req_icons = {
+    'member' : 'user-check',
+  'admin' : 'user-md',
+  'prez' : 'user-graduate',
+} %}
 
-  <div class="form-mini d-flex flex-row justify-content-between align-items-center pt-0">
+{% for req, note in zipped_notes %}
+<div class="container mini">
+    <div class="media">
+    <h1 class="fas fa-{{req_icons[req.category]}} txt-shd text-secondary fa-pull-left"></h1>
+    
+    <div class="media-body text-secondary">
+      
+      <h6 class="mt-2 opac-80 border-bottom border-secondary">
+        User ID <i class="text-bold text-nonitalic"># {{req.user_id}}</i> requested <strong class="text-italic">{{req.category}}</strong> authorization
+      </h6>
+      <i class="far fa-envelope-open text-md mr-2 fa-fw"></i>
+
+      <i class="text-dark"> {{req.content}} </i>
+      <br>
+      
+      <i class="far fa-calendar-alt text-md fa-fw"></i>
+      <i class="text-dark ml-2"> {{req.date_posted.date()}} </i>
+      
+      <div class="media mt-4 rnd-xl p-2 shadow">
+        <a class="pr-3" href="#">
+          <h1 class="far fa-comment-dots text-primary txt-shd"></h1>
+        </a>
+        <div class="media-body text-primary" style="vertical-align: middle;">
+          <h6 class="mt-0 border-bottom border-primary">Admin ID# {{note.admin_id}} noted:</h6>
+          <i class="far far fa-paper-plane text-lg fa-fw"></i>
+          <i class="text-nonitalic text-comfo text-sm text-dark">
+            {{note.content}}
+            <br>
+            <i class="far fa-calendar-alt text-primary text-md fa-fw"></i>
+            <i class="text-dark ml-2"> {{note.date_posted.date()}} </i>
+            
+            
+            <h1 class="far far fa-times-circle text-secondary fa-pull-right"></h1>
+      </i>
+        </div>
+      </div>
+
+    </div>
+  </div>
+  
+</div>
+{% endfor %}
+
+<div class="container" name="">
+  {% for note in admin_notes %}
+
+  <div class="mini d-flex flex-row justify-content-between align-items-center pt-0">
     <h1 class="fas fa-user-md fa-pull-left"></h1>
     {{note.content}} 
     
     <p class="mb-0">
+      
       <a href="{{url_for('admins.delete_note', id= note.id)}}" class="far fa-times-circle text-secondary fa-pull-right text-2xl">
       </a>
-
+      
       <br>
+
       <i>
         for 
       </i>
-      
       <strong>
         {{note.category}}
       </strong>
       
       <br>
-    <i> @ </i>
-    {{note.date_posted.date()}}
-
+      <i> @ </i>
+      {{note.date_posted.date()}}
+      
     </p>
     
     
@@ -34,7 +85,7 @@
 {% endfor %}
 {% for req in active_requests %}
 
-  <div class="form-mini d-flex flex-row justify-content-between align-items-center pt-0">
+  <div class="mini d-flex flex-row justify-content-between align-items-center pt-0">
     <h1 class="far far fa-envelope fa-pull-left"></h1>
     {{req.content}} 
     
@@ -63,7 +114,9 @@
 
 {% endfor %}
 
-<div class="text-center" name="pagination-users">
+</div>
+
+<div class="text-center mt-4" name="pagination-users">
 {% for page_num in users.iter_pages(left_edge=5, right_edge=5, left_current=5, right_current=10) %}
 {% if page_num %}
 {% if users.page == page_num %}
@@ -95,8 +148,7 @@
   'member_request',
   'admin_request',
   'prez_request',
-  'user_message',
-  'admin_notes',
+  'display_requests',
 ] %}
 
 <div class="table-responsive" name="table-usr">
@@ -141,10 +193,6 @@
           
           <td class="text-center bg-primary"
           id="cell-{{ rowloop.index }}-{{ loop.index }}">
-            
-            <img class="border-0 m-0 p-0 opac-80 rounded-circle" src="https://raw.githubusercontent.com/attila5287/rota-img/main/avatars/{{v}}.png" alt="img"
-            style="max-height: 1.75rem;"
-            >
           </td>
           
 
@@ -243,41 +291,18 @@
             {% for label, list in user_requests.items() %}
               {% if user.id in list %}
               
-              <td class="text-center bg-dark{{rowloop.cycle('odd', 'even')}}">
-
-                
-                {% set req_btns = [
-                  ('', 'decline request', 'gavel', 'danger', ),
-                  ('', 'leave a note', 'sticky-note', 'secondary', ),
-                  ]  %}
-
-                <div class="btn-group" role="group" aria-label="Button group">
-
-                  {% for href, tooltip, icon, style in req_btns  %}
-                    <a class="btn pt-0 pb-1 px-1 border-0 btn-{{style}} rnd-lg opac-80" type="button"
-                    data-toggle="tooltip" data-placement="right" title="{{tooltip}}">
-                      <i class="fas fa-{{icon}} text-shdlite text-lg fa-fw"></i>
-                    </a>
-                  {% endfor %}
-
+              <td class="text-center bg-primary">
+                <form method="POST" action="/admin/{{current_user.id}}/note/{{user.id}}">
+                <div class="d-flex flex-row justify-content-between my-1">
+                  {{form.category(class="form-control form-control-dark custom-select custom-select-sm text-sm p-0")}}
+                  {{form.status(class="form-control form-control-dark custom-select custom-select-sm text-sm p-0 text-shdlite")}}
                 </div>
-                
-                {% set req_btns = [
-                  ('', 'pending review', 'balance-scale', 'info', ),
-                  ('', 'approve', 'stamp', 'primary', ),
-                  ]  %}
 
-                <div class="btn-group mt-1" role="group" aria-label="Button group">
+                {{form.content(class="form-control form-control-sm border-0 opac-80 text-italic")}}
+              {{form.submit(class="btn btn-sm btn-outline-light btn-block text-light rnd-lg my-1")}}
+              </form>
 
-                  {% for href, tooltip, icon, style in req_btns  %}
-                    <a class="btn pt-0 pb-1 px-1 border-0 btn-{{style}} rnd-lg opac-80" type="button"
-                    data-toggle="tooltip" data-placement="right" title="{{tooltip}}">
-                      <i class="fas fa-{{icon}} text-shdlite text-lg fa-fw"></i>
-                    </a>
-                  {% endfor %}
 
-                </div>
-                
               </td>
               
               {% else %}
@@ -289,16 +314,10 @@
               {% endif %}
             {% endfor %}
             
-            <td class="p-0 text-center bg-dark{{rowloop.cycle('odd', 'even')}}">
-              <a class="fas fa-book-open text-lg" href="#"></a>
-            </td>
-            
-            <th class="p-0 text-center bg-primary">
-              <form method="POST" action="/a/{{current_user.id}}/n/{{user.id}}">
-                {{form.category(class="custom-select border-0")}}
-                {{form.content(class="form-control  form-control-sm border-0 opac-80")}}
-              {{form.submit(class="form-control form-control-sm border-0")}}
-              </form>
+            <th class="p-0 px-2 text-center bg-primary">
+              <a href="#" class="btn btn-outline-primary border-0 btn-sm shadow">
+              <h1 class="fab fa-tripadvisor"></h1>
+            </a>
               
             </th>
       </tr>

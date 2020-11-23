@@ -36,6 +36,14 @@ def inject_icons():
       "twitter": "b fa-twitter",
       "user_id": "s fa-user-tag",
       "menu": "s fa-sort",
+      "new_note": "s fa-sticky-note",
+      "display_requests": "b fa-tripadvisor",
+      "make_admin": "s fa-user-md",
+      "make_member": "s fa-user-check",
+      "make_prez": "s fa-user-shield",
+      "admin_request":  "s fa-concierge-bell",
+      "member_request": "s fa-concierge-bell",
+      "prez_request":   "s fa-concierge-bell",
     }
 
     return gallery.get(label, 's fa-edit')
@@ -86,8 +94,7 @@ def users_table():
   admin_notes = Note.query.filter_by(by_admin=current_user).all()
   return render_template(
     'adm_tbl_usr.html',
-    active_requests = active_requests,
-    admin_notes = admin_notes,
+     zipped_notes= zip(active_requests,admin_notes),
     form = form,
     select_user=select_user,
     select_member=select_member,
@@ -309,15 +316,15 @@ def cancel_prez(id):
     db.session.commit()
     return redirect(url_for('admins.users_table'))
 
-@admins.route('/a/<int:adm_id>/n/<int:usr_id>', methods= [ 'GET', 'POST'])
+
 @admins.route('/admin/<int:adm_id>/note/<int:usr_id>', methods= [ 'GET', 'POST'])
 def sticky_note(adm_id, usr_id):
   pass
+
   formdata_posted = (request.method == 'POST')
   if formdata_posted:
     note = Note(
-      # category = request.form['category'],
-      category = 'admin',
+      category = 'member',
       content = request.form['content'],
       admin_id = adm_id,
       user_id = usr_id,

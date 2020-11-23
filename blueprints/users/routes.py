@@ -296,7 +296,6 @@ def userposts_byid(id):
 
                            )
 
-
 # forms to register
 @users.route("/register", methods=['GET', 'POST'])
 def register():
@@ -409,13 +408,15 @@ def user_requests():
     active_requests = Request.query.filter_by(by_user=current_user).all()
     
     formdata_posted = (request.method == 'POST')
+    
     if formdata_posted:
         pass
         usr_req = Request(
             category=request.form['category'],
+            status='received',
             content=request.form['content'],
             user_id=current_user.id,
-                    )
+            )
         db.session.add(usr_req)
         db.session.commit()
         flash('User {} {} request delivered'.format(current_user.id, request.form['category'], ), 'success')    
@@ -434,9 +435,7 @@ def user_requests():
                              'Check recently made requests',
                            ],
                            )
-
-
-
+ 
 @users.route('/delete/request/<int:id>')
 def delete_request(id):
     pass
