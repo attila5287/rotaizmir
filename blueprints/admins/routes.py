@@ -85,9 +85,9 @@ def users_table():
     ]
   
   user_requests = {
-    'for_member' : [1,  3,4,], 
-    'for_admin'  : [  2,3,4,], 
-    'for_prez'   : [1,  3,4,], 
+    'member' : [1,  3,4,], 
+    'admin'  : [  2,3,4,], 
+    'prez'   : [1,  3,4,], 
   }
   form = AdminNoteForm()
   active_requests = Request.query.all()
@@ -111,7 +111,9 @@ def users_table():
       'a',
       'p',
     ],
-    js=None,
+    js=[
+      ('notes', 'display', ),
+    ],
     title='AdminTablesUser',
     legend='Admin Tables User',
     user_requests = user_requests,

@@ -3,7 +3,7 @@
 <style> </style>
 
 {% set req_icons = {
-    'member' : 'user-check',
+  'member' : 'user-check',
   'admin' : 'user-md',
   'prez' : 'user-graduate',
 } %}
@@ -19,7 +19,6 @@
         User ID <i class="text-bold text-nonitalic"># {{req.user_id}}</i> requested <strong class="text-italic">{{req.category}}</strong> authorization
       </h6>
       <i class="far fa-envelope-open text-md mr-2 fa-fw"></i>
-
       <i class="text-dark"> {{req.content}} </i>
       <br>
       
@@ -30,6 +29,7 @@
         <a class="pr-3" href="#">
           <h1 class="far fa-comment-dots text-primary txt-shd"></h1>
         </a>
+
         <div class="media-body text-primary" style="vertical-align: middle;">
           <h6 class="mt-0 border-bottom border-primary">Admin ID# {{note.admin_id}} noted:</h6>
           <i class="far far fa-paper-plane text-lg fa-fw"></i>
@@ -38,10 +38,8 @@
             <br>
             <i class="far fa-calendar-alt text-primary text-md fa-fw"></i>
             <i class="text-dark ml-2"> {{note.date_posted.date()}} </i>
-            
-            
             <h1 class="far far fa-times-circle text-secondary fa-pull-right"></h1>
-      </i>
+          </i>
         </div>
       </div>
 
@@ -193,6 +191,8 @@
           
           <td class="text-center bg-primary"
           id="cell-{{ rowloop.index }}-{{ loop.index }}">
+          <img class="rnd-xl border-0 m-0 p-0" src="https://raw.githubusercontent.com/attila5287/rota-img/main/avatars/{{v}}.png" alt="img" style="max-height: 3rem;"
+          >
           </td>
           
 
@@ -291,19 +291,29 @@
             {% for label, list in user_requests.items() %}
               {% if user.id in list %}
               
-              <td class="text-center bg-primary">
-                <form method="POST" action="/admin/{{current_user.id}}/note/{{user.id}}">
-                <div class="d-flex flex-row justify-content-between my-1">
-                  {{form.category(class="form-control form-control-dark custom-select custom-select-sm text-sm p-0")}}
-                  {{form.status(class="form-control form-control-dark custom-select custom-select-sm text-sm p-0 text-shdlite")}}
-                </div>
+              <th class="text-center bg-dark{{rowloop.cycle('odd', 'even')}} py-0">
 
-                {{form.content(class="form-control form-control-sm border-0 opac-80 text-italic")}}
-              {{form.submit(class="btn btn-sm btn-outline-light btn-block text-light rnd-lg my-1")}}
-              </form>
+                <form method="POST" action="/admin/{{current_user.id}}/note/{{user.id}}" class="form-group mt-1">
 
+                    <select id="status" name="status"  class="selectpicker form-control form-control-sm text-md p-0 mb-1">
+                      
+                      {% set options = [
+                        ('approved', 'stamp', 'primary', '',  ),
+                        ('pending',  'balance-scale', 'info', '',  ),
+                        ('declined', 'gavel', 'danger', '',  ),
+                        ]  %}
 
-              </td>
+                        {% for status, icon,style, tooltip in options %}
+                          <option data-content="<i class='fas fa-{{icon}} text-{{style}}' aria-hidden='true'> {{status}}</i>"></option>
+                        {% endfor %}
+
+                      </select>
+                  <textarea class="form-control form-control-sm form-control-dark border-0 text-italic" rows="1" name="content" id="content" placeholder="write abt. {{label}} request"></textarea>
+
+                  {{form.submit(class="btn btn-primary btn-block rnd-md mt-2 mb-0 p-1 border-0 shadow")}}
+
+                </form>
+              </th>
               
               {% else %}
               
@@ -314,8 +324,8 @@
               {% endif %}
             {% endfor %}
             
-            <th class="p-0 px-2 text-center bg-primary">
-              <a href="#" class="btn btn-outline-primary border-0 btn-sm shadow">
+            <th class="p-0 text-center bg-primary">
+              <a href="#" class="btn btn-outline-primary border-0 btn-sm bg-transparent rnd-2xl shadow p-0">
               <h1 class="fab fa-tripadvisor"></h1>
             </a>
               

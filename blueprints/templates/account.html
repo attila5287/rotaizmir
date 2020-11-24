@@ -7,14 +7,16 @@
     ( 'is_admin', 'Admin', 'user-md', 'user/requests'.format(current_user.id),  ),
     ( 'is_prez', 'Prez', 'fas fa-graduation-cap', 'user/requests',  ),
       ] %}
+      
       {% for status, header, icon, href in user_statii %}
+      
       {% if current_user[status] == 'y' %}
-      <div class="card border-0 text-center w-100">
-        <h5 class="card-header bg-transparent pb-0 border-0 text-primary shadow">{{header}}</h5>
-        <div class="card-body m-0 p-0">
-          <h1 class="mt-2 card-title fas fa-{{icon}} text-primary opac-50"></h1>
+        <div class="card border-0 text-center w-100">
+          <h5 class="card-header bg-transparent pb-0 border-0 text-primary shadow">{{header}}</h5>
+          <div class="card-body m-0 p-0">
+            <h1 class="mt-2 card-title fas fa-{{icon}} text-primary opac-50"></h1>
+          </div>
         </div>
-      </div>
       {% else %}
         <div class="card border-0 text-center w-100">
           <h5 class="card-header bg-transparent pb-0 mb-0 align-baseline border-0 opac-50 text-secondary"> {{header}} </h5>
@@ -29,7 +31,7 @@
               </a>
             </span>
           </div>
-          </div>
+        </div>
       
       {% endif %}
       {% endfor %}
@@ -74,8 +76,6 @@
 </div>
 
 <div name="update-form" class="rnd-3xl form-mini p-0 content-section pb-5">
-  <h5 class="card-header align-items-baseline text-italic opac-50 mb-4 "> Account 
-    </h5>
   <form method="POST" action="">
       {{ form.hidden_tag() }}
 
@@ -137,10 +137,10 @@
               </p>
           </div>
           <div class="col-8">
-            <strong class="text-italic text-info text-sm mb-1 ml-2">
+            <p class="text-italic text-info text-sm mb-1 ml-2">
               <i class="fas fa-info-circle text-lg fa-pull-left"></i>
-              (read-only) member users edit username
-            </strong>
+              member auth. required to edit username
+            </p>
 
               <div class="input-group mx-2 mb-0 text-comfo">
                   <div class="input-group-prepend  add-anime">
@@ -188,19 +188,21 @@
               </p>
           </div>
           <div class="col-8">
-            <strong class="text-italic text-info text-sm mb-1 ml-2">
+            
+            <p class="text-italic text-info text-sm mb-1 ml-2">
               <i class="fas fa-info-circle text-lg fa-pull-left"></i>
               only approved users upload picture
-            </strong>            
-              <div class="input-group mx-2 mb-0 text-comfo">
-                  <div class="input-group-prepend rnd-xl border-0 bg-transparent pb-2">
-                      <span class="input-group-text bg-secondary rnd-xl text-bold"
-                          id="inputGroupPrepend">
-                          <i class="text-light fa{{icons(field.id)}} fa-fw ml-2 mt-0"></i>
-                      </span>
-                  </div>
-                  <input type="file" name="picture" id="picture" class="form-control-file shadow mr-2" disabled>
-              </div>
+            </p>
+
+            <div class="input-group mx-2 mb-0 text-comfo">
+                <div class="input-group-prepend rnd-xl border-0 bg-transparent pb-2">
+                    <span class="input-group-text bg-secondary rnd-xl text-bold"
+                        id="inputGroupPrepend">
+                        <i class="text-light fa{{icons(field.id)}} fa-fw ml-2 mt-0"></i>
+                    </span>
+                </div>
+                <input type="file" name="picture" id="picture" class="form-control-file shadow mr-2" disabled>
+            </div>
           </div>
       </div>
       {% else %}
