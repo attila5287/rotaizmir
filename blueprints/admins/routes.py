@@ -14,11 +14,14 @@ from blueprints.members.forms import MemberMenu
 
 admins = Blueprint('admins', __name__)
 
+@admins.route('/a/t/u', methods= [ 'GET', 'POST'])
+@admins.route('/a/t/u/', methods= [ 'GET', 'POST'])
 @admins.route('/a/t/u/<int:id>', methods= [ 'GET', 'POST'])
 @admins.route('/a/t/u/<int:id>/', methods= [ 'GET', 'POST'])
 @admins.route('/admin/tables/users', methods= [ 'GET', 'POST'])
 @admins.route('/admin/tables/users/', methods= [ 'GET', 'POST'])
 @admins.route('/admin/tables/users/<int:id>', methods= [ 'GET', 'POST'])
+@admins.route('/admin/tables/users/<int:id>/', methods= [ 'GET', 'POST'])
 def users_table(id=None):
   pass
   if not id:
