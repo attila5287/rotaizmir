@@ -18,7 +18,6 @@ class User(db.Model, UserMixin):
     # Collect user posts, adm_notes and requests
     posts = db.relationship('Post', backref='author', lazy=True)
     notes = db.relationship('Note', backref='for_user', lazy=True)
-    requests = db.relationship('Request', backref='by_user', lazy=True)
     
     # Generate random int
     img_url = db.Column(db.Integer, nullable=False, default =0)
@@ -80,17 +79,10 @@ class Member(db.Model):
     twitter =  db.Column(db.String(256), nullable=True)
     instagram =  db.Column(db.String(256), nullable=True)
 
-class Request(db.Model):
-    pass
-    id = db.Column(db.Integer, primary_key=True)
-    status = db.Column(db.String(100), nullable=False)
-    category = db.Column(db.String(100), nullable=False)
-    date_posted = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
-    content = db.Column(db.Text, nullable=False)
-    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
-    
 class Note(db.Model):
     id = db.Column(db.Integer, primary_key=True)
+    type = db.Column(db.String(100), nullable=False)
+    status = db.Column(db.String(100), nullable=False)
     category = db.Column(db.String(100), nullable=False)
     date_posted = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
     content = db.Column(db.Text, nullable=False)

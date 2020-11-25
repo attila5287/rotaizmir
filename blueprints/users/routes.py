@@ -6,7 +6,7 @@ import requests
 from flask import render_template, url_for, flash, redirect, request, Blueprint, jsonify
 from flask_login import login_user, current_user, logout_user, login_required
 from blueprints import db, bcrypt
-from blueprints.models import User, Post, Nickname, Member, Color, Request
+from blueprints.models import User, Post, Nickname, Member, Color, Note
 from blueprints.users.forms import (
     RegistrationForm, LoginForm, UpdateAccountForm, RequestResetForm, ResetPasswordForm) 
 from blueprints.users.utils import save_picture, send_reset_email
@@ -401,15 +401,16 @@ def user_requests():
     member_form = MemberRequestForm()
     admin_form = AdminRequestForm()
     prez_form = PrezRequestForm()
-    active_requests = Request.query.filter_by(by_user=current_user).all()
+    active_requests = Note.query.filter_by(for_user=current_user).all()
     
     formdata_posted = (request.method == 'POST')
     
     if formdata_posted:
         pass
-        usr_req = Request(
+        usr_req = Note(
+            type='req',
             category=request.form['category'],
-            status='received',
+            status='delivered',
             content=request.form['content'],
             user_id=current_user.id,
             )
@@ -432,7 +433,7 @@ def user_requests():
 @users.route('/delete/request/<int:id>')
 def delete_request(id):
     pass
-    req = Request.query.get_or_404(id)
+    req = Note.query.get_or_404(id)
     
     db.session.delete(req)
     db.session.commit()

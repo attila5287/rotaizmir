@@ -8,7 +8,7 @@ from flask import (
 from flask_login import (
   login_user, current_user, logout_user, login_required)
 from blueprints import db
-from blueprints.models import Member, User, Note, Request
+from blueprints.models import Member, User, Note
 from blueprints.admins.forms import UserMenu, TableModeSelect, AdminNoteForm
 from blueprints.members.forms import MemberMenu
 
@@ -27,51 +27,18 @@ def users_table(id=None):
   else:
     pass
     selected_user = User.query.get_or_404(id)
+    all_notes = Note.query.filter_by(for_user=selected_user )
     cats = ['member','admin','prez',]
     d = {}
-    all_dates = []
     for cat in cats:
       pass
-      q_notes = Note.query.filter_by(for_user=selected_user).filter_by(category=cat).all()
-      q_reqs = Request.query.filter_by(by_user=selected_user).filter_by(category=cat).all()
-      dates_notes = [
-        note.date_posted for note in q_notes
-      ]
-      dates_reqs = [
-        request.date_posted for request in q_reqs
-      ]
-      
-      for date in dates_notes:
-        pass
-        all_dates.append(date)
-        
-      for date in dates_reqs:
-        pass
-        all_dates.append(date)
-        
-      d[cat] = []
-      
-      d[cat].extend([
-        {
-          'type' : 'req',
-          'dated' : request.date_posted,
-          'main' : request,
-        } 
-        for request in q_reqs
-        
-      ])
-      d[cat].extend([
-        {
-          'type' : 'note',
-          'dated' : note.date_posted,
-          'main' : note,
-        }
-        for note in q_notes
-      ])
+      filtered = all_notes.filter_by(category=cat).all()
+      d[cat] = filtered
       
     disp_reqs = d
-  page = request.args.get('page', 1, type=int)
     
+  
+  page = request.args.get('page', 1, type=int)
   select_user = UserMenu()
   select_member = MemberMenu()
   all_members = [u for u in Member.query.all()]
@@ -110,7 +77,7 @@ def users_table(id=None):
     requestors[label] = []
     
   # collects all categor
-  for req in Request.query.all():
+  for req in Note.query.filter_by(type='req').all():
     pass
     requestors[req.category].append(req.user_id)
     
@@ -118,7 +85,6 @@ def users_table(id=None):
   
   return render_template(
     'adm_tbl_usr.html',
-    all_dates = all_dates,
     disp_reqs = disp_reqs,
     requestors = requestors,
     note_form = note_form,
@@ -194,8 +160,10 @@ def members_table():
     'twitter',
     'instagram',
   ]
+  
   return render_template(
     'adm_tbl_memb.html',
+        notes = notes,
         select_user=select_user,
         select_member=select_member,
         members=p_members, 
@@ -350,6 +318,7 @@ def sticky_note(adm_id, usr_id, category):
   formdata_posted = (request.method == 'POST')
   if formdata_posted:
     note = Note(
+      type = 'note',
       category = category,
       content = request.form['content'],
       admin_id = adm_id,

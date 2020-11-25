@@ -2,9 +2,6 @@
 {% block content %}
 <style> </style>
 
-{% for date in all_dates %}
-    {{date}} <br>
-{% endfor %}
 
 
 {% set req_icons = {
@@ -21,7 +18,7 @@
           
           {% for obj in sorted %}
             {% if obj.type == 'req' %}
-              {% set req = obj.main  %}
+              {% set req = obj  %}
                 <div class="media mt-4 rnd-xl p-2 shadow">
                 <h1 class="fas fa-{{req_icons[req.category]}} txt-shd text-secondary fa-pull-left"></h1>
                   
@@ -44,7 +41,7 @@
                 </div>          
             {% else %}
               
-              {% set note = obj.main %}
+              {% set note = obj %}
               <div class="media mt-4 rnd-xl p-1 offset-1">
               <a class="pr-3" href="#">
                 <h1 class="far fa-comment-dots text-primary txt-shd"></h1>
