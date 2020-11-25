@@ -190,10 +190,9 @@
                   ('is_admin', '/member/add', '└ New Member', 'user-plus', ),
                   (None, '', 'admins', '', ),
                   ('is_admin', '/admin/tables/users', '├ Users', 'user-md', ),
-                  ('is_admin', '/admin/requests', '├ Requests', 'check-double', ),
                   ('is_admin', '/admin/tables/members', '└ Members', 'user-md', ),
                 ] -%}
-
+<!-- ('is_admin', '/admin/requests', '├ Requests', 'check-double', ), -->
                 {% for access_level, href, caption, icon in side_bar %}
                 {% if demo_mode == 'on' %}
 
