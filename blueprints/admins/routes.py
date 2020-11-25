@@ -14,58 +14,62 @@ from blueprints.members.forms import MemberMenu
 
 admins = Blueprint('admins', __name__)
 
-@admins.context_processor
-def inject_rand_chooser():
-  pass
-  def rand_chooser(collection):
-    pass
-    return [random.choice(collection)]
-
-  return dict(rand_chooser=rand_chooser)
-
-@admins.context_processor
-def inject_icons():
-  pass
-  def icons(label):
-    pass
-    gallery = {  # font awesome icons for member forms
-      "email": "s fa-envelope",
-      "first_name": "s fa-user-edit",
-      "gender": "s fa-venus-mars",
-      "id": "s fa-id-card",
-      "image_file": "s fa-file-image",
-      "img_url": "s fa-image",
-      "instagram": "b fa-instagram",
-      "is_admin": "s fa-user-md",
-      "is_member": "s fa-user-check",
-      "is_prez": "s fa-user-shield",
-      "last_name": "s fa-user-edit",
-      "linkedin": "b fa-linkedin",
-      "middle_name": "s fa-question-circle",
-      "phone_num": "s fa-phone",
-      "twitter": "b fa-twitter",
-      "user_id": "s fa-user-tag",
-      "menu": "s fa-sort",
-      "new_note": "s fa-sticky-note",
-      "display_requests": "b fa-tripadvisor",
-      "make_admin": "s fa-user-md",
-      "make_member": "s fa-user-check",
-      "make_prez": "s fa-user-shield",
-      "admin_request":  "s fa-concierge-bell",
-      "member_request": "s fa-concierge-bell",
-      "prez_request":   "s fa-concierge-bell",
-    }
-
-    return gallery.get(label, 's fa-edit')
-
-  return dict(icons=icons)
-
-@admins.route('/a/t/u', methods= [ 'GET', 'POST'])
-@admins.route('/a/t/u/', methods= [ 'GET', 'POST'])
+@admins.route('/a/t/u/<int:id>', methods= [ 'GET', 'POST'])
+@admins.route('/a/t/u/<int:id>/', methods= [ 'GET', 'POST'])
 @admins.route('/admin/tables/users', methods= [ 'GET', 'POST'])
 @admins.route('/admin/tables/users/', methods= [ 'GET', 'POST'])
-def users_table():
+@admins.route('/admin/tables/users/<int:id>', methods= [ 'GET', 'POST'])
+def users_table(id=None):
   pass
+  if not id:
+    pass
+    disp_reqs = {}
+  else:
+    pass
+    selected_user = User.query.get_or_404(id)
+    cats = ['member','admin','prez',]
+    d = {}
+    all_dates = []
+    for cat in cats:
+      pass
+      q_notes = Note.query.filter_by(for_user=selected_user).filter_by(category=cat).all()
+      q_reqs = Request.query.filter_by(by_user=selected_user).filter_by(category=cat).all()
+      dates_notes = [
+        note.date_posted for note in q_notes
+      ]
+      dates_reqs = [
+        request.date_posted for request in q_reqs
+      ]
+      
+      for date in dates_notes:
+        pass
+        all_dates.append(date)
+        
+      for date in dates_reqs:
+        pass
+        all_dates.append(date)
+        
+      d[cat] = []
+      
+      d[cat].extend([
+        {
+          'type' : 'req',
+          'dated' : request.date_posted,
+          'main' : request,
+        } 
+        for request in q_reqs
+        
+      ])
+      d[cat].extend([
+        {
+          'type' : 'note',
+          'dated' : note.date_posted,
+          'main' : note,
+        }
+        for note in q_notes
+      ])
+      
+    disp_reqs = d
   page = request.args.get('page', 1, type=int)
     
   select_user = UserMenu()
@@ -100,25 +104,23 @@ def users_table():
     'admin', 
     'prez', 
   ]
-  d = {}
+  requestors = {}
   for label in labels:
     pass
-    d[label] = []
+    requestors[label] = []
     
   # collects all categor
   for req in Request.query.all():
     pass
-    d[req.category].append(req.user_id)
+    requestors[req.category].append(req.user_id)
     
-  # return jsonify( d)
-  
   note_form = AdminNoteForm()
-  
-  user_requests =d
   
   return render_template(
     'adm_tbl_usr.html',
-    user_requests = user_requests,
+    all_dates = all_dates,
+    disp_reqs = disp_reqs,
+    requestors = requestors,
     note_form = note_form,
     select_user=select_user,
     select_member=select_member,
@@ -141,8 +143,6 @@ def users_table():
     title='AdminTablesUser',
     legend='Admin Tables User',
     )
-
-
 
 @admins.route('/a/t/m', methods= [ 'GET', 'POST'])
 @admins.route('/a/t/m/', methods= [ 'GET', 'POST'])
@@ -196,26 +196,26 @@ def members_table():
   ]
   return render_template(
     'adm_tbl_memb.html',
-            select_user=select_user,
-            select_member=select_member,
-            members=p_members, 
-            table=table,
-            css=[('theme', '/minty/bootstrap', ),
-              ('main', 'main', ),
-              # ('custom', 'dashboard', ),
-            ],
-            info_notes=[
-              'Admin dashboard, tables to see all members, ',
-            ],
-            access=[
-              'a',
-              'p',
-            ],
-            js=None,
-            title='AdminTablesMember',
-            legend='Admin Tables Member',
-            headers=headers,
-            )
+        select_user=select_user,
+        select_member=select_member,
+        members=p_members, 
+        table=table,
+        css=[('theme', '/minty/bootstrap', ),
+          ('main', 'main', ),
+          # ('custom', 'dashboard', ),
+        ],
+        info_notes=[
+          'Admin dashboard, tables to see all members, ',
+        ],
+        access=[
+          'a',
+          'p',
+        ],
+        js=None,
+        title='AdminTablesMember',
+        legend='Admin Tables Member',
+        headers=headers,
+        )
 
 @admins.route('/member/approved/<int:id>', methods= [ 'GET', 'POST'])
 @admins.route('/member/approved/<int:id>/', methods= [ 'GET', 'POST'])
@@ -344,14 +344,13 @@ def cancel_prez(id):
     return redirect(url_for('admins.users_table'))
 
 
-@admins.route('/admin/<int:adm_id>/note/<int:usr_id>', methods= [ 'GET', 'POST'])
-def sticky_note(adm_id, usr_id):
+@admins.route('/admin/<int:adm_id>/note/<int:usr_id>/for/<string:category>', methods= [ 'GET', 'POST'])
+def sticky_note(adm_id, usr_id, category):
   pass
-
   formdata_posted = (request.method == 'POST')
   if formdata_posted:
     note = Note(
-      category = 'member',
+      category = category,
       content = request.form['content'],
       admin_id = adm_id,
       user_id = usr_id,
@@ -362,9 +361,6 @@ def sticky_note(adm_id, usr_id):
 
     return redirect(url_for('admins.users_table'))
 
-
-
-
 @admins.route('/delete/note/<int:id>')
 def delete_note(id):
     pass
@@ -373,3 +369,51 @@ def delete_note(id):
     db.session.delete(note)
     db.session.commit()
     return redirect(url_for('admins.users_table'))
+
+
+
+@admins.context_processor
+def inject_rand_chooser():
+  pass
+  def rand_chooser(collection):
+    pass
+    return [random.choice(collection)]
+
+  return dict(rand_chooser=rand_chooser)
+
+@admins.context_processor
+def inject_icons():
+  pass
+  def icons(label):
+    pass
+    gallery = {  # font awesome icons for member forms
+      "email": "s fa-envelope",
+      "first_name": "s fa-user-edit",
+      "gender": "s fa-venus-mars",
+      "id": "s fa-id-card",
+      "image_file": "s fa-file-image",
+      "img_url": "s fa-image",
+      "instagram": "b fa-instagram",
+      "is_admin": "s fa-user-md",
+      "is_member": "s fa-user-check",
+      "is_prez": "s fa-user-shield",
+      "last_name": "s fa-user-edit",
+      "linkedin": "b fa-linkedin",
+      "middle_name": "s fa-question-circle",
+      "phone_num": "s fa-phone",
+      "twitter": "b fa-twitter",
+      "user_id": "s fa-user-tag",
+      "menu": "s fa-sort",
+      "new_note": "s fa-sticky-note",
+      "display_requests": "b fa-tripadvisor",
+      "make_admin": "s fa-user-md",
+      "make_member": "s fa-user-check",
+      "make_prez": "s fa-user-shield",
+      "admin_request":  "s fa-concierge-bell",
+      "member_request": "s fa-concierge-bell",
+      "prez_request":   "s fa-concierge-bell",
+    }
+
+    return gallery.get(label, 's fa-edit')
+
+  return dict(icons=icons)

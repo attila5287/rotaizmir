@@ -17,7 +17,7 @@ class User(db.Model, UserMixin):
     
     # Collect user posts, adm_notes and requests
     posts = db.relationship('Post', backref='author', lazy=True)
-    notes = db.relationship('Note', backref='by_admin', lazy=True)
+    notes = db.relationship('Note', backref='for_user', lazy=True)
     requests = db.relationship('Request', backref='by_user', lazy=True)
     
     # Generate random int

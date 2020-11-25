@@ -1,7 +1,74 @@
-
 {% extends "layout.html" %}
 {% block content %}
 <style> </style>
+
+{% for date in all_dates %}
+    {{date}} <br>
+{% endfor %}
+
+
+{% set req_icons = {
+  'member' : 'user-check',
+  'admin' : 'user-md',
+  'prez' : 'user-graduate',
+} %}
+<div class="mini">
+  
+  {% for category, sorted in disp_reqs.items() %}
+  
+      {% if category %}
+          <strong>{{category}}</strong><br>
+          
+          {% for obj in sorted %}
+            {% if obj.type == 'req' %}
+              {% set req = obj.main  %}
+                <div class="media mt-4 rnd-xl p-2 shadow">
+                <h1 class="fas fa-{{req_icons[req.category]}} txt-shd text-secondary fa-pull-left"></h1>
+                  
+                <div class="media-body text-secondary">       
+                    
+                    <h6 class="mt-2 opac-80 border-bottom border-secondary">
+                    User ID 
+                    <i class="text-bold text-nonitalic"># {{req.user_id}}</i> 
+                    requested <strong class="text-italic">{{req.category}}</strong> 
+                    authorization
+                    </h6>
+                    <i class="far fa-envelope-open text-md mr-2 fa-fw"></i>
+                    <i class="text-dark"> {{req.content}} </i>
+                    <br>
+                    
+                    <i class="far fa-calendar-alt text-md fa-fw"></i>
+                    <i class="text-dark ml-2"> {{req.date_posted.date()}} </i>
+                      
+                  </div>
+                </div>          
+            {% else %}
+              
+              {% set note = obj.main %}
+              <div class="media mt-4 rnd-xl p-1 offset-1">
+              <a class="pr-3" href="#">
+                <h1 class="far fa-comment-dots text-primary txt-shd"></h1>
+              </a>
+              <div class="media-body text-primary" style="vertical-align: middle;">
+                  <h6 class="mt-0 border-bottom border-primary">Admin ID# {{note.admin_id}} noted:</h6>
+                  <i class="far far fa-paper-plane text-lg fa-fw"></i>
+                  <i class="text-nonitalic text-comfo text-sm text-dark">
+              {{note.content}}
+              <br>
+              <i class="far fa-calendar-alt text-primary text-md fa-fw"></i>
+              <i class="text-dark ml-2"> {{note.date_posted.date()}} </i>
+              <h4 class="far far fa-times-circle text-secondary fa-pull-right"></h4>
+                  </i>
+            </div>
+        
+              </div>              
+              {% endif %}
+        {% endfor %}
+      {% endif %}
+      <hr>
+  {% endfor %}
+
+</div>
 
 <div class="text-center mt-4" name="pagination-users">
   {% for page_num in users.iter_pages(left_edge=5, right_edge=5, left_current=5, right_current=10) %}
@@ -75,7 +142,8 @@
 
         {% elif k =="image_file"  %}
 
-        <td class="bg-primary text-center opac-80"
+        <td
+          class="text-md text-dark bg-dark{{rowloop.cycle('odd', 'even')}} p-0"
           id="cell-{{ rowloop.index }}-{{ loop.index }}">
           <img class="rnd-xl border-0 m-0 p-0"
             src="https://raw.githubusercontent.com/attila5287/rota-img/main/profile_pics/{{v}}"
@@ -84,7 +152,8 @@
 
         {% elif k =="img_url" %}
 
-        <td class="bg-primary text-center opac-80"
+        <td
+          class="text-md text-dark bg-dark{{rowloop.cycle('odd', 'even')}} p-0"
           id="cell-{{ rowloop.index }}-{{ loop.index }}">
           <img class="rnd-xl border-0 m-0 p-0"
             src="https://raw.githubusercontent.com/attila5287/rota-img/main/avatars/{{v}}.png"
@@ -115,39 +184,41 @@
           ('prez', 'user-graduate', ),
           ] %}
         {% for auth_level, icon in make_func_set %}
-        
-        
+
+
         <td class="text-center bg-dark{{rowloop.cycle('odd', 'even')}}">
-          {% set active_request_indicator = 'btn-primary p-2 rnd-xl shadow opac-90' if user.id in user_requests[auth_level] else 'opac-60' %}
-          
+          {% set active_request_indicator = 'btn-primary p-2 rnd-xl shadow opac-90' if user.id in requestors[auth_level] else 'opac-60' %}
+
           {% if user['is_'+auth_level]== "n" %}
-            <span>
-              <a href="/{{auth_level}}/approved/{{user.id}}" class="{{active_request_indicator}}">
-                <i class="text-2xl fas fa-{{icon}} text-lg"></i>
-              </a>
-            </span>
+          <span>
+            <a href="/{{auth_level}}/approved/{{user.id}}"
+              class="{{active_request_indicator}}">
+              <i class="text-2xl fas fa-{{icon}} text-lg"></i>
+            </a>
+          </span>
 
           {% else %}
 
-            <span>
-              <a href="/{{auth_level}}/cancelled/{{user.id}}" class="{{active_request_indicator}}">
-                <i
-                  class="text-2xl fas fa-user-slash text-lg text-secondary text-center"></i>
-              </a>
-            </span>
-          
+          <span>
+            <a href="/{{auth_level}}/cancelled/{{user.id}}"
+              class="{{active_request_indicator}}">
+              <i
+                class="text-2xl fas fa-user-slash text-lg text-secondary text-center"></i>
+            </a>
+          </span>
+
           {% endif %}
 
         </td>
-{% endfor %}
+        {% endfor %}
 
-        {% for requested_for, requestee_list in user_requests.items() %}
+        {% for requested_for, requestee_list in requestors.items() %}
         {% if user.id in requestee_list %}
 
         <th class="text-center bg-dark{{rowloop.cycle('odd', 'even')}} py-0">
 
           <form method="POST"
-            action="/admin/{{current_user.id}}/note/{{user.id}}"
+            action="/admin/{{current_user.id}}/note/{{user.id}}/for/{{requested_for}}"
             class="form-group mt-1">
 
             <select id="status" name="status"
@@ -159,14 +230,14 @@
             ('declined', 'gavel', 'danger', '',  ),
             ]  %}
 
-            {% set rand_opt= rand_chooser(options) %}
-            {% for status, icon,style, tooltip in rand_opt %}
-            <option class="bg-{{style}}"
-              data-content="<i class='fas fa-{{icon}} text-{{style}}' aria-hidden='true'> {{status}}</i>" 
-              disabled selected>
-            </option>
+              {% set rand_opt= rand_chooser(options) %}
+              {% for status, icon,style, tooltip in rand_opt %}
+              <option class="bg-{{style}}"
+                data-content="<i class='fas fa-{{icon}} text-{{style}}' aria-hidden='true'> {{status}}</i>"
+                disabled selected>
+              </option>
 
-            {% endfor %}
+              {% endfor %}
 
               {% for status, icon,style, tooltip in options %}
               <option
@@ -188,16 +259,16 @@
 
         {% else %}
 
-        <th class="p-0 text-center bg-primary opac-50">
-          <i class="fas fa-ellipsis-h text-lg opac-70 text-light" data-toggle="tooltip"
-            data-placement="right" title="user has no request"></i>
-        </th>
+        <td class="text-md text-dark bg-dark{{rowloop.cycle('odd', 'even')}}">
+          <i class="fas fa-ellipsis-h text-lg opac-70" data-toggle="tooltip"
+          data-placement="right" title="user has no request"></i>
+        </td>
 
         {% endif %}
         {% endfor %}
 
         <th class="p-0 text-center bg-primary">
-          <a href="#"
+          <a href="/a/t/u/{{user.id}}"
             class="btn btn-primary border-0 btn-sm bg-transparent rnd-lg shadow p-2">
             <h1 class="fab fa-tripadvisor"></h1>
           </a>
@@ -206,11 +277,12 @@
       </tr>
 
       {% endfor %}
+
     </tbody>
   </table>
 </div>
 
-<div class="d-flex flex-row">
+<div class="d-flex flex-row" name="table-legend">
   <nav class="nav nav-fill col-8 offset-2">
 
     {% set table_legend = [
