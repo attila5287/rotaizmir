@@ -356,6 +356,10 @@ input[type=range][orient=vertical]
   padding: 10px;
 } 
 
+.bg-silver {
+  background-color: rgba(146, 146, 146, 0.733);
+}
+
 .bg-darkodd {
   background-color: rgba(0, 0, 0, 0.105);
 }

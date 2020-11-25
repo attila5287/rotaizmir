@@ -1,137 +1,28 @@
+
 {% extends "layout.html" %}
 {% block content %}
 <style> </style>
 
-{% set req_icons = {
-  'member' : 'user-check',
-  'admin' : 'user-md',
-  'prez' : 'user-graduate',
-} %}
-
-{% for req, note in zipped_notes %}
-<div class="container mini">
-    <div class="media">
-    <h1 class="fas fa-{{req_icons[req.category]}} txt-shd text-secondary fa-pull-left"></h1>
-    
-    <div class="media-body text-secondary">
-      
-      <h6 class="mt-2 opac-80 border-bottom border-secondary">
-        User ID <i class="text-bold text-nonitalic"># {{req.user_id}}</i> requested <strong class="text-italic">{{req.category}}</strong> authorization
-      </h6>
-      <i class="far fa-envelope-open text-md mr-2 fa-fw"></i>
-      <i class="text-dark"> {{req.content}} </i>
-      <br>
-      
-      <i class="far fa-calendar-alt text-md fa-fw"></i>
-      <i class="text-dark ml-2"> {{req.date_posted.date()}} </i>
-      
-      <div class="media mt-4 rnd-xl p-2 shadow">
-        <a class="pr-3" href="#">
-          <h1 class="far fa-comment-dots text-primary txt-shd"></h1>
-        </a>
-
-        <div class="media-body text-primary" style="vertical-align: middle;">
-          <h6 class="mt-0 border-bottom border-primary">Admin ID# {{note.admin_id}} noted:</h6>
-          <i class="far far fa-paper-plane text-lg fa-fw"></i>
-          <i class="text-nonitalic text-comfo text-sm text-dark">
-            {{note.content}}
-            <br>
-            <i class="far fa-calendar-alt text-primary text-md fa-fw"></i>
-            <i class="text-dark ml-2"> {{note.date_posted.date()}} </i>
-            <h1 class="far far fa-times-circle text-secondary fa-pull-right"></h1>
-          </i>
-        </div>
-      </div>
-
-    </div>
-  </div>
-  
-</div>
-{% endfor %}
-
-<div class="container" name="">
-  {% for note in admin_notes %}
-
-  <div class="mini d-flex flex-row justify-content-between align-items-center pt-0">
-    <h1 class="fas fa-user-md fa-pull-left"></h1>
-    {{note.content}} 
-    
-    <p class="mb-0">
-      
-      <a href="{{url_for('admins.delete_note', id= note.id)}}" class="far fa-times-circle text-secondary fa-pull-right text-2xl">
-      </a>
-      
-      <br>
-
-      <i>
-        for 
-      </i>
-      <strong>
-        {{note.category}}
-      </strong>
-      
-      <br>
-      <i> @ </i>
-      {{note.date_posted.date()}}
-      
-    </p>
-    
-    
-  </div>
-
-
-{% endfor %}
-{% for req in active_requests %}
-
-  <div class="mini d-flex flex-row justify-content-between align-items-center pt-0">
-    <h1 class="far far fa-envelope fa-pull-left"></h1>
-    {{req.content}} 
-    
-    <p class="mb-0">
-      <a href="{{url_for('users.delete_request', id= req.id)}}" class="far fa-times-circle text-secondary fa-pull-right text-2xl">
-      </a>
-
-      <br>
-      <i>
-        for 
-      </i>
-      
-      <strong>
-        {{req.category}}
-      </strong>
-      
-      <br>
-    <i> @ </i>
-    {{req.date_posted.date()}}
-
-    </p>
-    
-    
-  </div>
-
-
-{% endfor %}
-
-</div>
-
 <div class="text-center mt-4" name="pagination-users">
-{% for page_num in users.iter_pages(left_edge=5, right_edge=5, left_current=5, right_current=10) %}
-{% if page_num %}
-{% if users.page == page_num %}
+  {% for page_num in users.iter_pages(left_edge=5, right_edge=5, left_current=5, right_current=10) %}
+  {% if page_num %}
+  {% if users.page == page_num %}
 
-  <a class="btn btn-outline-secondary mb-4 shadow-lg border-secondary text-lg" href="{{ url_for('admins.users_table',  page=page_num,) }}">
+  <a class="btn btn-outline-secondary mb-4 shadow-lg border-secondary text-lg"
+    href="{{ url_for('admins.users_table',  page=page_num,) }}">
     {{ page_num }}
-  
+
   </a>
 
   {% else %}
-  <a class="btn btn-sm btn-secondary btn-sm border-0 shadow mb-4" href="{{ url_for('admins.users_table', page=page_num) }}">{{ page_num }}</a>
+  <a class="btn btn-sm btn-secondary btn-sm border-0 shadow mb-4"
+    href="{{ url_for('admins.users_table', page=page_num) }}">{{ page_num }}</a>
   {% endif %}
 
-{% else %}
-...
-{% endif %}
-{% endfor %}
+  {% else %}
+  ...
+  {% endif %}
+  {% endfor %}
 </div>
 
 {% set headers = [
@@ -154,212 +45,194 @@
     <thead>
       <tr>
         {% for header in headers %}
-          <th class="bg-primary text-comfo text-nonbold text-light text-center pt-2 pb-3 border-right align-top"> 
-            <i class="text-xl fa{{icons(header)}}" aria-hidden="true"></i>
-            
-            {{ header.title().replace("_"," ") }}
-            
-          </th>
-        {% endfor %} 
+        <th
+          class="bg-primary text-comfo text-nonbold text-light text-center pt-2 pb-3 border-right align-top">
+          <i class="text-xl fa{{icons(header)}}" aria-hidden="true"></i>
+
+          {{ header.title().replace("_"," ") }}
+
+        </th>
+        {% endfor %}
       </tr>
     </thead>
     <tbody>
-      
+
       {% for user in table %}
 
-      <tr> 
+      <tr>
 
         {% set rowloop = loop %}
 
         {% for k,v in user.items() %}
+
+        {% if k == "id" %}
+
+        <td class="bg-primary text-light text-md"
+          id="cell-{{ rowloop.index }}-{{ loop.index }}" scope="row"
+          style="vertical-align: middle;">
+          {{ v }}
+        </td>
+
+        {% elif k =="image_file"  %}
+
+        <td class="bg-primary text-center opac-80"
+          id="cell-{{ rowloop.index }}-{{ loop.index }}">
+          <img class="rnd-xl border-0 m-0 p-0"
+            src="https://raw.githubusercontent.com/attila5287/rota-img/main/profile_pics/{{v}}"
+            alt="img" style="max-height: 2.75rem;">
+        </td>
+
+        {% elif k =="img_url" %}
+
+        <td class="bg-primary text-center opac-80"
+          id="cell-{{ rowloop.index }}-{{ loop.index }}">
+          <img class="rnd-xl border-0 m-0 p-0"
+            src="https://raw.githubusercontent.com/attila5287/rota-img/main/avatars/{{v}}.png"
+            alt="img" style="max-height: 3rem;">
+        </td>
+
+        {% elif k in [
+          "password",
+          "is_member",
+          "is_admin",
+          "is_prez",
+          ]  %}
+
+
+        {% else %}
+
+        <td class="text-md text-dark bg-dark{{rowloop.cycle('odd', 'even')}}"
+          id="cell-{{ rowloop.index }}-{{ loop.index }}">
+          {{ v }}
+        </td>
+
+        {% endif %}
+
+        {% endfor %}
+        {% set make_func_set = [ 
+          ('member', 'user-check', ),
+          ('admin', 'user-md', ),
+          ('prez', 'user-graduate', ),
+          ] %}
+        {% for auth_level, icon in make_func_set %}
         
-          {% if k == "id" %} 
+        
+        <td class="text-center bg-dark{{rowloop.cycle('odd', 'even')}}">
+          {% set active_request_indicator = 'btn-primary p-2 rnd-xl shadow opac-90' if user.id in user_requests[auth_level] else 'opac-60' %}
           
-          <td class="bg-primary text-light text-md" id="cell-{{ rowloop.index }}-{{ loop.index }}" scope="row" style="vertical-align: middle;">
-            {{ v }}
-          </td>
-          
-          {% elif k =="image_file"  %}
-          
-          <td class=" bg-primary text-center"
-          id="cell-{{ rowloop.index }}-{{ loop.index }}" >
-            <img class="rnd-xl border-0 m-0 p-0" src="https://raw.githubusercontent.com/attila5287/rota-img/main/profile_pics/{{v}}" alt="img" style="max-height: 2.75rem;"
-            >
-          </td>
-          
-          {% elif k =="img_url" %}
-          
-          <td class="text-center bg-primary"
-          id="cell-{{ rowloop.index }}-{{ loop.index }}">
-          <img class="rnd-xl border-0 m-0 p-0" src="https://raw.githubusercontent.com/attila5287/rota-img/main/avatars/{{v}}.png" alt="img" style="max-height: 3rem;"
-          >
-          </td>
-          
+          {% if user['is_'+auth_level]== "n" %}
+            <span>
+              <a href="/{{auth_level}}/approved/{{user.id}}" class="{{active_request_indicator}}">
+                <i class="text-2xl fas fa-{{icon}} text-lg"></i>
+              </a>
+            </span>
 
-          {% elif k in [ "linkedin", "twitter", "instagram",] %}
-          <td class="text-center bg-dark{{rowloop.cycle('odd', 'even')}}"
-          id="cell-{{ rowloop.index }}-{{ loop.index }}">
-          <a class="text-center" href="{{user[k]}}">
-            
-            <i class="text-lg fab fa-{{k}}" aria-hidden="true"></i>
-
-          </a>
-
-          </td>
-
-
-          {% elif k ==  "gender" %}
-          {% set gender_dict = {
-            "f" : "female",
-            "m" : "male",
-          } %}
-
-          <td class="pl-2 bg-dark{{rowloop.cycle('odd', 'even')}}"
-          id="cell-{{ rowloop.index }}-{{ loop.index }}">
-            <i class="text-2xl fas fa-{{  gender_dict[v] }}"></i>
-          </td>
-          
-
-          {% elif k ==  "password" %}
-          {% elif k ==  "is_member" %}
-          {% elif k ==  "is_admin" %}
-          {% elif k ==  "is_prez" %}
-          
-          
           {% else %}
-            
-            <td class="text-md text-dark bg-dark{{rowloop.cycle('odd', 'even')}}" id="cell-{{ rowloop.index }}-{{ loop.index }}" >
-              {{ v }}
-            </td>
+
+            <span>
+              <a href="/{{auth_level}}/cancelled/{{user.id}}" class="{{active_request_indicator}}">
+                <i
+                  class="text-2xl fas fa-user-slash text-lg text-secondary text-center"></i>
+              </a>
+            </span>
           
           {% endif %}
 
-          {% endfor %}
-            <td class="text-center bg-dark{{rowloop.cycle('odd', 'even')}}"> 
+        </td>
+{% endfor %}
 
-              {% if not user.is_member == "y" %}
-              <span>
-                <a href="{{url_for('admins.approve_member', id= user.id)}}">
-                  <i class="text-2xl fas fa-user-check text-lg"></i>
-                </a>
-              </span>
-              {% else %}
-                <span>
-                  <a href="{{url_for('admins.cancel_member', id= user.id)}}">
-                    <i class="text-2xl fas fa-user-slash text-lg text-secondary text-center"></i>
-                  </a>
-                </span>
-              {% endif %}
+        {% for requested_for, requestee_list in user_requests.items() %}
+        {% if user.id in requestee_list %}
 
-            </td>
+        <th class="text-center bg-dark{{rowloop.cycle('odd', 'even')}} py-0">
 
-            <td class="text-center bg-dark{{rowloop.cycle('odd', 'even')}}"> 
+          <form method="POST"
+            action="/admin/{{current_user.id}}/note/{{user.id}}"
+            class="form-group mt-1">
 
-              {% if not user.is_admin == "y" %}
-              <span>
-                <a href="{{url_for('admins.approve_admin', id= user.id)}}">
-                  <i class="text-2xl fas fa-user-md text-lg"></i>
-                </a>
-              </span>
-              {% else %}
-                <span>
-                  <a href="{{url_for('admins.cancel_admin', id= user.id)}}">
-                    <i class="text-2xl fas fa-user-slash text-lg text-secondary text-center"></i>
-                  </a>
-                </span>
-              {% endif %}
+            <select id="status" name="status"
+              class="selectpicker form-control form-control-sm text-md p-0 mb-1">
 
-            </td>            
+              {% set options = [
+            ('pending',  'balance-scale', 'info', '',  ),
+            ('approved', 'stamp', 'primary', '',  ),
+            ('declined', 'gavel', 'danger', '',  ),
+            ]  %}
 
-            <td class="text-center bg-dark{{rowloop.cycle('odd', 'even')}}"> 
+            {% set rand_opt= rand_chooser(options) %}
+            {% for status, icon,style, tooltip in rand_opt %}
+            <option class="bg-{{style}}"
+              data-content="<i class='fas fa-{{icon}} text-{{style}}' aria-hidden='true'> {{status}}</i>" 
+              disabled selected>
+            </option>
 
-              {% if not user.is_prez == "y" %}
-              <span>
-                <a href="{{url_for('admins.approve_prez', id= user.id)}}">
-                  <i class="text-2xl fas fa-user-graduate text-lg"></i>
-                </a>
-              </span>
-              {% else %}
-                <span>
-                  <a href="{{url_for('admins.cancel_prez', id= user.id)}}">
-                    <i class="text-2xl fas fa-user-slash text-lg text-secondary text-center"></i>
-                  </a>
-                </span>
-              {% endif %}
-            </td>
-
-            {% for label, list in user_requests.items() %}
-              {% if user.id in list %}
-              
-              <th class="text-center bg-dark{{rowloop.cycle('odd', 'even')}} py-0">
-
-                <form method="POST" action="/admin/{{current_user.id}}/note/{{user.id}}" class="form-group mt-1">
-
-                    <select id="status" name="status"  class="selectpicker form-control form-control-sm text-md p-0 mb-1">
-                      
-                      {% set options = [
-                        ('approved', 'stamp', 'primary', '',  ),
-                        ('pending',  'balance-scale', 'info', '',  ),
-                        ('declined', 'gavel', 'danger', '',  ),
-                        ]  %}
-
-                        {% for status, icon,style, tooltip in options %}
-                          <option data-content="<i class='fas fa-{{icon}} text-{{style}}' aria-hidden='true'> {{status}}</i>"></option>
-                        {% endfor %}
-
-                      </select>
-                  <textarea class="form-control form-control-sm form-control-dark border-0 text-italic" rows="1" name="content" id="content" placeholder="write abt. {{label}} request"></textarea>
-
-                  {{form.submit(class="btn btn-primary btn-block rnd-md mt-2 mb-0 p-1 border-0 shadow")}}
-
-                </form>
-              </th>
-              
-              {% else %}
-              
-              <td class="p-0 text-center bg-dark{{rowloop.cycle('odd', 'even')}}"> 
-                <i class="fas fa-ellipsis-h text-lg opac-70" data-toggle="tooltip" data-placement="right" title="user has no request"></i>
-              </td>
-
-              {% endif %}
             {% endfor %}
-            
-            <th class="p-0 text-center bg-primary">
-              <a href="#" class="btn btn-outline-primary border-0 btn-sm bg-transparent rnd-2xl shadow p-0">
-              <h1 class="fab fa-tripadvisor"></h1>
-            </a>
-              
-            </th>
+
+              {% for status, icon,style, tooltip in options %}
+              <option
+                data-content="<i class='fas fa-{{icon}} text-{{style}}' aria-hidden='true'> {{status}}</i>">
+              </option>
+
+              {% endfor %}
+
+            </select>
+            <textarea
+              class="form-control form-control-sm form-control-dark border-0 text-italic"
+              rows="1" name="content" id="content"
+              placeholder="write abt. {{requested_for}} request"></textarea>
+
+            {{note_form.submit(class="btn btn-light btn-block text-primary text-bold rnd-md opac-80 mt-2 mb-0 pt-0 pb-1 px-1 border-0 shadow")}}
+
+          </form>
+        </th>
+
+        {% else %}
+
+        <th class="p-0 text-center bg-primary opac-50">
+          <i class="fas fa-ellipsis-h text-lg opac-70 text-light" data-toggle="tooltip"
+            data-placement="right" title="user has no request"></i>
+        </th>
+
+        {% endif %}
+        {% endfor %}
+
+        <th class="p-0 text-center bg-primary">
+          <a href="#"
+            class="btn btn-primary border-0 btn-sm bg-transparent rnd-lg shadow p-2">
+            <h1 class="fab fa-tripadvisor"></h1>
+          </a>
+
+        </th>
       </tr>
-      
+
       {% endfor %}
     </tbody>
-  </table>  
+  </table>
 </div>
 
 <div class="d-flex flex-row">
   <nav class="nav nav-fill col-8 offset-2">
-    
+
     {% set table_legend = [
       ('make admin','user-md', 'primary', ), 
       ('make member','user-check', 'primary', ), 
-      ('cancel memb/adm/prez','user-slash', 'secondary', ), 
+      ('cancel auth.','user-slash', 'secondary', ), 
       ('make prez','user-graduate', 'primary', ), 
       ('user notes','book-open', 'dark opac-50', ), 
       ('admin notes','sticky-note', 'primary', ), 
-    ]  %}
-  
+  ]  %}
+
     {% for info,icon,style in table_legend %}
-    
-      <li class="nav-item text-italic text-sm">
-        <a class="nav-link disabled mb-0">
-          <button class="btn btn-{{style}} p-1 mb-0" type="button">
-            <i class="fas fa-{{icon}} fa-fw"></i>
-          </button>
-        </a>
-        {{info}}
-      </li>
- 
+
+    <li class="nav-item text-italic text-sm">
+      <a class="nav-link disabled mb-0">
+        <button class="btn btn-{{style}} p-1 mb-0" type="button">
+          <i class="fas fa-{{icon}} fa-fw"></i>
+        </button>
+      </a>
+      {{info}}
+    </li>
+
     {% endfor %}
 
   </nav>
@@ -367,29 +240,28 @@
 
 <div class="d-flex flex-row">
   <nav class="nav nav-fill col-8 offset-2">
-    
+
     {% set table_legend = [
       ('decline request','gavel', 'danger', ), 
       ('note for board', 'sticky-note', 'secondary', ),
       ('pending review', 'balance-scale', 'info', ),
       ('approve request','stamp', 'primary', ),
-    ]  %}
-  
+  ]  %}
+
     {% for info,icon,style in table_legend %}
-    
-      <li class="nav-item text-italic text-sm">
-        <a class="nav-link disabled mb-0">
-          <button class="btn btn-{{style}} p-1 mb-0" type="button">
-            <i class="fas fa-{{icon}} fa-fw"></i>
-          </button>
-        </a>
-        {{info}}
-      </li>
- 
+
+    <li class="nav-item text-italic text-sm">
+      <a class="nav-link disabled mb-0">
+        <button class="btn btn-{{style}} p-1 mb-0" type="button">
+          <i class="fas fa-{{icon}} fa-fw"></i>
+        </button>
+      </a>
+      {{info}}
+    </li>
+
     {% endfor %}
 
   </nav>
 </div>
 
 {% endblock %}
-

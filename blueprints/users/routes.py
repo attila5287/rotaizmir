@@ -355,15 +355,11 @@ def account():
     
     if formdata_posted and form.validate_on_submit():
         pass
-        if form.errors:
-            pass
-            current_user.username = form.username.data
-            current_user.email = form.email.data
-            db.session.commit()
-            flash('Username and/or Email updated!', 'success')
-            return redirect(url_for('users.account'))
-            
-    
+        current_user.username = form.username.data
+        current_user.email = form.email.data
+        db.session.commit()
+        flash('Username and/or Email updated!', 'success')
+        return redirect(url_for('users.account'))
 
     elif request.method == 'GET':
         pass
@@ -421,15 +417,12 @@ def user_requests():
         db.session.commit()
         flash('User {} {} request delivered'.format(current_user.id, request.form['category'], ), 'success')    
         return redirect(url_for('users.user_requests'))        
-    
-    
 
     return render_template('user_reqs.html',
                            member_form=member_form,
                            admin_form=admin_form,
                            prez_form=prez_form,
                            legend='User Requests',
-                           active_requests=active_requests,
                            info_notes = [
                              'Send requests for user account authorization',
                              'Check recently made requests',

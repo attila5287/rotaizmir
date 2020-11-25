@@ -1,3 +1,4 @@
+import random
 import requests
 from flask import (
   render_template, url_for, flash,
@@ -12,6 +13,15 @@ from blueprints.admins.forms import UserMenu, TableModeSelect, AdminNoteForm
 from blueprints.members.forms import MemberMenu
 
 admins = Blueprint('admins', __name__)
+
+@admins.context_processor
+def inject_rand_chooser():
+  pass
+  def rand_chooser(collection):
+    pass
+    return [random.choice(collection)]
+
+  return dict(rand_chooser=rand_chooser)
 
 @admins.context_processor
 def inject_icons():
@@ -84,18 +94,32 @@ def users_table():
     for user in p_users.items
     ]
   
-  user_requests = {
-    'member' : [1,  3,4,], 
-    'admin'  : [  2,3,4,], 
-    'prez'   : [1,  3,4,], 
-  }
-  form = AdminNoteForm()
-  active_requests = Request.query.all()
-  admin_notes = Note.query.filter_by(by_admin=current_user).all()
+  # dict-list pairs
+  labels = [
+    'member', 
+    'admin', 
+    'prez', 
+  ]
+  d = {}
+  for label in labels:
+    pass
+    d[label] = []
+    
+  # collects all categor
+  for req in Request.query.all():
+    pass
+    d[req.category].append(req.user_id)
+    
+  # return jsonify( d)
+  
+  note_form = AdminNoteForm()
+  
+  user_requests =d
+  
   return render_template(
     'adm_tbl_usr.html',
-     zipped_notes= zip(active_requests,admin_notes),
-    form = form,
+    user_requests = user_requests,
+    note_form = note_form,
     select_user=select_user,
     select_member=select_member,
     users=p_users, 
@@ -116,8 +140,9 @@ def users_table():
     ],
     title='AdminTablesUser',
     legend='Admin Tables User',
-    user_requests = user_requests,
     )
+
+
 
 @admins.route('/a/t/m', methods= [ 'GET', 'POST'])
 @admins.route('/a/t/m/', methods= [ 'GET', 'POST'])
@@ -192,8 +217,8 @@ def members_table():
             headers=headers,
             )
 
-@admins.route('/membership/approved/<int:id>', methods= [ 'GET', 'POST'])
-@admins.route('/membership/approved/<int:id>/', methods= [ 'GET', 'POST'])
+@admins.route('/member/approved/<int:id>', methods= [ 'GET', 'POST'])
+@admins.route('/member/approved/<int:id>/', methods= [ 'GET', 'POST'])
 def approve_member(id):
   pass
   user = User.query.get_or_404(id)
@@ -221,8 +246,8 @@ def approve_member(id):
     return redirect(url_for('admins.users_table'))
     # return jsonify({'status': success_msg})
 
-@admins.route('/membership/cancelled/<int:id>', methods= [ 'GET', 'POST'])
-@admins.route('/membership/cancelled/<int:id>/', methods= [ 'GET', 'POST'])
+@admins.route('/member/cancelled/<int:id>', methods= [ 'GET', 'POST'])
+@admins.route('/member/cancelled/<int:id>/', methods= [ 'GET', 'POST'])
 def cancel_member(id):
   pass
   user = User.query.get_or_404(id)
@@ -304,17 +329,17 @@ def approve_prez(id):
 def cancel_prez(id):
   pass
   user = User.query.get_or_404(id)
-  if not user.is_prez != 'n':
+  if user.is_prez == 'n':
     pass
     return jsonify(
       {
              'status':'action not necessary',
-             'user ID #{}'.format(id):'not an admin',
+             'user ID #{}'.format(id):'not have auth level ',
              }
       )
   else:
     pass
-    user.prez = 'n'
+    user.is_prez = 'n'
     db.session.commit()
     return redirect(url_for('admins.users_table'))
 
