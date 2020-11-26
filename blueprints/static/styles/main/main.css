@@ -267,15 +267,15 @@ html {
 }
 
 .add-anime:hover {
-	box-shadow: rgb(177, 159, 238) -5px 15px 15px;
+	box-shadow: rgba(159, 238, 196, 0.363) -5px 15px 15px;
 	color: #2aa198;
 	transform: scale(1.1, 1.1);
 }
 .add-anime:hover:first-child {
-	box-shadow: rgb(177, 159, 238) -5px 15px 15px;
+  	box-shadow: rgba(159, 238, 196, 0.363) -5px 15px 15px;
 }
 .add-anime:hover:last-child {
-	box-shadow: rgb(230, 194, 111) 5px 15px 15px;
+	box-shadow: rgba(230, 194, 111, 0.575) 5px 15px 15px;
 }
 
 
@@ -370,9 +370,16 @@ input[type=range][orient=vertical]
   .shd-approve {
   box-shadow: 0 0.5rem 0.75rem #ff039648;  
 }
-  .shd-decline {
+.shd-decline {
   box-shadow: 0 0.5rem 0.75rem #25e9774d;  
 }
 .align-middle {
   vertical-align: middle;
 }
+
+.shd-approve {
+box-shadow: 0 0.5rem 0.75rem #ff039648;  
+}
+.anim-shd:hover {
+    box-shadow: rgba(159, 238, 196, 0.363) -5px 15px 15px;
+  }

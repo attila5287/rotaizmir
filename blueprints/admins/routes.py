@@ -166,7 +166,6 @@ def members_table():
   
   return render_template(
     'adm_tbl_memb.html',
-        notes = notes,
         select_user=select_user,
         select_member=select_member,
         members=p_members, 
@@ -204,17 +203,9 @@ def approve_member(id):
   else:
     pass
     user.is_member = 'y'
-    
-    cast = [{
-      c.name : getattr(user, c.name)
-    } for c in user.__table__.columns]
-    res={}
-    for d in cast:
-      for k,v in d.items():
-        res[k] = v
-    success_msg = 'user account {} is now a member'.format(res['username'])
     db.session.commit()
-    return redirect(url_for('admins.users_table'))
+    return redirect(request.referrer)
+    # return redirect(url_for('admins.users_table'))
     # return jsonify({'status': success_msg})
 
 @admins.route('/member/cancelled/<int:id>', methods= [ 'GET', 'POST'])
@@ -234,8 +225,7 @@ def cancel_member(id):
     pass
     user.is_member = 'n'
     db.session.commit()
-    return redirect(url_for('admins.users_table'))
-    # return jsonify({'status': success_msg})
+    return redirect(request.referrer)
 
 @admins.route('/admin/approved/<int:id>', methods= [ 'GET', 'POST'])
 @admins.route('/admin/approved/<int:id>/', methods= [ 'GET', 'POST'])
@@ -253,8 +243,7 @@ def approve_admin(id):
     pass
     user.is_admin = 'y'
     db.session.commit()
-    return redirect(url_for('admins.users_table'))
-    # return jsonify({'status': success_msg})
+    return redirect(request.referrer)
 
 @admins.route('/admin/cancelled/<int:id>', methods= [ 'GET', 'POST'])
 @admins.route('/admin/cancelled/<int:id>/', methods= [ 'GET', 'POST'])
@@ -273,7 +262,7 @@ def cancel_admin(id):
     pass
     user.is_admin = 'n'
     db.session.commit()
-    return redirect(url_for('admins.users_table'))
+    return redirect(request.referrer)
 
 @admins.route('/prez/approved/<int:id>', methods= [ 'GET', 'POST'])
 @admins.route('/prez/approved/<int:id>/', methods= [ 'GET', 'POST'])
@@ -291,8 +280,7 @@ def approve_prez(id):
     pass
     user.is_prez = 'y'
     db.session.commit()
-    return redirect(url_for('admins.users_table'))
-    # return jsonify({'status': success_msg})
+    return redirect(request.referrer)
 
 
 @admins.route('/prez/cancelled/<int:id>', methods= [ 'GET', 'POST'])
@@ -312,7 +300,7 @@ def cancel_prez(id):
     pass
     user.is_prez = 'n'
     db.session.commit()
-    return redirect(url_for('admins.users_table'))
+    return redirect(request.referrer)
 
 
 @admins.route('/admin/<int:adm_id>/note/<int:usr_id>/for/<string:category>', methods= [ 'GET', 'POST'])
@@ -320,10 +308,13 @@ def sticky_note(adm_id, usr_id, category):
   pass
   formdata_posted = (request.method == 'POST')
   if formdata_posted:
+    _rf = request.form
+    
     note = Note(
       type = 'note',
       category = category,
-      content = request.form['content'],
+      status = _rf['status'],
+      content = _rf['content'],
       admin_id = adm_id,
       user_id = usr_id,
     )
@@ -331,7 +322,7 @@ def sticky_note(adm_id, usr_id, category):
     db.session.add(note)
     db.session.commit()
 
-    return redirect(url_for('admins.users_table'))
+  return redirect(request.referrer)
 
 @admins.route('/delete/note/<int:id>')
 def delete_note(id):
@@ -340,7 +331,8 @@ def delete_note(id):
     
     db.session.delete(note)
     db.session.commit()
-    return redirect(url_for('admins.users_table'))
+    # return redirect(url_for('admins.users_table'))
+    return redirect(request.referrer)
 
 
 
@@ -384,8 +376,16 @@ def inject_icons():
       "admin_request":  "s fa-concierge-bell",
       "member_request": "s fa-concierge-bell",
       "prez_request":   "s fa-concierge-bell",
+      "delivered":   "s fa-envelope",
+      "declined":   "s fa-gavel",
+      "approved":   "s fa-stamp",
+      "pending":  "s fa-balance-scale",
+      "date_posted": "r fa-calendar-alt",
+      "content": "r fa-envelope-open",
+      'member' : 's fa-user-check',
+      'admin' : 's fa-user-md',
+      'prez' : 's fa-user-graduate',
     }
-
     return gallery.get(label, 's fa-edit')
 
   return dict(icons=icons)

@@ -370,7 +370,7 @@ def account():
     return render_template('account.html',
                            first_random = first_random,
                            form=form,
-                           css=[
+                           css=[ 
                                ('theme', '/minty/bootstrap', ),
                                ('main', 'main', ),
                            ],
@@ -389,7 +389,6 @@ def account():
                            ],
                            legend='Edit User Account',
                            title='Account',
-
                            )
 
 @users.route('/u/r', methods=['GET','POST'])
