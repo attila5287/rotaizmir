@@ -1,7 +1,7 @@
 {% extends "layout.html" %}
 {% block content %}
 <style> </style>
-<a class="btn btn-outline-primary btn-block shadow mb-3 py-2 text-bold opac-70" type="button" href="/a/t/u/0">
+<a class="mini btn btn-outline-primary btn-block shadow mb-3 py-2 text-bold opac-70" type="button" href="/a/t/u/0">
   
   <h2 class="fab fa-tripadvisor align-self-center">
     <i class="text-md">
@@ -13,12 +13,9 @@
 
   
 
-{% for user_requests in disp_reqs %}
+{% for user_id, user_requests in disp_reqs.items() %}
 <div class="mini" name="requests-notes">
-{% for category, sorted in user_requests.items() %}
-<hr class="my-4 ">
-  {% if category %}
-
+  
   <div class="d-flex flex-row justify-content-between mb-2">
     
     <a class="btn btn-outline-primary border-0 btn-sm text-sm p-1" href="/a/t/u">
@@ -26,7 +23,7 @@
     </a>
 
     <span>
-      <h6 class="opac-60 border-bottom">{{category}}</h6>
+      <h6 class="opac-60 border-bottom">{{user_id}}</h6>
     </span>
     
     <a class="btn btn-outline-primary btn-sm border-0 p-1" href="/a/t/u">
@@ -35,59 +32,82 @@
 
   </div>
   
+  
+  {% for category, sorted in user_requests.items() %}
+  <hr class="mt-4 mb-1 border-primary opac-50">
+  {% if category %}
+  <p class="text-primary text-italic text-center m-0">
+    {{category}}
+  </p>
   {% for obj in sorted %}
   {% if obj.type == 'req' %}
+  
   {% set req = obj  %}
-  <div class="media mt-2 rnd-xl p-2  add-anime shadow">
+  
+  <style>
+  
+.add-anime:hover h1{
+	color: #2aa198;
+}
+.add-anime:hover h6{
+	color: #2aa198;
+}
+  </style>
+  <div class="media mt-2 rnd-xl p-0 add-anime shadow">
     <h1
-      class="fa{{icons(req.category)}} align-self-center mr-3 txt-shd text-secondary fa-pull-left">
+      class="fa{{icons(req.category)}} txt-shd text-center  align-self-center opac-30 mx-4">
     </h1>
-
-
-    <div class="media-body text-secondary">
-
-
-      <h6 class="mt-2 opac-50 border-bottom border-med border-secondary">
+    
+    <div class="media-body pb-2 pt-0 align-items-center">
+<div class="d-flex flex-row justify-content-between">
+          <h6 class="mt-2 opac-70 border-bottom border-med ">
         User ID
         <i class="text-bold text-nonitalic"># {{req.user_id}}</i>
-        requested <strong class="text-italic">{{req.category}}</strong>
-        authorization
+        's  <strong class="text-italic">{{req.category}}</strong>
+        request message
       </h6>
-
-
+        <a href="/delete/req/{{req.id}}" class="fas fa-times text-danger text-xl text-shd opac-70 shadow-sm mt-2 mr-3">
+        </a>
+</div>
       {% set  user_req_set = [
-      ('content', req.content,),
-      ('date_posted', req.date_posted.date(),),
-      (req.status, req.status,),
+      ('text-2xl mr-4', 'text-md rnd-2xl border-bottom border-med pb-2 mb-2 mr-3 shadow-sm', 'content', req.content,),
+      ('text-lg mr-4', 'text-sm ', 'date_posted', req.date_posted.date(),),
+      ('text-lg mr-4', 'text-sm ', req.status, req.status,),
       ]  %}
-
-      {% for attr, req_attr in user_req_set %}
-      <p class="text-italic text-sm pl-2 text-dark">
-        <i class="fa{{icons(attr)}} text-lg fa-fw mr-2"></i>{{req_attr}}  
+  
+      {% for icon_style, style, attr, req_attr in user_req_set %}
+      <p class="text-italic pl-2 mb-1 {{style}}">
+        <i class="fa{{icons(attr)}} {{icon_style}} fa-fw"></i>{{req_attr}}  
       </p>
       
       {% endfor %}
-
-    </div>
+  </div>
+    
+  
+      
   </div>
   {% else %}
 
   {% set note = obj %}
-  <div class="media mt-4 rnd-xl p-1 offset-2 anim-shd border-primary">
-      <h1 class="fa{{icons(note.status)}} text-{{styles(note.status)}} txt-shd opac-50 fa-pull-left"></h1>
+  <div class="media mt-4 rnd-xl p-1 offset-2 anim-shd ">
+    <h1 class="fa{{icons(note.status)}} text-{{styles(note.status)}} txt-shd opac-80 fa-pull-left align-self-center mr-4"></h1>
+    
     <div class="media-body text-{{styles(note.status)}}" style="vertical-align: middle;">
-      <h6 class="mt-0 border-bottom border-{{styles(note.status)}} opac-50">Admin ID#
-        {{note.admin_id}} noted:</h6>
+      <div class="d-flex flex-row justify-content-between">
+        <h6 class="mt-0 border-bottom border-{{styles(note.status)}} opac-50">Admin ID#
+          {{note.admin_id}} noted:</h6>
+          <a href="/delete/note/{{note.id}}">
+            <h5 class="far fa-times-circle text-{{styles(note.status)}} fa-pull-right text-shd opac-70">
+            </h5>
+          </a>        
+      </div>
       <i class="far far fa-paper-plane text-lg fa-fw"></i>
       <i class="text-nonitalic text-comfo text-sm text-dark">
         {{note.content}}
         <br>
         <i class="far fa-calendar-alt text-{{styles(note.status)}} text-md fa-fw"></i>
         <i class="text-{{styles(note.status)}} ml-2"> {{note.date_posted.date()}} </i>
-        <a href="/delete/note/{{note.id}}">
-          <h5 class="far fa-times-circle text-{{styles(note.status)}} fa-pull-right text-shd opac-70">
-          </h5>
-        </a>
+
       </i>
     </div>
 

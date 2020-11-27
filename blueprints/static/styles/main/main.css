@@ -265,7 +265,12 @@ html {
     2px 0 white,
     0 -2px white;
 }
-
+.add-anime:hover h1{
+	color: #2aa198;
+}
+.add-anime:hover h6{
+	color: #2aa198;
+}
 .add-anime:hover {
 	box-shadow: rgba(159, 238, 196, 0.363) -5px 15px 15px;
 	color: #2aa198;
