@@ -500,12 +500,10 @@ def all_requests(id=None, cats='all'):
     disp_reqs = {
       selected_user.id : d
     }
-    
+  note_form = AdminNoteForm()
   return render_template(
     'adm_userreqs.html',
-    filter_admin = True,
-    filter_member = True,
-    filter_prez = True,
+    note_form = note_form,
     disp_reqs = disp_reqs,
     categories = cats,
     css=[('theme', '/minty/bootstrap', ),

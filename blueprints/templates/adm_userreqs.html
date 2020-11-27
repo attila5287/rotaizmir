@@ -1,7 +1,6 @@
 {% extends "layout.html" %}
 {% block content %}
-
-<a class="mini btn btn-outline-secondary btn-block shadow mb-3 py-2 text-bold opac-70" type="button" href="/a/t/u">
+<a class="mini btn btn-outline-secondary btn-block shadow mb-3 py-2 text-bold opac-70" type="button" href="/a/t/u" name="go-to-adm-tbl-users">
   
   <h4 class="fas fa-table align-self-center text-secondary">
     <i class="text-lg text-nonbold">
@@ -10,7 +9,8 @@
   </h4>
 
 </a>
-<div class="mini text-center">
+
+<div class="mini text-center" name="show-all-button">
   <a class="btn btn-primary btn-sm py-2 rnd-xl" href="/admin/all/requests/">
     <i class="fas fas fa-search text-2xl"></i>
     <i>show all categories</i>
@@ -18,10 +18,10 @@
 
 </div>
 
-<p class="text-sm text-italic text-center text-muted mb-0">
+<p class="text-sm text-italic text-center text-muted mb-0" name="filters">
   or filter requests by category:
 </p>
-<div class="mini d-flex flex-row btn-group mb-4">
+<div class="mini d-flex flex-row btn-group mb-4" name="filt-buttons">
   {% set filter_buttons = [
     ('m', 'primary', 'member', ),
     ('a', 'secondary', 'admin', ),
@@ -53,11 +53,11 @@
     <nav class="nav nav-fill col-8 offset-2">
 
       {% set legend = [
-('declined','gavel', 'danger', ), 
-('pending', 'balance-scale', 'info', ),
-('approved','stamp', 'primary', ),
-]  %}
-
+      ('declined','gavel', 'danger', ), 
+      ('pending', 'balance-scale', 'info', ),
+      ('approved','stamp', 'primary', ),
+      ]  %}
+      
       {% for info,icon,style in legend %}
 
       <li class="nav-item text-italic text-sm">
@@ -73,9 +73,9 @@
 
 
       {% set legend = [
-      ('admin','user-md', 'primary', ), 
-      ('member','user-check', 'primary', ), 
-      ('prez','user-graduate', 'primary', ), 
+      ('admin','user-md', 'dark opac-50', ), 
+      ('member','user-check', 'dark opac-50', ), 
+      ('prez','user-graduate', 'dark opac-50', ), 
       ]  %}
 
       {% for info,icon,style in legend %}
@@ -93,111 +93,139 @@
 
     </nav>
 </div>
+
 {% for user_id, user_requests in disp_reqs.items() %}
-<div class="mini" name="requests-notes">
-  <div class="d-flex flex-row justify-content-between mb-2">
-    
-    <a class="btn btn-outline-primary border-0 btn-sm p-1" href="/a/t/u">
-      View Users
-    </a>
+  <div class="mini" name="requests-notes">
+    <div class="d-flex flex-row justify-content-between mb-2" name="user-section-header">
+      
+      <a class="btn btn-outline-primary border-0 btn-sm p-1" href="/admin/all/requests/{{user_id}}">
+        Show Only: User {{user_id}}
+      </a>
 
-    <span >
-      <h6 class="fas fa-user opac-60 border-bottom">
-      <h6 class="fas fa-hashtag opac-60 border-bottom">
-        
-        {{user_id}}</h6>
-    </span>
-    
-    <a class="btn btn-outline-primary btn-sm border-0 p-1" href="/admin/all/requests">
-      <i class="fas fa-table text-md" data-toggle="tooltip" data-placement="bottom" title="go back to table-only view"></i>
-    </a>
-
-  </div>
-  
-  {% for category, sorted in user_requests.items() %}
-  {% if category %}
-  {% for obj in sorted %}
-  {% if obj.type == 'req' %}
-  
-  {% set req = obj  %}
-  
-  <div class="media mt-2 rnd-xl p-0 add-anime shadow">
-    <h1
-      class="fa{{icons(req.category)}} txt-shd text-center  align-self-center opac-30 mx-4">
-    </h1>
-    
-    <div class="media-body pb-2 pt-0"
-    style="vertical-align: middle;">
-    <div class="d-flex flex-row justify-content-between">
-      <h6 class="mt-2 opac-70 border-bottom border-med ">
-    User ID
-    <i class="text-bold text-nonitalic"># {{req.user_id}}</i>
-    's  <strong class="text-italic">{{req.category}}</strong>
-    request message
-  </h6>
-    <a href="/delete/req/{{req.id}}" class="fas fa-times text-danger text-xl text-shd opac-70 shadow-sm mt-2 mr-3">
-    </a>
+      
+      <a class="btn btn-outline-primary btn-sm border-0 p-1" href="/admin/all/requests"  data-toggle="tooltip" data-placement="bottom" title="go back to table-only view">
+        <i class="far fa-user text-md">
+          <strong>{{user_id}}</strong>
+        </i>
+      </a>
 
     </div>
-
-    {% set  user_req_set = [
-      ('text-2xl mr-4', 'text-md rnd-lg border-bottom border-med pb-2 mb-2 mr-3 shadow-sm', 'req_content', req.content,),
-      ('text-lg mr-4', 'text-sm ', 'date_posted', req.date_posted.date(),),
-      ('text-lg mr-4', 'text-sm ', req.status, req.status,),
-      ]  %}
-  
-      {% for icon_style, style, attr, req_attr in user_req_set %}
-      <p class="text-italic pl-2 mb-1 {{style}}">
-        <i class="fa{{icons(attr)}} {{icon_style}} fa-fw"></i>{{req_attr}}  
-      </p>
-      
-      {% endfor %}
-  </div>
     
-  
-      
-  </div>
-  {% else %}
-
-  {% set note = obj %}
-  <div class="media mt-4 rnd-xl p-1 offset-2 anim-shd ">
-    <h1 class="fa{{icons(note.status)}} text-{{styles(note.status)}} txt-shd opac-80 fa-pull-left align-self-center mr-4 ml-3"></h1>
+    {% for category, sorted in user_requests.items() %}
+    {% if category %}
+    {% for obj in sorted %}
+    {% if obj.type == 'req' %}
     
-    <div class="media-body text-{{styles(note.status)}}" style="vertical-align: middle;">
+    {% set req = obj  %}
+    
+    <div class="media mt-2 rnd-xl p-0 add-anime shadow">
+      <h1
+        class="fa{{icons(req.category)}} txt-shd text-center  align-self-center opac-30 mx-4">
+      </h1>
+      
+      <div class="media-body pb-2 pt-0"
+      style="vertical-align: middle;">
       <div class="d-flex flex-row justify-content-between">
-        <h6 class="mt-0 border-bottom border-{{styles(note.status)}} opac-50">Admin ID#
-          {{note.admin_id}} noted:</h6>
-          <a href="/delete/note/{{note.id}}">
-            <h5 class="far fa-times-circle text-{{styles(note.status)}} fa-pull-right text-shd opac-70">
-            </h5>
-          </a>        
+        <h6 class="mt-2 opac-70 border-bottom border-med ">
+      User ID
+      <i class="text-bold text-nonitalic"># {{req.user_id}}</i>
+      's  <strong class="text-italic">{{req.category}}</strong>
+      request message
+    </h6>
+      <a href="/delete/req/{{req.id}}" class="fas fa-times text-danger text-xl text-shd opac-70 shadow-sm mt-2 mr-3">
+      </a>
+
       </div>
-    {% set  adm_note_set = [
-      ('text-2xl mr-4', 'text-md pb-2 ', 'note_content', note.content,),
-      ('text-lg mr-4', 'text-sm ', 'date_posted', note.date_posted.date(),),
-      ('text-lg mr-4', 'text-sm ', note.status, note.status,),
-      ]  %}
-  
-      {% for icon_style, style, attr, req_attr in adm_note_set %}
-      <p class="text-italic pl-2 mb-1 {{style}}">
-        <i class="fa{{icons(attr)}} {{icon_style}} fa-fw"></i>{{req_attr}}  
-      </p>
-      
-      {% endfor %}
 
-
-      
-      </i>
+      {% set  user_req_set = [
+        ('text-2xl mr-4', 'text-md rnd-lg border-bottom border-med pb-2 mb-2 mr-3 shadow-sm', 'req_content', req.content,),
+        ('text-lg mr-4', 'text-sm ', 'date_posted', req.date_posted.date(),),
+        ('text-lg mr-4', 'text-sm ', req.status, req.status,),
+        ]  %}
+    
+        {% for icon_style, style, attr, req_attr in user_req_set %}
+        <p class="text-italic pl-2 mb-1 {{style}}">
+          <i class="fa{{icons(attr)}} {{icon_style}} fa-fw"></i>{{req_attr}}  
+        </p>
+        
+        {% endfor %}
     </div>
+      
+    
+        
+    </div>
+    {% else %}
 
+    {% set note = obj %}
+    <div class="media mt-4 rnd-xl p-1 offset-2 anim-shd ">
+      <h1 class="fa{{icons(note.status)}} text-{{styles(note.status)}} txt-shd opac-80 fa-pull-left align-self-center mr-4 ml-3"></h1>
+      
+      <div class="media-body text-{{styles(note.status)}}" style="vertical-align: middle;">
+        <div class="d-flex flex-row justify-content-between">
+          <h6 class="mt-0 border-bottom border-{{styles(note.status)}} opac-50">Admin ID#
+            {{note.admin_id}} noted:</h6>
+            <a href="/delete/note/{{note.id}}">
+              <h5 class="far fa-times-circle text-{{styles(note.status)}} fa-pull-right text-shd opac-70">
+              </h5>
+            </a>        
+        </div>
+      {% set  adm_note_set = [
+        ('text-2xl mr-4', 'text-md pb-2 ', 'note_content', note.content,),
+        ('text-lg mr-4', 'text-sm ', 'date_posted', note.date_posted.date(),),
+        ('text-lg mr-4', 'text-sm ', note.status, note.status,),
+        ]  %}
+    
+        {% for icon_style, style, attr, req_attr in adm_note_set %}
+        <p class="text-italic pl-2 mb-1 {{style}}">
+          <i class="fa{{icons(attr)}} {{icon_style}} fa-fw"></i>{{req_attr}}  
+        </p>
+        
+        {% endfor %}
+
+
+        
+        </i>
+      </div>
+
+    </div>
+    {% endif %}
+    {% endfor %}
+    
+    {% endif %}
+    
+    {% endfor %}
   </div>
-  {% endif %}
+  <form method="POST"
+              action="/admin/{{current_user.id}}/note//for/"
+              class="form-group mt-1 shadow-lg">
+
+              <select id="status" name="status"
+                class="selectpicker form-control form-control-sm text-md p-0 mb-1">
+
+                {% set options = [
+                ('pending',  'balance-scale', 'info', '',  ),
+                ('approved', 'stamp', 'primary', '',  ),
+                ('declined', 'gavel', 'danger', '',  ),
+                ]  %}
+
+                {% set rand_opt= rand_chooser(options) %}
+
+                {% for status, icon,style, tooltip in options %}
+                <option value="{{status}}"
+                  data-content="<i class='fas fa-{{icon}} text-{{style}}' aria-hidden='true'> {{status}}</i>">
+                </option>
+
+                {% endfor %}
+
+              </select>
+              <textarea
+                class="form-control form-control-sm form-control-dark border-0 text-italic"
+                rows="1" name="content" id="content"
+                placeholder="write abt. {{requested_for}} request"></textarea>
+
+              {{note_form.submit(class="btn btn-light btn-block text-primary text-bold rnd-md opac-80 mt-2 mb-0 pt-0 pb-1 px-1 border-0 shadow")}}
+
+            </form>
   {% endfor %}
-  {% endif %}
   
-  {% endfor %}
-
-</div>
-{% endfor %}
-
 {% endblock %}
