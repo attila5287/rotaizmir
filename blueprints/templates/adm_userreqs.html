@@ -1,5 +1,6 @@
 {% extends "layout.html" %}
 {% block content %}
+
 <a class="mini btn btn-outline-secondary btn-block shadow mb-3 py-2 text-bold opac-70" type="button" href="/a/t/u">
   
   <h4 class="fas fa-table align-self-center text-secondary">
@@ -10,17 +11,45 @@
 
 </a>
 
+<p class="text-sm text-italic text-center text-muted mb-0">filter requests by category:</p>
+<div class="mini d-flex flex-row btn-group mb-4">
+  {% set filter_buttons = [
+    ('m', 'primary', 'member', ),
+    ('a', 'secondary', 'admin', ),
+    ('p', 'info', 'prez', ),
+    ] %}
+    {% for href,style, filter_k in filter_buttons %}
+
+    {% if filter_k in categories %}
+    
+    <a class="btn btn-{{style}}" href="/admin/{{href}}/requests/">
+      <i class="fas fa{{icons(filter_k)}}"></i>
+      <i>{{filter_k}}</i>
+
+    </a>
+    {% else %}
+    <a class="btn btn-outline-{{style}}" href="/admin/{{href}}/requests/">
+      <i class="fas fa{{icons(filter_k)}}"></i>
+      <i>{{filter_k}}</i>
+
+    </a>
+    
+    
+    {% endif %}
+    
+    {% endfor %}
+</div>
+
 <div class="d-flex flex-row" name="reqnotes-legend">
     <nav class="nav nav-fill col-8 offset-2">
 
-      {% set table_legend = [
-('decline request','gavel', 'danger', ), 
-('note for board', 'sticky-note', 'secondary', ),
-('pending review', 'balance-scale', 'info', ),
-('approve request','stamp', 'primary', ),
+      {% set legend = [
+('declined','gavel', 'danger', ), 
+('pending', 'balance-scale', 'info', ),
+('approved','stamp', 'primary', ),
 ]  %}
 
-      {% for info,icon,style in table_legend %}
+      {% for info,icon,style in legend %}
 
       <li class="nav-item text-italic text-sm">
         <a class="nav-link disabled mb-0">
@@ -33,18 +62,14 @@
 
       {% endfor %}
 
-    </nav>
-  </div>
-  <div class="d-flex flex-row" name="table-legend">
-    <nav class="nav nav-fill col-8 offset-2">
 
-      {% set table_legend = [
+      {% set legend = [
       ('admin','user-md', 'primary', ), 
       ('member','user-check', 'primary', ), 
       ('prez','user-graduate', 'primary', ), 
       ]  %}
 
-      {% for info,icon,style in table_legend %}
+      {% for info,icon,style in legend %}
 
       <li class="nav-item text-italic text-sm">
         <a class="nav-link disabled mb-0">
@@ -58,12 +83,9 @@
       {% endfor %}
 
     </nav>
-  </div>
-
-
+</div>
 {% for user_id, user_requests in disp_reqs.items() %}
 <div class="mini" name="requests-notes">
-  
   <div class="d-flex flex-row justify-content-between mb-2">
     
     <a class="btn btn-outline-primary border-0 btn-sm p-1" href="/a/t/u">
@@ -77,12 +99,11 @@
         {{user_id}}</h6>
     </span>
     
-    <a class="btn btn-outline-primary btn-sm border-0 p-1" href="/a/a/r">
+    <a class="btn btn-outline-primary btn-sm border-0 p-1" href="/admin/all/requests">
       <i class="fas fa-table text-md" data-toggle="tooltip" data-placement="bottom" title="go back to table-only view"></i>
     </a>
 
   </div>
-  
   
   {% for category, sorted in user_requests.items() %}
   {% if category %}

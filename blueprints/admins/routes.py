@@ -441,21 +441,35 @@ def inject_status_style():
 
 
 
-@admins.route('/a/a/r', methods= [ 'GET', 'POST'])
-@admins.route('/a/a/r/', methods= [ 'GET', 'POST'])
-@admins.route('/a/a/r/<int:id>', methods= [ 'GET', 'POST'])
-@admins.route('/a/a/r/<int:id>/', methods= [ 'GET', 'POST'])
-@admins.route('/admin/all/requests', methods= [ 'GET', 'POST'])
-@admins.route('/admin/all/requests/', methods= [ 'GET', 'POST'])
-@admins.route('/admin/all/requests/<int:id>', methods= [ 'GET', 'POST'])
-@admins.route('/admin/all/requests/<int:id>/', methods= [ 'GET', 'POST'])
-def all_requests(id=None):
+@admins.route('/a/<string:cats>/r', methods= [ 'GET', 'POST'])
+@admins.route('/a/<string:cats>/r/', methods= [ 'GET', 'POST'])
+@admins.route('/a/<string:cats>/r/<int:id>', methods= [ 'GET', 'POST'])
+@admins.route('/a/<string:cats>/r/<int:id>/', methods= [ 'GET', 'POST'])
+@admins.route('/admin/<string:cats>/requests', methods= [ 'GET', 'POST'])
+@admins.route('/admin/<string:cats>/requests/', methods= [ 'GET', 'POST'])
+@admins.route('/admin/<string:cats>/requests/<int:id>', methods= [ 'GET', 'POST'])
+@admins.route('/admin/<string:cats>/requests/<int:id>/', methods= [ 'GET', 'POST'])
+def all_requests(id=None, cats='all'):
   " >0: all users-reqs-notes >None: no reqs-notes >Else: selected user reqs-notes "
   pass
+  if  cats == 'all' or None:
+    pass
+    cats = ['member','admin','prez',]
+  else:
+    pass
+    cats_dict = {
+      'm' : 'member',
+      'a' : 'admin',
+      'p' : 'prez',
+    }
+    cats = [
+      cats_dict[category] for category in cats.split()
+    ]
+    
+    
   if not id or id==0:
     pass
     all_users = User.query.all()
-    cats = ['member','admin','prez',]
     disp_reqs = {}
     x = []
     all_notes = Note.query
@@ -489,7 +503,11 @@ def all_requests(id=None):
     
   return render_template(
     'adm_userreqs.html',
+    filter_admin = True,
+    filter_member = True,
+    filter_prez = True,
     disp_reqs = disp_reqs,
+    categories = cats,
     css=[('theme', '/minty/bootstrap', ),
       ('main', 'main', ),
       ('custom', 'dashboard', ),
