@@ -429,10 +429,10 @@ def inject_status_style():
     pass
     
     gallery = {  # font awesome icons for member forms
-      "approved": "success",
+      "approved": "primary",
       "pending": "info",
       "declined": "secondary",
-      "delivered": "primary",
+      "delivered": "",
     }
     
     return gallery.get(label, '')

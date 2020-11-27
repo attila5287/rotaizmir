@@ -267,8 +267,8 @@
 
           {% for auth_level, icon in make_func_set %}
           <td
-            class="text-center bg-dark{{rowloop.cycle('odd', 'even')}}">
-            {% set active_request_indicator = 'btn-primary p-2 rnd-xl shadow opac-90' if user.id in requestors[auth_level] else 'opac-60' %}
+            class="text-nowrap text-center bg-dark{{rowloop.cycle('odd', 'even')}}">
+            {% set active_request_indicator = 'btn-primary p-1 rnd-xl shadow opac-90' if user.id in requestors[auth_level] else 'opac-60' %}
 
             {% if user['is_'+auth_level]== "n" %}
             <span>
@@ -364,13 +364,13 @@
     <nav class="nav nav-fill col-8 offset-2">
 
       {% set table_legend = [
-('make admin','user-md', 'primary', ), 
-('make member','user-check', 'primary', ), 
-('cancel auth.','user-slash', 'secondary', ), 
-('make prez','user-graduate', 'primary', ), 
-('user notes','book-open', 'dark opac-50', ), 
-('admin notes','sticky-note', 'primary', ), 
-]  %}
+      ('make admin','user-md', 'primary', ), 
+      ('make member','user-check', 'primary', ), 
+      ('cancel auth.','user-slash', 'secondary', ), 
+      ('make prez','user-graduate', 'primary', ), 
+      ('user notes','book-open', 'dark opac-50', ), 
+      ('admin notes','sticky-note', 'primary', ), 
+      ]  %}
 
       {% for info,icon,style in table_legend %}
 

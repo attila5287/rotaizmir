@@ -1,49 +1,70 @@
 {% extends "layout.html" %}
 {% block content %}
-
-<style> </style>
-
 <a class="mini btn btn-outline-secondary btn-block shadow mb-3 py-2 text-bold opac-70" type="button" href="/a/t/u">
   
   <h4 class="fas fa-table align-self-center text-secondary">
     <i class="text-lg text-nonbold">
-      all <strong>users</strong>
+      show all <strong>users</strong> in table
     </i>
   </h4>
 
 </a>
 
-  
+<div class="d-flex flex-row" name="reqnotes-legend">
+    <nav class="nav nav-fill col-8 offset-2">
+
+      {% set table_legend = [
+('decline request','gavel', 'danger', ), 
+('note for board', 'sticky-note', 'secondary', ),
+('pending review', 'balance-scale', 'info', ),
+('approve request','stamp', 'primary', ),
+]  %}
+
+      {% for info,icon,style in table_legend %}
+
+      <li class="nav-item text-italic text-sm">
+        <a class="nav-link disabled mb-0">
+          <button class="btn btn-{{style}} p-1 mb-0" type="button">
+            <i class="fas fa-{{icon}} fa-fw"></i>
+          </button>
+        </a>
+        {{info}}
+      </li>
+
+      {% endfor %}
+
+    </nav>
+  </div>
 
 {% for user_id, user_requests in disp_reqs.items() %}
 <div class="mini" name="requests-notes">
   
   <div class="d-flex flex-row justify-content-between mb-2">
     
-    <a class="btn btn-outline-primary border-0 btn-sm p-1" href="/a/a/r">
-      Hide Notes
+    <a class="btn btn-outline-primary border-0 btn-sm p-1" href="/a/t/u">
+      Table: All Users
     </a>
 
-    <span>
-      <h6 class="opac-60 border-bottom">{{user_id}}</h6>
+    <span >
+      <h6 class="fas fa-user opac-60 border-bottom">
+      <h6 class="fas fa-hashtag opac-60 border-bottom">
+        
+        {{user_id}}</h6>
     </span>
     
     <a class="btn btn-outline-primary btn-sm border-0 p-1" href="/a/a/r">
-      <i class="fas fa-undo text-md" data-toggle="tooltip" data-placement="bottom" title="go back to table-only view"></i>
+      <i class="fas fa-table text-md" data-toggle="tooltip" data-placement="bottom" title="go back to table-only view"></i>
     </a>
 
   </div>
   
   
   {% for category, sorted in user_requests.items() %}
-  <hr class="mt-4 mb-1 border-primary opac-50">
   {% if category %}
   {% for obj in sorted %}
   {% if obj.type == 'req' %}
   
   {% set req = obj  %}
-  
-  <style></style>
   
   <div class="media mt-2 rnd-xl p-0 add-anime shadow">
     <h1
@@ -65,7 +86,7 @@
     </div>
 
     {% set  user_req_set = [
-      ('text-2xl mr-4', 'text-md rnd-2xl border-bottom border-med pb-2 mb-2 mr-3 shadow-sm', 'req_content', req.content,),
+      ('text-2xl mr-4', 'text-md rnd-lg border-bottom border-med pb-2 mb-2 mr-3 shadow-sm', 'req_content', req.content,),
       ('text-lg mr-4', 'text-sm ', 'date_posted', req.date_posted.date(),),
       ('text-lg mr-4', 'text-sm ', req.status, req.status,),
       ]  %}
