@@ -445,6 +445,8 @@ def inject_status_style():
 @admins.route('/a/a/r/', methods= [ 'GET', 'POST'])
 @admins.route('/a/a/r/<int:id>', methods= [ 'GET', 'POST'])
 @admins.route('/a/a/r/<int:id>/', methods= [ 'GET', 'POST'])
+@admins.route('/admin/all/requests', methods= [ 'GET', 'POST'])
+@admins.route('/admin/all/requests/', methods= [ 'GET', 'POST'])
 @admins.route('/admin/all/requests/<int:id>', methods= [ 'GET', 'POST'])
 @admins.route('/admin/all/requests/<int:id>/', methods= [ 'GET', 'POST'])
 def all_requests(id=None):
