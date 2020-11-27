@@ -325,6 +325,7 @@ def cancel_prez(id):
     db.session.commit()
     return redirect(request.referrer)
 
+@admins.route('/admin/<int:adm_id>/note/<int:usr_id>/for/<string:category>/', methods= [ 'GET', 'POST'])
 @admins.route('/admin/<int:adm_id>/note/<int:usr_id>/for/<string:category>', methods= [ 'GET', 'POST'])
 def sticky_note(adm_id, usr_id, category):
   pass
@@ -463,7 +464,7 @@ def all_requests(id=None, cats='all'):
       'p' : 'prez',
     }
     cats = [
-      cats_dict[category] for category in cats.split()
+      cats_dict[category] for category in list(cats)
     ]
     
     
@@ -473,6 +474,7 @@ def all_requests(id=None, cats='all'):
     disp_reqs = {}
     x = []
     all_notes = Note.query
+    # requestees = Note.query.all()
     
     for user in all_users:
       pass
@@ -501,10 +503,22 @@ def all_requests(id=None, cats='all'):
       selected_user.id : d
     }
   note_form = AdminNoteForm()
+# list of users that has active requests
+  requestors = []
+  # collects all categor
+  for req in Note.query.filter_by(type='req').all():
+    pass
+    requestors.append(req.user_id)
+    
+  requestors = [
+    r for  r in requestors
+  ]    
   return render_template(
     'adm_userreqs.html',
+    requestors=requestors,
     note_form = note_form,
     disp_reqs = disp_reqs,
+    cats_url = [list(cat)[0] for cat in cats],
     categories = cats,
     css=[('theme', '/minty/bootstrap', ),
       ('main', 'main', ),

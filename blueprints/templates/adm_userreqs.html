@@ -1,14 +1,59 @@
+
 {% extends "layout.html" %}
 {% block content %}
-<a class="mini btn btn-outline-secondary btn-block shadow mb-3 py-2 text-bold opac-70" type="button" href="/a/t/u" name="go-to-adm-tbl-users">
+<div class="mini container" name="show-all-users-btn">
+  <a class="btn btn-outline-secondary btn-block shadow mb-3 py-2 text-bold opac-70"
+    type="button" href="/a/t/u" name="go-to-adm-tbl-users">
   
-  <h4 class="fas fa-table align-self-center text-secondary">
-    <i class="text-lg text-nonbold">
-      show all <strong>users</strong> in table
-    </i>
-  </h4>
-
-</a>
+    <h4 class="fas fa-table align-self-center text-secondary">
+      <i class="text-lg text-nonbold">
+        show all <strong>users</strong> in table
+      </i>
+    </h4>
+  
+  </a>
+</div>
+<div class="form-group mini" name="filter-categories">
+  <select id="filter_cats" name="filter_cats"
+        class="selectpicker form-control custom-select shadow-sm border-0 text-md p-1 mb-2" multiple>
+    
+        {% set options = [
+          ('m', 'member',  'user-check', 'primary', '',  ),
+          ('a', 'admin',   'user-md', 'secondary', '',  ),
+          ('p', 'prez',    'user-graduate', 'info', '',  ),
+                    ]  %}
+    
+        {% for val, status, icon,style, tooltip in options %}
+        <option value="{{val}}"
+          data-content="<i class='fas fa-{{icon}} text-{{style}} text-italic mr-3' aria-hidden='true'> {{status}} </i>" selected>
+        </option>
+    
+        {% endfor %}
+    
+      </select>
+</div>
+<div class="form-group mini">
+  <select id="filter_status" name="filter_status"
+        class="selectpicker form-control shadow-sm border-0 text-md p-1 mb-2" multiple>
+    
+        {% set options = [
+          ('p', 'pending',  'balance-scale', 'info', '',  ),
+          ('d', 'declined', 'gavel', 'danger', '',  ),
+          ('a', 'approved', 'stamp', 'primary', '',  ),
+                    ]  %}
+    
+        {% set rand_opt= rand_chooser(options) %}
+    
+        {% for val, status, icon,style, tooltip in options %}
+        <option value="{{val}}"
+          data-content="<i class='fas fa-{{icon}} text-{{style}} text-italic mr-3' aria-hidden='true'> {{status}} </i>" selected>
+        </option>
+    
+        {% endfor %}
+    
+      </select>
+  
+</div>
 
 <div class="mini text-center" name="show-all-button">
   <a class="btn btn-primary btn-sm py-2 rnd-xl" href="/admin/all/requests/">
@@ -19,213 +64,195 @@
 </div>
 
 <p class="text-sm text-italic text-center text-muted mb-0" name="filters">
-  or filter requests by category:
+  or hit a button to add category to filter criteria:
 </p>
-<div class="mini d-flex flex-row btn-group mb-4" name="filt-buttons">
+<div class="mini d-flex flex-row btn-group mb-4" name="filter-cat-btns">
   {% set filter_buttons = [
     ('m', 'primary', 'member', ),
     ('a', 'secondary', 'admin', ),
     ('p', 'info', 'prez', ),
     ] %}
-    {% for href,style, filter_k in filter_buttons %}
+  {% for href,style, filter_k in filter_buttons %}
 
-    {% if filter_k in categories %}
+  {% if filter_k in categories %}
     
-    <a class="btn btn-{{style}}" href="/admin/{{href}}/requests/">
-      <i class="fas fa{{icons(filter_k)}}"></i>
-      <i>{{filter_k}}</i>
+  <a class="btn btn-{{style}}" href="/admin/{{href}}/requests/">
+    <i class="fas fa{{icons(filter_k)}}"></i>
+    <i>{{filter_k}}</i>
 
-    </a>
-    {% else %}
-    <a class="btn btn-outline-{{style}}" href="/admin/{{href}}/requests/">
-      <i class="fas fa{{icons(filter_k)}}"></i>
-      <i>{{filter_k}}</i>
+  </a>
+  {% else %}
+  <a class="btn btn-outline-{{style}}" href="/admin/{{href}}/requests/">
+    <i class="fas fa{{icons(filter_k)}}"></i>
+    <i>{{filter_k}}</i>
 
-    </a>
-    
-    
-    {% endif %}
-    
-    {% endfor %}
+  </a>
+
+
+  {% endif %}
+
+  {% endfor %}
 </div>
 
 <div class="d-flex flex-row" name="reqnotes-legend">
-    <nav class="nav nav-fill col-8 offset-2">
+  <nav class="nav nav-fill col-8 offset-2">
 
-      {% set legend = [
+    {% set legend = [
       ('declined','gavel', 'danger', ), 
       ('pending', 'balance-scale', 'info', ),
       ('approved','stamp', 'primary', ),
       ]  %}
-      
-      {% for info,icon,style in legend %}
 
-      <li class="nav-item text-italic text-sm">
-        <a class="nav-link disabled mb-0">
-          <button class="btn btn-{{style}} p-1 mb-0" type="button">
-            <i class="fas fa-{{icon}} fa-fw"></i>
-          </button>
-        </a>
-        {{info}}
-      </li>
+    {% for info,icon,style in legend %}
 
-      {% endfor %}
+    <li class="nav-item text-italic text-sm">
+      <a class="nav-link disabled mb-0">
+        <button class="btn btn-{{style}} p-1 mb-0" type="button">
+          <i class="fas fa-{{icon}} fa-fw"></i>
+        </button>
+      </a>
+      {{info}}
+    </li>
+
+    {% endfor %}
 
 
-      {% set legend = [
+    {% set legend = [
       ('admin','user-md', 'dark opac-50', ), 
       ('member','user-check', 'dark opac-50', ), 
       ('prez','user-graduate', 'dark opac-50', ), 
       ]  %}
 
-      {% for info,icon,style in legend %}
+    {% for info,icon,style in legend %}
 
-      <li class="nav-item text-italic text-sm">
-        <a class="nav-link disabled mb-0">
-          <button class="btn btn-{{style}} p-1 mb-0" type="button">
-            <i class="fas fa-{{icon}} fa-fw"></i>
-          </button>
-        </a>
-        {{info}}
-      </li>
+    <li class="nav-item text-italic text-sm">
+      <a class="nav-link disabled mb-0">
+        <button class="btn btn-{{style}} p-1 mb-0" type="button">
+          <i class="fas fa-{{icon}} fa-fw"></i>
+        </button>
+      </a>
+      {{info}}
+    </li>
 
-      {% endfor %}
+    {% endfor %}
 
-    </nav>
+  </nav>
 </div>
 
 {% for user_id, user_requests in disp_reqs.items() %}
-  <div class="mini" name="requests-notes">
-    <div class="d-flex flex-row justify-content-between mb-2" name="user-section-header">
-      
-      <a class="btn btn-outline-primary border-0 btn-sm p-1" href="/admin/all/requests/{{user_id}}">
-        Show Only: User {{user_id}}
-      </a>
+<div class="mini" name="MAIN-requests-notes">
 
-      
-      <a class="btn btn-outline-primary btn-sm border-0 p-1" href="/admin/all/requests"  data-toggle="tooltip" data-placement="bottom" title="go back to table-only view">
-        <i class="far fa-user text-md">
-          <strong>{{user_id}}</strong>
-        </i>
-      </a>
 
-    </div>
-    
-    {% for category, sorted in user_requests.items() %}
-    {% if category %}
+  {% for category, sorted in user_requests.items() %}
+    {% if user_id in requestors %}
+      <div name="user-header" class="d-flex flex-row justify-content-between mb-2"
+    name="user-section-header">
+
+    <a class="btn btn-outline-primary border-0 btn-sm p-1"
+      href="/admin/all/requests/{{user_id}}">
+      Show Only: User {{user_id}}
+    </a>
+
+
+    <a class="btn btn-outline-primary btn-sm border-0 p-1"
+      href="/admin/all/requests" data-toggle="tooltip" data-placement="bottom"
+      title="go back to table-only view">
+      <i class="far fa-user text-md">
+        <strong>{{user_id}}</strong>
+      </i>
+    </a>
+
+  </div>
     {% for obj in sorted %}
     {% if obj.type == 'req' %}
-    
+
     {% set req = obj  %}
-    
+
     <div class="media mt-2 rnd-xl p-0 add-anime shadow">
       <h1
         class="fa{{icons(req.category)}} txt-shd text-center  align-self-center opac-30 mx-4">
       </h1>
-      
-      <div class="media-body pb-2 pt-0"
-      style="vertical-align: middle;">
-      <div class="d-flex flex-row justify-content-between">
-        <h6 class="mt-2 opac-70 border-bottom border-med ">
-      User ID
-      <i class="text-bold text-nonitalic"># {{req.user_id}}</i>
-      's  <strong class="text-italic">{{req.category}}</strong>
-      request message
-    </h6>
-      <a href="/delete/req/{{req.id}}" class="fas fa-times text-danger text-xl text-shd opac-70 shadow-sm mt-2 mr-3">
-      </a>
 
-      </div>
+      <div class="media-body pb-2 pt-0" style="vertical-align: middle;">
+        <div class="d-flex flex-row justify-content-between">
+          <h6 class="mt-2 opac-70 border-bottom border-med ">
+            User ID
+            <i class="text-bold text-nonitalic"># {{req.user_id}}</i>
+            's <strong class="text-italic">{{req.category}}</strong>
+            request message
+          </h6>
+          <a href="/delete/req/{{req.id}}"
+            class="fas fa-times text-danger text-xl text-shd opac-70 shadow-sm mt-2 mr-3">
+          </a>
 
-      {% set  user_req_set = [
-        ('text-2xl mr-4', 'text-md rnd-lg border-bottom border-med pb-2 mb-2 mr-3 shadow-sm', 'req_content', req.content,),
-        ('text-lg mr-4', 'text-sm ', 'date_posted', req.date_posted.date(),),
-        ('text-lg mr-4', 'text-sm ', req.status, req.status,),
-        ]  %}
-    
+        </div>
+
+        {% set  user_req_set = [
+          ('text-2xl mr-4', 'text-md rnd-lg border-bottom border-med pb-2 mb-2 mr-3 shadow-sm', 'req_content', req.content,),
+          ('text-lg mr-4', 'text-sm ', 'date_posted', req.date_posted.date(),),
+          ('text-lg mr-4', 'text-sm ', req.status, req.status,),
+          ]  %}
+
         {% for icon_style, style, attr, req_attr in user_req_set %}
         <p class="text-italic pl-2 mb-1 {{style}}">
-          <i class="fa{{icons(attr)}} {{icon_style}} fa-fw"></i>{{req_attr}}  
+          <i class="fa{{icons(attr)}} {{icon_style}} fa-fw"></i>{{req_attr}}
         </p>
-        
+
         {% endfor %}
-    </div>
-      
-    
-        
+      </div>
+
+
+
     </div>
     {% else %}
 
     {% set note = obj %}
     <div class="media mt-4 rnd-xl p-1 offset-2 anim-shd ">
-      <h1 class="fa{{icons(note.status)}} text-{{styles(note.status)}} txt-shd opac-80 fa-pull-left align-self-center mr-4 ml-3"></h1>
-      
-      <div class="media-body text-{{styles(note.status)}}" style="vertical-align: middle;">
+      <h1
+        class="fa{{icons(note.status)}} text-{{styles(note.status)}} txt-shd opac-80 fa-pull-left align-self-center mr-4 ml-3">
+      </h1>
+
+      <div class="media-body text-{{styles(note.status)}}"
+        style="vertical-align: middle;">
         <div class="d-flex flex-row justify-content-between">
-          <h6 class="mt-0 border-bottom border-{{styles(note.status)}} opac-50">Admin ID#
+          <h6 class="mt-0 border-bottom border-{{styles(note.status)}} opac-50">
+            Admin ID#
             {{note.admin_id}} noted:</h6>
-            <a href="/delete/note/{{note.id}}">
-              <h5 class="far fa-times-circle text-{{styles(note.status)}} fa-pull-right text-shd opac-70">
-              </h5>
-            </a>        
+          <a href="/delete/note/{{note.id}}">
+            <h5
+              class="far fa-times-circle text-{{styles(note.status)}} fa-pull-right text-shd opac-70">
+            </h5>
+          </a>
         </div>
-      {% set  adm_note_set = [
-        ('text-2xl mr-4', 'text-md pb-2 ', 'note_content', note.content,),
-        ('text-lg mr-4', 'text-sm ', 'date_posted', note.date_posted.date(),),
-        ('text-lg mr-4', 'text-sm ', note.status, note.status,),
-        ]  %}
-    
+        {% set  adm_note_set = [
+          ('text-2xl mr-4', 'text-lg text-dark opac-80 border-bottom rnd-lg pb-2 ', 'note_content', note.content,),
+          ('text-lg mr-4', 'text-sm ', 'date_posted', note.date_posted.date(),),
+          ('text-lg mr-4', 'text-sm ', note.status, note.status,),
+          ]  %}
+
         {% for icon_style, style, attr, req_attr in adm_note_set %}
         <p class="text-italic pl-2 mb-1 {{style}}">
-          <i class="fa{{icons(attr)}} {{icon_style}} fa-fw"></i>{{req_attr}}  
+          <i class="fa{{icons(attr)}} {{icon_style}} fa-fw"></i>{{req_attr}}
         </p>
-        
+
         {% endfor %}
 
 
-        
+
         </i>
       </div>
 
     </div>
     {% endif %}
     {% endfor %}
-    
+
     {% endif %}
-    
-    {% endfor %}
-  </div>
-  <form method="POST"
-              action="/admin/{{current_user.id}}/note//for/"
-              class="form-group mt-1 shadow-lg">
 
-              <select id="status" name="status"
-                class="selectpicker form-control form-control-sm text-md p-0 mb-1">
-
-                {% set options = [
-                ('pending',  'balance-scale', 'info', '',  ),
-                ('approved', 'stamp', 'primary', '',  ),
-                ('declined', 'gavel', 'danger', '',  ),
-                ]  %}
-
-                {% set rand_opt= rand_chooser(options) %}
-
-                {% for status, icon,style, tooltip in options %}
-                <option value="{{status}}"
-                  data-content="<i class='fas fa-{{icon}} text-{{style}}' aria-hidden='true'> {{status}}</i>">
-                </option>
-
-                {% endfor %}
-
-              </select>
-              <textarea
-                class="form-control form-control-sm form-control-dark border-0 text-italic"
-                rows="1" name="content" id="content"
-                placeholder="write abt. {{requested_for}} request"></textarea>
-
-              {{note_form.submit(class="btn btn-light btn-block text-primary text-bold rnd-md opac-80 mt-2 mb-0 pt-0 pb-1 px-1 border-0 shadow")}}
-
-            </form>
   {% endfor %}
-  
+</div>
+
+
+</div>
+{% endfor %}
+
 {% endblock %}
