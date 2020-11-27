@@ -83,9 +83,9 @@
         {{note.content}}
         <br>
         <i class="far fa-calendar-alt text-{{styles(note.status)}} text-md fa-fw"></i>
-        <i class="text-dark ml-2"> {{note.date_posted.date()}} </i>
+        <i class="text-{{styles(note.status)}} ml-2"> {{note.date_posted.date()}} </i>
         <a href="/delete/note/{{note.id}}">
-          <h5 class="far fa-times-circle text-primary fa-pull-right text-shd opac-70">
+          <h5 class="far fa-times-circle text-{{styles(note.status)}} fa-pull-right text-shd opac-70">
           </h5>
         </a>
       </i>
