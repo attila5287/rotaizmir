@@ -412,7 +412,8 @@ def inject_icons():
       "approved":   "s fa-stamp",
       "pending":  "s fa-balance-scale",
       "date_posted": "r fa-calendar-alt",
-      "content": "r fa-envelope-open",
+      "note_content": "r fa-paper-plane",
+      "req_content": "r fa-envelope-open",
       'member' : 's fa-user-check',
       'admin' : 's fa-user-md',
       'prez' : 's fa-user-graduate',
@@ -437,3 +438,70 @@ def inject_status_style():
     return gallery.get(label, '')
 
   return dict(styles=styles)
+
+
+
+@admins.route('/a/a/r', methods= [ 'GET', 'POST'])
+@admins.route('/a/a/r/', methods= [ 'GET', 'POST'])
+@admins.route('/a/a/r/<int:id>', methods= [ 'GET', 'POST'])
+@admins.route('/a/a/r/<int:id>/', methods= [ 'GET', 'POST'])
+@admins.route('/admin/all/requests/<int:id>', methods= [ 'GET', 'POST'])
+@admins.route('/admin/all/requests/<int:id>/', methods= [ 'GET', 'POST'])
+def all_requests(id=None):
+  " >0: all users-reqs-notes >None: no reqs-notes >Else: selected user reqs-notes "
+  pass
+  if not id or id==0:
+    pass
+    all_users = User.query.all()
+    cats = ['member','admin','prez',]
+    disp_reqs = {}
+    x = []
+    all_notes = Note.query
+    
+    for user in all_users:
+      pass
+      notes_for_user = all_notes.filter_by(for_user=user )
+      d = {}
+      for cat in cats:
+        pass
+        filtered = notes_for_user.filter_by(category=cat).all()
+        d[cat] = filtered
+        
+         
+      disp_reqs[user.id]= d
+
+  else:
+    pass
+    selected_user = User.query.get_or_404(id)
+    notes_for_user = Note.query.filter_by(for_user=selected_user )
+    cats = ['member','admin','prez',]
+    d = {}
+    for cat in cats:
+      pass
+      filtered = notes_for_user.filter_by(category=cat).all()
+      d[cat] = filtered
+      
+    disp_reqs = {
+      selected_user.id : d
+    }
+    
+  return render_template(
+    'adm_userreqs.html',
+    disp_reqs = disp_reqs,
+    css=[('theme', '/minty/bootstrap', ),
+      ('main', 'main', ),
+      ('custom', 'dashboard', ),
+    ],
+    info_notes=[
+      'Detailed view of user requests and related admin notes with a note form for admins.',
+    ],
+    access=[
+      'a',
+      'p',
+    ],
+    js=[
+      ('notes', 'display', ),
+    ],
+    title='AdmUserRequests',
+    legend='All User Requests',
+    )

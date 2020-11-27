@@ -36,22 +36,11 @@ tbody th:last-child {
   font-style: normal;
   /* font-weight:bold; */
   font-size:0.85rem;    
-  text-shadow: 2px 2px 2px #ffffff;
+  text-shadow: 2px 2px 2px #ffffff71;
 }
  
 .table-hov3r  tbody {
   font-style:italic;
-}
-
-.table-hov3r  tbody td:hover {
-  text-align: center;
-  vertical-align: middle;
-  text-shadow: 1px 1px 1px #ffffff6b;
-  transition-timing-function: ease-in-out;
-  transition-delay: 0.10s;
-  background-color: #f7fffd;
-  color: rgb(45, 129, 97);
-  box-shadow: inset 0.15rem 0.15rem 0.40rem 0.40rem #42b89586;
 }
 
 .table-hov3r  tbody th  {

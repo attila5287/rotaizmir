@@ -1,15 +1,32 @@
+
 {% extends "layout.html" %}
 {% block content %}
-<style> </style>
+<style></style>
+
+<a class="mini btn btn-outline-secondary btn-block shadow mb-3 py-2 text-bold opac-70" type="button" href="/a/a/r/0">
+  <h4 class="fas fa-external-link-alt text-secondary">
+    <i class="text-md">
+      all requests in different page
+    </i>
+  </h4>
+</a>
+
 <a class="mini btn btn-outline-primary btn-block shadow mb-3 py-2 text-bold opac-70" type="button" href="/a/t/u/0">
   
-  <h2 class="fab fa-tripadvisor align-self-center">
+  <h2 class="fab fa-tripadvisor">
     <i class="text-md">
-      show all open requests
+      show all open requests here
     </i>
   </h2>
 
 </a>
+<blockquote cite="info note" class="text-center text-italic text-sm">
+  or click/tap 'display icons' on either end of the rows to single out a user:
+  
+    <h5 class="far fa-sticky-note ml-2"></h5>
+    or
+    <h5 class="fab fa-tripadvisor"></h5>
+</blockquote>
 
   
 
@@ -18,7 +35,7 @@
   
   <div class="d-flex flex-row justify-content-between mb-2">
     
-    <a class="btn btn-outline-primary border-0 btn-sm text-sm p-1" href="/a/t/u">
+    <a class="btn btn-outline-primary border-0 btn-sm p-1" href="/a/t/u">
       Hide Notes
     </a>
 
@@ -27,7 +44,7 @@
     </span>
     
     <a class="btn btn-outline-primary btn-sm border-0 p-1" href="/a/t/u">
-      <i class="fas fa-undo text-md" data-toggle="tooltip" data-placement="bottom" title="go back to table-only view"></i>
+      <i class="fas fa-arrow-left text-md" data-toggle="tooltip" data-placement="bottom" title="go back to table-only view"></i>
     </a>
 
   </div>
@@ -36,41 +53,34 @@
   {% for category, sorted in user_requests.items() %}
   <hr class="mt-4 mb-1 border-primary opac-50">
   {% if category %}
-  <p class="text-primary text-italic text-center m-0">
-    {{category}}
-  </p>
   {% for obj in sorted %}
   {% if obj.type == 'req' %}
   
   {% set req = obj  %}
   
-  <style>
+  <style></style>
   
-.add-anime:hover h1{
-	color: #2aa198;
-}
-.add-anime:hover h6{
-	color: #2aa198;
-}
-  </style>
   <div class="media mt-2 rnd-xl p-0 add-anime shadow">
     <h1
       class="fa{{icons(req.category)}} txt-shd text-center  align-self-center opac-30 mx-4">
     </h1>
     
-    <div class="media-body pb-2 pt-0 align-items-center">
-<div class="d-flex flex-row justify-content-between">
-          <h6 class="mt-2 opac-70 border-bottom border-med ">
-        User ID
-        <i class="text-bold text-nonitalic"># {{req.user_id}}</i>
-        's  <strong class="text-italic">{{req.category}}</strong>
-        request message
-      </h6>
-        <a href="/delete/req/{{req.id}}" class="fas fa-times text-danger text-xl text-shd opac-70 shadow-sm mt-2 mr-3">
-        </a>
-</div>
-      {% set  user_req_set = [
-      ('text-2xl mr-4', 'text-md rnd-2xl border-bottom border-med pb-2 mb-2 mr-3 shadow-sm', 'content', req.content,),
+    <div class="media-body pb-2 pt-0"
+    style="vertical-align: middle;">
+    <div class="d-flex flex-row justify-content-between">
+      <h6 class="mt-2 opac-70 border-bottom border-med ">
+    User ID
+    <i class="text-bold text-nonitalic"># {{req.user_id}}</i>
+    's  <strong class="text-italic">{{req.category}}</strong>
+    request message
+  </h6>
+    <a href="/delete/req/{{req.id}}" class="fas fa-times text-danger text-xl text-shd opac-70 shadow-sm mt-2 mr-3">
+    </a>
+
+    </div>
+
+    {% set  user_req_set = [
+      ('text-2xl mr-4', 'text-md rnd-2xl border-bottom border-med pb-2 mb-2 mr-3 shadow-sm', 'req_content', req.content,),
       ('text-lg mr-4', 'text-sm ', 'date_posted', req.date_posted.date(),),
       ('text-lg mr-4', 'text-sm ', req.status, req.status,),
       ]  %}
@@ -90,7 +100,7 @@
 
   {% set note = obj %}
   <div class="media mt-4 rnd-xl p-1 offset-2 anim-shd ">
-    <h1 class="fa{{icons(note.status)}} text-{{styles(note.status)}} txt-shd opac-80 fa-pull-left align-self-center mr-4"></h1>
+    <h1 class="fa{{icons(note.status)}} text-{{styles(note.status)}} txt-shd opac-80 fa-pull-left align-self-center mr-4 ml-3"></h1>
     
     <div class="media-body text-{{styles(note.status)}}" style="vertical-align: middle;">
       <div class="d-flex flex-row justify-content-between">
@@ -101,13 +111,21 @@
             </h5>
           </a>        
       </div>
-      <i class="far far fa-paper-plane text-lg fa-fw"></i>
-      <i class="text-nonitalic text-comfo text-sm text-dark">
-        {{note.content}}
-        <br>
-        <i class="far fa-calendar-alt text-{{styles(note.status)}} text-md fa-fw"></i>
-        <i class="text-{{styles(note.status)}} ml-2"> {{note.date_posted.date()}} </i>
+    {% set  adm_note_set = [
+      ('text-xl mr-4', 'text-md text-dark pb-2 ', 'note_content', note.content,),
+      ('text-lg mr-4', 'text-sm ', 'date_posted', note.date_posted.date(),),
+      ('text-lg mr-4', 'text-sm ', note.status, note.status,),
+      ]  %}
+  
+      {% for icon_style, style, attr, req_attr in adm_note_set %}
+      <p class="text-italic pl-2 mb-1 {{style}}">
+        <i class="fa{{icons(attr)}} {{icon_style}} fa-fw"></i>{{req_attr}}  
+      </p>
+      
+      {% endfor %}
 
+
+      
       </i>
     </div>
 
@@ -191,10 +209,16 @@
 
           <td class="bg-primary text-light text-md"
             id="cell-{{ rowloop.index }}-{{ loop.index }}" scope="row"
-            style="vertical-align: middle;">
-            {{ v }}
-          </td>
+            >
+            <a class="fa-stack text-mini fa-2x text-left mr-2" data-toggle="tooltip" data-placement="right" title="display user id:{{v}} requests/admin notes"
+            href="/a/a/r/"
+            >
+              <i class="far fa-sticky-note fa-stack-2x fa-fw text-light opac-90"> 
+              </i>
+              <i class="ml-2 text-left text-bold text-light" >{{ v }}</i>
+            </a>               
 
+            
           {% elif k =="image_file"  %}
 
           <td
@@ -226,7 +250,7 @@
           {% else %}
 
           <td
-            class="text-md text-dark bg-dark{{rowloop.cycle('odd', 'even')}}"
+            class="text-md bg-dark{{rowloop.cycle('odd', 'even')}}"
             id="cell-{{ rowloop.index }}-{{ loop.index }}">
             {{ v }}
           </td>
@@ -390,5 +414,7 @@
     </nav>
   </div>
 </div>
+
+
 
 {% endblock %}
