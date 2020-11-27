@@ -23,24 +23,47 @@ admins = Blueprint('admins', __name__)
 @admins.route('/admin/tables/users/<int:id>', methods= [ 'GET', 'POST'])
 @admins.route('/admin/tables/users/<int:id>/', methods= [ 'GET', 'POST'])
 def users_table(id=None):
+  " >0: all users-reqs-notes >None: no reqs-notes >Else: selected user reqs-notes "
   pass
-  if not id:
+  if not id and not id==0:
     pass
-    disp_reqs = {}
+    disp_reqs = []
+  elif id==0:
+    pass
+    all_users = User.query.all()
+    cats = ['member','admin','prez',]
+    disp_reqs = []
+    x = []
+    all_reqs = Note.query.filter_by(type='request' )
+    all_notes = Note.query.filter_by(type='note' )
+    
+    for user in all_users:
+      pass
+      d = {}
+      notes_for_user = all_notes.filter_by(for_user=user )
+      
+      for cat in cats:
+        pass
+        filtered = notes_for_user.filter_by(category=cat).all()
+        d[cat] = filtered
+        
+      
+      disp_reqs.append(d)
+      disp_reqs = [ d for d in disp_reqs]
+
   else:
     pass
     selected_user = User.query.get_or_404(id)
-    all_notes = Note.query.filter_by(for_user=selected_user )
+    notes_for_user = Note.query.filter_by(type='note' ).filter_by(for_user=selected_user )
     cats = ['member','admin','prez',]
     d = {}
     for cat in cats:
       pass
-      filtered = all_notes.filter_by(category=cat).all()
+      filtered = notes_for_user.filter_by(category=cat).all()
       d[cat] = filtered
       
-    disp_reqs = d
+    disp_reqs = [d]
     
-  
   page = request.args.get('page', 1, type=int)
   select_user = UserMenu()
   select_member = MemberMenu()
@@ -74,6 +97,7 @@ def users_table(id=None):
     'admin', 
     'prez', 
   ]
+  # list of users that has active requests
   requestors = {}
   for label in labels:
     pass
@@ -302,7 +326,6 @@ def cancel_prez(id):
     db.session.commit()
     return redirect(request.referrer)
 
-
 @admins.route('/admin/<int:adm_id>/note/<int:usr_id>/for/<string:category>', methods= [ 'GET', 'POST'])
 def sticky_note(adm_id, usr_id, category):
   pass
@@ -389,3 +412,17 @@ def inject_icons():
     return gallery.get(label, 's fa-edit')
 
   return dict(icons=icons)
+
+@admins.context_processor
+def inject_status_style():
+  pass
+  def styles(label):
+    pass
+    gallery = {  # font awesome icons for member forms
+      "approved": "success",
+      "pending": "info",
+      "declined": "danger",
+    }
+    return gallery.get(label, 's fa-edit')
+
+  return dict(styles=styles)

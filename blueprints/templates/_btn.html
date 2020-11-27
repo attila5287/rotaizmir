@@ -1,0 +1,21 @@
+{% set filter_buttons = [
+  ('primary', 'member', ), 
+  ('info', 'admin', ), 
+  ('danger', 'prez', ), 
+  ]  %}  
+
+  {{cat}}
+  <div class="row text-center no-gutters">
+
+    {% for style, cat in filter_buttons %}
+    <div class="col-4 px-1">
+      <button class="btn btn-outline-{{style}} shadow-sm mt-2 btn-block" type="button">
+        <i class="fa{{icons(cat)}}">
+        </i>
+        {{cat}}
+      </button>
+    </div>
+    
+    {% endfor %}
+      
+  </div>

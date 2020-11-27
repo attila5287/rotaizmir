@@ -1,8 +1,21 @@
 {% extends "layout.html" %}
 {% block content %}
 <style> </style>
+<a class="btn btn-outline-primary btn-block shadow mb-3 py-2 text-bold opac-70" type="button" href="/a/t/u/0">
+  
+  <h2 class="fab fa-tripadvisor align-self-center">
+    <i class="text-md">
+      show all open requests
+    </i>
+  </h2>
+
+</a>
+
+  
+
+{% for user_requests in disp_reqs %}
 <div class="mini" name="requests-notes">
-{% for category, sorted in disp_reqs.items() %}
+{% for category, sorted in user_requests.items() %}
 <hr class="my-4 ">
   {% if category %}
 
@@ -61,15 +74,15 @@
 
   {% set note = obj %}
   <div class="media mt-4 rnd-xl p-1 offset-2 anim-shd border-primary">
-      <h1 class="fa{{icons(note.status)}} text-primary txt-shd opac-50 fa-pull-left"></h1>
-    <div class="media-body text-primary" style="vertical-align: middle;">
-      <h6 class="mt-0 border-bottom border-primary opac-50">Admin ID#
+      <h1 class="fa{{icons(note.status)}} text-{{styles(note.status)}} txt-shd opac-50 fa-pull-left"></h1>
+    <div class="media-body text-{{styles(note.status)}}" style="vertical-align: middle;">
+      <h6 class="mt-0 border-bottom border-{{styles(note.status)}} opac-50">Admin ID#
         {{note.admin_id}} noted:</h6>
       <i class="far far fa-paper-plane text-lg fa-fw"></i>
       <i class="text-nonitalic text-comfo text-sm text-dark">
         {{note.content}}
         <br>
-        <i class="far fa-calendar-alt text-primary text-md fa-fw"></i>
+        <i class="far fa-calendar-alt text-{{styles(note.status)}} text-md fa-fw"></i>
         <i class="text-dark ml-2"> {{note.date_posted.date()}} </i>
         <a href="/delete/note/{{note.id}}">
           <h5 class="far fa-times-circle text-primary fa-pull-right text-shd opac-70">
@@ -86,6 +99,7 @@
   {% endfor %}
 
 </div>
+{% endfor %}
 <div class="container-fluid">
 
   <div class="text-center mt-4" name="pagination-users">
@@ -100,7 +114,8 @@
     </a>
 
     {% else %}
-    <a class="btn btn-sm btn-secondary btn-sm border-0 shadow mb-4"
+    <a class="btn btn-sm 
+    btn-secondary btn-sm border-0 shadow mb-4"
       href="{{ url_for('admins.users_table', page=page_num) }}">{{ page_num }}</a>
     {% endif %}
 
