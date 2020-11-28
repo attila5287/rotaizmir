@@ -13,7 +13,9 @@
   
   </a>
 </div>
-<div class="form-group mini" name="filter-categories">
+
+<form method="POST" action="///" enctype="multipart/form-data">
+  <div class="form-group mini" name="filter-categories">
   <select id="filter_cats" name="filter_cats"
         class="selectpicker form-control custom-select shadow-sm border-0 text-md p-1 mb-2" multiple>
     
@@ -54,6 +56,10 @@
       </select>
   
 </div>
+<div class="form-group">
+<button class="form-control"  type="submit">filter and search</button>
+</div>
+</form>
 
 <div class="mini text-center" name="show-all-button">
   <a class="btn btn-primary btn-sm py-2 rnd-xl" href="/admin/all/requests/">
@@ -105,7 +111,7 @@
 
     {% for info,icon,style in legend %}
 
-    <li class="nav-item text-italic text-sm">
+    <li class="nav-item text-italic text-sm py-0">
       <a class="nav-link disabled mb-0">
         <button class="btn btn-{{style}} p-1 mb-0" type="button">
           <i class="fas fa-{{icon}} fa-fw"></i>
@@ -145,7 +151,7 @@
 
   {% for category, sorted in user_requests.items() %}
     {% if user_id in requestors %}
-      <div name="user-header" class="d-flex flex-row justify-content-between mb-2"
+    <div name="user-header" class="d-flex flex-row justify-content-between mt-3 mb-4"
     name="user-section-header">
 
     <a class="btn btn-outline-primary border-0 btn-sm p-1"
@@ -153,6 +159,7 @@
       Show Only: User {{user_id}}
     </a>
 
+    {{category}}
 
     <a class="btn btn-outline-primary btn-sm border-0 p-1"
       href="/admin/all/requests" data-toggle="tooltip" data-placement="bottom"
@@ -172,7 +179,6 @@
       <h1
         class="fa{{icons(req.category)}} txt-shd text-center  align-self-center opac-30 mx-4">
       </h1>
-
       <div class="media-body pb-2 pt-0" style="vertical-align: middle;">
         <div class="d-flex flex-row justify-content-between">
           <h6 class="mt-2 opac-70 border-bottom border-med ">
@@ -200,9 +206,6 @@
 
         {% endfor %}
       </div>
-
-
-
     </div>
     {% else %}
 
@@ -245,7 +248,56 @@
     </div>
     {% endif %}
     {% endfor %}
-
+    <div class="row no-gutters mt-4 mb-2">
+      <div class="col-3">
+      </div>
+      <div class="col-9  shadow-lg rnd-xl">
+        <form method="POST"
+          action="/admin/{{current_user.id}}/note/{{user_id}}/for/"
+          class="form-group">
+  
+          <select id="status" name="status"
+            class="selectpicker form-control form-control-sm text-md p-0 mb-1">
+  
+            {% set rand_opt= rand_chooser(options) %}
+  
+            <option value="{{category}}"
+              data-content="<i class='fas fa-{{icons(category)}}' aria-hidden='true'> {{category}}</i>" selected>
+            </option>
+  
+  
+          </select>
+          <select id="status" name="status"
+            class="selectpicker form-control form-control-sm text-md p-0 mb-1">
+  
+            {% set options = [
+            ('pending',  'balance-scale', 'info', '',  ),
+            ('approved', 'stamp', 'primary', '',  ),
+            ('declined', 'gavel', 'danger', '',  ),
+            ]  %}
+  
+            {% set rand_opt= rand_chooser(options) %}
+  
+            {% for status, icon,style, tooltip in options %}
+            <option value="{{status}}"
+              data-content="<i class='fas fa-{{icon}} text-{{style}}' aria-hidden='true'> {{status}}</i>">
+            </option>
+  
+            {% endfor %}
+  
+          </select>
+          
+          <textarea
+            class="form-control form-control-sm border-0 text-italic"
+            rows="1" name="content" id="content"
+            placeholder="note content about {{category}} request"></textarea>
+  
+          {{note_form.submit(class="btn btn-primary btn-block text-light text-bold rnd-md opac-80 mt-2 mb-0 pt-0 pb-1 px-1 border-0 shadow")}}
+  
+        </form>
+      </div>
+    </div>
+      
     {% endif %}
 
   {% endfor %}
@@ -256,3 +308,4 @@
 {% endfor %}
 
 {% endblock %}
+ 

@@ -270,6 +270,7 @@
             {% set active_request_indicator = 'btn-primary p-1 rnd-xl shadow opac-90' if user.id in requestors[auth_level] else 'opac-60' %}
 
             {% if user['is_'+auth_level]== "n" %}
+            
             <span>
               <a href="/{{auth_level}}/approved/{{user.id}}"
                 class="{{active_request_indicator}}">
@@ -414,6 +415,38 @@
   </div>
 </div>
 
+
+<form method="POST"
+action="/admin/{{current_user.id}}/note//for/"
+class="form-group mt-1 shadow-lg">
+
+<select id="status" name="status"
+  class="selectpicker form-control form-control-sm text-md p-0 mb-1">
+
+  {% set options = [
+  ('pending',  'balance-scale', 'info', '',  ),
+  ('approved', 'stamp', 'primary', '',  ),
+  ('declined', 'gavel', 'danger', '',  ),
+  ]  %}
+
+  {% set rand_opt= rand_chooser(options) %}
+
+  {% for status, icon,style, tooltip in options %}
+  <option value="{{status}}"
+    data-content="<i class='fas fa-{{icon}} text-{{style}}' aria-hidden='true'> {{status}}</i>">
+  </option>
+
+  {% endfor %}
+
+</select>
+<textarea
+  class="form-control form-control-sm form-control-dark border-0 text-italic"
+  rows="1" name="content" id="content"
+  placeholder="write abt. {{requested_for}} request"></textarea>
+
+{{note_form.submit(class="btn btn-light btn-block text-primary text-bold rnd-md opac-80 mt-2 mb-0 pt-0 pb-1 px-1 border-0 shadow")}}
+
+</form>
 
 
 {% endblock %}

@@ -502,9 +502,12 @@ def all_requests(id=None, cats='all'):
     disp_reqs = {
       selected_user.id : d
     }
+  
   note_form = AdminNoteForm()
-# list of users that has active requests
+  
+  # list of users that has active requests
   requestors = []
+  
   # collects all categor
   for req in Note.query.filter_by(type='req').all():
     pass
