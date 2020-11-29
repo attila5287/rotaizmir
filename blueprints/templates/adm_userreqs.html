@@ -1,5 +1,12 @@
 {% extends "layout.html" %}
 {% block content %}
+{% if current_user %}
+{% set current_user_id = current_user.id %}
+{% else %}
+{% set current_user_id = 1 %}
+
+{% endif %}
+
 <style>
 
 .tabs-right .btn:last-child {
@@ -46,9 +53,9 @@
           </div>
     
   </div>
-<div class="row no-gutters">
+<div class="row no-gutters" name="tabs-left">
   <div class="col-2 text-center">
-    <h2 class="text-info fab fa-searchengin"></h2>
+    <h2 class="text-info fab fa-searchengin  txt-shd mb-0"></h2>
     <div class="btn-group-vertical tabs-left mt-0" role="group" >
 
     {% set filter_buttons = [
@@ -140,7 +147,7 @@
           </div>
           <div class="form-group text-center mb-0">
             <label for="submit" class="text-muted text-sm text-italic mb-0">with above selected categories</label>
-            <button class="btn btn-outline-primary btn-block mb-0" type="submit" id="submit" name="submit">
+            <button class="btn btn-outline-primary btn-block shadow-sm mb-0" type="submit" id="submit" name="submit">
               <i class="fas fa-search-plus text-xl"></i>
               filter selected
             </button>
@@ -149,8 +156,8 @@
       </div>
     </div>
   </div>
-  <div class="col-2 text-center">
-  <h2 class="text-info fab fa-searchengin"></h2>
+  <div class="col-2 text-center" name="tabs-right">
+  <h2 class="text-info fab fa-searchengin  txt-shd mb-0"></h2>
   <div class="btn-group-vertical tabs-right mt-0" role="group" >
 
     {% set filter_buttons = [
@@ -340,13 +347,13 @@
     <div class="col-3">
     </div>
     <div class="col-9">
-      <div class="mini shadow-lg pb-5 mb-5 px-0">
+      <div class="mini panel panel-asym shadow-lg pb-5 mb-5 px-0">
         <div class="panel-header panel-header-secondary panel-header-icon">
-          <div class="panel-icon img-shd opac-70 shadow">\
+          <div class="panel-icon img-shd opac-70 shadow">
 
             {% if not current_user %}
 
-              <img class="article-img border-0 m-0 p-0"
+              <img class="rnd-xl article-img border-0 m-0 p-0"
               src="https://raw.githubusercontent.com/attila5287/rota-img/main/logos/logo_circle.png"
               alt="">
 
@@ -359,15 +366,28 @@
             {% endif %}
 
           </div>
-          <h3 class="panel-title text-right mt-4 ">Note</h3>
-          <hr class="my-0 opac-50 border-med">
-          <p class="text-right text-muted text-italic text-sm mr-2"></p>
+          <h4 class="panel-title text-right mt-4 text-shd mb-2">Admin Note Form</h4>
+          <hr class="my-0 opac-30 border-med border-primary">
+          <p class="d-flex flex-row justify-content-around text-right text-muted text-italic text-sm mr-2">
+            <span>for user
+            <a class="fas fa-user text-md disabled mt-0">
+              <strong class="fas fa-hashtag"></strong>
+              {{user_id}}</a>
+            </span>
+            <span>
+              by admin
+            <a class="fas fa-user-md text-md disabled mt-0">
+              <strong class="fas fa-hashtag"></strong>
+              {{user_id}}</a>
+            </span>
+          </p>
         </div>
-        <form class="form-group px-0 py-2 rnd-xl" method="POST"
-          action="/admin/{{current_user.id}}/note/{{user_id}}/for/">
-
-          <select id="status" name="status"
-            class="selectpicker form-control form-control-sm text-md p-0 m-0">
+        <form class="form-group px-2 py-2 rnd-xl" method="POST"
+          action="/admin/{{current_user_id}}/note/{{user_id}}/for">
+        <div class="form-group">
+          <label class="text-italic" for="category">category of the request</label>
+          <select id="category" name="status"
+            class="selectpicker form-control form-control-sm opac-70 text-md">
 
             {% set rand_opt= rand_chooser(options) %}
 
@@ -378,8 +398,13 @@
 
 
           </select>
+        </div>
+        <div class="form-group">
+          <label class="text-italic" for="status">
+            choose a status
+          </label>
           <select id="status" name="status"
-            class="selectpicker form-control form-control-sm text-md p-0 mb-1">
+            class="selectpicker form-control form-control-sm text-md shadow-sm p-0 mb-1">
 
             {% set options = [
               ('pending',  'balance-scale', 'info', '',  ),
@@ -397,14 +422,19 @@
             {% endfor %}
 
           </select>
-
-          <textarea class="form-control form-control-sm border-0 text-italic"
+        </div>
+          <textarea id="content" class="form-control form-control-sm border-0 text-italic shadow-sm mb-2"
             rows="1" name="content" id="content"
-            placeholder="content about {{category}} request"></textarea>
+            placeholder="write a brief explanation"></textarea>
 
-          {{note_form.submit(class="btn btn-primary btn-block text-light text-bold rnd-md opac-80 mt-2 mb-0 pt-0 pb-1 px-1 border-0 shadow")}}
-
+          {{note_form.submit(class="btn btn-outline-primary btn-block text-bold rnd-md opac-80 mt-3 pb-1 px-1 shadow")}}
         </form>
+        <div class="form-group text-center">
+          <a href="/{{category}}/approved/{{user_id}}" class="btn btn-primary" type="button">
+            <i class="fa{{icons(category)}}"></i>
+            approve {{category}} request</a>
+        </div>
+
 
       </div>
     </div>
