@@ -1,5 +1,15 @@
 {% extends "layout.html" %}
 {% block content %}
+<style>
+
+.tabs-right .btn:last-child {
+  border-radius: 0 0 2rem 0;
+}
+
+.tabs-left .btn:last-child {
+  border-radius: 0 0 0 2rem;
+}
+</style>
 <div class="mini" name="go-back2-users">
   <a class="btn btn-outline-primary btn-block shadow py-2 text-bold opac-70"
     type="button" href="/a/t/u" name="go-to-adm-tbl-users">
@@ -12,75 +22,35 @@
 
   </a>
 </div>
-
-<div class="form-mini text-center mb-0" name="multiple-selection-dropdowns">
-  <label for="category-selector-multi" class="text-muted text-sm text-italic mb-0">
-    select multiple categories using dropdown
-  </label>
-  <form class="form-group mb-0" method="POST" action="///" enctype="multipart/form-data">
-    
-    <div class="form-group" name="filter-categories">
-      <select id="filter_cats" name="filter_cats"
-        class="selectpicker form-control custom-select hadow-sm border-0 text-md p-1"
-        multiple>
-  
-        {% set options = [
-            ('m', 'member',  'user-check', 'primary', '',  ),
-            ('a', 'admin',   'user-md', 'secondary', '',  ),
-            ('p', 'prez',    'user-graduate', 'info', '',  ),
-                      ]  %}
-  
-        {% for val, status, icon,style, tooltip in options %}
-        <option value="{{val}}"
-          data-content="<i class='fas fa-{{icon}} text-{{style}} text-italic mr-3' aria-hidden='true'> {{status}} </i>"
-          selected>
-        </option>
-  
-        {% endfor %}
-  
-      </select>
-    </div>
-    <div class="form-group text-center">
-      <label for="filter_status" class="text-muted text-sm text-italic mb-0">select multiple status' from menu</label>
-      <select id="filter_status" name="filter_status"
-        class="selectpicker form-control shadow-sm border-0 text-md p-1"
-        multiple>
-  
-        {% set options = [
-            ('p', 'pending',  'balance-scale', 'info', '',  ),
-            ('d', 'declined', 'gavel', 'danger', '',  ),
-            ('a', 'approved', 'stamp', 'primary', '',  ),
-                      ]  %}
-  
-        {% set rand_opt= rand_chooser(options) %}
-  
-        {% for val, status, icon,style, tooltip in options %}
-        <option value="{{val}}"
-          data-content="<i class='fas fa-{{icon}} text-{{style}} text-italic mr-3' aria-hidden='true'> {{status}} </i>"
-          selected>
-        </option>
-  
-        {% endfor %}
-  
-      </select>
-  
-    </div>
-    <div class="form-group text-center mb-0">
-      <label for="submit" class="text-muted text-sm text-italic mb-0">with above selected categories</label>
-      <button class="btn btn-outline-primary btn-block mb-0" type="submit" id="submit" name="submit">
-        <i class="fas fa-search-plus text-xl"></i>
-        filter selected
-      </button>
-    </div>
-  </form>
-
+<div class="row no-gutters">
+  <div class="mini mb-0" name="reqnotes-legend">
+  </div>
 </div>
+</div>
+  <div name="filter-legend" class="container-fluid  text-center mt-0">
+    {% set legend = [
+      ('text-2xl', 'choose a category', 'quick search','b fa-searchengin', 'primary opac-70', ), 
+      ('text-xl', 'choose multiple categories', 'detailed search','s fa-search-plus', 'info opac-70', ), 
+      ]  %}
+          <div class="d-flex flex-row justify-content-around">
+            {% for size,sub_info,info,icon,style in legend %}
+            <div class="d-flex flex-column align-items-center">
+              <i class="fa{{icon}} fa-fw {{size}}"></i>
+              <h6 class="mb-0 opac-70">{{info}}</h6>
+              <i>{{sub_info}}</i>
+              </div>
+  
+                
 
-<div class="mini form-group mt-0" name="filter-category-btns">
-  <p class="text-sm text-italic text-center text-muted mb-2 mx-5">
-    or hit a button to filter categories one by one
-  </p>
-  <div class="d-flex flex-row btn-group mb-0 mt-0">
+            {% endfor %}
+          </div>
+    
+  </div>
+<div class="row no-gutters">
+  <div class="col-2 text-center">
+    <h2 class="text-info fab fa-searchengin"></h2>
+    <div class="btn-group-vertical tabs-left mt-0" role="group" >
+
     {% set filter_buttons = [
       ('m', 'primary', 'member', ),
       ('a', 'secondary', 'admin', ),
@@ -90,14 +60,16 @@
   
     {% if filter_k in categories %}
   
-    <a class="btn btn-{{style}}" href="/admin/{{href}}/requests/">
+    <a class="btn btn-{{style}} py-3 text-right shadow" href="/admin/{{href}}/requests/">
       <i class="fas fa{{icons(filter_k)}}"></i>
+      <hr class="border-{{style}} my-1 mx-2">
       <i>{{filter_k}}</i>
   
     </a>
     {% else %}
-    <a class="btn btn-outline-{{style}}" href="/admin/{{href}}/requests/">
+    <a class="btn btn-outline-{{style}} py-3 text-right" href="/admin/{{href}}/requests/">
       <i class="fas fa{{icons(filter_k)}}"></i>
+      <hr class="border-light opac-70 my-1 mx-2">
       <i>{{filter_k}}</i>
   
     </a>
@@ -107,33 +79,101 @@
   
     {% endfor %}
   </div>
-  
-</div>
+  </div>
+  <div class="col-8 text-center">
+    <div class="form-mini panel panel-asym mt-3 pb-5 text-center mb-0" name="multiple-selection-dropdowns">
+      <div class="container-fluid px-0 py-3">
+        <label for="category-selector-multi" class="text-muted text-sm text-italic mb-0">
+          <i class="text-info fas fa-search-plus text-xl"></i>
+          select multiple categories using dropdown
+        </label>
+        <form class="form-group mb-0" method="POST" action="/a/a/r" enctype="multipart/form-data">
+          
+          <div class="form-group" name="filter-categories">
+            <select id="filter_cats" name="filter_cats"
+              class="selectpicker form-control custom-select hadow-sm border-0 text-md p-1"
+              multiple>
+        
+              {% set options = [
+                  ('m', 'member',  'user-check', 'primary', '',  ),
+                  ('a', 'admin',   'user-md', 'secondary', '',  ),
+                  ('p', 'prez',    'user-graduate', 'info', '',  ),
+                            ]  %}
+        
+              {% for val, status, icon,style, tooltip in options %}
+              <option value="{{val}}"
+                data-content="<i class='fas fa-{{icon}} text-{{style}} text-italic mr-3' aria-hidden='true'> {{status}} </i>"
+                selected>
+              </option>
+        
+              {% endfor %}
+        
+            </select>
+          </div>
+          <div class="form-group text-center">
+            <label for="filter_status" class="text-muted text-sm text-italic mb-0">
+              <i class="text-info fas fa-search-plus text-xl"></i>
+              select multiple status' from menu
+            </label>
+            <select id="filter_status" name="filter_status"
+              class="selectpicker form-control form-control-sm shadow-sm border-0 text-md p-0"
+              multiple>
+        
+              {% set options = [
+                  ('p', 'pending',  'balance-scale', 'info', '',  ),
+                  ('d', 'declined', 'gavel', 'danger', '',  ),
+                  ('a', 'approved', 'stamp', 'primary', '',  ),
+                            ]  %}
+        
+              {% set rand_opt= rand_chooser(options) %}
+        
+              {% for val, status, icon,style, tooltip in options %}
+              <option value="{{val}}"
+                data-content="<i class='fas fa-{{icon}} text-{{style}} text-italic mr-3' aria-hidden='true'> {{status}} </i>"
+                selected>
+              </option>
+        
+              {% endfor %}
+        
+            </select>
+        
+          </div>
+          <div class="form-group text-center mb-0">
+            <label for="submit" class="text-muted text-sm text-italic mb-0">with above selected categories</label>
+            <button class="btn btn-outline-primary btn-block mb-0" type="submit" id="submit" name="submit">
+              <i class="fas fa-search-plus text-xl"></i>
+              filter selected
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  <div class="col-2 text-center">
+  <h2 class="text-info fab fa-searchengin"></h2>
+  <div class="btn-group-vertical tabs-right mt-0" role="group" >
 
-<div class="mini form-group text-center mt-0" name="filter-category-btns">
-  <label class="text-sm text-italic text-muted mx-5 mt-0">
-    or hit a button to filter each note/request status
-  </label>
-  <div class="d-flex flex-row btn-group">
     {% set filter_buttons = [
-      ('a', 'primary', 'approved', ),
-      ('d', 'secondary', 'declined', ),
       ('p', 'info', 'pending', ),
+      ('d', 'secondary', 'declined', ),
+      ('a', 'primary', 'approved', ),
       ] %}
     {% for href,style, filter_k in filter_buttons %}
   
     {% if filter_k in categories %}
   
-    <a class="btn btn-{{style}}" href="/admin/{{href}}/requests/">
-      <i class="fas fa{{icons(filter_k)}}"></i>
-      <i>{{filter_k}}</i>
-  
+    <a class="btn btn-{{style}} py-3 text-left shadow" href="/admin/{{href}}/requests/">
+      <i class="mr-4 fas fa{{icons(filter_k)}}"></i>
+      <i class="text-sm">{{filter_k}}</i>
+      
     </a>
     {% else %}
-    <a class="btn btn-outline-{{style}}" href="/admin/{{href}}/requests/">
-      <i class="fas fa{{icons(filter_k)}}"></i>
+    <a class="btn btn-outline-{{style}} py-3 text-left" href="/admin/{{href}}/requests/">
+      <i class="ml-4 fas fa{{icons(filter_k)}}
+      "></i>
+      <hr class="border-{{style}} my-1 mx-2">
       <i>{{filter_k}}</i>
-  
+      
     </a>
   
   
@@ -141,7 +181,7 @@
   
     {% endfor %}
   </div>
-  
+  </div>  
 </div>
 
 <div class="mini mb-0" name="reqnotes-legend">
@@ -300,7 +340,7 @@
     <div class="col-3">
     </div>
     <div class="col-9">
-      <div class="panel panel-asym mini shadow-lg pb-5 mb-5">
+      <div class="mini shadow-lg pb-5 mb-5 px-0">
         <div class="panel-header panel-header-secondary panel-header-icon">
           <div class="panel-icon img-shd opac-70 shadow">\
 
@@ -323,11 +363,11 @@
           <hr class="my-0 opac-50 border-med">
           <p class="text-right text-muted text-italic text-sm mr-2"></p>
         </div>
-        <form class="form-group px-1 py-2 rnd-xl" method="POST"
+        <form class="form-group px-0 py-2 rnd-xl" method="POST"
           action="/admin/{{current_user.id}}/note/{{user_id}}/for/">
 
           <select id="status" name="status"
-            class="selectpicker form-control form-control-sm text-md p-0">
+            class="selectpicker form-control form-control-sm text-md p-0 m-0">
 
             {% set rand_opt= rand_chooser(options) %}
 
@@ -374,8 +414,6 @@
 
   {% endfor %}
 </div>
-
-
 </div>
 {% endfor %}
 

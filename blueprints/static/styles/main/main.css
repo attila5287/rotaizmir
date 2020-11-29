@@ -389,3 +389,11 @@ box-shadow: 0 0.5rem 0.75rem #ff039648;
 .anim-shd:hover {
     box-shadow: rgba(159, 238, 196, 0.363) -5px 15px 15px;
   }
+
+.tabs-right .btn:last-child {
+  border-radius: 0 0 2rem 0;
+}
+
+.tabs-left .btn:last-child {
+  border-radius: 0 0 0 2rem;
+}
