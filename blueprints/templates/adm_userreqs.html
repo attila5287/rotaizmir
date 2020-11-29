@@ -1,3 +1,4 @@
+
 {% extends "layout.html" %}
 {% block content %}
 {% if current_user %}
@@ -23,26 +24,8 @@
   <div class="mb-0" name="reqnotes-legend">
   </div>
 </div>
-<div name="filter-legend" class="mini container text-center mt-0">
-  {% set legend = [
-    ('text-2xl', 'choose a category', 'quick search','b fa-searchengin', 'primary opac-70', ), 
-    ('text-xl', 'choose multiple categories', 'detailed search','s fa-search-plus', 'info opac-70', ), 
-    ]  %}
-        <div class="d-flex flex-row justify-content-around">
-          {% for size,sub_info,info,icon,style in legend %}
-          <div class="d-flex flex-column align-items-center">
-            <i class="fa{{icon}} fa-fw {{size}}"></i>
-            <h6 class="mb-0 opac-70">{{info}}</h6>
-            <i>{{sub_info}}</i>
-            </div>
 
-              
-
-          {% endfor %}
-        </div>
-  
-</div>
-<div class="mini">
+<div name="select-n-btns " class="mini">
   <div class="d-flex flex-row">
     <div class="text-center"  name="tabs-left">
       <h2 class="text-info fab fa-searchengin  txt-shd mb-0"></h2>
@@ -138,7 +121,6 @@
             <div class="form-group text-center mb-0">
               <label for="submit" class="text-muted text-sm text-italic mb-0">with above selected categories</label>
               <button class="btn btn-outline-primary btn-block shadow-sm mb-0" type="submit" id="submit" name="submit">
-                <i class="fas fa-search-plus text-xl"></i>
                 filter selected
               </button>
             </div>
@@ -181,7 +163,25 @@
     </div>  
   </div>
 </div>
+<div name="filter-legend" class="mini container text-center mt-0">
+  {% set legend = [
+    ('text-2xl', 'choose a category', 'quick search','b fa-searchengin', 'primary opac-70', ), 
+    ('text-xl', 'choose multiple categories', 'detailed search','s fa-search-plus', 'info opac-70', ), 
+    ]  %}
+        <div class="d-flex flex-row justify-content-around">
+          {% for size,sub_info,info,icon,style in legend %}
+          <div class="d-flex flex-column align-items-center">
+            <i class="fa{{icon}} fa-fw {{size}}"></i>
+            <h6 class="mb-0 opac-70">{{info}}</h6>
+            <i>{{sub_info}}</i>
+            </div>
 
+              
+
+          {% endfor %}
+        </div>
+  
+</div>
 <div class="mini mb-0" name="reqnotes-legend">
   <div class="d-flex flex-row justify-content-around">
     <i>categories</i>
@@ -376,7 +376,7 @@
         <form class="form-group px-2 py-2 rnd-xl" method="POST"
           action="/admin/{{current_user_id}}/note/{{user_id}}/for">
         <div class="form-group">
-          <label class="text-italic" for="category">category of the open request</label>
+          <label class="text-italic" for="category">category of the request</label>
           <select id="category" name="status"
             class="selectpicker form-control form-control-sm opac-70 text-md">
 
@@ -391,7 +391,7 @@
           </select>
         </div>
         <div class="form-group">
-          <label class="text-italic" for="status">choose the status to inform user</label>
+          <label class="text-italic" for="status">choose a status</label>
           <select id="status" name="status"
             class="selectpicker form-control form-control-sm text-md shadow-sm p-0 mb-1">
 
@@ -418,7 +418,11 @@
 
           {{note_form.submit(class="btn btn-outline-primary btn-block text-bold rnd-md opac-80 mt-3 pb-1 px-1 shadow")}}
         </form>
-        <a class="btn btn-primary btn-block" type="button">Text</a>
+        <a class="btn btn-primary btn-block" type="button"
+        href="/{{category}}/approved/{{user_id}}"
+        >
+          <i class="fas fa-stamp"></i>
+          approved!</a>
 
 
       </div>

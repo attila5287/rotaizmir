@@ -227,6 +227,7 @@ def approve_member(id):
     pass
     user.is_member = 'y'
     db.session.commit()
+    flash('request approved', 'success')
     return redirect(request.referrer)
     # return redirect(url_for('admins.users_table'))
     # return jsonify({'status': success_msg})
@@ -238,16 +239,14 @@ def cancel_member(id):
   user = User.query.get_or_404(id)
   if user.is_member == 'n':
     pass
-    return jsonify(
-      {
-             'status':'action not necessary',
-             'user ID #{}'.format(id):'not a member',
-             }
-      )
+    flash('request already approved', 'warning')
+    return redirect(request.referrer)
+  
   else:
     pass
     user.is_member = 'n'
     db.session.commit()
+    flash('request approved', 'success')
     return redirect(request.referrer)
 
 @admins.route('/admin/approved/<int:id>', methods= [ 'GET', 'POST'])
@@ -257,15 +256,13 @@ def approve_admin(id):
   user = User.query.get_or_404(id)
   if not user.is_admin != 'y':
     pass
-    return jsonify(
-      {'status':'action not necessary',
-       'user ID #{}'.format(id):'already a admin',
-       }
-    )
+    flash('request already approved', 'warning')
+    return redirect(request.referrer)
   else:
     pass
     user.is_admin = 'y'
     db.session.commit()
+    flash('request approved', 'success')
     return redirect(request.referrer)
 
 @admins.route('/admin/cancelled/<int:id>', methods= [ 'GET', 'POST'])
@@ -294,15 +291,14 @@ def approve_prez(id):
   user = User.query.get_or_404(id)
   if not user.is_prez != 'y':
     pass
-    return jsonify(
-      {'status':'action not necessary',
-       'user ID #{}'.format(id):'already a admin',
-       }
-    )
+    flash('request already approved', 'warning')
+    return redirect(request.referrer)
+  
   else:
     pass
     user.is_prez = 'y'
     db.session.commit()
+    flash('request approved', 'success')
     return redirect(request.referrer)
 
 
