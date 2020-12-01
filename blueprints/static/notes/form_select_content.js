@@ -10,14 +10,35 @@ let status_styles = {
   "pending": "info",
 };
 let auto_messages = {
-  "declined": "Feel free to appeal by sending another request.",
-  "approved": "Congrats, now check unlocked features of app!",
-  "pending": "A little patient appreciated, still in review...",
+  declined: [
+    "Feel free to appeal by sending another request.",
+    "Don't hesitate to send another request if feels fair.",
+    "Unfortunately, denied but could always send a new one. ",
+    "Bad news, request denied. Re-send if it doesn't feel right",
+  ],
+  approved: [
+    "Congrats, now check unlocked features of app!",
+    "Good news, approved! Enjoy more features! ",
+    "Moving up the ladder of auth.levels, approved!",
+    "Approved, more features to explore- finally!",
+  ],
+  pending: [
+    "A little patient appreciated, still in review...",
+    "Stuck in review, we are only human after all...",
+    "Pending, yet not denied-half of the...",
+    "Reviewing auth. request, patient is a virtue...",
+  ],
 };
+
 d3.selectAll( ".select_status" )
-  .on('change', () => {
-    
+  .on( 'change', () => { 
+    // pivot variable, pre-req for most----------
     let selected_value = d3.event.target.value;
+
+    let random_index = Math.round(Math.random() * 3);
+    
+    console.log("random_index :>> ", random_index);
+
     let selected_icon = status_icons[selected_value];
     let selected_style = status_styles[selected_value];
     let search_term = d3.event.target.dataset.search_term;
@@ -36,7 +57,10 @@ d3.selectAll( ".select_status" )
     independent_updates();
 
     
-    d3.selectAll(".change_value").attr("value", auto_messages[selected_value]);
+    d3.selectAll(".change_value").attr(
+      "value",
+      auto_messages[selected_value][random_index]
+    );
 
 
     d3.selectAll( ".change_text" ).classed( "text-uppercase", true ).text( selected_value );
