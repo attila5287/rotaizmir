@@ -414,3 +414,7 @@ box-shadow: 0 0.5rem 0.75rem #ff039648;
 .shadow-anim:hover:last-child {
   box-shadow: rgba(230, 194, 111, 0.575) 5px 15px 15px;
 }
+
+.shd-lite {
+  box-shadow: 0 0.5rem 0.75rem #e3f5ea4d;  
+}

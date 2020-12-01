@@ -1,7 +1,7 @@
 i
 {% extends "layout.html" %}
 {% block content %}
-{% if current_user %}
+{% if current_user.is_authenticated %}
 {% set current_user_id = current_user.id %}
 {% else %}
 {% set current_user_id = 1 %}
@@ -272,11 +272,6 @@ i
     <div class="col-10">
 
       {% set search_term = 'usr_{}_{}'.format(user_id, category) %}
-<style>
-.shd-lite {
-  box-shadow: 0 0.5rem 0.75rem #e3f5ea4d;  
-}
-</style>
       <h1 class="text-hide">{{search_term}}</h1>
       <div id ="panel_{{search_term}}" class="panel panel-asym shadow-lg pb-4 mb-5 px-0" >
         <div class="panel-header panel-header-secondary panel-header-icon" id="panel_header_{{search_term}}">
@@ -308,7 +303,6 @@ i
 
           </p>
         </div>
-
         <form class="form-group px-2 py-2 rnd-xl" method="POST"
           action="/admin/{{current_user_id}}/note/{{user_id}}/for/{{category}}">
           <div class="form-row">
