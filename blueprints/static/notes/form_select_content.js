@@ -67,7 +67,12 @@ d3.selectAll( ".select_status" )
     );
 
 
-    d3.selectAll( ".change_text" ).classed( "text-uppercase", true ).text( selected_value );
+    d3.selectAll(".remove_text").remove();
+    
+    d3.selectAll(".change_text")
+      .classed("text-mntz", true)
+      .classed("text-capitalize", true)
+      .text(selected_value);
     d3.selectAll(".change_btn").attr("class",
       "change_shadow change_btn btn btn-light text-bold text-"+selected_style + " btn-block shadow"
     );
