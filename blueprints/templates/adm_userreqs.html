@@ -269,15 +269,14 @@ i
     <div class="col-2">
     </div>
     <div class="col-10">
-      <div class="panel panel-asym shadow-lg pb-4 mb-5 px-0">
+      <div class="panel panel-asym shadow-lg pb-4 mb-5 px-0" id="panel_usr_{{user_id}}_{{category}}">
         <div class="panel-header panel-header-secondary panel-header-icon">
-          <div class="panel-icon img-shd shadow">
+          <div class="panel-icon img-shd shadow" id="panelicon_usr_{{user_id}}_{{category}}">
 
             {% if not current_user %}
 
             <img class="rnd-xl article-img border-0 m-0 p-0"
-              src="https://raw.githubusercontent.com/attila5287/rota-img/main/logos/logo_circle.png"
-              alt="">
+              src="https://raw.githubusercontent.com/attila5287/rota-img/main/logos/logo_circle.png" alt="">
 
             {% else %}
 
@@ -291,7 +290,7 @@ i
           <h4 class="panel-title text-right mt-4 text-shd mb-2">Note Form</h4>
           <hr class="my-0 opac-30 border-med border-primary">
           <p
-            class="d-flex flex-row justify-content-around text-right text-muted text-italic text-sm mr-2">
+            class="d-flex flex-row justify-content-around text-right text-muted text-italic text-sm mr-2 bg-light rnd-xl pt-1 pb-2">
             <span> regarding User
               <a class="fas fa-user text-md disabled mt-0">
                 <strong class="fas fa-hashtag"></strong>
@@ -300,66 +299,67 @@ i
 
           </p>
         </div>
+
         <form class="form-group px-2 py-2 rnd-xl" method="POST"
-          action="/admin/{{current_user_id}}/note/{{user_id}}/for">
-          <div class="form-group">
-            <label class="text-italic" for="category">category of the
-              request</label>
-            <select id="category" name="status"
-              class="selectpicker form-control form-control-sm text-md">
-              {% set options = [
-                      ('m', 'member',  'user-check', 'primary', '',  ),
-                      ('a', 'admin',   'user-md', 'secondary', '',  ),
-                      ('p', 'prez',    'user-graduate', 'info', '',  ),
-                                ]  %}
-              {% set rand_opt= rand_chooser(options) %}
+          action="/admin/{{current_user_id}}/note/{{user_id}}/for/{{category}}">
+          <div class="form-row">
+            <div class="form-group col-4">
+              <label class="text-muted text-italic" for="category">request category</label>
+            </div>
+            <div class="form-group col-8">
+              <select id="category" name="category"
+                class="selectpicker form-control text-md">
+                <option value="{{category}}"
+                  data-content="<i class='fas fa-{{icons(category)}}' aria-hidden='true'> {{category}}</i>"
+                  selected>
+                </option>
 
-              <option value="{{category}}"
-                data-content="<i class='fas fa-{{icons(category)}}' aria-hidden='true'> {{category}}</i>"
-                selected>
-              </option>
-
-
-            </select>
+              </select>
+            </div>
           </div>
-          <div class="form-group">
-            <label class="text-italic" for="status">choose a status</label>
-            <select id="status" name="status"
-              class="selectpicker form-control form-control-sm text-md shadow-sm p-0 mb-1">
-
-              {% set options = [
-                  ('pending',  'balance-scale', 'info', '',  ),
-                  ('approved', 'stamp', 'primary', '',  ),
-                  ('declined', 'gavel', 'danger', '',  ),
-                  ]  %}
-
-              {% set rand_opt= rand_chooser(options) %}
-
-              {% for status, icon,style, tooltip in options %}
-              <option value="{{status}}"
-                data-content="<i class='fas fa-{{icon}} text-{{style}}' aria-hidden='true'> {{status}}</i>">
-              </option>
-
-              {% endfor %}
-
-            </select>
+          <div class="form-row">
+            <div class="form-group col-4">
+              <label class="text-italic" for="status">choose a status</label>
+            </div>
+            <div class="form-group col-8">
+              <select id="status" name="status"
+                class="select_status selectpicker form-control form-control-lg text-md "  data-search_term="usr_{{user_id}}_{{category}}">
+  
+                {% set options = [
+                    ('pending',  'balance-scale', 'info', '',  ),
+                    ('approved', 'stamp', 'primary', '',  ),
+                    ('declined', 'gavel', 'danger', '',  ),
+                    ]  %}
+  
+                {% set rand_opt= rand_chooser(options) %}
+  
+                {% for status, icon,style, tooltip in options %}
+                <option value="{{status}}"
+                  data-content="<i class='text-uppercase fas fa-{{icon}} text-{{style}}' aria-hidden='true'> 
+                    <i class='text-monts'>
+                    {{status}}
+  
+                  </i>
+                  </i>
+                  ">
+                </option>
+  
+                {% endfor %}
+  
+              </select>
+            </div>
           </div>
+          <hr class="border-med my-0">
           <div class="form-group">
             <textarea id="content"
               class="form-control form-control-sm border-0 text-italic shadow-sm mb-2"
               rows="1" name="content" id="content"
-              placeholder="write a brief explanation"></textarea>
+              placeholder="write a brief explanation" class="form-control form-control-dark shadow"></textarea>
           </div>
           <div class="form-group mb-0">
             {{note_form.submit(class="btn btn-outline-primary btn-block shadow")}}
           </div>
         </form>
-        <div class="form-group mx-4 mt-0">
-          <a class="btn btn-primary btn-block" type="button"
-            href="/{{category}}/approved/{{user_id}}">
-            <i class="fas fa-stamp"></i>
-            approve {{category}} request</a>
-        </div>
 
 
       </div>

@@ -532,7 +532,8 @@ def all_requests(id=None, cats='all'):
       'p',
     ],
     js=[
-      ('notes', 'display', ),
+      ('notes', 'filter_buttons', ),
+      ('notes', 'form_select_content', ),
     ],
     title='AdmUserRequests',
     legend='All User Requests',
