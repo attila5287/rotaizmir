@@ -40,7 +40,7 @@ class AdminNoteForm(FlaskForm):
                            )
     content = TextAreaField('', validators=[DataRequired()], default="note")
     
-    submit = SubmitField('note!')
+    submit = SubmitField('submit')
     
  
  

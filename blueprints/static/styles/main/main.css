@@ -388,7 +388,7 @@ box-shadow: 0 0.5rem 0.75rem #ff039648;
 }
 .anim-shd:hover {
     box-shadow: rgba(159, 238, 196, 0.363) -5px 15px 15px;
-  }
+}
 
 .tabs-right .btn:last-child {
   border-radius: 0 0 2rem 0;
@@ -397,20 +397,20 @@ box-shadow: 0 0.5rem 0.75rem #ff039648;
 .tabs-left .btn:last-child {
   border-radius: 0 0 0 2rem;
 }
-      .shadow-anim {
-        box-shadow: rgba(65, 160, 109, 0.363) -5px 15px 15px;
-      }
+.shadow-anim {
+  box-shadow: rgba(65, 160, 109, 0.363) -5px 15px 15px;
+}
 
-      .shadow-anim:hover {
-        box-shadow: rgba(159, 238, 196, 0.363) -5px 15px 15px;
-        color: #78c2ad;
-        transform: scale(1.1, 1.1);
-      }
+.shadow-anim:hover {
+  box-shadow: rgba(159, 238, 196, 0.363) -5px 15px 15px;
+  color: #78c2ad;
+  transform: scale(1.1, 1.1);
+}
 
-      .shadow-anim:hover:first-child {
-        box-shadow: rgba(159, 238, 196, 0.363) -5px 15px 15px;
-      }
+.shadow-anim:hover:first-child {
+  box-shadow: rgba(159, 238, 196, 0.363) -5px 15px 15px;
+}
 
-      .shadow-anim:hover:last-child {
-        box-shadow: rgba(230, 194, 111, 0.575) 5px 15px 15px;
-      }
+.shadow-anim:hover:last-child {
+  box-shadow: rgba(230, 194, 111, 0.575) 5px 15px 15px;
+}

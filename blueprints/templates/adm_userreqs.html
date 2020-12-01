@@ -9,13 +9,11 @@ i
 <div name="go-back2-users" class="mini mb-0">
   <a class="btn btn-outline-primary btn-block shadow py-2 text-bold"
     type="button" href="/a/t/u" name="go-to-adm-tbl-users">
-
     <h4 class="fas fa-table align-self-center text-primary">
       <i class="text-lg text-nonbold">
         <strong>users</strong>
       </i>
     </h4>
-
   </a>
 </div>
 <div name="dynamic-filter-buttons" class="mini mt-0">
@@ -133,7 +131,7 @@ i
       <i class="text-muted ml-1">reset</i>
         </div>
       </div>
-    </div>
+</div>
 
 <div name="legend-requests" class="mini mb-0">
   <div class="d-flex flex-row justify-content-around mb-0">
@@ -189,6 +187,7 @@ i
     </a>
 
   </div>
+
   {% for obj in sorted %}
   {% if obj.type == 'req' %}
   {% set req = obj  %}
@@ -244,7 +243,7 @@ i
         </a>
       </div>
       {% set  adm_note_set = [
-              ('text-2xl mr-4', 'text-lg text-dark border-bottom rnd-lg pb-2 ', 'note_content', note.content,),
+              ('text-2xl mr-4', 'text-md text-right text-dark border-bottom rnd-lg pb-2 ', 'note_content', note.content,),
               ('text-lg mr-4', 'text-sm ', 'date_posted', note.date_posted.date(),),
               ('text-lg mr-4', 'text-sm ', note.status, note.status,),
               ]  %}
@@ -265,13 +264,23 @@ i
   {% endif %}
   {% endfor %}
 
-  <div class="row no-gutters mt-4 mb-2" name="admin-note-form">
+
+
+  <div name="admin-note-form" class="row no-gutters mt-4 mb-2">
     <div class="col-2">
     </div>
     <div class="col-10">
-      <div class="panel panel-asym shadow-lg pb-4 mb-5 px-0" id="panel_usr_{{user_id}}_{{category}}">
-        <div class="panel-header panel-header-secondary panel-header-icon">
-          <div class="panel-icon img-shd shadow" id="panelicon_usr_{{user_id}}_{{category}}">
+
+      {% set search_term = 'usr_{}_{}'.format(user_id, category) %}
+<style>
+.shd-lite {
+  box-shadow: 0 0.5rem 0.75rem #e3f5ea4d;  
+}
+</style>
+      <h1 class="text-hide">{{search_term}}</h1>
+      <div id ="panel_{{search_term}}" class="panel panel-asym shadow-lg pb-4 mb-5 px-0" >
+        <div class="panel-header panel-header-secondary panel-header-icon" id="panel_header_{{search_term}}">
+          <div class="change_shadow panel-icon img-shd" id="panel_iconbox_{{search_term}}">
 
             {% if not current_user %}
 
@@ -287,10 +296,10 @@ i
             {% endif %}
 
           </div>
-          <h4 class="panel-title text-right mt-4 text-shd mb-2">Note Form</h4>
-          <hr class="my-0 opac-30 border-med border-primary">
+          <h4 class="change_text highlight_text panel-title text-right mt-4 text-shd mb-2">Note Form</h4>
+          <hr class="change_border mt-0 mb-2 border-primary">
           <p
-            class="d-flex flex-row justify-content-around text-right text-muted text-italic text-sm mr-2 bg-light rnd-xl pt-1 pb-2">
+            class="d-flex flex-row justify-content-around text-right text-italic text-sm mr-2 bg-light rnd-xl pt-1 pb-2">
             <span> regarding User
               <a class="fas fa-user text-md disabled mt-0">
                 <strong class="fas fa-hashtag"></strong>
@@ -304,7 +313,7 @@ i
           action="/admin/{{current_user_id}}/note/{{user_id}}/for/{{category}}">
           <div class="form-row">
             <div class="form-group col-4">
-              <label class="text-muted text-italic" for="category">request category</label>
+              <label class="highlight_bg text-italic text-sm" for="category">category (selected)</label>
             </div>
             <div class="form-group col-8">
               <select id="category" name="category"
@@ -319,7 +328,7 @@ i
           </div>
           <div class="form-row">
             <div class="form-group col-4">
-              <label class="text-italic" for="status">choose a status</label>
+              <label class="highlight_bg text-italic" for="status">choose a status</label>
             </div>
             <div class="form-group col-8">
               <select id="status" name="status"
@@ -349,15 +358,18 @@ i
               </select>
             </div>
           </div>
-          <hr class="border-med my-0">
+          <hr class="change_border my-3">
           <div class="form-group">
-            <textarea id="content"
-              class="form-control form-control-sm border-0 text-italic shadow-sm mb-2"
+            <label for="content" class="form-control  form-control-plaintext text-center text-italic text-sm mb-0">auto-message</label>
+            <input type="text" id="content"
+              class="change_value form-control form-control-lg pb-5 pt-4 text-sm  border-0 text-italic shadow-sm mb-2 text-wrap"
               rows="1" name="content" id="content"
-              placeholder="write a brief explanation" class="form-control form-control-dark shadow"></textarea>
+              value="A little patient appreciated, being reviewed." ></input>
           </div>
-          <div class="form-group mb-0">
-            {{note_form.submit(class="btn btn-outline-primary btn-block shadow")}}
+          <div class="form-row mb-0">
+            <div class="form-group col-8 offset-2 mb-0">
+            {{note_form.submit(class="change_shadow change_btn btn btn-info btn-block shadow")}}
+            </div>
           </div>
         </form>
 

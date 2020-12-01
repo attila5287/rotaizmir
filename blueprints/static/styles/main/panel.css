@@ -30,6 +30,9 @@
 .panel .panel-header-secondary .panel-icon{
   background: linear-gradient(60deg, #f3aeb2, #f3878c);
 }  
+.panel .panel-header-info .panel-icon{
+  background: linear-gradient(60deg, #6ca9b6, #6cc3d5);
+}  
 .panel .panel-header {
   border-bottom: none;
   background: transparent;
