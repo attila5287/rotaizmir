@@ -332,8 +332,13 @@ i
             </div>
             <div class="form-group col-8">
               <select id="status" name="status"
-                class="select_status selectpicker form-control form-control-lg text-md "  data-search_term="usr_{{user_id}}_{{category}}">
-  
+                class="select_status selectpicker form-control form-control-lg custom-select  text-md "  data-search_term="usr_{{user_id}}_{{category}}">
+                <option value=""
+                  data-content="<i class='fas fa-door-open text-{{style}} text-dark txt-shd text-md' aria-hidden='true'> 
+                    <i class='text-monts'> selection required </i>
+                    </i>
+                  "  selected disabled>
+                </option>  
                 {% set options = [
                     ('pending',  'balance-scale', 'info', '',  ),
                     ('approved', 'stamp', 'primary', '',  ),
@@ -345,11 +350,8 @@ i
                 {% for status, icon,style, tooltip in options %}
                 <option value="{{status}}"
                   data-content="<i class='text-uppercase fas fa-{{icon}} text-{{style}}' aria-hidden='true'> 
-                    <i class='text-monts'>
-                    {{status}}
-  
-                  </i>
-                  </i>
+                    <i class='text-monts'> {{status}} </i>
+                    </i>
                   ">
                 </option>
   
@@ -364,7 +366,7 @@ i
             <input type="text" id="content"
               class="change_value form-control form-control-lg pb-5 pt-4 text-sm  border-0 text-italic shadow-sm mb-2 text-wrap"
               rows="1" name="content" id="content"
-              value="A little patient appreciated, being reviewed." ></input>
+              value="make a selection to generate an auto-message" ></input>
           </div>
           <div class="form-row mb-0">
             <div class="form-group col-8 offset-2 mb-0">
