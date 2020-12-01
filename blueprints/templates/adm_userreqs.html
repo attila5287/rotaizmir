@@ -72,18 +72,17 @@ i
       {% endfor %}
 
     </div>
-    <div class="d-flex flex-row justify-content-center align-items-center mt-0 mb-2">
+    <div class="d-flex flex-row justify-content-center align-items-center mt-3 mb-2">
       <i class="fas fa-search-plus text-xl text-primary mr-3"></i>
       <p id="filtered_categories" class="mt-2 mb-0 text-center text-italic"> included categories</p>
 
       <a href="/a/all/r" class="btn btn-sm btn-warning ml-3 shadow-sm">
-        <i class="fas fa-undo">
-          reset
-        </i>
+        <i class="fas fa-undo text-sm"></i>
       </a>      
+      <i class="text-muted ml-1">reset</i>
     </div>
     <div id="filter_submit_box">
-      <a id="filter_submit_btn"  class="filter_submit_btn btn btn-outline-primary btn-block text-lg text-comfo shadow mt-1"
+      <a id="filter_submit_btn"  class="filter_submit_btn btn btn-primary btn-block text-lg text-comfo shadow mt-1"
       href="/admin/amp/requests">
       admin, member and prez
     </a>
@@ -124,17 +123,17 @@ i
   
       {% endfor %}
     </div>
-        <div class="d-flex flex-row justify-content-center align-items-center mt-2">
+    <div class="d-flex flex-row justify-content-center align-items-center mt-2">
       <i class="fab fa-searchengin text-3xl text-primary mr-3"></i>
       <p class="mt-2 mb-0 text-center text-italic"> one category at a time</p>
       <a href="/a/all/r" class="btn btn-sm btn-warning ml-3 shadow-sm">
-        <i class="fas fa-undo">
-          reset
+        <i class="fas fa-undo text-sm">
         </i>
       </a>
+      <i class="text-muted ml-1">reset</i>
+        </div>
+      </div>
     </div>
-  </div>
-</div>
 
 <div name="legend-requests" class="mini mb-0">
   <div class="d-flex flex-row justify-content-around mb-0">
@@ -351,11 +350,11 @@ i
               rows="1" name="content" id="content"
               placeholder="write a brief explanation"></textarea>
           </div>
-          <div class="form-group">
+          <div class="form-group mb-0">
             {{note_form.submit(class="btn btn-outline-primary btn-block shadow")}}
           </div>
         </form>
-        <div class="form-group">
+        <div class="form-group mx-4 mt-0">
           <a class="btn btn-primary btn-block" type="button"
             href="/{{category}}/approved/{{user_id}}">
             <i class="fas fa-stamp"></i>

@@ -91,7 +91,7 @@ function generate_filter_btn() {
         .append( "a" )
         .attr(
           "class",
-          "filter_submit_btn btn btn-outline-primary btn-block text-lg text-comfo shadow mt-1"
+          "filter_submit_btn btn btn-primary btn-block text-lg text-comfo shadow mt-1"
         )
         .attr( "id", "filter_submit_btn" )
         .attr( "href", `/admin/${new_categories}/requests` )
