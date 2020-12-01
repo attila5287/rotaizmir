@@ -17,9 +17,7 @@ def about():
             ('theme', '/minty/bootstrap', ),
             ('main', 'main', ),
         ],
-        js=[
-            ('about', 'sunburst', ),
-        ],
+        js=[None],
         legend='About App',
         title='About',
         access=[

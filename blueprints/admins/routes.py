@@ -447,7 +447,6 @@ def inject_status_style():
 @admins.route('/admin/<string:cats>/requests/<int:id>', methods= [ 'GET', 'POST'])
 @admins.route('/admin/<string:cats>/requests/<int:id>/', methods= [ 'GET', 'POST'])
 def all_requests(id=None, cats='all'):
-  " >0: all users-reqs-notes >None: no reqs-notes >Else: selected user reqs-notes "
   pass
   if  cats == 'all' or None:
     pass
@@ -479,7 +478,9 @@ def all_requests(id=None, cats='all'):
       for cat in cats:
         pass
         filtered = notes_for_user.filter_by(category=cat).all()
-        d[cat] = filtered
+        if filtered:
+          pass
+          d[cat] = filtered
         
          
       disp_reqs[user.id]= d
