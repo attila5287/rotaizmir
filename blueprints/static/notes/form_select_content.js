@@ -34,8 +34,12 @@ d3.selectAll( ".select_status" )
   .on( 'change', () => { 
     // pivot variable, pre-req for most----------
     let selected_value = d3.event.target.value;
-
-    let random_index = Math.round(Math.random() * 3);
+    let n_pool = auto_messages[ selected_value ].length;
+    if (n_pool) {
+      n_pool = n_pool - 1;
+      
+    } 
+    let random_index = Math.round(Math.random() * n_pool);
     
     console.log("random_index :>> ", random_index);
 
@@ -68,10 +72,11 @@ d3.selectAll( ".select_status" )
       "change_shadow change_btn btn btn-light text-bold text-"+selected_style + " btn-block shadow"
     );
     
-    panel.attr(
-      "class",
-      `panel panel-asym shadow-lg pb-4 mb-5 px-0 bg-${selected_style}`
-    );
+    panel
+      .attr(
+        "class",
+        `panel panel-asym shadow-lg pb-4 mb-5 px-0 bg-${selected_style}`
+      );
     
     panel_icon.selectAll( 'img' ).remove();
     panel_icon.selectAll( 'i' ).remove();

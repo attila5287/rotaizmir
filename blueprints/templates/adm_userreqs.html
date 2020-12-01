@@ -306,8 +306,8 @@ i
         <form class="form-group px-2 py-2 rnd-xl" method="POST"
           action="/admin/{{current_user_id}}/note/{{user_id}}/for/{{category}}">
           <div class="form-row">
-            <div class="form-group col-4">
-              <label class="highlight_bg text-italic text-sm" for="category">category (selected)</label>
+            <div class="form-group col-4 text-right">
+              <label class="highlight_text text-italic" for="category">category (selected)</label>
             </div>
             <div class="form-group col-8">
               <select id="category" name="category"
@@ -321,8 +321,8 @@ i
             </div>
           </div>
           <div class="form-row">
-            <div class="form-group col-4">
-              <label class="highlight_bg text-italic" for="status">choose a status</label>
+            <div class="form-group col-4 text-right">
+              <label id="search_term" class="highlight_text text-italic" for="status">choose a status</label>
             </div>
             <div class="form-group col-8">
               <select id="status" name="status"
@@ -358,7 +358,7 @@ i
           <div class="form-group">
             <label for="content" class="form-control  form-control-plaintext text-center text-italic text-sm mb-0">auto-message</label>
             <input type="text" id="content"
-              class="change_value form-control form-control-lg pb-5 pt-4 text-md  border-0 text-italic shadow-sm mb-2 text-wrap"
+              class="change_value  form-control form-control-lg pb-5 pt-4 text-md  border-0 text-italic shadow-sm mb-2 text-wrap"
               rows="1" name="content" id="content"
               value="make a selection to generate an auto-message" ></input>
           </div>
