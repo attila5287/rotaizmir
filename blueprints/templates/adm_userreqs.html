@@ -20,7 +20,7 @@ i
 </div>
 <div name="dynamic-filter-buttons" class="mini mt-0">
 
-  <div class="panel panel-asym pb-5 text-center mb-0">
+  <div class="panel panel-asym pb-3 text-center mb-0">
     {% set filter_buttons = [
       ('m', 'primary', 'member', ),
       ('a', 'secondary', 'admin', ),
@@ -44,12 +44,9 @@ i
         <i class="text-2xl text-{{style}} fas fa{{icons(filter_k)}} text-2xl">
         </i>
       </span>
-
-
       {% endif %}
       {% endfor %}
     </div>
-
     <div name="filter-buttons-container" class="row no-gutters">
       {% for id,style, filter_k in filter_buttons %}
       <div class="col-4" id="filter_box_{{id}}">
@@ -75,33 +72,36 @@ i
       {% endfor %}
 
     </div>
-
-    
-    <div id="filter_submit_box">
+    <div class="d-flex flex-row justify-content-center align-items-center mt-0 mb-2">
+      <i class="fas fa-search-plus text-xl text-primary mr-3"></i>
       <p id="filtered_categories" class="mt-2 mb-0 text-center text-italic"> included categories</p>
-      <a id="filter_submit_btn"  class="filter_submit_btn btn btn-outline-primary btn-block text-lg text-comfo shadow mt-0"
-        href="/admin/amp/requests">
-        admin, member and prez
-      </a>
+
+      <a href="/a/all/r" class="btn btn-sm btn-warning ml-3 shadow-sm">
+        <i class="fas fa-undo">
+          reset
+        </i>
+      </a>      
     </div>
+    <div id="filter_submit_box">
+      <a id="filter_submit_btn"  class="filter_submit_btn btn btn-outline-primary btn-block text-lg text-comfo shadow mt-1"
+      href="/admin/amp/requests">
+      admin, member and prez
+    </a>
+    
   </div>
-
-
-
+  </div>
 </div>
 
-
-
 <div name="href-filter-buttons" class="mini">
-  <div class="panel panel-asym pb-5 text-center mb-0">
-    <div class="btn-group m-3" role="group">
+  <div class="panel panel-asym pb-3 text-center mb-0">
+    <div class="btn-group" role="group">
       {% set filter_buttons = [
       ('m', 'primary', 'member', ),
       ('a', 'secondary', 'admin', ),
       ('p', 'info', 'prez', ),
       ] %}
       {% for href,style, filter_k in filter_buttons %}
-
+  
       {% if filter_k in categories %}
       <a class="btn btn-{{style}} 
       rnd-2xl click-listener shadow" href="/admin/{{href}}/requests/">
@@ -121,18 +121,27 @@ i
         <i>{{filter_k}}</i>
       </a>
       {% endif %}
-
+  
       {% endfor %}
+    </div>
+        <div class="d-flex flex-row justify-content-center align-items-center mt-2">
+      <i class="fab fa-searchengin text-3xl text-primary mr-3"></i>
+      <p class="mt-2 mb-0 text-center text-italic"> one category at a time</p>
+      <a href="/a/all/r" class="btn btn-sm btn-warning ml-3 shadow-sm">
+        <i class="fas fa-undo">
+          reset
+        </i>
+      </a>
     </div>
   </div>
 </div>
 
 <div name="legend-requests" class="mini mb-0">
-  <div class="d-flex flex-row justify-content-around">
-    <i>category</i>
+  <div class="d-flex flex-row justify-content-around mb-0">
     <i>status</i>
+    <i>category</i>
   </div>
-  <nav class="nav nav-fill">
+  <nav class="nav nav-fill my-0">
 
     {% set legend = [
         ('declined','gavel', 'danger', ), 
@@ -158,8 +167,9 @@ i
 
   </nav>
 </div>
-{% for user_id, user_requests in disp_reqs.items() %}
+<hr>
 <div class="mini" name="MAIN-requests-notes">
+{% for user_id, user_requests in disp_reqs.items() %}
   {% for category, sorted in user_requests.items() %}
   {% if user_id in requestors %}
   <div name="user-header" class="d-flex flex-row justify-content-between"
@@ -360,7 +370,7 @@ i
   {% endif %}
 
   {% endfor %}
+  {% endfor %}
 </div>
-{% endfor %}
 
 {% endblock %}
