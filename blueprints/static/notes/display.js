@@ -97,7 +97,7 @@ function generate_filter_btn() {
         .attr( "href", `/admin/${new_categories}/requests` )
         .text( new_catnames );
 
-      const default_msg = 'included categories';
+      const default_msg = 'included categories below';
 
       d3.select( "#filtered_categories" )
         .attr( "class", "text-italic text-center mb-1 mt-2" )

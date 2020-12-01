@@ -17,7 +17,7 @@ def about():
             ('theme', '/minty/bootstrap', ),
             ('main', 'main', ),
         ],
-        js=[None],
+        js=[],
         legend='About App',
         title='About',
         access=[
@@ -49,7 +49,7 @@ def home():
                                ('theme', '/minty/bootstrap', ),
                                ('main', 'main', ),
                            ],
-                           js=None,
+                           js=[],
                            legend='Public Posts',
                            title='Home | Public',
                            )
