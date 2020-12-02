@@ -251,7 +251,7 @@
               <i class="highlight_text far fa-envelope-open fa-fw text-xl"></i>
               <label class="highlight_text text-comfo text-sm mb-0">
                 Requested for </label>
-              <hr class="border-med my-0">
+              <hr class="change_border border-med mt-1 mb-0 opac-70">
             </div>
             <div class="form-group col">
               <select id="category" name="category"
@@ -280,11 +280,11 @@
 
                 Noted as 
               </label>
-              <hr class="border-med my-0">
+              <hr class="change_border border-med mt-1 mb-0 opac-70">
             </div>
             <div class="form-group col">
               <select id="status" name="status"
-                class="select_status selectpicker form-control"
+                class="select_status selectpicker form-control form-control-lg"
                 data-search_term="usr_{{user_id}}_{{category}}">
                 <option value="" data-content="<i class='fas fa-door-open text-2xl py-0 my-0 text-secondary fa-fw' aria-hidden='true'> 
                       <i class='text-nonbold text-mntsrt text-secondary text-lg pl-2 my-0 py-0'> 
@@ -306,9 +306,9 @@
                 {% set rand_opt= rand_chooser(options) %}
 
                 {% for status, icon,style, tooltip in options %}
-                <option value="{{status}}" data-content="<i class='fas fa-{{icon}} fa-fw text-{{style}} text-xl pl-2' aria-hidden='true'> 
-                    <i class='text-monts text-uppercase  text-nonitalic text-capitalize text-xl'> {{status}} </i>
-                    </i>
+                <option class="" value="{{status}}" data-content="<i class='fas fa-{{icon}} fa-fw text-{{style}} text-xl pl-2 mt-0 pt-0' aria-hidden='true'> 
+                </i>
+                    <i class=' ml-2 text-monts text-uppercase  text-nonitalic text-capitalize text-lg mt-0 align-self-start'> {{status}} </i>
                   ">
                 </option>
 
@@ -318,23 +318,18 @@
             </div>
           </div>
           <p class="text-italic text-sm mt-0 mb-0">
-            <i class="far fa-question-circle text-md"></i>
+            <i class="fas fa-map-signs text-md"></i>
             Firstly, change the status of a note and notice a message will be generated each option selected. 
           </p>
           
           <div class="form-row form-group my-0">
             <input type="text" id="content"
-            class="change_value form-control form-control-sm rnd-xl pb-5 pt-4 text-md text-italic shadow mb-2 text-nowrap"
+            class="change_value form-control form-control-sm rnd-xl pb-5 pt-4 text-md text-italic shadow-sm mb-2 mt-2"
             rows="1" name="content" id="content"
-            value="change status to generate auto-message"></input>
+            value="change status first then edit message here!"></input>
           </div>
           
-          <p class="text-italic text-sm mt-0 mb-0">
-            <i class="fas fa-map-signs text-lg"></i>
-            Message could be edited suggested or re-typed from scratch. 
-          </p>
-
-          <div class="form-row mb-0">
+          <div class="form-row mb-2 mt-3">
             <div class="form-group col-8 offset-2 mb-0">
               {{note_form.submit(class="change_shadow change_btn btn btn-info btn-block shadow")}}
             </div>
