@@ -401,9 +401,33 @@ def user_requests():
     admin_form = AdminRequestForm()
     prez_form = PrezRequestForm()
     active_requests = Note.query.filter_by(for_user=current_user).all()
+
+
+    notes_for_user = Note.query.filter_by(for_user=current_user )
+    cats = ['member','admin','prez',]
+    d = {}
+    for cat in cats:
+      pass
+      filtered = notes_for_user.filter_by(category=cat).all()
+      d[cat] = filtered
+      
+    disp_reqs = {
+      3 : d
+    }    
+    
+    # list of users that has active requests
+    requestors = []
+    
+    # collects all categor
+    for req in Note.query.filter_by(type='req').all():
+        pass
+        requestors.append(req.user_id)
+        
+    requestors = [
+        r for  r in requestors
+    ]      
     
     formdata_posted = (request.method == 'POST')
-    
     if formdata_posted:
         pass
         usr_req = Note(
@@ -419,6 +443,8 @@ def user_requests():
         return redirect(url_for('users.user_requests'))        
 
     return render_template('user_reqs.html',
+                           requestors=requestors,
+                           disp_reqs = disp_reqs,
                            member_form=member_form,
                            admin_form=admin_form,
                            prez_form=prez_form,
@@ -437,3 +463,68 @@ def delete_request(id):
     db.session.delete(req)
     db.session.commit()
     return redirect(url_for('users.user_requests'))
+
+
+
+@users.context_processor
+def inject_icons():
+  pass
+  def icons(label):
+    pass
+    gallery = {  # font awesome icons for member forms
+      "email": "s fa-envelope",
+      "first_name": "s fa-user-edit",
+      "gender": "s fa-venus-mars",
+      "id": "s fa-id-card",
+      "image_file": "s fa-file-image",
+      "img_url": "s fa-image",
+      "instagram": "b fa-instagram",
+      "is_admin": "s fa-user-md",
+      "is_member": "s fa-user-check",
+      "is_prez": "s fa-user-shield",
+      "last_name": "s fa-user-edit",
+      "linkedin": "b fa-linkedin",
+      "middle_name": "s fa-question-circle",
+      "phone_num": "s fa-phone",
+      "twitter": "b fa-twitter",
+      "user_id": "s fa-user-tag",
+      "menu": "s fa-sort",
+      "new_note": "s fa-sticky-note",
+      "display_requests": "b fa-tripadvisor",
+      "make_admin": "s fa-user-md",
+      "make_member": "s fa-user-check",
+      "make_prez": "s fa-user-shield",
+      "admin_request":  "s fa-concierge-bell",
+      "member_request": "s fa-concierge-bell",
+      "prez_request":   "s fa-concierge-bell",
+      "delivered":   "s fa-envelope",
+      "denied":   "s fa-gavel",
+      "approved":   "s fa-stamp",
+      "pending":  "s fa-balance-scale",
+      "date_posted": "r fa-calendar-alt",
+      "note_content": "r fa-paper-plane",
+      "req_content": "r fa-envelope-open",
+      'member' : 's fa-user-check',
+      'admin' : 's fa-user-md',
+      'prez' : 's fa-user-graduate',
+    }
+    return gallery.get(label, 's fa-edit')
+
+  return dict(icons=icons)
+
+@users.context_processor
+def inject_status_style():
+  pass
+  def styles(label):
+    pass
+    
+    gallery = {  # font awesome icons for member forms
+      "approved": "primary",
+      "pending": "info",
+      "denied": "secondary",
+      "delivered": "",
+    }
+    
+    return gallery.get(label, '')
+
+  return dict(styles=styles)

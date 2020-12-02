@@ -1,3 +1,4 @@
+
 {% extends "layout.html" %}
 {% block content %}
 {% if current_user.is_authenticated %}
@@ -5,6 +6,8 @@
 {% else %}
 {% set current_user_id = 1 %}
 {% endif %}
+
+
 <div name="go-back2-users" class="mini mb-0">
   <a class="btn btn-outline-primary btn-block shadow py-2 text-bold"
     type="button" href="/a/t/u" name="go-to-adm-tbl-users">
@@ -15,6 +18,7 @@
     </h4>
   </a>
 </div>
+
 <div name="dynamic-filter-buttons" class="mini mt-0">
 
   <div class="panel panel-asym pb-3 text-center mb-0">
@@ -93,8 +97,37 @@
   </div>
 </div>
 
+<div name="legend-requests" class="mini mb-0">
+  <div class="d-flex flex-row justify-content-around mb-0">
+    <i>status</i>
+    <i>category</i>
+  </div>
+  <nav class="nav nav-fill my-0">
 
-<hr>
+    {% set legend = [
+        ('denied','gavel', 'danger', ), 
+        ('pending', 'balance-scale', 'info', ),
+        ('approved','stamp', 'primary', ),
+        ('admin','user-md', 'dark opac-50', ), 
+        ('member','user-check', 'dark opac-50', ), 
+        ('prez','user-graduate', 'dark opac-50', ), 
+        ]  %}
+
+    {% for info,icon,style in legend %}
+
+    <li class="nav-item text-italic text-sm py-0">
+      <a class="nav-link disabled mb-0">
+        <button class="btn btn-{{style}} btn-sm mb-0" type="button">
+          <i class="fas fa-{{icon}} fa-fw"></i>
+        </button>
+      </a>
+      {{info}}
+    </li>
+
+    {% endfor %}
+
+  </nav>
+</div>
 <div class="mini" name="MAIN-requests-notes">
   {% for user_id, user_requests in disp_reqs.items() %}
   {% for category, sorted in user_requests.items() %}
@@ -265,7 +298,7 @@
             </div>
           </div>
           <p class="text-italic text-sm mt-0 mb-0">
-            <i class="far fa-check-square text-md"></i>
+            <i class="far fa-check-square text-md ml-2"></i>
             Pre-selected form field. Selected originally by the user/requestor.
           </p>
           <hr class="mt-2 mb-0">
@@ -318,7 +351,7 @@
             </div>
           </div>
           <p class="text-italic text-sm mt-0 mb-0">
-            <i class="fas fa-map-signs text-md"></i>
+            <i class="fas fa-map-signs text-md ml-2"></i>
             Firstly, change the status of a note and notice a message will be generated each option selected. 
           </p>
           
