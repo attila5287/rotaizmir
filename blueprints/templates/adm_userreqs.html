@@ -188,7 +188,7 @@
   </div>
   {% else %}
   {% set note = obj %}
-  <div class="media mt-4 rnd-xl p-1 offset-2 anim-shd ">
+  <div class="media mt-4 rnd-xl p-1 offset-2 anim-shd border-bottom border-med border-{{ styles(note.status) }}">
     <h1
       class="fa{{icons(note.status)}} text-{{styles(note.status)}} txt-shd fa-pull-left align-self-center mr-4 ml-3">
     </h1>

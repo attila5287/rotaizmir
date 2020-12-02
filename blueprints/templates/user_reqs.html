@@ -4,21 +4,16 @@
   {% for user_id, user_requests in disp_reqs.items() %}
   {% for category, sorted in user_requests.items() %}
   {% if user_id in requestors %}
+  <hr>
   <div name="user-header" class="d-flex flex-row justify-content-between"
     name="user-section-header">
-
-    <a class="btn btn-outline-primary border-0 btn-sm p-1"
-      href="/admin/all/requests/{{user_id}}">
-      Show Only: User {{user_id}}
-    </a>
-
     category: {{category}}
     <a class="btn btn-outline-primary btn-sm border-0 p-1"
-      href="/admin/all/requests" data-toggle="tooltip" data-placement="bottom"
-      title="go back to table-only view">
-      <i class="far fa-user text-md">
+      data-toggle="tooltip" data-placement="bottom"
+      title="user requests and admin notes">
+      <h5 class="far fa-user text-md">
         <strong>{{user_id}}</strong>
-      </i>
+      </h5>
     </a>
 
   </div>
@@ -28,7 +23,7 @@
   {% set req = obj  %}
   <div class="media mt-2 rnd-3xl p-0 add-anime shadow">
     <h1
-      class="far fa-envelope-open text-warning txt-shd text-center align-self-center mx-4">
+      class="far fa-envelope-open bg-warning text-light text-center align-self-center rnd-xl ml-4 p-3">
     </h1>
     <div class="media-body pb-2 pt-0" style="vertical-align: middle;">
       <div class="d-flex flex-row justify-content-between">
@@ -38,7 +33,7 @@
           's <strong class="text-italic">{{req.category}}</strong>
           request message
         </h6>
-        <a class="far fa-question-circle text-warning text-lg  text-shd shadow-sm mt-2 mr-3 disabled">
+        <a class="fas fa-question bg-warning text-light rnd-2xl text-md disabled mt-2 mr-3 mt-2 mr-3 p-2" data-toggle="tooltip" data-placement="bottom" title="request made by current user">
         </a>
 
       </div>
@@ -59,7 +54,7 @@
   </div>
   {% else %}
   {% set note = obj %}
-  <div class="media mt-4 rnd-xl p-1 offset-2 anim-shd ">
+  <div class="media mt-4 rnd-xl p-1 offset-2 anim-shd border-bottom border-med border-{{ styles(note.status) }}">
     <h1
       class="fa{{icons('note_content')}} text-{{styles(note.status)}} txt-shd fa-pull-left align-self-center mr-4 ml-3">
     </h1>
@@ -71,7 +66,7 @@
           Admin ID#
           {{note.admin_id}} noted:</h6>
         <a class="disabled">
-          <h5 class="far fa-question-circle text-{{styles(note.status)}} fa-pull-right text-shd">
+          <h5 class="far fa-question-circle text-{{styles(note.status)}} fa-pull-right text-shd" data-toggle="tooltip" data-placement="bottom" title="admin note regarding a request made by current user">
           </h5>
         </a>
       </div>
