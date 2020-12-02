@@ -412,7 +412,7 @@ def user_requests():
       d[cat] = filtered
       
     disp_reqs = {
-      3 : d
+      current_user.id : d
     }    
     
     # list of users that has active requests
