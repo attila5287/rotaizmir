@@ -503,7 +503,7 @@ def inject_icons():
       "pending":  "s fa-balance-scale",
       "date_posted": "r fa-calendar-alt",
       "note_content": "r fa-paper-plane",
-      "req_content": "r fa-envelope-open",
+      "req_content": "r fa-file-alt",
       'member' : 's fa-user-check',
       'admin' : 's fa-user-md',
       'prez' : 's fa-user-graduate',

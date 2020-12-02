@@ -26,9 +26,9 @@
   {% for obj in sorted %}
   {% if obj.type == 'req' %}
   {% set req = obj  %}
-  <div class="media mt-2 rnd-xl p-0 add-anime shadow">
+  <div class="media mt-2 rnd-3xl p-0 add-anime shadow">
     <h1
-      class="fa{{icons(req.category)}} opac-70 txt-shd text-center align-self-center mx-4">
+      class="far fa-envelope-open text-warning txt-shd text-center align-self-center mx-4">
     </h1>
     <div class="media-body pb-2 pt-0" style="vertical-align: middle;">
       <div class="d-flex flex-row justify-content-between">
@@ -38,14 +38,13 @@
           's <strong class="text-italic">{{req.category}}</strong>
           request message
         </h6>
-        <a href="/delete/req/{{req.id}}"
-          class="fas fa-times text-danger text-xl text-shd shadow-sm mt-2 mr-3">
+        <a class="far fa-question-circle text-warning text-lg  text-shd shadow-sm mt-2 mr-3 disabled">
         </a>
 
       </div>
 
       {% set  user_req_set = [
-              ('text-2xl mr-4', 'text-md rnd-lg border-bottom border-med pb-2 mb-2 mr-3 shadow-sm', 'req_content', req.content,),
+              ('text-xl mr-2', 'text-md rnd-lg border-bottom border-med border-warning pb-2 mb-2 mr-3 shadow-sm', 'req_content', req.content,),
               ('text-lg mr-4', 'text-sm ', 'date_posted', req.date_posted.date(),),
               ('text-lg mr-4', 'text-sm ', req.status, req.status,),
               ]  %}
@@ -62,7 +61,7 @@
   {% set note = obj %}
   <div class="media mt-4 rnd-xl p-1 offset-2 anim-shd ">
     <h1
-      class="fa{{icons(note.status)}} text-{{styles(note.status)}} txt-shd fa-pull-left align-self-center mr-4 ml-3">
+      class="fa{{icons('note_content')}} text-{{styles(note.status)}} txt-shd fa-pull-left align-self-center mr-4 ml-3">
     </h1>
 
     <div class="media-body text-{{styles(note.status)}}"
@@ -71,14 +70,13 @@
         <h6 class="mt-0 border-bottom border-{{styles(note.status)}}">
           Admin ID#
           {{note.admin_id}} noted:</h6>
-        <a href="/delete/note/{{note.id}}">
-          <h5
-            class="far fa-times-circle text-{{styles(note.status)}} fa-pull-right text-shd">
+        <a class="disabled">
+          <h5 class="far fa-question-circle text-{{styles(note.status)}} fa-pull-right text-shd">
           </h5>
         </a>
       </div>
       {% set  adm_note_set = [
-              ('text-lg mr-4', 'text-md text-right text-dark border-bottom rnd-lg pb-2 ', 'note_content', note.content,),
+              ('text-xl mr-4', 'text-md text-left text-dark border-bottom rnd-lg pb-2 ', note.status, note.content,),
               ('text-lg mr-4', 'text-sm ', 'date_posted', note.date_posted.date(),),
               ('text-lg mr-4', 'text-sm ', note.status, note.status,),
               ]  %}
