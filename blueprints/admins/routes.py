@@ -405,7 +405,7 @@ def inject_icons():
       "member_request": "s fa-concierge-bell",
       "prez_request":   "s fa-concierge-bell",
       "delivered":   "s fa-envelope",
-      "declined":   "s fa-gavel",
+      "denied":   "s fa-gavel",
       "approved":   "s fa-stamp",
       "pending":  "s fa-balance-scale",
       "date_posted": "r fa-calendar-alt",
@@ -428,7 +428,7 @@ def inject_status_style():
     gallery = {  # font awesome icons for member forms
       "approved": "primary",
       "pending": "info",
-      "declined": "secondary",
+      "denied": "secondary",
       "delivered": "",
     }
     

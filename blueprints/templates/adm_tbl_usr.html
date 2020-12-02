@@ -293,6 +293,7 @@
           </td>
           {% endfor %}
 
+
           {% for requested_for, requestee_list in requestors.items() %}
           {% if user.id in requestee_list %}
 
@@ -307,9 +308,9 @@
                 class="selectpicker form-control form-control-sm text-md p-0 mb-1">
 
                 {% set options = [
-                ('pending',  'balance-scale', 'info', '',  ),
-                ('approved', 'stamp', 'primary', '',  ),
-                ('declined', 'gavel', 'danger', '',  ),
+                  ('pending',  'balance-scale', 'info', '',  ),
+                  ('approved', 'stamp', 'primary', '',  ),
+                  ('denied', 'gavel', 'danger', '',  ),
                 ]  %}
 
                 {% set rand_opt= rand_chooser(options) %}
@@ -322,6 +323,7 @@
                 {% endfor %}
 
               </select>
+
               <textarea
                 class="form-control form-control-sm form-control-dark border-0 text-italic"
                 rows="1" name="content" id="content"
@@ -426,7 +428,7 @@ class="form-group mt-1 shadow-lg">
   {% set options = [
   ('pending',  'balance-scale', 'info', '',  ),
   ('approved', 'stamp', 'primary', '',  ),
-  ('declined', 'gavel', 'danger', '',  ),
+  ('denied', 'gavel', 'danger', '',  ),
   ]  %}
 
   {% set rand_opt= rand_chooser(options) %}

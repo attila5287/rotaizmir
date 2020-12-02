@@ -141,7 +141,7 @@ i
   <nav class="nav nav-fill my-0">
 
     {% set legend = [
-        ('declined','gavel', 'danger', ), 
+        ('denied','gavel', 'danger', ), 
         ('pending', 'balance-scale', 'info', ),
         ('approved','stamp', 'primary', ),
         ('admin','user-md', 'dark opac-50', ), 
@@ -265,7 +265,11 @@ i
   {% endfor %}
 
 
-
+<style>
+.text-shdlong {
+  text-shadow: 12px 8px 12px  #0000005b;
+}
+</style>
   <div name="admin-note-form" class="row no-gutters mt-4 mb-2">
     <div class="col-2">
     </div>
@@ -307,7 +311,10 @@ i
           action="/admin/{{current_user_id}}/note/{{user_id}}/for/{{category}}">
           <div class="form-row">
             <div class="form-group col-4 text-right">
-              <label class="highlight_text text-italic" for="category">category (selected)</label>
+              
+              <label class="highlight_text text-italic" >
+                <i class="fas fa-check-double fa-fw text-lg fa-pull-left"></i>
+                category of user request</label>
             </div>
             <div class="form-group col-8">
               <select id="category" name="category"
@@ -322,29 +329,33 @@ i
           </div>
           <div class="form-row">
             <div class="form-group col-4 text-right">
-              <label id="search_term" class="highlight_text text-italic" for="status">choose a status</label>
+              <label id="search_term" class="highlight_text text-italic text-bold mt-2 text-comfo" for="status">
+                <i class="fas fa-exclamation fa-pull-left text-xl text-shd"></i>
+                choose a status</label>
             </div>
             <div class="form-group col-8">
               <select id="status" name="status"
                 class="select_status selectpicker form-control form-control-lg custom-select  text-md "  data-search_term="usr_{{user_id}}_{{category}}">
                 <option value=""
-                  data-content="<i class='fas fa-door-open text-{{style}} text-dark txt-shd text-md' aria-hidden='true'> 
-                    <i class='text-monts'> selection required </i>
+                  data-content="<i class='fas fa-door-open text-2xl py-0 my-0 text-secondary fa-fw' aria-hidden='true'> 
+                      <i class='text-mntz text-secondary text-2xl pl-2 my-0 py-0'> selection required * </i>
                     </i>
                   "  selected disabled>
+
+                  <option value="" class="dropdown-divider opac-50 p-0 pb-1 my-0 bg-secondary"></option>
                 </option>  
                 {% set options = [
                     ('pending',  'balance-scale', 'info', '',  ),
                     ('approved', 'stamp', 'primary', '',  ),
-                    ('declined', 'gavel', 'danger', '',  ),
+                    ('denied', 'gavel', 'danger', '',  ),
                     ]  %}
   
                 {% set rand_opt= rand_chooser(options) %}
   
                 {% for status, icon,style, tooltip in options %}
                 <option value="{{status}}"
-                  data-content="<i class='text-uppercase fas fa-{{icon}} text-{{style}}' aria-hidden='true'> 
-                    <i class='text-monts'> {{status}} </i>
+                  data-content="<i class='fas fa-{{icon}} fa-fw text-{{style}} text-xl pl-2' aria-hidden='true'> 
+                    <i class='text-monts text-uppercase  text-nonitalic text-capitalize text-xl'> {{status}} </i>
                     </i>
                   ">
                 </option>
@@ -354,13 +365,15 @@ i
               </select>
             </div>
           </div>
-          <hr class="change_border my-3">
-          <div class="form-group">
-            <label for="content" class="form-control  form-control-plaintext text-center text-italic text-sm mb-0">auto-message</label>
+          <hr class="change_border border-secondary opac-80 my-1 mx-4">
+          <div class="form-group mt-0">
+            <label class="form-control form-control-label bg-transparent border-0 text-center text-italic text-md mb-0 mt-0 highlight_text">
+              <i class="fas fa-edit"></i>
+              type a brief notification message </label>
             <input type="text" id="content"
-              class="change_value  form-control form-control-lg pb-5 pt-4 text-md  border-0 text-italic shadow-sm mb-2 text-wrap"
+              class="change_value form-control form-control-sm rnd-xl pb-5 pt-4 text-md text-italic shadow-sm mb-2 text-wrap"
               rows="1" name="content" id="content"
-              value="make a selection to generate an auto-message" ></input>
+              value="or select status to generate auto-message" ></input>
           </div>
           <div class="form-row mb-0">
             <div class="form-group col-8 offset-2 mb-0">

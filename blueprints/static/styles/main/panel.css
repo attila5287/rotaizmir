@@ -1,7 +1,7 @@
-
 .panel {
   font-size: 1rem;
 }
+
 .panel {
   position: relative;
   display: flex;
@@ -20,23 +20,32 @@
   margin-right: 0;
   margin-left: 0;
 }
+
 .panel form {
   margin: 0;
 }
 
-.panel .panel-header-primary .panel-icon{
+.panel .panel-header-primary .panel-icon {
   background: linear-gradient(60deg, #93d6c3, #52a890);
-}  
-.panel .panel-header-secondary .panel-icon{
+}
+
+.panel .panel-header-secondary .panel-icon {
   background: linear-gradient(60deg, #f3aeb2, #f3878c);
-}  
-.panel .panel-header-info .panel-icon{
+}
+
+.panel .panel-header-info .panel-icon {
   background: linear-gradient(60deg, #6ca9b6, #6cc3d5);
-}  
+}
+
+.panel .panel-header-light .panel-icon {
+  background: linear-gradient(60deg, #ffffff, #e4dede);
+}
+
 .panel .panel-header {
   border-bottom: none;
   background: transparent;
 }
+
 .panel {
   border: 0;
   margin-bottom: 30px;
@@ -60,7 +69,8 @@
   height: 56px;
   text-align: center;
 }
-.panel .panel-header-icon .panel-icon{
+
+.panel .panel-header-icon .panel-icon {
   border-radius: 3px;
   background-color: #999999;
   padding: 15px;
@@ -88,22 +98,30 @@
   margin-bottom: 3px;
 }
 
-.panel-title{
+.panel-title {
   color: #3C4858;
   text-decoration: none;
 }
-    .panel-subtitle {
+
+.panel-subtitle {
   margin-top: -0.375rem;
   margin-bottom: 0;
 }
+
 .panel-title {
   margin-bottom: 0.5rem;
 }
-    .tab-pane {
-        font-style: italic;
-        color: rgb(100, 100, 100);
-    }
-  .img-shd  img {
+
+.tab-pane {
+  font-style: italic;
+  color: rgb(100, 100, 100);
+}
+
+.img-shd img {
   -webkit-filter: drop-shadow(5px 5px 5px rgb(255, 255, 255));
   filter: drop-shadow(5px 5px 5px rgb(255, 255, 255));
+}
+
+.panel .panel-header-light .panel-icon {
+  background: linear-gradient(60deg, #ffffff, #f1e7e7);
 }

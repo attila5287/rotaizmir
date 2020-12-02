@@ -23,12 +23,11 @@ class TableModeSelect(FlaskForm):
 class AdminNoteForm(FlaskForm):
     status = SelectField('',
                         choices=[
-                            ('pending', 'approved', ), 
+                            ('pending', 'pending', ), 
                             ('approved', 'approved', ), 
-                            ('declined', 'declined', ), 
-                            ('in review','in review', ), 
+                            ('denied', 'denied', ), 
                             ], 
-                        default= 'member',
+                        default= 'pending',
                            )
     category = SelectField('',
                         choices=[
@@ -38,7 +37,7 @@ class AdminNoteForm(FlaskForm):
                             ], 
                         default= 'member',
                            )
-    content = TextAreaField('', validators=[DataRequired()], default="note")
+    content = TextAreaField('', validators=[DataRequired()], default="")
     
     submit = SubmitField('submit')
     

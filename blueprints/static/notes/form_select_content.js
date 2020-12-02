@@ -1,16 +1,16 @@
-console.log('content')
+console.log( 'content' )
 let status_icons = {
-  "declined": "gavel",
+  "denied": "gavel",
   "approved": "stamp",
   "pending": "balance-scale",
 };
 let status_styles = {
-  "declined": "secondary",
+  "denied": "secondary",
   "approved": "primary",
   "pending": "info",
 };
 let auto_messages = {
-  declined: [
+  denied: [
     "Feel free to appeal by sending another request.",
     "Don't hesitate to send another request if feels fair.",
     "Unfortunately, denied but could always send a new one. ",
@@ -72,7 +72,8 @@ d3.selectAll( ".select_status" )
     d3.selectAll(".change_text")
       .classed("text-mntz", true)
       .classed("text-capitalize", true)
-      .text(selected_value);
+      .text( selected_value );
+    
     d3.selectAll(".change_btn").attr("class",
       "change_shadow change_btn btn btn-light text-bold text-"+selected_style + " btn-block shadow"
     );
@@ -89,15 +90,16 @@ d3.selectAll( ".select_status" )
 
     panel_header.attr(
       "class",
-      `panel-header panel-header-${selected_style} panel-header-icon`
+      `panel-header panel-header-light panel-header-icon`
     );
     
-    // .attr( 'class', 'background-color', )
+    panel_icon.attr("class", "change_shadow panel-icon txt-shdlong");
+    
     panel_icon
       .append("i")
       .attr(
         "class",
-        `txt-shd text-light fas fa-${selected_icon} ${selected_style}` );
+        `text-shdlong fas fa-${selected_icon} text-${selected_style}` );
     
   } );
 
