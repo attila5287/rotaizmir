@@ -62,6 +62,9 @@
 .text-major {
   font-family: 'Major Mono Display', monospace;
 }
+.text-amita {
+    font-family: 'Amita', cursive;
+}
 .text-nova {
   font-family: 'Nova Mono', monospace;
 }
@@ -77,9 +80,6 @@
 .text-lili {
   font-family: 'Lilita One', cursive;
 }
-.text-mntz {
-      font-family: 'Montez', cursive;
-}
 .text-shdlite {
   text-shadow: 2px 2px 2px #ffffff28;
 }
@@ -92,4 +92,8 @@
 }
 .text-membm {
   color:#007bff ;
+}
+
+.text-mntsrt {
+  font-family: Montserrat, -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
 }

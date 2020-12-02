@@ -1,4 +1,3 @@
-i
 {% extends "layout.html" %}
 {% block content %}
 {% if current_user.is_authenticated %}
@@ -29,15 +28,15 @@ i
       class="d-flex flex-row justify-content-around mb-0">
       {% for id,style, filter_k in filter_buttons %}
       {% if filter_k in categories %}
-      
-      <span id="filter_icon_{{id}}"  class="text-nowrap mb-0">
+
+      <span id="filter_icon_{{id}}" class="text-nowrap mb-0">
         <i class="text-2xl text-{{style}} mb-0">{{filter_k}}</i>
         <i class="text-2xl text-{{style}} fas fa{{icons(filter_k)}} text-2xl">
         </i>
       </span>
 
       {% else %}
-      <span id="filter_icon_{{id}}"  class="text-nowrap mb-0 opac-30">
+      <span id="filter_icon_{{id}}" class="text-nowrap mb-0 opac-30">
         <i class="text-2xl text-{{style}} mb-0">{{filter_k}}</i>
         <i class="text-2xl text-{{style}} fas fa{{icons(filter_k)}} text-2xl">
         </i>
@@ -48,18 +47,20 @@ i
     <div name="filter-buttons-container" class="row no-gutters">
       {% for id,style, filter_k in filter_buttons %}
       <div class="col-4" id="filter_box_{{id}}">
-        
+
         {% if filter_k in categories %}
-        
-        <div class="filter_btn filter_btn_{{id}} btn btn-{{style}} rnd-xl btn-block shadow" data-category="{{id}}"
-          data-name="{{filter_k}}">
+
+        <div
+          class="filter_btn filter_btn_{{id}} btn btn-{{style}} rnd-xl btn-block shadow"
+          data-category="{{id}}" data-name="{{filter_k}}">
           filter out
         </div>
-        
+
         {% else %}
-        
+
         <div
-          class="filter_btn filter_btn_{{id}} btn btn-outline-{{style}} rnd-xl btn-block shadow clincluder" data-category="{{id}}" data-name="{{filter_k}}">
+          class="filter_btn filter_btn_{{id}} btn btn-outline-{{style}} rnd-xl btn-block shadow clincluder"
+          data-category="{{id}}" data-name="{{filter_k}}">
           filter in
         </div>
 
@@ -70,103 +71,32 @@ i
       {% endfor %}
 
     </div>
-    <div class="d-flex flex-row justify-content-center align-items-center mt-3 mb-2">
+    <div
+      class="d-flex flex-row justify-content-center align-items-center mt-3 mb-2">
       <i class="fas fa-search-plus text-xl text-primary mr-3"></i>
-      <p id="filtered_categories" class="mt-2 mb-0 text-center text-italic"> included categories below</p>
+      <p id="filtered_categories" class="mt-2 mb-0 text-center text-italic">
+        included categories below</p>
 
       <a href="/a/all/r" class="btn btn-sm btn-warning ml-3 shadow-sm">
         <i class="fas fa-undo text-sm"></i>
-      </a>      
+      </a>
       <i class="text-muted ml-1">reset</i>
     </div>
     <div id="filter_submit_box">
-      <a id="filter_submit_btn"  class="filter_submit_btn btn btn-primary btn-block text-lg text-comfo shadow mt-1"
-      href="/admin/amp/requests">
-      admin, member and prez
-    </a>
-    
-  </div>
-  </div>
-</div>
+      <a id="filter_submit_btn"
+        class="filter_submit_btn btn btn-primary btn-block text-lg text-comfo shadow mt-1"
+        href="/admin/amp/requests">
+        admin, member and prez
+      </a>
 
-<div name="href-filter-buttons" class="mini">
-  <div class="panel panel-asym pb-3 text-center mb-0">
-    <div class="btn-group" role="group">
-      {% set filter_buttons = [
-      ('m', 'primary', 'member', ),
-      ('a', 'secondary', 'admin', ),
-      ('p', 'info', 'prez', ),
-      ] %}
-      {% for href,style, filter_k in filter_buttons %}
-  
-      {% if filter_k in categories %}
-      <a class="btn btn-{{style}} 
-      rnd-2xl click-listener shadow" href="/admin/{{href}}/requests/">
-        <i class="fas fa{{icons(filter_k)}} text-xl"></i>
-        <hr class="border-light my-0 mx-2">
-        <hr class="border-light border-med opac-50 my-0 mx-3">
-        <hr class="border-light border-med opac-30 my-0 mx-5">
-        <i>{{filter_k}}</i>
-      </a>
-      {% else %}
-      <a class="btn btn-outline-{{style}} 
-      rnd-2xl click-listener shadow" href="/admin/{{href}}/requests/">
-        <i class="fas fa{{icons(filter_k)}} text-xl"></i>
-        <hr class="border-light my-0 mx-2">
-        <hr class="border-light border-med opac-50 my-0 mx-3">
-        <hr class="border-light border-med opac-30 my-0 mx-5">
-        <i>{{filter_k}}</i>
-      </a>
-      {% endif %}
-  
-      {% endfor %}
     </div>
-    <div class="d-flex flex-row justify-content-center align-items-center mt-2">
-      <i class="fab fa-searchengin text-3xl text-primary mr-3"></i>
-      <p class="mt-2 mb-0 text-center text-italic"> one category at a time</p>
-      <a href="/a/all/r" class="btn btn-sm btn-warning ml-3 shadow-sm">
-        <i class="fas fa-undo text-sm">
-        </i>
-      </a>
-      <i class="text-muted ml-1">reset</i>
-        </div>
-      </div>
-</div>
-
-<div name="legend-requests" class="mini mb-0">
-  <div class="d-flex flex-row justify-content-around mb-0">
-    <i>status</i>
-    <i>category</i>
   </div>
-  <nav class="nav nav-fill my-0">
-
-    {% set legend = [
-        ('denied','gavel', 'danger', ), 
-        ('pending', 'balance-scale', 'info', ),
-        ('approved','stamp', 'primary', ),
-        ('admin','user-md', 'dark opac-50', ), 
-        ('member','user-check', 'dark opac-50', ), 
-        ('prez','user-graduate', 'dark opac-50', ), 
-        ]  %}
-
-    {% for info,icon,style in legend %}
-
-    <li class="nav-item text-italic text-sm py-0">
-      <a class="nav-link disabled mb-0">
-        <button class="btn btn-{{style}} btn-sm mb-0" type="button">
-          <i class="fas fa-{{icon}} fa-fw"></i>
-        </button>
-      </a>
-      {{info}}
-    </li>
-
-    {% endfor %}
-
-  </nav>
 </div>
+
+
 <hr>
 <div class="mini" name="MAIN-requests-notes">
-{% for user_id, user_requests in disp_reqs.items() %}
+  {% for user_id, user_requests in disp_reqs.items() %}
   {% for category, sorted in user_requests.items() %}
   {% if user_id in requestors %}
   <div name="user-header" class="d-flex flex-row justify-content-between"
@@ -265,11 +195,11 @@ i
   {% endfor %}
 
 
-<style>
-.text-shdlong {
-  text-shadow: 12px 8px 12px  #0000005b;
-}
-</style>
+  <style>
+    .text-shdlong {
+      text-shadow: 12px 8px 12px #0000005b;
+    }
+  </style>
   <div name="admin-note-form" class="row no-gutters mt-4 mb-2">
     <div class="col-2">
     </div>
@@ -277,14 +207,18 @@ i
 
       {% set search_term = 'usr_{}_{}'.format(user_id, category) %}
       <h1 class="text-hide">{{search_term}}</h1>
-      <div id ="panel_{{search_term}}" class="panel panel-asym shadow-lg pb-4 mb-5 px-0" >
-        <div class="panel-header panel-header-secondary panel-header-icon" id="panel_header_{{search_term}}">
-          <div class="change_shadow panel-icon img-shd" id="panel_iconbox_{{search_term}}">
+      <div id="panel_{{search_term}}"
+        class="panel panel-asym shadow-lg pb-4 mb-5 px-0">
+        <div class="panel-header panel-header-secondary panel-header-icon"
+          id="panel_header_{{search_term}}">
+          <div class="change_shadow panel-icon img-shd"
+            id="panel_iconbox_{{search_term}}">
 
             {% if not current_user %}
 
             <img class="rnd-xl article-img border-0 m-0 p-0"
-              src="https://raw.githubusercontent.com/attila5287/rota-img/main/logos/logo_circle.png" alt="">
+              src="https://raw.githubusercontent.com/attila5287/rota-img/main/logos/logo_circle.png"
+              alt="">
 
             {% else %}
 
@@ -295,7 +229,10 @@ i
             {% endif %}
 
           </div>
-          <h2 class="change_cursive change_text highlight_text panel-title text-right mt-4 text-shd mb-2"><h4 class="remove_text text-right">DynamicNoteForm</h4></h2>
+          <h2
+            class="change_cursive change_text highlight_text panel-title text-right mt-4 text-shd mb-2">
+            <h4 class="remove_text text-right">DynamicNoteForm</h4>
+          </h2>
           <hr class="change_border mt-0 mb-2 border-primary">
           <p
             class="d-flex flex-row justify-content-around text-right text-italic text-sm mr-2 bg-light rnd-xl pt-1 pb-2">
@@ -307,77 +244,99 @@ i
 
           </p>
         </div>
-        <form class="form-group px-2 py-2 rnd-xl" method="POST"
+        <form class="form-group px-2 mx-2 py-2 rnd-xl" method="POST"
           action="/admin/{{current_user_id}}/note/{{user_id}}/for/{{category}}">
-          <div class="form-row">
-            <div class="form-group col-4 text-right">
-              
-              <label class="highlight_text text-italic" >
-                <i class="fas fa-check-double fa-fw text-lg fa-pull-left"></i>
-                category of user request</label>
+          <div class="form-row align-items-baseline mb-0 no-gutters">
+            <div class="form-group col-auto text-left">
+              <i class="highlight_text far fa-envelope-open fa-fw text-xl"></i>
+              <label class="highlight_text text-comfo text-sm mb-0">
+                Requested for </label>
+              <hr class="border-med my-0">
             </div>
-            <div class="form-group col-8">
+            <div class="form-group col">
               <select id="category" name="category"
-                class="selectpicker form-control text-md">
+                class="selectpicker form-control">
                 <option value="{{category}}"
-                  data-content="<i class='fas fa-{{icons(category)}}' aria-hidden='true'> {{category}}</i>"
+                  data-content="<i class='fas fa-{{icons(category)}} text-primary' aria-hidden='true'> {{category}}</i>"
                   selected>
                 </option>
 
               </select>
             </div>
           </div>
-          <div class="form-row">
-            <div class="form-group col-4 text-right">
-              <label id="search_term" class="highlight_text text-italic text-bold mt-2 text-comfo" for="status">
-                <i class="fas fa-exclamation fa-pull-left text-xl text-shd"></i>
-                choose a status</label>
-            </div>
-            <div class="form-group col-8">
-              <select id="status" name="status"
-                class="select_status selectpicker form-control form-control-lg custom-select  text-md "  data-search_term="usr_{{user_id}}_{{category}}">
-                <option value=""
-                  data-content="<i class='fas fa-door-open text-2xl py-0 my-0 text-secondary fa-fw' aria-hidden='true'> 
-                      <i class='text-mntz text-secondary text-2xl pl-2 my-0 py-0'> selection required * </i>
-                    </i>
-                  "  selected disabled>
+          <p class="text-italic text-sm mt-0 mb-0">
+            <i class="far fa-check-square text-md"></i>
+            Pre-selected form field. Selected originally by the user/requestor.
+          </p>
+          <hr class="mt-2 mb-0">
 
-                  <option value="" class="dropdown-divider opac-50 p-0 pb-1 my-0 bg-secondary"></option>
-                </option>  
+          <div class="form-row no-gutters align-items-baseline mt-2 no-gutters">
+            <div class="form-group col-auto text-left">
+              <i class="highlight_text far fa-sticky-note fa-fw text-2xl"></i>
+              
+              <label id="search_term"
+                class="highlight_text text-italic text-comfo text-md" for="status">
+
+
+                Noted as 
+              </label>
+              <hr class="border-med my-0">
+            </div>
+            <div class="form-group col">
+              <select id="status" name="status"
+                class="select_status selectpicker form-control"
+                data-search_term="usr_{{user_id}}_{{category}}">
+                <option value="" data-content="<i class='fas fa-door-open text-2xl py-0 my-0 text-secondary fa-fw' aria-hidden='true'> 
+                      <i class='text-nonbold text-mntsrt text-secondary text-lg pl-2 my-0 py-0'> 
+                        select-a-status
+                      </i>
+                    </i>
+                  " selected disabled>
+
+                <option value=""
+                  class="dropdown-divider opac-50 p-0 pb-1 my-0 bg-secondary">
+                </option>
+                </option>
                 {% set options = [
                     ('pending',  'balance-scale', 'info', '',  ),
                     ('approved', 'stamp', 'primary', '',  ),
                     ('denied', 'gavel', 'danger', '',  ),
                     ]  %}
-  
+
                 {% set rand_opt= rand_chooser(options) %}
-  
+
                 {% for status, icon,style, tooltip in options %}
-                <option value="{{status}}"
-                  data-content="<i class='fas fa-{{icon}} fa-fw text-{{style}} text-xl pl-2' aria-hidden='true'> 
+                <option value="{{status}}" data-content="<i class='fas fa-{{icon}} fa-fw text-{{style}} text-xl pl-2' aria-hidden='true'> 
                     <i class='text-monts text-uppercase  text-nonitalic text-capitalize text-xl'> {{status}} </i>
                     </i>
                   ">
                 </option>
-  
+
                 {% endfor %}
-  
+
               </select>
             </div>
           </div>
-          <hr class="change_border border-secondary opac-80 my-1 mx-4">
-          <div class="form-group mt-0">
-            <label class="form-control form-control-label bg-transparent border-0 text-center text-italic text-md mb-0 mt-0 highlight_text">
-              <i class="fas fa-edit"></i>
-              type a brief notification message </label>
+          <p class="text-italic text-sm mt-0 mb-0">
+            <i class="far fa-question-circle text-md"></i>
+            Firstly, change the status of a note and notice a message will be generated each option selected. 
+          </p>
+          
+          <div class="form-row form-group my-0">
             <input type="text" id="content"
-              class="change_value form-control form-control-sm rnd-xl pb-5 pt-4 text-md text-italic shadow-sm mb-2 text-wrap"
-              rows="1" name="content" id="content"
-              value="or select status to generate auto-message" ></input>
+            class="change_value form-control form-control-sm rnd-xl pb-5 pt-4 text-md text-italic shadow mb-2 text-nowrap"
+            rows="1" name="content" id="content"
+            value="change status to generate auto-message"></input>
           </div>
+          
+          <p class="text-italic text-sm mt-0 mb-0">
+            <i class="fas fa-map-signs text-lg"></i>
+            Message could be edited suggested or re-typed from scratch. 
+          </p>
+
           <div class="form-row mb-0">
             <div class="form-group col-8 offset-2 mb-0">
-            {{note_form.submit(class="change_shadow change_btn btn btn-info btn-block shadow")}}
+              {{note_form.submit(class="change_shadow change_btn btn btn-info btn-block shadow")}}
             </div>
           </div>
         </form>
