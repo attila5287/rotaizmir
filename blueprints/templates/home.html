@@ -14,26 +14,39 @@
 {% endfor %}
 </div>
 
-<div class="row" name="posts">
   {% for post in posts.items %}
-<div class="col-sm-6">
-  <article class="media content-section  border-light rnd-2xl">
-    <img class="rounded-circle article-img" src="https://raw.githubusercontent.com/attila5287/regropoly-img/master/avatars/{{post.author.img_url}}.png">
-    <div class="media-body ">
-      <div class="article-metadata mb-0">
-      <a class="rnd-xl text-bold text-theme mr-2 px-2 pb-1 mb-0" href="{{ url_for('users.user_posts', id=post.author.id) }}">{{ post.author.username }}</a> 
-        <small class="ml-auto text-md text-italic ">@{{ post.date_posted.strftime('%Y-%m-%d') }}</small>
-      </div>
-      <hr class="border-light my-0 mx-5">
-      <h4 class="shd-theme "><a class="article-title " href="{{ url_for('posts.post', post_id=post.id) }}">{{ post.title }}</a></h4>
-      <hr class="mb-2 mt-0 opac-30 border-light px-4">  
-      <p class="article-content ">{{ post.content }}</p>
+    <div class="mini">
+      <article class="media rnd-2xl shadow mb-4">
+        <img class="rounded-circle article-img align-self-center p-2" src="https://raw.githubusercontent.com/attila5287/regropoly-img/master/avatars/{{post.author.img_url}}.png">
+        <div class="media-body ">
+          <div class="article-metadata d-flex flex-row justify-content-between border-bottom border-med mb-0 mx-2 mt-2 align-items-baseline">
+          <a class="rnd-xl text-bold mr-2 px-2 pb-1 mb-0" href="{{ url_for('users.user_posts', id=post.author.id) }}">
+
+            <i class="far fa-id-badge"></i>
+            {{ post.author.username }}</a> 
+
+            <p class="text-italic text-md">
+                <i class="far fa-calendar-alt text-md"></i>
+                {{ post.date_posted.strftime('%Y-%m-%d') }}
+              </p>
+
+          </div>
+          
+          
+          <h4 class="shd-theme "><a class="article-title " href="{{ url_for('posts.post', post_id=post.id) }}">{{ post.title }}</a></h4>
+
+          <hr class="my-1 mr-4">
+
+          <p class="text-italic text-lg">
+            <i class="far fa-paper-plane"></i>
+            {{ post.content }}
+          </p>
+              
+        </div>
+      </article>
     </div>
-  </article>
-</div>
   {% endfor %}
   
-</div>
 
 
 {% endblock content %}
