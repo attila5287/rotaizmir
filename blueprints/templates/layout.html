@@ -315,21 +315,36 @@
               
               {% set change_theme_url = url_for(request.endpoint, theme=random_theme)  %}
               <p class="mt-4 mb-0 text-italic text-xs text-nowrap text-center">
-                switch theme to:
+                reset to default theme or set random
               </p>
+              <div class="btn-group">
+                <a 
+                  class="btn btn-warning btn-block btn-sm rnd-3xl mt-0" 
+                  href="{{url_for(request.endpoint, theme='minty')}}"
+                  >
+                  <i class="fas fa-undo-alt text-lg mr-2"></i>
+                </a>
+                <a 
+                  class="btn btn-info btn-block btn-sm mt-0 text-nowrap text-md disabled" 
+                  
+                  >
+                  <i class="fas fa-map-marker-alt text-lg my-0"></i>
+                  {{theme}}
+                </a>                
+                <a 
+                  class="btn btn-primary btn-block btn-sm mt-0 text-nowrap text-md rnd-2xl" 
+                  href="{{url_for(request.endpoint, theme=random_theme)}}"
+                  >
+                  <i class="fas fa-dice text-2xl my-0"></i>
+                  <i class="fas fa-chevron-right text-lg my-0 mr-2"></i>
+                </a>
 
-              <a 
-                class="btn btn-primary btn-block rnd-xl mt-0 px-4" 
-                href="{{url_for(request.endpoint, theme=random_theme)}}"
-                >
-                {{random_theme}}
-              </a>
-              <p class="mt-0 text-italic text-xs text-nowrap text-center">
-                current theme: {{theme}}
-              </p>              
+              </div>
+              
+              
               
               {% else %}
-
+              
               <p class="mt-4 mb-0 text-italic text-sm text-nowrap text-center">
                 default theme only:
               </p>
@@ -339,18 +354,27 @@
               >
               {{theme}}
             </a>
-
+            
             
             
             {% endif %}
-
-
             
-              
-            </span>
             
-          </div>
-
+            
+            
+          </span>
+        </div>
+        
+        <style>
+          .sidebar {
+          padding: 1rem 0rem 0rem 0rem;
+          /* Height of navbar */
+          /* background-image: linear-gradient(#438d78, #78c2ad 45%, #00815c); */
+          box-shadow: 0px 0px 0px #f3969b3f, 
+          inset 0px 10px 10px #f3969b46;
+          }
+        
+        </style>
           {% with messages = get_flashed_messages(with_categories=true) %}
 
           {% if messages %}
