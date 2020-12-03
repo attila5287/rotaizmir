@@ -384,7 +384,7 @@ def register(theme='minty'):
 @users.route("/account/<string:theme>", methods=['GET', 'POST'])
 @users.route("/account/<string:theme>/", methods=['GET', 'POST'])
 @login_required
-def account(theme='minty'):
+def account(theme=''):
     pass
     form = UpdateAccountForm()
     

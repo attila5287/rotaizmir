@@ -50,6 +50,7 @@
       'Amita:wght@400;700&display=swap',
       'Major+Mono+Display&display=swap',
       'Lilita+One',
+      'Orbitron',
       'Comfortaa',
       'Montserrat+Alternates:wght@500&display=swap',
       ] %}
@@ -149,13 +150,13 @@
             class="col-md-3 col-lg-2 d-md-block bg-primary sidebar collapse">
             <div class="sidebar-sticky bg-transparent pt-0">
               <ul class="nav flex-column">
-                <li class="nav-item mt-2">
+                <li class="nav-item my-0">
                   <a class="nav-link disabled ml-2 mr-1">
                     {% if current_user.is_authenticated %}
                     <img
                       src="https://raw.githubusercontent.com/attila5287/rota-img/main/avatars/{{current_user.img_url}}.png"
                       alt="usr-img" style="max-height:3rem;"
-                      class="img rounded-circle">
+                      class="img rounded-circle my-0">
 
                     <span class="text-sm text-monts text-light">
                       {{current_user.username}}
@@ -175,9 +176,6 @@
                     {% endif %}
 
                   </a>
-                </li>
-                <li class="nav-item my-0">
-                  <hr class="border-light border-med opac-30">
                 </li>
               </ul>
               <ul class="list-group mx-4 mt-0 pt-0">
@@ -241,14 +239,11 @@
 
                 {% endif %}
                 {% endfor %}
-                <hr class="my-1">
               </ul>
-
-              <hr class="border-light border-med opac-30">
 
               {% if access %}
               <details name="access"
-                class="d-flex flex-column justify-content-center text-light ml-2">
+                class="d-flex flex-column justify-content-center text-light ml-3">
                 {% for a in access %}
                 <i class="fas fa-key text-sm ml-2 mr-2 text-light pt-1">
                   {{a}}
@@ -322,21 +317,21 @@
                   class="btn btn-warning btn-block btn-sm rnd-3xl mt-0" 
                   href="{{url_for(request.endpoint, theme='minty')}}"
                   >
-                  <i class="fas fa-undo-alt text-lg mr-2"></i>
+                  <i class="fas fa-undo-alt text-lg mx-1"></i>
                 </a>
                 <a 
                   class="btn btn-info btn-block btn-sm mt-0 text-nowrap text-md disabled" 
                   
                   >
-                  <i class="fas fa-map-marker-alt text-lg my-0"></i>
+                  <i class="fas fa-map-marker-alt text-md"></i>
                   {{theme}}
                 </a>                
                 <a 
                   class="btn btn-primary btn-block btn-sm mt-0 text-nowrap text-md rnd-2xl" 
                   href="{{url_for(request.endpoint, theme=random_theme)}}"
                   >
-                  <i class="fas fa-dice text-2xl my-0"></i>
-                  <i class="fas fa-chevron-right text-lg my-0 mr-2"></i>
+                  <i class="fas fa-dice text-xl my-0"></i>
+                  <i class="fas fa-caret-right text-lg my-0 mr-0"></i>
                 </a>
 
               </div>
@@ -367,7 +362,7 @@
         
         <style>
           .sidebar {
-          padding: 1rem 0rem 0rem 0rem;
+          padding: 2.5rem 0rem 0rem 0rem;
           /* Height of navbar */
           /* background-image: linear-gradient(#438d78, #78c2ad 45%, #00815c); */
           box-shadow: 0px 0px 0px #f3969b3f, 
@@ -409,7 +404,7 @@
                ]  %}
 
               {% for alt, src in footer_images %}
-              <a class="nav-item nav-link add-anime  rnd-xl"
+              <a class="nav-item nav-link add-anime rnd-xl"
                 href="https://rotaract2440.org/kulup/23#">
                 <img class="m-0 rnd-lg py-0 pl-2 pr-1 add-anime"
                   src="https://raw.githubusercontent.com/attila5287/rota-img/main/site/{{src}}"
