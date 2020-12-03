@@ -260,7 +260,7 @@ def colors_api():
 @users.route("/login/", methods=['GET', 'POST'])
 @users.route("/login/<string:theme>", methods=['GET', 'POST'])
 @users.route("/login/<string:theme>/", methods=['GET', 'POST'])
-def login():
+def login(theme='minty'):
     pass
     if current_user.is_authenticated:
         return redirect(url_for('main.home'))
@@ -274,6 +274,7 @@ def login():
         else:
             flash('Login Unsuccessful. Please check email and password', 'danger')
     return render_template('login.html',
+                           theme=theme,
                            form=form,
                            css=[
                                ('theme', '/minty/bootstrap', ),
@@ -327,7 +328,10 @@ def userposts_byid(id):
 
 # forms to register
 @users.route("/register", methods=['GET', 'POST'])
-def register():
+@users.route("/register/", methods=['GET', 'POST'])
+@users.route("/register/<string:theme>", methods=['GET', 'POST'])
+@users.route("/register/<string:theme>/", methods=['GET', 'POST'])
+def register(theme='minty'):
     form = RegistrationForm()
     
     if current_user.is_authenticated:
@@ -346,6 +350,7 @@ def register():
         flash('Your account has been created! You are now able to log in', 'success')
         return redirect(url_for('users.login'))
     return render_template('register.html', 
+                               theme=theme, 
                                form=form, 
                            legend='Register',
                             css=[
@@ -375,8 +380,11 @@ def register():
                             )
 
 @users.route("/account", methods=['GET', 'POST'])
+@users.route("/account/", methods=['GET', 'POST'])
+@users.route("/account/<string:theme>", methods=['GET', 'POST'])
+@users.route("/account/<string:theme>/", methods=['GET', 'POST'])
 @login_required
-def account():
+def account(theme='minty'):
     pass
     form = UpdateAccountForm()
     
@@ -397,6 +405,7 @@ def account():
     
     first_random = random.randint(0,69)
     return render_template('account.html',
+                           theme = theme,
                            first_random = first_random,
                            form=form,
                            css=[ 
@@ -424,7 +433,6 @@ def account():
 def delete_request(id):
     pass
     req = Note.query.get_or_404(id)
-    
     db.session.delete(req)
     db.session.commit()
     return redirect(url_for('users.user_requests'))

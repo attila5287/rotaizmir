@@ -1,3 +1,4 @@
+import random
 import os
 import csv
 import codecs
@@ -18,6 +19,32 @@ from blueprints.members.forms import (
     MemberEditForm
 )
 members = Blueprint('members', __name__)
+
+
+@members.context_processor
+def inject_random_theme():
+  pass
+  def random_theme():
+    pass
+    list_of_themes = [
+      'cerulean',
+      'cyborg',
+      'darkly',
+      'lumen',
+      'minty',
+      'pulse',
+      'slate',
+      'solar',
+      'spacelab',
+      'superhero',
+      'united',
+    ]
+    
+    selected  = random.choice(list_of_themes)
+    print(selected)
+    return selected if selected else 'minty'
+
+  return dict(random_theme=random_theme())
 
 
 @members.context_processor
@@ -110,16 +137,10 @@ def db_init():
 
         return jsonify(csv_dict)
 
-# URL Method Description
-# /users/ GET Gives a list of all users
-# /users/<id> GET Shows a single user
-# /users/<id> PUT Updates a single user
-# /users/<id> DELETE Deletes a single user
-
-
 @members.route("/members", methods=['GET', 'POST'])
 @members.route("/members/", methods=['GET', 'POST'])
-def home():
+@members.route("/members/<string:theme>", methods=['GET', 'POST'])
+def home(theme=''):
     pass
     page = request.args.get('page', 1, type=int)
 
@@ -141,12 +162,9 @@ def home():
     ]
 
     return render_template('members.html',
+                           theme=theme,
                            members=members,
                            form=form,
-                           css=[
-                               ('theme', '/minty/bootstrap', ),
-                               ('main', 'main', ),
-                           ],
                            info_notes=[
                                'All members in grid view for other members to browse through. Click/tap on name to see in details or try dropdown menu.',
                            ],
@@ -164,7 +182,8 @@ def home():
 @members.route('/member', methods=['GET', 'POST'])
 @members.route('/member/', methods=['GET', 'POST'])
 @members.route('/member/<int:id>', methods=['GET', 'POST'])
-def show(id=1):
+@members.route('/member/<int:id>/', methods=['GET', 'POST'])
+def show(id=1, theme='no_change'):
     pass
     form = MemberMenu()
     member = Member.query.get_or_404(id)
@@ -183,12 +202,9 @@ def show(id=1):
         pass
 
     return render_template('member.html',
+                           theme=theme,
                            form=form,
                            m=member,
-                           css=[
-                               ('theme', '/minty/bootstrap', ),
-                               ('main', 'main', ),
-                           ],
                            info_notes=[
                                'Members gallery, choose arrow buttons or dropdown menu. Members could see other members while only admins are authorized to edit member info or assign tasks.'
                            ],
@@ -205,7 +221,7 @@ def show(id=1):
 @members.route('/member/edit', methods=['GET', 'POST'])
 @members.route('/member/edit/', methods=['GET', 'POST'])
 @members.route('/member/edit/<int:id>', methods=['GET', 'POST'])
-def edit(id=1):
+def edit(id=1, theme='no_change'):
     pass
 
     users = [u for u in User.query.all()]
@@ -239,11 +255,8 @@ def edit(id=1):
         ]
 
     return render_template('member_edit.html',
+                           theme=theme,
                            form=form,
-                           css=[
-                               ('theme', '/minty/bootstrap', ),
-                               ('main', 'main', ),
-                           ],
                            info_notes=[
                                'Edit member details',
                            ],
@@ -261,7 +274,9 @@ def edit(id=1):
 
 @members.route("/members/table")
 @members.route("/members/table/")
-def table():
+@members.route("/members/table/<string:theme>")
+@members.route("/members/table/<string:theme>/")
+def table(theme=''):
     pass
     page = request.args.get('page', 1, type=int)
 
@@ -306,11 +321,9 @@ def table():
     except:
         members = []
 
-    return render_template('members_table.html', members=members, headers=headers, table=table,
-                           css=[
-                               ('theme', '/minty/bootstrap', ),
-                               ('main', 'main', ),
-                           ],
+    return render_template('members_table.html', 
+                           theme=theme,
+                           members=members, headers=headers, table=table,
                            info_notes=[
                                'Members, Table View. ',
                            ],
@@ -325,7 +338,10 @@ def table():
 
 
 @members.route('/member/add', methods=['GET', 'POST'])
-def add_member():
+@members.route('/member/add/', methods=['GET', 'POST'])
+@members.route('/member/add/<string:theme>', methods=['GET', 'POST'])
+@members.route('/member/add/<string:theme>/', methods=['GET', 'POST'])
+def add_member(theme=''):
     pass
     form = MemberForm()
     if request.method == 'POST':
@@ -347,11 +363,8 @@ def add_member():
         return redirect(url_for('members.home'))
 
     return render_template('add_member.html',
+                           theme=theme,
                            form=form,
-                           css=[
-                               ('theme', '/minty/bootstrap', ),
-                               ('main', 'main', ),
-                           ],
                            info_notes=[
                            'Add member with forms, one at a time!'
                            ],
@@ -366,7 +379,10 @@ def add_member():
                            )
 
 @members.route('/members/file', methods=['GET', 'POST'])
-def csv_feed():
+@members.route('/members/file/', methods=['GET', 'POST'])
+@members.route('/members/file/<string:theme>', methods=['GET', 'POST'])
+@members.route('/members/file/<string:theme>/', methods=['GET', 'POST'])
+def csv_feed(theme=''):
     form = CSVReaderForm()
     if request.method == 'POST':
         csvfile = request.files['csv_file']
@@ -389,11 +405,8 @@ def csv_feed():
         # return render_template('about.html')
 
     return render_template('csv_feed.html',
+                           theme=theme,
                            form=form,
-                           css=[
-                               ('theme', '/minty/bootstrap', ),
-                               ('main', 'main', ),
-                           ],
                            info_notes=[
                                'Add members in bulk by uploading CSV file ',
                            ],

@@ -10,8 +10,12 @@
     <meta name="author" content="@attila5287">
     <link rel="icon" type="image/x-icon" class="favicon"
       href="https://raw.githubusercontent.com/attila5287/rota-img/main/icons/favic0n.ico" />
+    {% if theme == 'no_change' %}
+      
+    {% set theme_not_chg = True  %}
+    {% endif %}
 
-    {% if not theme %}
+    {% if not theme or theme == 'no_change'%}
     {% set theme = 'minty' %}
     {% endif %}
     
@@ -305,35 +309,43 @@
   
             </legend>
             <span class="w-25" name="change_theme">
-              {% set change_theme_link = url_for(request.endpoint, theme=random_theme) %}
               
               
+              {% if not theme_not_chg %}
               
-              {% if random_theme %}
+              {% set change_theme_url = url_for(request.endpoint, theme=random_theme)  %}
               <p class="mt-4 mb-0 text-italic text-xs text-nowrap text-center">
-                change theme to:
+                switch theme to:
               </p>
 
               <a 
                 class="btn btn-primary btn-block rnd-xl mt-0 px-4" 
-                href="{{url_for(request.endpoint, theme=random_theme)}}">
+                href="{{url_for(request.endpoint, theme=random_theme)}}"
+                >
                 {{random_theme}}
               </a>
-              
+              <p class="mt-0 text-italic text-xs text-nowrap text-center">
+                current theme: {{theme}}
+              </p>              
               
               {% else %}
-              <p class="mt-4 mb-0 text-italic text-xs text-nowrap text-center">
-                current theme:
+
+              <p class="mt-4 mb-0 text-italic text-sm text-nowrap text-center">
+                default theme only:
               </p>
-
-
+              
               <a 
-                class="btn btn-outline-primary btn-block rnd-xl text-sm mt-0  pt-0 pb-1" 
-                >
-                {{theme}}
-              </a>
-              {% endif %}
+              class="btn btn-outline-primary border-0 btn-block rnd-xl text-sm mt-0 pt-0 pb-1 disabled text-bold" 
+              >
+              {{theme}}
+            </a>
 
+            
+            
+            {% endif %}
+
+
+            
               
             </span>
             

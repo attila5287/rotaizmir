@@ -1,3 +1,4 @@
+import random
 from flask import (render_template, url_for, flash,
                    redirect, request, abort, Blueprint)
 from flask_login import current_user, login_required
@@ -6,6 +7,32 @@ from blueprints.models import Post
 from blueprints.posts.forms import PostForm
 
 posts = Blueprint('posts', __name__)
+
+ 
+@posts.context_processor
+def inject_random_theme():
+  pass
+  def random_theme():
+    pass
+    list_of_themes = [
+      'cerulean',
+      'cyborg',
+      'darkly',
+      'lumen',
+      'minty',
+      'pulse',
+      'slate',
+      'solar',
+      'spacelab',
+      'superhero',
+      'united',
+    ]
+    
+    selected  = random.choice(list_of_themes)
+    print(selected)
+    return selected if selected else 'minty'
+
+  return dict(random_theme=random_theme())
 
 
 @posts.context_processor
@@ -26,10 +53,12 @@ def inject_icons():
     
     return dict(icons=icons)
 
-
 @posts.route("/post/new", methods=['GET', 'POST'])
+@posts.route("/post/new/", methods=['GET', 'POST'])
+@posts.route("/post/new/<string:theme>", methods=['GET', 'POST'])
+@posts.route("/post/new/<string:theme>/", methods=['GET', 'POST'])
 @login_required
-def new_post():
+def new_post(theme=''):
     form = PostForm()
     if form.validate_on_submit():
         post = Post(title=form.title.data, content=form.content.data, author=current_user)
@@ -38,11 +67,8 @@ def new_post():
         flash('Your post has been created!', 'success')
         return redirect(url_for('main.home'))
     return render_template('create_post.html',
+                           theme=theme,
                            form=form,
-                           css=[
-                               ('theme', '/minty/bootstrap', ),
-                               ('main', 'main', ),
-                           ],
                            info_notes=[
                                'Public message board, user-created messages need to be approved by an admin.',
                            ],
@@ -58,10 +84,12 @@ def new_post():
 
                            )
 
-
 @posts.route("/post/<int:post_id>/update", methods=['GET', 'POST'])
+@posts.route("/post/<int:post_id>/update/", methods=['GET', 'POST'])
+@posts.route("/post/<int:post_id>/update/<string:theme>", methods=['GET', 'POST'])
+@posts.route("/post/<int:post_id>/update/<string:theme>/", methods=['GET', 'POST'])
 @login_required
-def update_post(post_id):
+def update_post(post_id,theme='no_change'):
     post = Post.query.get_or_404(post_id)
     if post.author != current_user:
         abort(403)
@@ -75,8 +103,12 @@ def update_post(post_id):
     elif request.method == 'GET':
         form.title.data = post.title
         form.content.data = post.content
-    return render_template('create_post.html', title='Update Post',
-                           form=form, legend='Update Post')
+    return render_template('create_post.html', 
+                           theme=theme,
+                           title='Update Post',
+                           form=form, 
+                           legend='Update Post'
+                           )
 
 
 @posts.route("/post/<int:post_id>/delete", methods=['POST'])
@@ -91,14 +123,12 @@ def delete_post(post_id):
     return redirect(url_for('main.home'))
 
 @posts.route("/post/<int:post_id>")
-def post(post_id):
+@posts.route("/post/<int:post_id>/")
+def post(post_id=1, theme='no_change'):
     post = Post.query.get_or_404(post_id)
     return render_template('post.html', 
+                           theme=theme, 
                            post=post, 
-                           css=[
-                               ('theme', '/minty/bootstrap', ),
-                               ('main', 'main', ),
-                           ],
                            info_notes=[
                                'Please login with your email address and password. ',
                            ],

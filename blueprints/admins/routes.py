@@ -14,6 +14,32 @@ from blueprints.members.forms import MemberMenu
 
 admins = Blueprint('admins', __name__)
 
+@admins.context_processor
+def inject_random_theme():
+  pass
+  def random_theme():
+    pass
+    list_of_themes = [
+      'cerulean',
+      'cyborg',
+      'darkly',
+      'lumen',
+      'minty',
+      'pulse',
+      'slate',
+      'solar',
+      'spacelab',
+      'superhero',
+      'united',
+    ]
+    
+    selected  = random.choice(list_of_themes)
+    print(selected)
+    return selected if selected else 'minty'
+
+  return dict(random_theme=random_theme())
+
+
 @admins.route('/a/t/u', methods= [ 'GET', 'POST'])
 @admins.route('/a/t/u/', methods= [ 'GET', 'POST'])
 @admins.route('/a/t/u/<int:id>', methods= [ 'GET', 'POST'])
@@ -22,7 +48,7 @@ admins = Blueprint('admins', __name__)
 @admins.route('/admin/tables/users/', methods= [ 'GET', 'POST'])
 @admins.route('/admin/tables/users/<int:id>', methods= [ 'GET', 'POST'])
 @admins.route('/admin/tables/users/<int:id>/', methods= [ 'GET', 'POST'])
-def users_table(id=None):
+def users_table(id=None, theme='no_change'):
   " >0: all users-reqs-notes >None: no reqs-notes >Else: selected user reqs-notes "
   pass
   if not id and not id==0:
@@ -111,6 +137,7 @@ def users_table(id=None):
   
   return render_template(
     'adm_tbl_usr.html',
+    theme = theme,
     disp_reqs = disp_reqs,
     requestors = requestors,
     note_form = note_form,
@@ -138,9 +165,11 @@ def users_table(id=None):
 
 @admins.route('/a/t/m', methods= [ 'GET', 'POST'])
 @admins.route('/a/t/m/', methods= [ 'GET', 'POST'])
+@admins.route('/a/t/m/<string:theme>', methods= [ 'GET', 'POST'])
 @admins.route('/admin/tables/members', methods= [ 'GET', 'POST'])
 @admins.route('/admin/tables/members/', methods= [ 'GET', 'POST'])
-def members_table():
+@admins.route('/admin/tables/members/<string:theme>', methods= [ 'GET', 'POST'])
+def members_table(theme=''):
   pass
   page = request.args.get('page', 1, type=int)
     
@@ -189,14 +218,11 @@ def members_table():
   
   return render_template(
     'adm_tbl_memb.html',
+        theme=theme,
         select_user=select_user,
         select_member=select_member,
         members=p_members, 
         table=table,
-        css=[('theme', '/minty/bootstrap', ),
-          ('main', 'main', ),
-          # ('custom', 'dashboard', ),
-        ],
         info_notes=[
           'Admin dashboard, tables to see all members, ',
         ],
@@ -446,7 +472,7 @@ def inject_status_style():
 @admins.route('/admin/<string:cats>/requests/', methods= [ 'GET', 'POST'])
 @admins.route('/admin/<string:cats>/requests/<int:id>', methods= [ 'GET', 'POST'])
 @admins.route('/admin/<string:cats>/requests/<int:id>/', methods= [ 'GET', 'POST'])
-def all_requests(id=None, cats='all'):
+def all_requests(id=None, cats='all', theme='no_change'):
   pass
   if  cats == 'all' or None:
     pass
@@ -461,7 +487,6 @@ def all_requests(id=None, cats='all'):
     cats = [
       cats_dict[category] for category in list(cats)
     ]
-    
     
   if not id or id==0:
     pass
@@ -515,15 +540,12 @@ def all_requests(id=None, cats='all'):
   ]    
   return render_template(
     'adm_userreqs.html',
+    theme=theme,
     requestors=requestors,
     note_form = note_form,
     disp_reqs = disp_reqs,
     cats_url = [list(cat)[0] for cat in cats],
     categories = cats,
-    css=[('theme', '/minty/bootstrap', ),
-      ('main', 'main', ),
-      ('custom', 'dashboard', ),
-    ],
     info_notes=[
       'Detailed view of user requests and related admin notes with a note form for admins.',
     ],
