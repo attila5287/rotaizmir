@@ -1,6 +1,7 @@
 {% set demo_mode='on' %}
 <!DOCTYPE html>
 <html lang="en">
+
   <head>
     <meta charset="utf-8">
     <meta name="viewport"
@@ -9,28 +10,37 @@
     <meta name="author" content="@attila5287">
     <link rel="icon" type="image/x-icon" class="favicon"
       href="https://raw.githubusercontent.com/attila5287/rota-img/main/icons/favic0n.ico" />
-      {% if theme %}
-      <link rel="stylesheet" type="text/css"
-      href="/static/styles/theme/{{theme}}/bootstrap.css" />
-      {% else %}
-      <link rel="stylesheet" type="text/css"
-      href="/static/styles/theme/minty/bootstrap.css" />
-      
-      {% endif %}
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/css/bootstrap-select.min.css">
 
-      <link rel="stylesheet" type="text/css"
+    {% if not theme %}
+    {% set theme = 'minty' %}
+    {% endif %}
+    
+    <link rel="stylesheet" type="text/css"
+    href="/static/styles/theme/{{theme}}/bootstrap.css" />
+
+
+
+    <link rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/css/bootstrap-select.min.css">
+
+    <link rel="stylesheet" type="text/css"
       href="https://use.fontawesome.com/releases/v5.1.1/css/all.css"
       integrity="sha384-O8whS3fhG2OnA5Kas0Y9l3cfpmYjapjI0E4theH4iuMD+pLhbf6JI0jIMfYcK3yZ"
       crossorigin="anonymous" />
-      
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.css" integrity="sha512-phGxLIsvHFArdI7IyLjv14dchvbVkEDaH95efvAae/y2exeWBQCQDpNFbOTdV1p4/pIa/XtbuDCnfhDEIXhvGQ==" crossorigin="anonymous" />
-      
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/4.7.3/d3.js"></script>
-      
-      <link rel="preconnect" href="https://fonts.gstatic.com">
 
-<link href="https://fonts.googleapis.com/css2?family=Amita:wght@400;700&display=swap" rel="stylesheet"> 
+    <link rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.css"
+      integrity="sha512-phGxLIsvHFArdI7IyLjv14dchvbVkEDaH95efvAae/y2exeWBQCQDpNFbOTdV1p4/pIa/XtbuDCnfhDEIXhvGQ=="
+      crossorigin="anonymous" />
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/4.7.3/d3.js">
+    </script>
+
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Amita:wght@400;700&display=swap"
+      rel="stylesheet">
 
     {% set google_fonts = [
       'Amita:wght@400;700&display=swap',
@@ -60,14 +70,15 @@
       href="/static/styles/custom/dashboard.css" />
 
 
-    
+
     <!-- Custom styles for this template -->
   </head>
+
   <body>
     <style>
     </style>
     <header>
-      <nav 
+      <nav
         class="navbar navbar-dark fixed-top bg-primary flex-md-nowrap p-0 shadow">
         <a class="navbar-brand bg-transparent border-0 col-sm-2 col-md-3 col-lg-2 mr-0"
           href="https://rotaizmir.herokuapp.com/">
@@ -78,9 +89,9 @@
 
           <i class="fas fa-spin">
 
-            </i>
-            Göztepe Rotaract Kulübü          
-            
+          </i>
+          Göztepe Rotaract Kulübü
+
         </a>
 
 
@@ -92,35 +103,36 @@
         </button>
 
         {% if select_member %}
-          {% if select_user %}
-            
-          {% set nav_forms = [
+        {% if select_user %}
+
+        {% set nav_forms = [
               (select_member, 'member/edit/1') ,
               (select_user, 'member/1') ,
               ] %}
-              
-            <div class="input-group input-group-sm row no-gutters align-items-center">
-              {% for form, href in nav_forms %}
-              <div class="col">
-                <div class="input-group">
-                  <div class="input-group-prepend py-0">
-                    <span
-                      class="input-group-text text-light text-sm btn bg-primary border-0 py-0">
-                      {{form.menu.label}}
-                    </span>
-                  </div>
-                  {{form.menu(class="form-control form-control-dark custom-select custom-select-sm text-left text-sm pl-0  py-0")}}
-                  <div class="input-group-append py-0 ">
-                    <a class="btn btn-sm btn-secondary border-0 rnd-md"
-                      href="action">
-                      <i class="fas fa-search px-2 py-0 text-sm"></i>
-                    </a>
-                  </div>
-                </div>
+
+        <div
+          class="input-group input-group-sm row no-gutters align-items-center">
+          {% for form, href in nav_forms %}
+          <div class="col">
+            <div class="input-group">
+              <div class="input-group-prepend py-0">
+                <span
+                  class="input-group-text text-light text-sm btn bg-primary border-0 py-0">
+                  {{form.menu.label}}
+                </span>
               </div>
-              {% endfor %}
+              {{form.menu(class="form-control form-control-dark custom-select custom-select-sm text-left text-sm pl-0  py-0")}}
+              <div class="input-group-append py-0 ">
+                <a class="btn btn-sm btn-secondary border-0 rnd-md"
+                  href="action">
+                  <i class="fas fa-search px-2 py-0 text-sm"></i>
+                </a>
+              </div>
             </div>
-          {% endif %}
+          </div>
+          {% endfor %}
+        </div>
+        {% endif %}
         {% endif %}
 
 
@@ -144,18 +156,18 @@
                     <span class="text-sm text-monts text-light">
                       {{current_user.username}}
                     </span>
-                    
-                    
-                    
+
+
+
                     {% else %}
                     <img
-                    src="https://raw.githubusercontent.com/attila5287/rota-img/main/profile_pics/attila.png"
-                    alt="usr-img" style="max-height:3rem;"
-                    class="img rounded-circle">
+                      src="https://raw.githubusercontent.com/attila5287/rota-img/main/profile_pics/attila.png"
+                      alt="usr-img" style="max-height:3rem;"
+                      class="img rounded-circle">
                     <span class="text-sm text-monts text-light">
                       demo_mode: {{demo_mode}}
                     </span>
-                    
+
                     {% endif %}
 
                   </a>
@@ -190,45 +202,49 @@
                   ('is_admin',           '/admin/tables/users', '├ Users', 'table', ),
                   ('is_admin',           '/admin/tables/members', '└ Members', 'users', ),
                 ] -%}
-<!-- ('is_admin', '/admin/requests', '├ Requests', 'check-double', ), -->
+                <!-- ('is_admin', '/admin/requests', '├ Requests', 'check-double', ), -->
                 {% for access_level, href, caption, icon in side_bar %}
                 {% if demo_mode == 'on' %}
 
-                  {% if access_level or access_level == 'public' or current_user[access_level] or current_user[access_level]=='y' %}
-                    {% set accessible = ' anim text-lowercase ml-2' %}
-                  {% else %}
-                    {% set accessible = ' disabled text-capitalize mt-1 ml-0' %}
-                  {% endif %}
-                
-                
-              <a class="list-group-item list-group-item-light list-group-item-action bg-transparent text-light side-title border-0 m-0 mt-1 p-0 {{accessible}}" href="{{href}}">
+                {% if access_level or access_level == 'public' or current_user[access_level] or current_user[access_level]=='y' %}
+                {% set accessible = ' anim text-lowercase ml-2' %}
+                {% else %}
+                {% set accessible = ' disabled text-capitalize mt-1 ml-0' %}
+                {% endif %}
 
-                <div class="d-flex flex-row justify-content-between rnd-xl {{highlighted}}">
 
-                      <span class="text-md mt-1 text-bold text-md">
-                        {{caption}}
-                      </span>
+                <a class="list-group-item list-group-item-light list-group-item-action bg-transparent text-light side-title border-0 m-0 mt-1 p-0 {{accessible}}"
+                  href="{{href}}">
 
-                      <span class="fa-stack text-mini fa-2x text-center mr-2">
-                        {% if icon %}
-                        <i class="fas fa-circle-notch fa-stack-2x fa-fw text-light opac-30"></i>
-                        <i
-                          class="fas fa-{{icon}} fa-stack-1x fa-fw fa-inverse text-light"></i>
-                        {% endif %}
-                      </span>
+                  <div
+                    class="d-flex flex-row justify-content-between rnd-xl {{highlighted}}">
+
+                    <span class="text-md mt-1 text-bold text-md">
+                      {{caption}}
+                    </span>
+
+                    <span class="fa-stack text-mini fa-2x text-center mr-2">
+                      {% if icon %}
+                      <i
+                        class="fas fa-circle-notch fa-stack-2x fa-fw text-light opac-30"></i>
+                      <i
+                        class="fas fa-{{icon}} fa-stack-1x fa-fw fa-inverse text-light"></i>
+                      {% endif %}
+                    </span>
 
                   </div>
                 </a>
 
                 {% endif %}
                 {% endfor %}
-              <hr class="my-1">
-            </ul>
-            
-            <hr class="border-light border-med opac-30">
-            
-            {% if access %}
-              <details name="access" class="d-flex flex-column justify-content-center text-light ml-2">
+                <hr class="my-1">
+              </ul>
+
+              <hr class="border-light border-med opac-30">
+
+              {% if access %}
+              <details name="access"
+                class="d-flex flex-column justify-content-center text-light ml-2">
                 {% for a in access %}
                 <i class="fas fa-key text-sm ml-2 mr-2 text-light pt-1">
                   {{a}}
@@ -239,77 +255,114 @@
 
 
             </div>
-            
+
           </nav>
-          
+
         </aside>
 
         <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-md-4 pt-4">
-          <legend name="with-info-notes" class="container mini">
-            <p class="legend text-nowrap text-left mb-0">
-
-              <span class="fa-stack fa-2x text-center mr-2">
-                <i class="fas fa-square fa-stack-2x fa-fw text-secondary"></i>
-                <i
-                  class="fas fa-user-md fa-stack-1x fa-fw text-light fa-inverse"></i>
-              </span>
-
-
-              {% if legend %}
-              {{ '{} '.format(legend) }}
-              {% else %}
-
-              {{ '{} '.format('Göztepe Rotaract') }}
-
-              {% endif %}
-            </p>
-
-            {% if info_notes %}
-            <div
-              class="d-flex flex-row justify-content-left align-items-center">
-              <span class="text-info fa-stack fa-2x text-center txt-shd">
-                <i class="fas fa-square  fa-fw fa-stack-2x "></i>
-                <i class="fas fa-info fa-stack-1x fa-inverse fa-fw"></i>
-
-              </span>
-              <ul
-                class="text-sm list-group list-group-flush border-top py-2 border-primary border-top px-0 mx-0">
-                {% for i in info_notes %}
-                <li
-                  class="list-group-item bg-transparent  d-flex justify-content-start align-items-center pt-0 pl-3 border-0 ml-2">
-                  <span class="fas fas fa-play  text-info text-xs mr-2"></span>
-                  {{ i }}
-
-                </li>
-                {% endfor %}
-              </ul>
-            </div>
-            {% endif %}
-
-          </legend>
-
-{% with messages = get_flashed_messages(with_categories=true) %}
+          <div class="d-flex flex-row justify-content-between mini">
+            <legend name="with-info-notes" class="container">
+              <p class="legend text-nowrap text-left mb-0">
   
-  {% if messages %}
+                <span class="fa-stack fa-2x text-center mr-2">
+                  <i class="fas fa-square fa-stack-2x fa-fw text-secondary"></i>
+                  <i
+                    class="fas fa-user-md fa-stack-1x fa-fw text-light fa-inverse"></i>
+                </span>
+  
+  
+                {% if legend %}
+                {{ '{} '.format(legend) }}
+                {% else %}
+  
+                {{ '{} '.format('Göztepe Rotaract') }}
+  
+                {% endif %}
+              </p>
+  
+              {% if info_notes %}
+              <div
+                class="d-flex flex-row justify-content-left align-items-center">
+                <span class="text-info fa-stack fa-2x text-center txt-shd">
+                  <i class="fas fa-square  fa-fw fa-stack-2x "></i>
+                  <i class="fas fa-info fa-stack-1x fa-inverse fa-fw"></i>
+  
+                </span>
+                <ul
+                  class="text-sm list-group list-group-flush border-top py-2 border-primary border-top px-0 mx-0">
+                  {% for i in info_notes %}
+                  <li
+                    class="list-group-item bg-transparent  d-flex justify-content-start align-items-center pt-0 pl-3 border-0 ml-2">
+                    <span class="fas fas fa-play  text-info text-xs mr-2"></span>
+                    {{ i }}
+  
+                  </li>
+                  {% endfor %}
+                </ul>
+              </div>
+              {% endif %}
+  
+            </legend>
+            <span class="w-25" name="change_theme">
+              {% set change_theme_link = url_for(request.endpoint, theme=random_theme) %}
+              
+              
+              
+              {% if random_theme %}
+              <p class="mt-4 mb-0 text-italic text-xs text-nowrap text-center">
+                change theme to:
+              </p>
 
-    <div class="form-mini alert alert-dismissible alert-{{ category }} border-0 bg-transparent">
-      
-      <ul class="list-group my-0">
-      {% for category, message in messages %}
-        <li class="list-group-item list-group-item-{{ category }}">{{ message }}
-          <button type="button" class="close pt-2" data-dismiss="alert">
-            <i class="fas fa-times text-xl pt-0"></i>
-          </button>
+              <a 
+                class="btn btn-primary btn-block rnd-xl mt-0 px-4" 
+                href="{{url_for(request.endpoint, theme=random_theme)}}">
+                {{random_theme}}
+              </a>
+              
+              
+              {% else %}
+              <p class="mt-4 mb-0 text-italic text-xs text-nowrap text-center">
+                current theme:
+              </p>
 
-        </li>
-      {% endfor %}
-      </ul>
-      
-  </div>
 
-  {% endif %}
-{% endwith %}
-        
+              <a 
+                class="btn btn-outline-primary btn-block rnd-xl text-sm mt-0  pt-0 pb-1" 
+                >
+                {{theme}}
+              </a>
+              {% endif %}
+
+              
+            </span>
+            
+          </div>
+
+          {% with messages = get_flashed_messages(with_categories=true) %}
+
+          {% if messages %}
+
+          <div
+            class="form-mini alert alert-dismissible alert-{{ category }} border-0 bg-transparent">
+
+            <ul class="list-group my-0">
+              {% for category, message in messages %}
+              <li class="list-group-item list-group-item-{{ category }}">
+                {{ message }}
+                <button type="button" class="close pt-2" data-dismiss="alert">
+                  <i class="fas fa-times text-xl pt-0"></i>
+                </button>
+
+              </li>
+              {% endfor %}
+            </ul>
+
+          </div>
+
+          {% endif %}
+          {% endwith %}
+
 
           {% block content %}{% endblock %}
           <footer class="container footer mt-2">
@@ -318,11 +371,10 @@
                ('slab-logo',  'logo_slab.png', ),
                ('open-doors',  'logo_opensdoors_2021.png', ),
                ]  %}
-     
+
               {% for alt, src in footer_images %}
               <a class="nav-item nav-link add-anime  rnd-xl"
-                href="https://rotaract2440.org/kulup/23#"
-                >
+                href="https://rotaract2440.org/kulup/23#">
                 <img class="m-0 rnd-lg py-0 pl-2 pr-1 add-anime"
                   src="https://raw.githubusercontent.com/attila5287/rota-img/main/site/{{src}}"
                   alt="{{alt}}" style="height: 2.75rem;">
@@ -338,12 +390,12 @@
               <a class="nav-item nav-link add-anime  rnd-xl"
                 href="https://{{url}}">
                 <h1 class="fab fa-{{icon}}"></h1>
-              </a> 
+              </a>
               {% endfor %}
             </nav>
           </footer>
         </main>
-        
+
       </div>
     </div>
 
@@ -368,10 +420,15 @@
       <script
         src="https://cdnjs.cloudflare.com/ajax/libs/feather-icons/4.9.0/feather.min.js">
       </script>
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.18/js/bootstrap-select.min.js" integrity="sha512-yDlE7vpGDP7o2eftkCiPZ+yuUyEcaBwoJoIhdXv71KZWugFqEphIS3PU60lEkFaz8RxaVsMpSvQxMBaKVwA5xg==" crossorigin="anonymous"></script>
+      <script
+        src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.18/js/bootstrap-select.min.js"
+        integrity="sha512-yDlE7vpGDP7o2eftkCiPZ+yuUyEcaBwoJoIhdXv71KZWugFqEphIS3PU60lEkFaz8RxaVsMpSvQxMBaKVwA5xg=="
+        crossorigin="anonymous"></script>
 
-<!-- Latest compiled and minified JavaScript -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/js/bootstrap-select.min.js"></script>
+      <!-- Latest compiled and minified JavaScript -->
+      <script
+        src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/js/bootstrap-select.min.js">
+      </script>
     </aside>
 
     {% if js %}
@@ -384,7 +441,7 @@
     </mark>
     {% endif %}
 
-    
+
 
   </body>
 

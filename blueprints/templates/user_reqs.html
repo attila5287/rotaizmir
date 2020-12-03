@@ -23,7 +23,7 @@
   {% set req = obj  %}
   <div class="media mt-2 rnd-3xl p-0 add-anime shadow">
     <h1
-      class="far fa-envelope-open bg-warning text-light text-center align-self-center rnd-xl ml-4 p-3">
+      class="far fa-envelope-open bg-{{styles(req.status)}} text-light text-center align-self-center rnd-xl ml-4 p-3">
     </h1>
     <div class="media-body pb-2 pt-0" style="vertical-align: middle;">
       <div class="d-flex flex-row justify-content-between">
@@ -33,19 +33,19 @@
           's <strong class="text-italic">{{req.category}}</strong>
           request message
         </h6>
-        <a class="fas fa-question bg-warning text-light rnd-2xl text-md disabled mt-2 mr-3 mt-2 mr-3 p-2" data-toggle="tooltip" data-placement="bottom" title="request made by current user">
+        <a class="fas fa-question bg-{{styles(req.status)}} text-light rnd-2xl text-md disabled mt-2 mr-3 mt-2 mr-3 p-2" data-toggle="tooltip" data-placement="bottom" title="request made by current user">
         </a>
 
       </div>
 
       {% set  user_req_set = [
               ('text-xl mr-2', 'text-md rnd-lg border-bottom border-med border-warning pb-2 mb-2 mr-3 shadow-sm', 'req_content', req.content,),
-              ('text-lg mr-4', 'text-sm ', 'date_posted', req.date_posted.date(),),
-              ('text-lg mr-4', 'text-sm ', req.status, req.status,),
+              ('text-lg mr-4', 'text-md ', 'date_posted', req.date_posted.date(),),
+              ('text-lg mr-4', 'text-md ', req.status, req.status,),
               ]  %}
 
       {% for icon_style, style, attr, req_attr in user_req_set %}
-      <p class="text-italic pl-2 mb-1 {{style}}">
+      <p class="text-dark text-italic pl-2 mb-1 {{style}}">
         <i class="fa{{icons(attr)}} {{icon_style}} fa-fw"></i>{{req_attr}}
       </p>
 
@@ -66,19 +66,19 @@
           Admin ID#
           {{note.admin_id}} noted:</h6>
         <a class="disabled">
-          <h5 class="far fa-question-circle text-{{styles(note.status)}} fa-pull-right text-shd" data-toggle="tooltip" data-placement="bottom" title="admin note regarding a request made by current user">
+          <h5 class="far fa-question-circle text-{{styles(note.status)}} fa-pull-right text-shd" data-toggle="tooltip" data-placement="bottom" title="{{tooltip_titles(note.status)}} ">
           </h5>
         </a>
       </div>
       {% set  adm_note_set = [
-              ('text-xl mr-4', 'text-md text-left text-dark border-bottom rnd-lg pb-2 ', 'note_content', note.content,),
+              ('text-xl mr-4', 'text-md text-left text-dark border-bottom rnd-lg pb-2', 'note_content', note.content,),
               ('text-lg mr-4', 'text-sm ', 'date_posted', note.date_posted.date(),),
               ('text-lg mr-4', 'text-sm ', note.status, note.status,),
               ]  %}
 
-      {% for icon_style, style, attr, req_attr in adm_note_set %}
+      {% for icon_style, style, attr, note_attr in adm_note_set %}
       <p class="text-italic pl-2 mb-1 {{style}}">
-        <i class="fa{{icons(attr)}} {{icon_style}} fa-fw"></i>{{req_attr}}
+        <i class="fa{{icons(attr)}} {{icon_style}} fa-fw"></i>{{note_attr}}
       </p>
 
       {% endfor %}

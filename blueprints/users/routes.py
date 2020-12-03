@@ -1,3 +1,4 @@
+import sys
 from datetime import datetime
 import random
 from random import shuffle
@@ -13,6 +14,31 @@ from blueprints.users.utils import save_picture, send_reset_email
 from blueprints.users.forms import MemberRequestForm, AdminRequestForm, PrezRequestForm
 
 users = Blueprint('users', __name__)
+ 
+@users.context_processor
+def inject_random_theme():
+  pass
+  def random_theme():
+    pass
+    list_of_themes = [
+      'cerulean',
+      'cyborg',
+      'darkly',
+      'lumen',
+      'minty',
+      'pulse',
+      'slate',
+      'solar',
+      'spacelab',
+      'superhero',
+      'united',
+    ]
+    
+    selected  = random.choice(list_of_themes)
+    print(selected)
+    return selected if selected else 'minty'
+
+  return dict(random_theme=random_theme())
 
 @users.context_processor
 def inject_icons():
@@ -231,6 +257,9 @@ def colors_api():
 
 
 @users.route("/login", methods=['GET', 'POST'])
+@users.route("/login/", methods=['GET', 'POST'])
+@users.route("/login/<string:theme>", methods=['GET', 'POST'])
+@users.route("/login/<string:theme>/", methods=['GET', 'POST'])
 def login():
     pass
     if current_user.is_authenticated:
@@ -391,70 +420,6 @@ def account():
                            title='Account',
                            )
 
-@users.route('/u/r', methods=['GET','POST'])
-@users.route('/user/requests', methods=['GET','POST'])
-@users.route('/user/requests/', methods=['GET','POST'])
-@login_required
-def user_requests():
-    pass
-    member_form = MemberRequestForm()
-    admin_form = AdminRequestForm()
-    prez_form = PrezRequestForm()
-    active_requests = Note.query.filter_by(for_user=current_user).all()
-
-
-    notes_for_user = Note.query.filter_by(for_user=current_user )
-    cats = ['member','admin','prez',]
-    d = {}
-    for cat in cats:
-      pass
-      filtered = notes_for_user.filter_by(category=cat).all()
-      d[cat] = filtered
-      
-    disp_reqs = {
-      current_user.id : d
-    }    
-    
-    # list of users that has active requests
-    requestors = []
-    
-    # collects all categor
-    for req in Note.query.filter_by(type='req').all():
-        pass
-        requestors.append(req.user_id)
-        
-    requestors = [
-        r for  r in requestors
-    ]      
-    
-    formdata_posted = (request.method == 'POST')
-    if formdata_posted:
-        pass
-        usr_req = Note(
-            type='req',
-            category=request.form['category'],
-            status='delivered',
-            content=request.form['content'],
-            user_id=current_user.id,
-            )
-        db.session.add(usr_req)
-        db.session.commit()
-        flash('User {} {} request delivered'.format(current_user.id, request.form['category'], ), 'success')    
-        return redirect(url_for('users.user_requests'))        
-
-    return render_template('user_reqs.html',
-                           requestors=requestors,
-                           disp_reqs = disp_reqs,
-                           member_form=member_form,
-                           admin_form=admin_form,
-                           prez_form=prez_form,
-                           legend='User Requests',
-                           info_notes = [
-                             'Send requests for user account authorization',
-                             'Check recently made requests',
-                           ],
-                           )
- 
 @users.route('/delete/request/<int:id>')
 def delete_request(id):
     pass
@@ -463,8 +428,6 @@ def delete_request(id):
     db.session.delete(req)
     db.session.commit()
     return redirect(url_for('users.user_requests'))
-
-
 
 @users.context_processor
 def inject_icons():
@@ -522,9 +485,99 @@ def inject_status_style():
       "approved": "primary",
       "pending": "info",
       "denied": "secondary",
-      "delivered": "",
+      "delivered": "warning",
+      "received": "warning",
     }
     
     return gallery.get(label, '')
 
   return dict(styles=styles)
+
+@users.context_processor
+def inject_tooltip_titles():
+  pass
+  def tooltip_titles(status):
+    pass
+    mouseover_text = {  # tooltip for info
+      "approved":  "request approved",
+      "pending":   "request needs further review",
+      "denied":    "request denied, read note carefully for details and send another request",
+      "delivered": "user request to gain access to an authorization level",
+      "received":  "user request to gain access to an authorization level",
+    }
+    
+    return mouseover_text.get(status, '')
+
+  return dict(tooltip_titles=tooltip_titles)
+
+
+@users.route('/u/r', methods=['GET','POST'])
+@users.route('/u/r/', methods=['GET','POST'])
+@users.route('/user/requests/', methods=['GET','POST'])
+@users.route('/user/requests/', methods=['GET','POST'])
+@users.route('/u/r/<string:theme>', methods=['GET','POST'])
+@users.route('/u/r/<string:theme>/', methods=['GET','POST'])
+@users.route('/user/requests/<string:theme>', methods=['GET','POST'])
+@users.route('/user/requests/<string:theme>/', methods=['GET','POST'])
+@login_required
+def user_requests(theme='minty'):
+    pass
+    # theme = theme if theme else 'minty'
+    
+    member_form = MemberRequestForm()
+    admin_form = AdminRequestForm()
+    prez_form = PrezRequestForm()
+    active_requests = Note.query.filter_by(for_user=current_user).all()
+    notes_for_user = Note.query.filter_by(for_user=current_user )
+    cats = ['member','admin','prez',]
+    d = {}
+    for cat in cats:
+      pass
+      filtered = notes_for_user.filter_by(category=cat).all()
+      d[cat] = filtered
+      
+    disp_reqs = {
+      current_user.id : d
+    }    
+    
+    # list of users that has active requests
+    requestors = []
+    
+    # collects all categor
+    for req in Note.query.filter_by(type='req').all():
+        pass
+        requestors.append(req.user_id)
+        
+    requestors = [
+        r for  r in requestors
+    ]      
+    
+    formdata_posted = (request.method == 'POST')
+    if formdata_posted:
+        pass
+        usr_req = Note(
+            type='req',
+            category=request.form['category'],
+            status='delivered',
+            content=request.form['content'],
+            user_id=current_user.id,
+            )
+        db.session.add(usr_req)
+        db.session.commit()
+        flash('User {} {} request delivered'.format(current_user.id, request.form['category'], ), 'success')    
+        return redirect(url_for('users.user_requests'))        
+
+    return render_template('user_reqs.html',
+                           theme=theme,
+                           requestors=requestors,
+                           disp_reqs = disp_reqs,
+                           member_form=member_form,
+                           admin_form=admin_form,
+                           prez_form=prez_form,
+                           legend='User Requests',
+                           info_notes = [
+                             'Send requests for user account authorization',
+                             'Check recently made requests',
+                           ],
+                           )
+
