@@ -4,9 +4,9 @@
       {% for page_num in posts.iter_pages(left_edge=1, right_edge=1, left_current=1, right_current=2) %}
         {% if page_num %}
           {% if posts.page == page_num %}
-            <a class="btn btn-secondary disabled bg-transparent text-dark border-0 disabled mb-4" href="{{ url_for('users.user_posts', username=user.username, page=page_num) }}">{{ page_num }}</a>
+            <a class="btn btn-secondary disabled bg-transparent text-dark border-0 disabled mb-4" href="{{ url_for('users.user_posts', id=user.id, page=page_num) }}">{{ page_num }}</a>
           {% else %}
-            <a class="btn btn-secondary mb-4" href="{{ url_for('users.user_posts', username=user.username, page=page_num) }}">{{ page_num }}</a>
+            <a class="btn btn-secondary mb-4" href="{{ url_for('users.user_posts', id=user.id, page=page_num) }}">{{ page_num }}</a>
           {% endif %}
         {% else %}
           ...
@@ -19,7 +19,7 @@
         <img class="rounded-circle article-img"src="https://raw.githubusercontent.com/attila5287/rota-img/main/avatars/{{ current_user.img_url }}.png">
         <div class="media-body">
           <div class="article-metadata">
-            <a class="mr-2 text-light" href="{{ url_for('users.user_posts', username=post.author.username) }}">{{ post.author.username }}</a>
+            <a class="mr-2 text-light" href="{{ url_for('users.user_posts', id=user.id) }}">{{ user.username }}</a>
             <small class="text-muted">{{ post.date_posted.strftime('%Y-%m-%d') }}</small>
           </div>
           <h2 class="bg-light rnd-xl w-75"><a class="ml-2 text-primary text-bold article-title" href="{{ url_for('posts.post', post_id=post.id) }}">{{ post.title }}</a></h2>

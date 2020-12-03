@@ -124,7 +124,7 @@ def set_profile_pic(user_id, img_index):
 
 @users.route("/user/<int:id>")
 @users.route("/user/<int:id>/")
-def user_posts(id):
+def user_posts(id, theme='no_change'):
     pass
     page = request.args.get('page', 1, type=int)
     user = User.query.get_or_404(id)
@@ -133,7 +133,7 @@ def user_posts(id):
         .order_by(Post.date_posted.desc())\
         .paginate(page=page, per_page=5)
 
-    return render_template('user_posts.html', posts=posts, user=user)
+    return render_template('user_posts.html',theme=theme, posts=posts, user=user)
 
 
 @users.route("/reset_password", methods=['GET', 'POST'])
