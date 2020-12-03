@@ -7,7 +7,7 @@
     >
     <div class="media-body">
       <div class="article-metadata">
-        <a class="rnd-xl text-bold mr-2 px-2 py-1 disabled" href="{ url_for('users.user_posts', username=post.author.username) }}">{{ post.author.username }}</a>
+        <a class="rnd-xl text-bold mr-2 px-2 py-1 disabled" href="{{ url_for('users.user_posts', id=post.author.id) }}">{{ post.author.username }}</a>
         <small class="text-italic text-light">{{ post.date_posted.strftime('%Y-%m-%d') }}</small>
         <hr class="border-light my-0 mb-1 mx-5">
         {% if post.author == current_user %}

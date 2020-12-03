@@ -130,7 +130,8 @@ def post(post_id=1, theme='no_change'):
                            theme=theme, 
                            post=post, 
                            info_notes=[
-                               'Please login with your email address and password. ',
+                               'Shows the selected post individually. ',
+                               'Update if posted by the current user.',
                            ],
                            access=[
                                'u',
