@@ -1,5 +1,6 @@
 {% extends "layout.html" %}
 {% block content %}
+
 <div class="mini" name="MAIN-requests-notes">
   {% for user_id, user_requests in disp_reqs.items() %}
   {% for category, sorted in user_requests.items() %}
@@ -34,9 +35,9 @@
           request message
         </h6>
         <div class="btn-group-vertical">
-          <a class="fas fa-question bg-{{styles(req.status)}} text-light rnd-2xl text-md disabled mt-2 mr-3 mt-2 mr-3 p-2" data-toggle="tooltip" data-placement="bottom" title="request made by current user">
+          <a class="fas fa-question bg-{{styles(req.status)}} text-light rnd-2xl text-md disabled mt-2 mr-3 mt-2 mr-3 p-1" data-toggle="tooltip" data-placement="bottom" title="request made by current user">
           </a>
-          <a class="fab fa-weebly bg-{{styles('withdrew')}} rnd-2xl text-lg mt-2 mr-3 mt-2 mr-3 p-1" data-toggle="tooltip" data-placement="bottom" title="withdraw this request"
+          <a class="fa{{icons('withdrew')}} bg-{{styles('withdrew')}} rnd-2xl text-light mt-2 mr-3 mt-2 mr-3 p-1" data-toggle="tooltip" data-placement="bottom" title="withdraw this request"
           href="{{url_for('users.withdraw_request', id=req.id)}}"
           >
           </a>

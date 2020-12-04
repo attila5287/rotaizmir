@@ -432,7 +432,9 @@ def account(theme=''):
 def withdraw_request(id):
     pass
     req = Note.query.get_or_404(id)
-    db.session.delete(req)
+    
+    req.status = 'withdrew'
+    
     db.session.commit()
     return redirect(url_for('users.user_requests'))
 
@@ -477,6 +479,7 @@ def inject_icons():
       "prez_request":   "s fa-concierge-bell",
       "delivered":   "s fa-envelope",
       "denied":   "s fa-gavel",
+      "withdrew":   "s fa-comment-slash",
       "approved":   "s fa-stamp",
       "pending":  "s fa-balance-scale",
       "date_posted": "r fa-calendar-alt",
