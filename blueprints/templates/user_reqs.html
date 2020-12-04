@@ -5,8 +5,8 @@
   {% for category, sorted in user_requests.items() %}
   {% if user_id in requestors %}
   <hr>
-  <div name="user-header" class="d-flex flex-row justify-content-between"
-    name="user-section-header">
+  <div name="user-category" class="d-flex flex-row justify-content-between"
+    name="user-section-category">
     category: {{category}}
     <a class="btn btn-outline-primary btn-sm border-0 p-1"
       data-toggle="tooltip" data-placement="bottom"
@@ -30,11 +30,18 @@
         <h6 class="mt-2 border-bottom border-med ">
           User ID
           <i class="text-bold text-nonitalic"># {{req.user_id}}</i>
-          's <strong class="text-italic">{{req.category}}</strong>
+          's <strong class="text-italic text-md px-1 border-bottom">{{req.category}}</strong>
           request message
         </h6>
-        <a class="fas fa-question bg-{{styles(req.status)}} text-light rnd-2xl text-md disabled mt-2 mr-3 mt-2 mr-3 p-2" data-toggle="tooltip" data-placement="bottom" title="request made by current user">
-        </a>
+        <div class="btn-group-vertical">
+          <a class="fas fa-question bg-{{styles(req.status)}} text-light rnd-2xl text-md disabled mt-2 mr-3 mt-2 mr-3 p-2" data-toggle="tooltip" data-placement="bottom" title="request made by current user">
+          </a>
+          <a class="fab fa-weebly bg-{{styles('withdrew')}} rnd-2xl text-lg mt-2 mr-3 mt-2 mr-3 p-1" data-toggle="tooltip" data-placement="bottom" title="withdraw this request"
+          href="{{url_for('users.withdraw_request', id=req.id)}}"
+          >
+          </a>
+          
+        </div>
 
       </div>
 
@@ -45,7 +52,7 @@
               ]  %}
 
       {% for icon_style, style, attr, req_attr in user_req_set %}
-      <p class="text-dark text-italic pl-2 mb-1 {{style}}">
+      <p class="text-italic pl-2 mb-1 {{style}}">
         <i class="fa{{icons(attr)}} {{icon_style}} fa-fw"></i>{{req_attr}}
       </p>
 
@@ -71,8 +78,8 @@
         </a>
       </div>
       {% set  adm_note_set = [
-              ('text-xl mr-4', 'text-md text-left text-dark border-bottom rnd-lg pb-2', 'note_content', note.content,),
-              ('text-lg mr-4', 'text-sm ', 'date_posted', note.date_posted.date(),),
+              ('text-xl mr-4', 'text-md text-left border-bottom rnd-lg pb-2', 'note_content', note.content,),
+              ('text-lg mr04', 'text-sm ', 'date_posted', note.date_posted.date(),),
               ('text-lg mr-4', 'text-sm ', note.status, note.status,),
               ]  %}
 
@@ -115,7 +122,7 @@
     ( 'is_prez',   'prez', 'fas fa-graduation-cap', prez_form ),
       ] %}
   
-  {% for status, header, icon, form in user_stats %}
+  {% for status, category, icon, form in user_stats %}
   {% if current_user[status] == 'y' %}
 
   <div class="card border-0 text-center mt-0">
@@ -123,15 +130,15 @@
       
       <form method="POST" action="">
         <div class="form-group py-0 mb-0">
-          <select class="custom-select text-primary text-center  text-comfo border-0 mb-2" id="category" name="category" value="{{header}}" >
-            <option value="{{header}}" selected>{{header}}</option>
+          <select class="custom-select text-primary text-center text-comfo border-0 mb-2" id="category" name="category" value="{{category}}" >
+            <option value="{{category}}" selected>{{category}}</option>
           </select>
           
         </div>  
         <h1 class="mt-2 card-title fas fa-{{icon}} text-primary opac-50"></h1>
         <hr class="border-primary my-0 mx-2">
         <div class="form-group py-0 mb-0">
-          <textarea class="form-control text-center text-italic text-primary border-0 bg-transparent" readonly>Already a member!</textarea>
+          <p class="text-center text-italic text-primary border-0 mt-4">Already a member!</p>
         </div>  
         <div class="form-group py-0 mb-0">
           <a class="btn btn-outline-primary btn-block border-0 text-italic disabled mt-2">
@@ -149,14 +156,14 @@
         
         <form method="POST" action="">
           <div class="form-group py-0 mb-0">
-            <select class="custom-select text-secondary text-center  text-comfo border-0 shadow mb-2" id="category" name="category" value="{{header}}" >
-              <option value="{{header}}" selected>{{header}}</option>
+            <select class="custom-select text-danger text-center  text-comfo border-0 shadow mb-2" id="category" name="category" value="{{category}}" >
+              <option value="{{category}}" selected>{{category}}</option>
             </select>
             
           </div>  
           <h1 class="mt-2 card-title fas fa-{{icon}} text-secondary opac-50"></h1>
           <div class="form-group py-0 mb-0">
-            {{form.content(class="form-control  text-italic mb-0" ) }}
+            <textarea type="input" name="content" id="content" class="form-control form-control-lg text-sm text-italic px-0 py-2" >{{request_generator(category)}} </textarea>
           </div>  
           <div class="form-group py-0 mb-0">
             {{form.submit(class="btn btn-outline-primary btn-block border-0 shadow mt-2" ) }}

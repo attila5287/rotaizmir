@@ -454,7 +454,7 @@ def inject_status_style():
     gallery = {  # font awesome icons for member forms
       "approved": "primary",
       "pending": "info",
-      "denied": "secondary",
+      "denied": "danger",
       "delivered": "",
     }
     

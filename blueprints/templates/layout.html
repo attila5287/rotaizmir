@@ -46,13 +46,13 @@
       href="https://fonts.googleapis.com/css2?family=Amita:wght@400;700&display=swap"
       rel="stylesheet">
 
+      <!-- 'Amita:wght@400;700&display=swap', -->
+      <!-- 'Major+Mono+Display&display=swap', -->
+      <!-- 'Lilita+One', -->
     {% set google_fonts = [
-      'Amita:wght@400;700&display=swap',
-      'Major+Mono+Display&display=swap',
-      'Lilita+One',
       'Orbitron',
       'Comfortaa',
-      'Montserrat+Alternates:wght@500&display=swap',
+      'Montserrat+Alternates:wght@400;500;600&display=swap',
       ] %}
 
     {% for font_url in google_fonts %}
@@ -68,15 +68,10 @@
     <title>Göztepe Rotaract</title>
     {% endif %}
 
-
     <link rel="stylesheet" type="text/css"
       href="/static/styles/main/main.css" />
     <link rel="stylesheet" type="text/css"
       href="/static/styles/custom/dashboard.css" />
-
-
-
-    <!-- Custom styles for this template -->
   </head>
 
   <body>
@@ -315,7 +310,7 @@
               <div class="btn-group">
                 <a 
                   class="btn btn-warning btn-block btn-sm rnd-3xl mt-0" 
-                  href="{{url_for(request.endpoint, theme='minty')}}"
+                  href="{{url_for(request.endpoint)}}"
                   >
                   <i class="fas fa-undo-alt text-lg mx-1"></i>
                 </a>

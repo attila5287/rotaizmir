@@ -14,6 +14,23 @@ from blueprints.users.utils import save_picture, send_reset_email
 from blueprints.users.forms import MemberRequestForm, AdminRequestForm, PrezRequestForm
 
 users = Blueprint('users', __name__)
+@users.context_processor
+def inject_random_request():
+  pass
+  def request_generator(category):
+    pass
+    _menu = [
+        'Please review my {} request, thanks.'.format(category),
+        'Would like to be considered for {}, thanks.'.format(category),
+        'I am certain that auth-level for {} would benefit us both.'.format(category),
+        'Registered as soon as received the invitation for {}, merci.'.format(category),
+    ]
+    _rc = random.choice
+    selected  = _rc(_menu)
+    # print(selected)
+    return selected if selected else '{} access request message.'.format(category)
+
+  return dict(request_generator=request_generator)
  
 @users.context_processor
 def inject_random_theme():
@@ -276,11 +293,6 @@ def login(theme='minty'):
     return render_template('login.html',
                            theme=theme,
                            form=form,
-                           css=[
-                               ('theme', '/minty/bootstrap', ),
-                               ('main', 'main', ),
-                            #    ('custom', 'cards', ),
-                           ],
                            info_notes=[
                                'Please login with your email address and password. ',
                            ],
@@ -306,10 +318,6 @@ def userposts_byid(id):
     return render_template('user_posts.html', 
                            posts=posts, 
                            user=user, 
-                           css=[
-                               ('theme', '/minty/bootstrap', ),
-                               ('main', 'main', ),
-                           ],
                            info_notes=[
                                'Show all posts by the user #{}'.format(id),
                            ],
@@ -353,10 +361,6 @@ def register(theme='minty'):
                                theme=theme, 
                                form=form, 
                            legend='Register',
-                            css=[
-                                ('theme', '/minty/bootstrap', ),
-                                ('main', 'main', ),
-                            ],
                             info_notes=[
                                 'Your email and password will be used for login',
                                 'Choose your display name by random generators below',
@@ -408,13 +412,8 @@ def account(theme=''):
                            theme = theme,
                            first_random = first_random,
                            form=form,
-                           css=[ 
-                               ('theme', '/minty/bootstrap', ),
-                               ('main', 'main', ),
-                           ],
                            info_notes=[
-                               'On left is the current (temporary) picture,',
-                               'Click (or Tap) suggested picture for next suggestion or hit the button to !',
+                               'Choose a random suggested profile pic, update email or upload a profile pic',
                            ],
                            access=[
                                'u',
@@ -428,6 +427,14 @@ def account(theme=''):
                            legend='Edit User Account',
                            title='Account',
                            )
+
+@users.route('/user/withdraw/request/<int:id>')
+def withdraw_request(id):
+    pass
+    req = Note.query.get_or_404(id)
+    db.session.delete(req)
+    db.session.commit()
+    return redirect(url_for('users.user_requests'))
 
 @users.route('/delete/request/<int:id>')
 def delete_request(id):
@@ -492,12 +499,13 @@ def inject_status_style():
     gallery = {  # font awesome icons for member forms
       "approved": "primary",
       "pending": "info",
-      "denied": "secondary",
+      "denied": "danger",
       "delivered": "warning",
       "received": "warning",
+      "withdrew": "danger",
     }
     
-    return gallery.get(label, '')
+    return gallery.get(label, 'secondary')
 
   return dict(styles=styles)
 

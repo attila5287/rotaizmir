@@ -119,6 +119,7 @@
 		"emmet.triggerExpansionOnTab": true,
 		"html.format.wrapLineLength": 79,
 		"jupyter.jupyterServerType": "local",
+		"python.analysis.completeFunctionParens": true,
 
 	},
 	"git-autoconfig.configList": [],
