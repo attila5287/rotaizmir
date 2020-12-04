@@ -25,7 +25,7 @@
   {% set req = obj  %}
   <div class="media mt-2 rnd-3xl p-0 add-anime shadow">
     <h1
-      class="far fa-envelope-open bg-{{styles(req.status)}} text-light text-center align-self-center rnd-xl ml-4 p-3">
+      class="fa{{icons(req.status)}} bg-{{styles(req.status)}} text-light text-center align-self-center rnd-xl ml-4 p-3">
     </h1>
     <div class="media-body pb-2 pt-0" style="vertical-align: middle;">
       <div class="d-flex flex-row justify-content-between">
@@ -38,10 +38,15 @@
         <div class="btn-group-vertical">
           <a class="fas fa-question bg-{{styles(req.status)}} text-light rnd-2xl text-md disabled mt-2 mr-3 mt-2 mr-3 p-1" data-toggle="tooltip" data-placement="bottom" title="request made by current user">
           </a>
+          {% if req.status == 'withdrew' %}
+          <a class="fa{{icons('reopen_req')}} bg-{{styles('withdrew')}} rnd-2xl text-light mt-2 mr-3 mt-2 mr-3 p-1" data-toggle="tooltip" data-placement="bottom" title="withdraw this request"
+          href="{{url_for('users.reopen_request', id=req.id)}}"
+          ></a>
+          {% else %}
           <a class="fa{{icons('withdrew')}} bg-{{styles('withdrew')}} rnd-2xl text-light mt-2 mr-3 mt-2 mr-3 p-1" data-toggle="tooltip" data-placement="bottom" title="withdraw this request"
           href="{{url_for('users.withdraw_request', id=req.id)}}"
-          >
-          </a>
+          ></a>
+          {% endif %}
           
         </div>
 
@@ -165,7 +170,7 @@
           </div>  
           <h1 class="mt-2 card-title fas fa-{{icon}} text-secondary opac-50"></h1>
           <div class="form-group py-0 mb-0">
-            <textarea type="input" name="content" id="content" class="form-control form-control-lg text-sm text-italic px-0 py-2" >{{request_generator(category)}} </textarea>
+            <textarea type="input" name="content" id="content" class="form-control form-control-lg text-sm text-italic px-1 py-2" >{{request_generator(category)}} </textarea>
           </div>  
           <div class="form-group py-0 mb-0">
             {{form.submit(class="btn btn-outline-primary btn-block border-0 shadow mt-2" ) }}

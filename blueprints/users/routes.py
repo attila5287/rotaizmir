@@ -428,6 +428,16 @@ def account(theme=''):
                            title='Account',
                            )
 
+@users.route('/user/reopen/request/<int:id>')
+def reopen_request(id):
+    pass
+    req = Note.query.get_or_404(id)
+    
+    req.status = 'delivered'
+    
+    db.session.commit()
+    return redirect(url_for('users.user_requests'))
+
 @users.route('/user/withdraw/request/<int:id>')
 def withdraw_request(id):
     pass
@@ -437,7 +447,6 @@ def withdraw_request(id):
     
     db.session.commit()
     return redirect(url_for('users.user_requests'))
-
 @users.route('/delete/request/<int:id>')
 def delete_request(id):
     pass
@@ -477,9 +486,10 @@ def inject_icons():
       "admin_request":  "s fa-concierge-bell",
       "member_request": "s fa-concierge-bell",
       "prez_request":   "s fa-concierge-bell",
-      "delivered":   "s fa-envelope",
+      "delivered":   "r fa-envelope-open",
       "denied":   "s fa-gavel",
-      "withdrew":   "s fa-comment-slash",
+      "reopen_req":   "s fa-lock-open",
+      "withdrew":   "s fa-lock",
       "approved":   "s fa-stamp",
       "pending":  "s fa-balance-scale",
       "date_posted": "r fa-calendar-alt",
