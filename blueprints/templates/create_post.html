@@ -53,8 +53,8 @@
         <form method="POST" action="">
 
             {{ form.hidden_tag() }}
-<select id="status" name="status"
-                class="select_topic selectpicker form-control"
+            <select id="status" name="status"
+                class="select_topic selectpicker form-control mb-3"
                 data-search_term="usr_{{user_id}}_{{category}}">
                 <option value="" data-content="<i class='fas fa-sign text-2xl py-0 my-0 fa-fw bg-primary p-1 rnd-lg text-light' aria-hidden='true'> 
                       <i class='text-nonbold text-mntsrt text-lg pl-2 my-0 py-0 text-primary'> 
@@ -63,32 +63,49 @@
                     </i>
                   " selected disabled>
                 </option>
+                <option class="dropdown-divider my-0 pt-0 pb-1 bg-primary opac-60" value="" disabled></option>
                 {% set options = [
                     ('Members', 'is_member', 'user-check', 'primary', '',  ),
                     ('AdmBoard', 'is_admin', 'user-md', 'secondary', '',  ),
                     ('PrezBoard', 'is_prez', 'user-graduate', 'info', '',  ),
-                    ('Public', 'is_prez', 'users', 'danger', '',  ),
+                    ('PublicPosts', 'is_prez', 'users', 'danger', '',  ),
                     ]  %}
 
 
                 {% for  topic, status, icon,style, tooltip in options %}
-                <option class="dropdown-divider my-0 pt-0 pb-1 bg-{{style}} opac-60" value="" disabled></option>
+                
 
-                <option class="" value="{{status}}" data-content="<i class='fas fa-{{icon}} fa-fw text-{{style}} text-xl pl-2 mt-0 pt-0' aria-hidden='true'> 
-                </i>
-                    <i class=' ml-2 text-monts text-uppercase  text-nonitalic text-capitalize text-lg mt-0 align-self-start'> 
-                        {{topic}} : 
-                        {{status}} </i>
-                  ">
-                </option>
+                {% if user[status] == 'y' %}
+                    <option class="" value="{{status}}" data-content="<i class='fas fa-{{icon}} fa-fw text-{{style}} text-xl pl-2 mt-0 pt-0' aria-hidden='true'> 
+                    </i>
+                            <i class='ml-2 text-monts   text-nonitalic text-capitalize text-lg mt-0'> 
+                              {{topic}}
+                          </i>
+                          <i class='fas fa-check text-italic text-{{style}} ml-3 pl-3'> {{status}}</i>
+    
+                        </i>
+                      ">
+                      {% else %}
+                        <option class="" value="{{status}}" data-content="<i class='fas fa-{{icon}} fa-fw text-{{style}} text-xl pl-2 mt-0 pt-0' aria-hidden='true'> 
+                        </i>
+                                <i class='ml-2 text-monts   text-nonitalic text-capitalize text-lg mt-0'> 
+                                  {{topic}}
+                              </i>
+                              <i class='fas fa-times text-italic opac-40 ml-3 pl-3'> {{status}}</i>
+        
+                            </i>
+                          ">
+
+                          {% endif %}                  
+                        </option>
 
 
                 {% endfor %}
 
-              </select>
+            </select>
 
-
-
+            <hr class="mx-2 mt-1 mb-2 border-primary">
+            
             {% for field in form %}
             {% if field.id == 'csrf_token' %}
 
@@ -113,10 +130,10 @@
                         <div
                             class="input-group-prepend add-anime bg-transparent rnd-xl border-0">
                             <span
-                                class="input-group-text  bg-secondary text-light text-lg"
+                                class="input-group-text bg-secondary text-light text-lg"
                                 id="inputGroupPrepend">
                                 <i
-                                    class="fa{{icons(field.id)}} fa-fw ml-2 mt-0"></i>
+                                class="fa{{icons(field.id)}} fa-fw ml-2 mt-0"></i>
                             </span>
                         </div>
                         {{field(class="form-control form-control-sm mb-0 shadow mr-2" )}}

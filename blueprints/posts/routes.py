@@ -47,6 +47,7 @@ def inject_icons():
             "img_url": "s fa-image", 
             "is_admin": "s fa-user-md", 
             "is_prez": "s fa-user-md", 
+            "content": "s fa-envelope", 
             }
         
         return gallery.get(label, 's fa-edit')
