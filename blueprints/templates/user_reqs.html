@@ -36,16 +36,14 @@
           request message
         </h6>
         <div class="btn-group-vertical">
-          <a class="fas fa-question bg-{{styles(req.status)}} text-light rnd-2xl text-md disabled mt-2 mr-3 mt-2 mr-3 p-1" data-toggle="tooltip" data-placement="bottom" title="request made by current user">
+          <a class="btn btn-{{styles(req.status)}} fas fa-question btn-disabled" data-toggle="tooltip" data-placement="bottom" title="request made by current user">
           </a>
-          {% if req.status == 'withdrew' %}
-          <a class="fa{{icons('reopen_req')}} bg-{{styles('withdrew')}} rnd-2xl text-light mt-2 mr-3 mt-2 mr-3 p-1" data-toggle="tooltip" data-placement="bottom" title="withdraw this request"
-          href="{{url_for('users.reopen_request', id=req.id)}}"
-          ></a>
+          {% if not req.status == 'withdrew' %}
+            <button type="button" class="btn btn-danger pb-1 pt-0" data-toggle="modal" data-target="#withdrawModal_{{req.id}}">withdraw</button>
           {% else %}
-          <a class="fa{{icons('withdrew')}} bg-{{styles('withdrew')}} rnd-2xl text-light mt-2 mr-3 mt-2 mr-3 p-1" data-toggle="tooltip" data-placement="bottom" title="withdraw this request"
-          href="{{url_for('users.withdraw_request', id=req.id)}}"
-          ></a>
+          
+          <button type="button" class="btn btn-warning pb-1 pt-0" data-toggle="modal" data-target="#reopenModal_{{req.id}}">re-open</button>
+
           {% endif %}
           
         </div>
@@ -64,6 +62,46 @@
       </p>
 
       {% endfor %}
+    </div>
+  </div>
+
+  <!-- WITHDRAW MODAL POP-UP -->
+  <div class="modal fade" id="withdrawModal_{{req.id}}" tabindex="-1" role="dialog" aria-labelledby="withdrawModalLabel_{{req.id}}" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="withdrawModalLabel_{{req.id}}">Withdraw request?</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <form action="{{url_for('users.withdraw_request', id=req.id)}}" method="POST">
+            <input class="btn btn-danger" type="submit" value="Withdraw">
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="reopenModal_{{req.id}}" tabindex="-1" role="dialog" aria-labelledby="reopenModalLabel_{{req.id}}" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="reopenModalLabel_{{req.id}}">
+            Re-open withdrew request?</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <form action="{{url_for('users.reopen_request', id=req.id)}}" method="POST">
+            <input class="btn btn-warning" type="submit" value="Reopen">
+          </form>
+        </div>
+      </div>
     </div>
   </div>
   {% else %}
@@ -157,7 +195,9 @@
 
     </div>
   </div>
+
   {% else %}
+  
     <div class="card border-0 text-center">
       <div class="card-body align-items-center mb-0">
         
@@ -217,4 +257,5 @@
 
   </nav>
 </div>
+
 {% endblock %}

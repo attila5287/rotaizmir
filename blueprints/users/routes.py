@@ -428,7 +428,7 @@ def account(theme=''):
                            title='Account',
                            )
 
-@users.route('/user/reopen/request/<int:id>')
+@users.route('/user/reopen/request/<int:id>', methods=['GET','POST'])
 def reopen_request(id):
     pass
     req = Note.query.get_or_404(id)
@@ -438,7 +438,7 @@ def reopen_request(id):
     db.session.commit()
     return redirect(url_for('users.user_requests'))
 
-@users.route('/user/withdraw/request/<int:id>')
+@users.route('/user/withdraw/request/<int:id>', methods=['GET','POST'])
 def withdraw_request(id):
     pass
     req = Note.query.get_or_404(id)
