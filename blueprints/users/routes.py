@@ -548,16 +548,22 @@ def inject_tooltip_titles():
 @users.route('/u/r/<string:theme>/', methods=['GET','POST'])
 @users.route('/user/requests/<string:theme>', methods=['GET','POST'])
 @users.route('/user/requests/<string:theme>/', methods=['GET','POST'])
-@login_required
 def user_requests(theme='minty'):
     pass
     # theme = theme if theme else 'minty'
-    
+    if current_user.is_authenticated:
+        pass
+        current_us3r = current_user
+    else:
+        pass
+        current_us3r = User.query.get_or_404(1)
+        
+        
     member_form = MemberRequestForm()
     admin_form = AdminRequestForm()
     prez_form = PrezRequestForm()
-    active_requests = Note.query.filter_by(for_user=current_user).order_by(Note.date_posted.desc()).all()
-    notes_for_user = Note.query.filter_by(for_user=current_user ).order_by(Note.date_posted.asc())
+    active_requests = Note.query.filter_by(for_user=current_us3r).order_by(Note.date_posted.desc()).all()
+    notes_for_user = Note.query.filter_by(for_user=current_us3r ).order_by(Note.date_posted.asc())
     cats = ['member','admin','prez',]
     d = {}
     for cat in cats:
@@ -566,7 +572,7 @@ def user_requests(theme='minty'):
       d[cat] = filtered
       
     disp_reqs = {
-      current_user.id : d
+      current_us3r.id : d
     }    
     
     # list of users that has active requests
@@ -589,14 +595,15 @@ def user_requests(theme='minty'):
             category=request.form['category'],
             status='delivered',
             content=request.form['content'],
-            user_id=current_user.id,
+            user_id=current_us3r.id,
             )
         db.session.add(usr_req)
         db.session.commit()
-        flash('User {} {} request delivered'.format(current_user.id, request.form['category'], ), 'success')    
+        flash('User {} {} request delivered'.format(current_us3r.id, request.form['category'], ), 'success')    
         return redirect(url_for('users.user_requests'))        
 
     return render_template('user_reqs.html',
+                           current_us3r=current_us3r,
                            theme=theme,
                            requestors=requestors,
                            disp_reqs = disp_reqs,
