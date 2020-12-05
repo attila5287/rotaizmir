@@ -51,10 +51,10 @@
       </div>
 
       {% set  user_req_set = [
-              ('text-xl mr-2', 'text-md rnd-lg border-bottom border-med border-warning pb-2 mb-2 mr-3 shadow-sm', 'req_content', req.content,),
-              ('text-lg mr-4', 'text-md ', 'date_posted', req.date_posted.date(),),
-              ('text-lg mr-4', 'text-md ', req.status, req.status,),
-              ]  %}
+        ('text-xl mr-2', 'text-md rnd-lg border-bottom border-med border-warning pb-2 mb-2 mr-3 shadow-sm', 'req_content', req.content,),
+        ('text-lg mr-4', 'text-md ', 'date_posted', req.date_posted.date(),),
+        ('text-lg mr-4', 'text-md ', req.status, req.status,),
+      ]  %}
 
       {% for icon_style, style, attr, req_attr in user_req_set %}
       <p class="text-italic pl-2 mb-1 {{style}}">

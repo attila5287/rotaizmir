@@ -556,8 +556,8 @@ def user_requests(theme='minty'):
     member_form = MemberRequestForm()
     admin_form = AdminRequestForm()
     prez_form = PrezRequestForm()
-    active_requests = Note.query.filter_by(for_user=current_user).all()
-    notes_for_user = Note.query.filter_by(for_user=current_user )
+    active_requests = Note.query.filter_by(for_user=current_user).order_by(Note.date_posted.desc()).all()
+    notes_for_user = Note.query.filter_by(for_user=current_user ).order_by(Note.date_posted.asc())
     cats = ['member','admin','prez',]
     d = {}
     for cat in cats:
