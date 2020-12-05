@@ -1,6 +1,9 @@
 {% extends "layout.html" %}
 {% block content %}
-
+<a class="mini btn btn-outline-success btn-block p-1" href="/admin/all/requests/">
+  <i class="fas fa-user-md"></i>
+  <small>admin view: all users</small>
+</a>
 <div class="mini" name="MAIN-requests-notes">
   {% for user_id, user_requests in disp_reqs.items() %}
   {% for category, sorted in user_requests.items() %}
