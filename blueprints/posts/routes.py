@@ -27,9 +27,9 @@ def inject_random_theme():
       'superhero',
       'united',
     ]
-    
-    selected  = random.choice(list_of_themes)
-    print(selected)
+    _rc = random.choice
+    selected  = _rc(list_of_themes)
+    print('\t\n  theme switched to {}\n'.format(selected))
     return selected if selected else 'minty'
 
   return dict(random_theme=random_theme())
@@ -40,7 +40,7 @@ def inject_icons():
     pass
     def icons(label):
         pass
-        gallery = { #font awesome icons for member forms
+        gallery = { #font awesome icons
             "title": "s fa-highlighter", 
             "email": "s fa-envelope", 
             "id": "s fa-id-card", 
@@ -59,14 +59,19 @@ def inject_icons():
 @posts.route("/post/new/<string:theme>", methods=['GET', 'POST'])
 @posts.route("/post/new/<string:theme>/", methods=['GET', 'POST'])
 def new_post(theme=''):
+    pass 
     user = current_user if current_user.is_authenticated else User.query.get_or_404(1)
+    
     form = PostForm()
+    
     if form.validate_on_submit():
+        pass
         post = Post(title=form.title.data, content=form.content.data, author=user)
         db.session.add(post)
         db.session.commit()
         flash('Your post has been created!', 'success')
         return redirect(url_for('main.home'))
+    
     return render_template('create_post.html',
                            theme=theme,
                            user=user,

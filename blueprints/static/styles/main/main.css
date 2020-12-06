@@ -302,10 +302,11 @@ html {
   margin-right: 1rem;
 }
 .anim:hover {
-  box-shadow:rgb(99, 226, 192) -5px 15px 15px,inset 4px 1px 4px 4px #ffffff55;
+  box-shadow:rgb(99, 226, 192) -5px 15px 15px,
+  inset 1px 1px 1px 2px #ffffff55;
   background-color: rgba(255, 255, 255, 0);
   color: cadetblue;
-  border-radius: 0.5rem;
+  border-radius: 0.25rem;
   text-transform: uppercase !important;
 }  
 
