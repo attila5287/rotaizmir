@@ -7,7 +7,6 @@ from blueprints.models import Post, User
 from blueprints.posts.forms import PostForm
 
 posts = Blueprint('posts', __name__)
-
  
 @posts.context_processor
 def inject_random_theme():
@@ -29,11 +28,10 @@ def inject_random_theme():
     ]
     _rc = random.choice
     selected  = _rc(list_of_themes)
-    print('\t\n  theme switched to {}\n'.format(selected))
+    # print('\t\n  theme switched to {}\n'.format(selected))
     return selected if selected else 'minty'
 
   return dict(random_theme=random_theme())
-
 
 @posts.context_processor
 def inject_icons():
@@ -45,9 +43,10 @@ def inject_icons():
             "email": "s fa-envelope", 
             "id": "s fa-id-card", 
             "img_url": "s fa-image", 
+            "is_member": "s fa-user-check", 
             "is_admin": "s fa-user-md", 
-            "is_prez": "s fa-user-md", 
-            "content": "s fa-envelope", 
+            "is_prez": "s fa-user-graduate", 
+            "content": "s fa-envelope-open", 
             }
         
         return gallery.get(label, 's fa-edit')

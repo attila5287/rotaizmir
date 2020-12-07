@@ -1,6 +1,143 @@
-  
-  {% extends "layout.html" %}
+{% extends "layout.html" %}
 {% block content %}
+<div class="d-flex flex-row justify-content-around">
+<div class="mini">
+  <h3 class="far fa-user">  {{user.username}}</h3></div>
+  
+    {% set auth_list = [
+      'is_member',
+      'is_admin',
+      'is_prez',
+      ] %}
+    
+      {% for auth in auth_list %}
+      {% if user[auth] == 'y' %}
+      <span class="text-center">
+        <h4 class="fa{{icons(auth)}} fa-fw text-success mx-2 mb-0"></h4>
+        <hr class="my-1">
+        <small>{{auth[3:]}}</small>
+      </span>
+      {% else %}
+      <span class="text-center">
+        <h4 class="fa{{icons(auth)}} fa-fw opac-50 mx-2 mb-0"></h4>
+        <hr class="my-1">
+        <small>{{auth[3:]}}</small>
+        </span>
+      {% endif %}
+      {% endfor %}
+  </div>  
+
+<hr class="mini mb-0">
+<div class="form-group row mt-0 mini no-gutters">
+  <div class="form-group col-5">
+    <img src="https://raw.githubusercontent.com/attila5287/rota-img/main/avatars/{{user.img_url}}.png"
+    alt="usr-img" class="img-thumbnail border-0 bg-transparent my-3">
+    <p class="my-3 text-comfo">
+      <i class="text-xl far fa-id-card fa-fw mr-2"></i>
+      user-id: 
+      {{user.id}}
+    </p>
+    <p class="my-3 text-comfo">
+      <i class="text-xl far fa-envelope fa-fw  mr-2"></i>
+      {{user.email}}
+    </p>
+
+  </div>
+  <div class="form-group col-7">
+    <form method="POST" action="">
+      {{ form.hidden_tag() }}
+      
+      <select id="status" name="status"
+        class="select_topic selectpicker form-control shadow mb-3"
+        data-search_term="usr_{{user_id}}_{{category}}">
+        
+        <option value="" data-content="
+        <i class='fas fa-sign text-2xl fa-fw bg-dark p-1 rnd-lg text-light' aria-hidden='true'> 
+        <i class='text-nonitalic  text-bold text-sm pl-1 my-0 py-0 text-secondary text-monts'> 
+            Boards
+            </i>
+        </i>" selected disabled>
+        </option>
+
+        <option class="bg-secondary dropdown-divider my-0 pt-0 pb-1" value="" disabled></option>
+        {% set options = [
+          ('Members', 'is_member', 'user-check', 'primary', '',  ),
+          ('AdmBoard', 'is_admin', 'user-md', 'secondary', '',  ),
+          ('PrezBoard', 'is_prez', 'user-graduate', 'info', '',  ),
+          ('PublicPosts', 'is_prez', 'users', 'danger', '',  ),
+          ]  %}
+
+
+        {% for  topic, status, icon,style, tooltip in options %}
+
+        {% if user[status] == 'y' %}
+          <option class="" value="{{status}}" data-content="<i class='fas fa-{{icon}} fa-fw text-{{style}} text-xl pl-2 mt-0 pt-0' aria-hidden='true'> 
+          </i>
+              <i class='ml-2 text-monts   text-nonitalic text-capitalize text-lg mt-0'> 
+                {{topic}}
+              </i>
+              <i class='fas fa-check text-italic text-{{style}} ml-3 pl-3'> {{status}}</i>
+              </i>
+          ">
+          {% else %}
+          <option class="" value="{{topic}}" 
+          data-content="<i class='fas fa-{{icon}} fa-fw text-xl pl-2 mt-0 pt-0 opac-40' aria-hidden='true'>
+
+              <i class='ml-2 text-monts   text-nonitalic text-capitalize text-lg mt-0'> 
+                {{topic}}
+              </i>
+              <i class='fas fa-times text-italic text-sm opac-40 ml-3 pl-3'> {{status}}</i>
+            </i>
+            " disabled>
+            {% endif %}                  
+          </option>
+        {% endfor %}
+
+      </select>
+      
+      {% for field in form %}
+      {% if field.id == 'csrf_token' %}
+
+      {% elif field.id == 'submit' %}
+      <div class="form-row align-items-center mt-2">
+        {{field(class="btn btn-primary border-0 btn-block py-2 text-lg shadow" )}}
+      </div>
+
+      {% else %}
+      
+      <hr class="mx-2 mt-1 mb-2">
+
+      <div class="form-row align-items-center mb-4">
+
+        <div class="col-2">
+          <p
+            class="text-monts text-sm text-bold text-secondary text-right my-0">
+            {{field.label}}
+          </p>
+        </div>
+        <div class="col">
+          <div
+            class="input-group mx-2 mb-0 text-comfo bg-transparent border-0">
+            <div
+              class="input-group-prepend add-anime bg-transparent rnd-xl border-0">
+              <span
+                class="input-group-text bg-secondary text-light text-lg"
+                id="inputGroupPrepend">
+                <i
+                class="fa{{icons(field.id)}} fa-fw ml-2 mt-0"></i>
+              </span>
+            </div>
+            {{field(class="form-control mb-0 shadow mr-2" )}}
+          </div>
+        </div>
+      </div>
+      
+      {% endif %}
+
+      {% endfor %}
+    </form>
+  </div>
+</div>
 {% if form.errors %}
 <div class="mini errors rnd-xl border-danger">
   {% for field_name, field_errors in form.errors|dictsort if field_errors %}
@@ -28,126 +165,4 @@
   {% endfor %}
 </div>
 {% endif %}
-
-<div class="mini">
-  <h3>{{user.username}}
-  </h3>
-  <p class="text-lg mb-0">
-    <i class="far fa-envelope mr-2 text-xl"></i>
-    {{user.email}}
-    </p>
-    <p class="text-lg mb-0">
-        <i class="far fa-id-card mr-2 text-xl">
-        </i>
-            <strong>#{{user.id}}</strong>
-    </p>
-    
-</div>
-<hr class="mini border-med my-0 mx-3">
-<div class="mini form-group row mt-0">
-  <div class="form-group col-4">
-    <img src="https://raw.githubusercontent.com/attila5287/rota-img/main/avatars/{{user.img_url}}.png"
-      alt="usr-img" class="img rounded-circle">
-
-  </div>
-  <fieldset class="form-group col-8">
-        
-    <form method="POST" action="">
-
-      {{ form.hidden_tag() }}
-      <select id="status" name="status"
-        class="select_topic selectpicker form-control mb-3"
-        data-search_term="usr_{{user_id}}_{{category}}">
-        <option value="" data-content="
-        <i class='fas fa-sign text-2xl fa-fw bg-secondary p-1 rnd-lg text-light' aria-hidden='true'> 
-        <i class='text-nonitalic  text-bold text-sm pl-1 my-0 py-0 text-secondary text-monts'> 
-            Boards
-            </i>
-        </i>
-            " selected disabled>
-        </option>
-        <option class="bg-secondary dropdown-divider my-0 pt-0 pb-1" value="" disabled></option>
-        {% set options = [
-          ('Members', 'is_member', 'user-check', 'primary', '',  ),
-          ('AdmBoard', 'is_admin', 'user-md', 'secondary', '',  ),
-          ('PrezBoard', 'is_prez', 'user-graduate', 'info', '',  ),
-          ('PublicPosts', 'is_prez', 'users', 'danger', '',  ),
-          ]  %}
-
-
-        {% for  topic, status, icon,style, tooltip in options %}
-                
-
-        {% if user[status] == 'y' %}
-          <option class="" value="{{status}}" data-content="<i class='fas fa-{{icon}} fa-fw text-{{style}} text-xl pl-2 mt-0 pt-0' aria-hidden='true'> 
-          </i>
-              <i class='ml-2 text-monts   text-nonitalic text-capitalize text-lg mt-0'> 
-                              {{topic}}
-                          </i>
-                          <i class='fas fa-check text-italic text-{{style}} ml-3 pl-3'> {{status}}</i>
-    
-            </i>
-                      ">
-                      {% else %}
-            <option class="" value="{{topic}}" 
-            data-content="<i class='fas fa-{{icon}} fa-fw text-xl pl-2 mt-0 pt-0 opac-40' aria-hidden='true'>
-
-                <i class='ml-2 text-monts   text-nonitalic text-capitalize text-lg mt-0'> 
-                  {{topic}}
-                </i>
-                <i class='fas fa-times text-italic opac-40 ml-3 pl-3'> {{status}}</i>
-              </i>
-                          " disabled>
-
-                          {% endif %}                  
-            </option>
-
-
-        {% endfor %}
-
-      </select>
-
-      <hr class="mx-2 mt-1 mb-2 border-primary">
-            
-      {% for field in form %}
-      {% if field.id == 'csrf_token' %}
-
-      {% elif field.id == 'submit' %}
-      <div class="form-row align-items-center mt-4">
-        {{field(class="btn btn-primary border-0 btn-block py-2 text-lg shadow" )}}
-
-      </div>
-
-      {% else %}
-      <div class="form-row align-items-center mb-4">
-
-        <div class="col-2">
-          <p
-            class="text-monts text-sm text-bold text-secondary text-right my-0">
-            {{field.label}}
-          </p>
-        </div>
-        <div class="col">
-          <div
-            class="input-group mx-2 mb-0 text-comfo bg-transparent border-0">
-            <div
-              class="input-group-prepend add-anime bg-transparent rnd-xl border-0">
-              <span
-                class="input-group-text bg-secondary text-light text-lg"
-                id="inputGroupPrepend">
-                <i
-                class="fa{{icons(field.id)}} fa-fw ml-2 mt-0"></i>
-              </span>
-            </div>
-            {{field(class="form-control form-control-sm mb-0 shadow mr-2" )}}
-          </div>
-        </div>
-      </div>
-
-      {% endif %}
-
-      {% endfor %}
-    </form>
-  </fieldset>
-</div>
 {% endblock content %}
