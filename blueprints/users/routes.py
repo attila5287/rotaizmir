@@ -1,4 +1,3 @@
-import sys
 from datetime import datetime
 import random
 from random import shuffle
@@ -387,30 +386,31 @@ def register(theme='minty'):
 @users.route("/account/", methods=['GET', 'POST'])
 @users.route("/account/<string:theme>", methods=['GET', 'POST'])
 @users.route("/account/<string:theme>/", methods=['GET', 'POST'])
-@login_required
 def account(theme=''):
     pass
     form = UpdateAccountForm()
-    
     formdata_posted = (request.method == 'POST')
+    current_us3r = current_user if current_user.is_authenticated else User.query.get_or_404(1)
     
     if formdata_posted and form.validate_on_submit():
         pass
-        current_user.username = form.username.data
-        current_user.email = form.email.data
+        
+        current_us3r.username = form.username.data
+        current_us3r.email = form.email.data
         db.session.commit()
         flash('Username and/or Email updated!', 'success')
         return redirect(url_for('users.account'))
 
     elif request.method == 'GET':
         pass
-        form.username.data = current_user.username
-        form.email.data = current_user.email
+        form.username.data = current_us3r.username
+        form.email.data = current_us3r.email
     
     first_random = random.randint(0,69)
     return render_template('account.html',
                            theme = theme,
                            first_random = first_random,
+                           current_us3r=current_us3r,
                            form=form,
                            info_notes=[
                                'Choose a random suggested profile pic, update email or upload a profile pic',

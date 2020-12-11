@@ -43,6 +43,7 @@ def inject_icons():
             "email": "s fa-envelope", 
             "id": "s fa-id-card", 
             "img_url": "s fa-image", 
+            "is_authenticated": "s fa-plug", 
             "is_member": "s fa-user-check", 
             "is_admin": "s fa-user-md", 
             "is_prez": "s fa-user-graduate", 
