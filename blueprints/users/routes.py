@@ -394,7 +394,6 @@ def account(theme=''):
     
     if formdata_posted and form.validate_on_submit():
         pass
-        
         current_us3r.username = form.username.data
         current_us3r.email = form.email.data
         db.session.commit()

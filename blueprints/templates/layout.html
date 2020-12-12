@@ -143,23 +143,21 @@
         <aside name="sticky-sidebar">
           <nav id="sidebarMenu"
             class="col-md-3 col-lg-2 d-md-block bg-primary sidebar collapse">
-            <div class="sidebar-sticky bg-transparent pt-0">
-              <ul class="nav flex-column">
-                <li class="nav-item my-0">
+            <div class="sidebar-sticky bg-transparent">  
+              <ul class="nav flex-column justify-content-baseline">
+                <li class="nav-item">
                   <a class="nav-link disabled ml-2 mr-1">
                     {% if current_user.is_authenticated %}
                     <img
                       src="https://raw.githubusercontent.com/attila5287/rota-img/main/avatars/{{current_user.img_url}}.png"
                       alt="usr-img" style="max-height:3rem;"
                       class="img rounded-circle my-0">
-
                     <span class="text-sm text-monts text-light">
                       {{current_user.username}}
                     </span>
 
-
-
                     {% else %}
+
                     <img
                       src="https://raw.githubusercontent.com/attila5287/rota-img/main/profile_pics/attila.png"
                       alt="usr-img" style="max-height:3rem;"
@@ -173,6 +171,7 @@
                   </a>
                 </li>
               </ul>
+
               <ul class="list-group mx-4 mt-0 pt-0">
 
                 {% set side_bar = [
@@ -254,7 +253,7 @@
 
         </aside>
 
-        <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-md-4 pt-4">
+        <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-md-4" style="margin-top: 2.25rem;">
           <legend class="d-flex flex-row justify-content-between mini">
 
             <span name="with-info-notes">
@@ -286,11 +285,9 @@
                 <ul
                   class="text-sm list-group list-group-flush border-top py-2 border-primary border-top px-0 mx-0">
                   {% for i in info_notes %}
-                  <li
-                    class="list-group-item bg-transparent  d-flex justify-content-start align-items-center pt-0 pl-3 border-0 ml-2">
-                    <span class="fas fas fa-play  text-info text-xs mr-2"></span>
+                  <li class="list-group-item bg-transparent  d-flex justify-content-start align-items-center pt-0 pl-3 border-0 ml-2">
+                    <span class="fas fa-play text-info text-xs mr-2"></span>
                     {{ i }}
-  
                   </li>
                   {% endfor %}
                 </ul>
@@ -299,11 +296,12 @@
             </span>
 
             <div class="d-flex flex-column">
+              
               <div name="change_theme">
                 {% if not theme_not_chg %}
                 
                 {% set change_theme_url = url_for(request.endpoint, theme=random_theme)  %}
-                <p class="mt-4 mb-0 text-italic text-xs text-nowrap text-center">
+                <p class="mb-0 text-italic text-xs text-nowrap text-center">
                   reset to default theme or set random
                 </p>
                 <div class="btn-group">
@@ -340,64 +338,58 @@
                 >
                 {{theme}}
               </a>
-              
-              
-              
               {% endif %}
               
-            </div>
+              </div>
+              
+              <p class="text-center text-italic text-xs mb-0">
+                login; member, admin and prez
+              </p>
+              
+              <div class="btn-group">
 
-            
-              <div class="btn-group mt-2">
                 {% if current_user.is_authenticated %}
-                  <div class="btn btn-sm btn-primary text-light py-0 rnd-3xl">
-                    <i class="fas fa-plug my-0"></i>
-                    <hr class="my-0 border-light">
-                    <p class="text-center my-0">
-                      <i class="far fa-check-circle text-light my-0"></i>
-                    </p>
+                
+                <div class="btn btn-sm btn-outline-primary text-light py-0 rnd-2xl">
+                  <div class="fas fa-plug fa-rotate-180 text-primary text-lg mt-2">
                   </div>
+                </div>
+                
                 {% else %}
-                  <div class="btn btn-sm btn-outline-secondary py-0 rnd-3xl">
-                <i class="fas fa-plug text-secondary mb-0"></i>
-                <hr class="my-0 border-secondary">
-                  <p class="text-center my-0">
-                    <i class="far fa-check-circle text-light my-0"></i>
-                  </p>
-                  </div>
 
+                <div class="btn btn-sm btn-secondary py-0 rnd-2xl">
+                    <i class="fas fa-plug fa-rotate-180 text-light text-lg mt-1"></i>
+                </div>
+  
                 {% endif %}
-
+  
               {% set auth_list = [
               ('is_member','s fa-user-check', ''),
               ('is_admin','s fa-user-md', ''),
-              ('is_prez','s fa-user-graduate', 'rnd-3xl'),
+              ('is_prez','s fa-user-graduate', 'rnd-2xl'),
               ] %}
-          
+
               {% for auth, icon, btn_style in auth_list %}
               {% if current_user %}
+              
               {% if current_user[auth] == 'y' %}
-                <div class="btn btn-sm btn-primary text-light py-0 {{btn_style}}">
-                  <i class="fa{{icon}} mb-0"></i>
-                  <hr class="my-0 border-light">
-                  <p class="text-center my-0">
-                    <i class="far fa-check-circle text-light my-0"></i>
-                  </p>
+                
+              <div class="btn btn-sm btn-outline-primary text-light py-0 {{btn_style}}">
+                  <i class="fa{{icon}} text-primary text-lg mt-2"></i>
                 </div>
+                
                 {% else %}
+
                 <div class="btn btn-sm btn-outline-secondary py-0 {{btn_style}}">
-                    <i class="fa{{icon}} text-lg mb-0"></i>
-                    <hr class="my-0 border-secondary">
-                    <p class="text-center my-0">
-                      <i class="far fa-times-circle text-secondary my-0"></i>
-                    </p>
+                    <i class="fa{{icon}} text-secondary text-lg mt-2"></i>
                 </div>
                 {% endif %}
               {% endif %}
             {% endfor %}
-          </div>
-        </div>
-      </legend>
+              </div>
+            </div>
+
+          </legend>
               
               
               
