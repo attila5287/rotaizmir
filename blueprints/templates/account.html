@@ -1,232 +1,246 @@
 {% extends "layout.html" %}
 {% block content %}
-<style>
-.input-group-text{
-  font-size:0.75rem ;
-}
-</style>
 
-<div class="card-group d-flex flex-row justify-content-between form-mini" name="status-summary">
-
-  {% set user_statii = [
-    ( 'is_member', 'Member', 'user-graduate', '/user/requests',  ),
-    ( 'is_admin', 'Admin', 'user-md', 'user/requests'.format(current_us3r.id),  ),
-    ( 'is_prez', 'Prez', 'fas fa-graduation-cap', 'user/requests',  ),
-      ] %}
+<div name="all-account">
+  <div name="status-summary" class="mini card-group d-flex flex-row justify-content-between">
+  
+    {% set user_statii = [
+      ( 'is_member', 'Member', '/user/requests',  ),
+      ( 'is_admin', 'Admin', 'user/requests',  ),
+      ( 'is_prez', 'Prez', 'user/requests',  ),
+    ] %}
+    
+    {% for status, header, href in user_statii %}
+    
+    {% if current_us3r[status] == 'y' %}
+    <div class="card border-0 text-center w-100 bg-transparent">
+      <h5 class="card-header bg-transparent rnd-lg pb-0 border-0 text-primary shadow">{{header}}</h5>
+      <div class="card-body m-0 p-0">
+        <h1 class="mt-2 card-title fa{{icons(status)}} text-primary"></h1>
+      </div>
+    </div>
+    {% else %}
       
-      {% for status, header, icon, href in user_statii %}
-      
-      {% if current_us3r[status] == 'y' %}
-        <div class="card border-0 text-center w-100">
-          <h5 class="card-header bg-transparent pb-0 border-0 text-primary shadow">{{header}}</h5>
-          <div class="card-body m-0 p-0">
-            <h1 class="mt-2 card-title fas fa-{{icon}} text-primary opac-50"></h1>
-          </div>
+    <div class="card border-0 text-center w-100 bg-transparent">
+        <h5 class="card-header bg-transparent pb-0 mb-0 align-baseline border-0 text-secondary"> {{header}} </h5>
+        <div class="card-body bg-transparent m-0 p-0">
+          <h1 class="card-title fa{{icons(status)}} text-secondary"></h1>
         </div>
-      {% else %}
-        <div class="card border-0 text-center w-100">
-          <h5 class="card-header bg-transparent pb-0 mb-0 align-baseline border-0 opac-50 text-secondary"> {{header}} </h5>
-          <div class="card-body m-0 p-0">
-            <h1 class="card-title fas fa-{{icon}} opac-50 text-secondary"></h1>
-          </div>
-          
-          <div class="card-footer bg-transparent border-0 m-0 p-0">
-            <span>
-              <a class="btn btn-outline-primary opac-50 border-0 btn-block py-0" href="{{href}}">
-                request
-              </a>
-            </span>
-          </div>
-        </div>
-      
-      {% endif %}
-      {% endfor %}
-
-</div>
-
-<div name="image-generator" class="d-flex flex-column align-items-center mb-4">
-  <div class="form-mini card-deck d-flex flex-row justify-content-around text-center mx-2 px-2">
-    <div class="card rnd-xl mx-1 shadow-lg">
-      <h6 class="card-header text-italic rnd-lg">Current Pic</h6>
+        
+          <span class="text-monts">
+            <a class="btn btn-outline-primary rnd-md btn-block
+             text-lg shadow border-0 py-0" href="{{href}}" >
+              request
+            </a>
+          </span>
+    </div>
+    {% endif %}
+    {% endfor %}
+  
+  </div>
+  
+  <div name="image-generator" class="mini card-deck d-flex flex-row justify-content-around">
+    <div class="card rnd-xl mx-1 shadow bg-transparent w-50">
+      <h6 class="card-header text-italic rnd-lg bg-transparent">
+        <i class="far fa-user-circle text-lg mr-2"></i>
+        Current Pic</h6>
       <div class="card-body">
         <img class="card-img bg-transparent border-0"
       src="https://raw.githubusercontent.com/attila5287/rota-img/main/avatars/{{ current_us3r.img_url }}.png"
       style="max-width: 10rem;">
       </div>
     </div>
-    <div class="card rnd-xl mx-1 shadow-lg">
-      <h6 class="card-header text-italic rnd-2xl ">Click/Tap Below</h6>
-      <div class="card-body" id="img_on_air">
+    
+    <div class="card rnd-xl mx-1 shadow bg-transparent w-50">
+      <h6 class="card-header text-italic rnd-2xl bg-transparent">
+        <i class="fas fa-dice text-lg mr-2"></i>
+        Click/Tap Below
+        <i class="fas fa-arrow-down mr-2"></i>
+      </h6>
+      <div class="card-body bg-transparent" id="img_on_air">
           <img class="card-img-bottom bg-transparent border-0"
-            src="https://raw.githubusercontent.com/attila5287/rota-img/main/avatars/{{ first_random }}.png"
+            src="https://raw.githubusercontent.com/attila5287/rota-img/main/avatars/0.png"
             style="max-width: 12rem;">
       </div>
     </div>
   </div>
   
-  <div id="img_url_index"
-  class="bg-black text-center text-digi text-3xl text-primary my-2 rnd-lg px-3 py-0 shadow">
-    <i class="fas fa-hashtag text-primary text-xl" aria-hidden="true"></i>
-    <span class="index">
-      {{first_random}}
-    </span>
+  <div class="mini shadow rnd-lg mb-4 px-2 py-5">
+    <p class="text-italic text-center mb-2">
+      <small class="text-muted">
+        <i class="fas fa-info-circle text-lg"></i>
+    
+        Image on the right will be chosen randomly from gallery of available images.
+    
+      </small>
+    </p>
+    <div class="d-flex flex-row">
+      <div id="img_url_index"
+      class="bg-black text-center text-digi text-3xl text-primary text-nowrap rnd-lg px-3 shadow w-25">
+        <i class="fas fa-hashtag text-primary text-lg" aria-hidden="true"></i>
+        <span class="index">
+          0
+        </span>
+      </div>
+      <a class="set_profile_pic btn btn-primary text-center text-lg rnd-xl shadow w-75" type="button" id="set-as-profile-pic" data="/set/profile/picture/{{current_us3r.id}}/" data-title="/set/profile/picture/{{current_us3r.id}}/">
+        <i class="text-lg fas fa-image animated infinite bounceIn delay-1s" aria-hidden="true"></i>
+        Set as profile pic!
+      </a>
+    </div>
   </div>
   
-  <a class="form-mini set_profile_pic btn btn-primary border-0 btn-block py-2 text-center text-lg rnd-xl shadow mx-2 mt-2 mb-4"
-            type="button" id="set-as-profile-pic"
-            data="/set/profile/picture/{{current_us3r.id}}/"
-            data-title="/set/profile/picture/{{current_us3r.id}}/">
-            <i class="text-lg fas fa-image animated infinite bounceIn delay-1s"
-              aria-hidden="true"></i>
-            Set as profile pic!
-          </a>
+  <div name="update-form" class="mini rnd-3xl p-0 card pt-4 pb-5">
+    <form method="POST" action="">
+        {{ form.hidden_tag() }}
+  
+        {% for field in form %}
+        {% if field.id == 'csrf_token' %}
+        <i class="text-hide">CSRF TOKEN</i>
+  
+        {% elif field.type == 'SubmitField' %}
+          {{field(class="btn btn-block btn-primary text-light py-2  rnd-xl py-2 shadow-lg mb-0 mr-2" )}}                    
+        {% elif field.id == 'username' and current_us3r.is_member == 'y' %}
+        <div class="form-row align-items-center mb-4">
+  
+            <div class="col-2 offset-1">
+              <span class="input-group-text text-monts bg-transparent border-0 rnd-xl">
+                {{field.id}}
+              </span>
+            </div>
+            <div class="col-8">
+              <p class="text-right text-italic text-success mb-1 ml-2">
+                <i class="fas fa-check text-sm mr-1"></i>
+                members may change username
+              </p>
+                <div class="input-group mx-2 mb-0 text-comfo">
+                    <div class="input-group-prepend rnd-xl border-0 bg-transparent add-anime">
+                        <span class="input-group-text bg-primary  text-light rnd-xl "
+                            id="inputGroupPrepend">
+                            <i class="fa{{icons(field.id)}} fa-fw ml-2 mt-0"></i>
+                        </span>
+                    </div>
+                    {{field(class="form-control mb-0 shadow mr-2" )}}
+                </div>
+            </div>
         </div>
-<div name="update-form" class="rnd-3xl form-mini p-0 card card-primary pt-4 pb-5">
-  <form method="POST" action="">
-      {{ form.hidden_tag() }}
-
-      {% for field in form %}
-      {% if field.id == 'csrf_token' %}
-      <i class="text-hide">CSRF TOKEN</i>
-
-      {% elif field.type == 'SubmitField' %}
-        {{field(class="btn btn-block btn-primary text-light py-2  rnd-xl py-2 shadow-lg mb-0 mr-2" )}}                    
-      {% elif field.id == 'username' and current_us3r.is_member == 'y' %}
-      <div class="form-row align-items-center mb-4">
-
+        {% elif field.id == 'username' and current_us3r.is_member == 'n' %}
+        <div class="form-row align-items-center mb-4">
+  
           <div class="col-2 offset-1">
             <span class="input-group-text text-monts bg-transparent border-0 rnd-xl">
-              {{field.label}}
+              {{field.id}}
             </span>
-          </div>
-          <div class="col-8">
-            <p class="text-right text-italic text-success mb-1 ml-2">
-              <i class="fas fa-check text-sm mr-1"></i>
-              members may change username
-            </p>
-              <div class="input-group mx-2 mb-0 text-comfo">
-                  <div class="input-group-prepend rnd-xl border-0 bg-transparent add-anime">
-                      <span class="input-group-text bg-dark text-light rnd-xl "
-                          id="inputGroupPrepend">
-                          <i class="fa{{icons(field.id)}} fa-fw ml-2 mt-0"></i>
-                      </span>
-                  </div>
-                  {{field(class="form-control form-control-sm mb-0 shadow mr-2" )}}
-              </div>
-          </div>
-      </div>
-      {% elif field.id == 'username' and current_us3r.is_member == 'n' %}
-      <div class="form-row align-items-center mb-4">
-
-        <div class="col-2 offset-1">
-          <span class="input-group-text text-monts bg-transparent border-0 rnd-xl">
-            {{field.label}}
-          </span>
-          </div>
-          <div class="col-8">
-            <p class="text-right text-italic text-info  mb-1 ml-2">
-              <i class="fas fa-info-circle text-lg"></i>
-              member auth. required to edit username
-            </p>
-
-              <div class="input-group mx-2 mb-0 text-comfo">
+            </div>
+            <div class="col-8">
+              <p class="text-right text-italic text-info mb-1 ml-2">
+                <i class="fas fa-info-circle text-lg mr-2"></i>
+                member auth. required to edit username
+              </p>
+  <style>
+    .input-group-text fas far{
+      font-size:1.00rem;
+      padding: 0.1rem 0.6rem 0.1rem 0.1rem;
+    }
+  </style>
+                <div class="input-group mx-2 mb-0 text-comfo">
                   <div class="input-group-prepend  add-anime">
                       <span class="input-group-text bg-dark text-light rnd-xl "
                           id="inputGroupPrepend">
                           <i class="fa{{icons(field.id)}} fa-fw ml-2 mt-0"></i>
                       </span>
-                  </div>
-                  <input type="text" name="username" id="username"
-                  value="{{field.data}}"
-                  class="form-control form-control-sm mb-0 shadow mr-2"
-                  readonly>
-              </div>
-              
-          </div>
-      </div>
-      {% elif field.type == 'FileField' and current_us3r.is_member == 'y'%}
-      <div class="form-row align-items-center mb-4">
-          <div class="col-2 offset-1">
-              <span class="input-group-text text-monts bg-transparent border-0 rnd-xl text-wrap">
-                  {{field.label}}
-              </span>
-          </div>
-          <div class="col-8">
-            <p class="text-right text-italic text-success  mb-1 ml-2">
-              <i class="fas fa-check text-md"></i>
-              members may upload profile pic
-            </p>            
-            <div class="form-group mx-2 mb-0 text-comfo">
-                {{field(class="form-control-file mr-2" )}}
-            </div>
-        </div>
-      </div>
-      {% elif field.type == 'FileField' and current_us3r.is_member == 'n'%}
-      <div class="form-row align-items-center mb-4">
-          <div class="col-2 offset-1">
-              <span class="input-group-text text-monts bg-transparent border-0 rnd-xl text-wrap">
-                  {{field.label}}
-              </span>
-          </div>
-          <div class="col-8">
-            <p class="text-italic text-info  mb-1 ml-2">
-              <i class="fas fa-info-circle text-lg"></i>
-              only approved users upload picture
-            </p>
-            <div class="input-group mx-2 mb-0 text-comfo">
-                <div class="input-group-prepend rnd-xl border-0 bg-dark pb-2">
-                  <span class="input-group-text bg-dark rnd-xl text-bold"
-                      id="inputGroupPrepend">
-                      <i class="text-light fa{{icons(field.id)}} fa-fw ml-2 mt-0"></i>
-                  </span>
+                    </div>
+                    <input type="text" name="username" id="username"
+                    value="{{field.data}}"
+                    class="form-control mb-0 shadow mr-2"
+                    readonly>
                 </div>
-                <input type="file" name="picture" id="picture" class="form-control-file shadow mr-2" disabled>
+                
+            </div>
+        </div>
+        {% elif field.type == 'FileField' and current_us3r.is_member == 'y'%}
+        <div class="form-row align-items-center mb-4">
+            <div class="col-2 offset-1">
+                <span class="input-group-text text-monts bg-transparent border-0 rnd-xl text-wrap">
+                    {{field.id}}
+                </span>
+            </div>
+            <div class="col-8">
+              <p class="text-right text-italic text-success  mb-1 ml-2">
+                <i class="fas fa-check text-md"></i>
+                members may upload profile pic
+              </p>            
+              <div class="form-group mx-2 mb-0 text-comfo">
+                  {{field(class="form-control-file mr-2" )}}
+              </div>
+          </div>
+        </div>
+        {% elif field.type == 'FileField' and current_us3r.is_member == 'n'%}
+        <div class="form-row align-items-center mb-4">
+            <div class="col-2 offset-1">
+                <span class="input-group-text text-monts bg-transparent border-0 rnd-xl text-wrap">
+                    {{field.id}}
+                </span>
+            </div>
+            <div class="col-8">
+              <p class="text-right text-secondary text-italic mb-1 ml-2">
+                <i class="fas fa-file-export text-lg mr-2"></i>
+                only approved users upload picture
+              </p>
+              <div class="input-group mx-2 mb-0 text-comfo">
+                  <div class="input-group-prepend rnd-xl border-0 bg-transparent pb-2">
+                    <span class="input-group-text bg-secondary rnd-xl text-bold"
+                        id="inputGroupPrepend">
+                        <i class="text-light fa{{icons(field.id)}} fa-fw ml-2 mt-0"></i>
+                    </span>
+                  </div>
+                  <input type="file" name="picture" id="picture" class="form-control-file shadow mr-2" disabled>
+              </div>
+            </div>
+        </div>
+        {% else %}
+        <div class="form-row align-items-center mb-4">
+          <div class="col-2 offset-1">
+                <span class="input-group-text text-monts bg-transparent border-0 rnd-xl">
+                    {{field.id}}
+                </span>
+          </div>
+          <div class="col-8">
+            <div class="input-group mx-2 mb-0 text-comfo">
+                <div class="input-group-prepend rnd-xl add-anime">
+                    <span class="input-group-text bg-primary text-light rnd-xl"
+                        id="inputGroupPrepend">
+                        <i class="fa{{icons(field.id)}} fa-fw ml-2 mt-0"></i>
+                    </span>
+                </div>
+                {{field(class="form-control mb-0 shadow mr-2" )}}
             </div>
           </div>
-      </div>
-      {% else %}
-      <div class="form-row align-items-center mb-4">
-        <div class="col-2 offset-1">
-              <span class="input-group-text text-monts bg-transparent border-0 rnd-xl">
-                  {{field.label}}
-              </span>
         </div>
-        <div class="col-8">
-          <div class="input-group mx-2 mb-0 text-comfo">
-              <div class="input-group-prepend rnd-xl add-anime">
-                  <span class="input-group-text bg-dark text-light rnd-xl"
-                      id="inputGroupPrepend">
-                      <i class="fa{{icons(field.id)}} fa-fw ml-2 mt-0"></i>
-                  </span>
-              </div>
-              {{field(class="form-control form-control-sm mb-0 shadow mr-2" )}}
-          </div>
-        </div>
-      </div>
-
-      {% endif %}
-
-      {% endfor %}
-  </form>           
-</div>
-
-<div name="errors" class="form-mini container errors">
-{% for field_name, field_errors in form.errors|dictsort if field_errors %}
-  {% for error in field_errors %}
-    <div class="px-5 mx-5 alert alert-secondary border-0 alert-dismissible fade show rnd-3xl" role="alert">
-            <strong>
-              <p class="text-lg my-1">
-              <i class="text-xl fa{{ icons(form[field_name].id) }} fa-fw animated infinite heartBeat mr-2"></i>
-              {{ form[field_name].label }}: {{ error }}</p>
-          </strong>
-      {{msg}}
-      <button type="button" class="close text-2xl text-light" data-dismiss="alert" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-      </button>
-    </div>        
+  
+        {% endif %}
+  
+        {% endfor %}
+    </form>           
+  </div>
+  
+  <div name="errors" class="mini container errors">
+  {% for field_name, field_errors in form.errors|dictsort if field_errors %}
+    {% for error in field_errors %}
+      <div class="px-5 mx-5 alert alert-secondary border-0 alert-dismissible fade show rnd-3xl" role="alert">
+              <strong>
+                <p class="text-lg my-1">
+                <i class="text-xl fa{{ icons(form[field_name].id) }} fa-fw animated infinite heartBeat mr-2"></i>
+                {{ form[field_name].label }}: {{ error }}</p>
+            </strong>
+        {{msg}}
+        <button type="button" class="close text-2xl text-light" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+      </div>        
+    {% endfor %}
   {% endfor %}
-{% endfor %}
-</div>
 
+  </div>
+</div>
 
 {% endblock %}

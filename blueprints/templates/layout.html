@@ -11,16 +11,16 @@
     <link rel="icon" type="image/x-icon" class="favicon"
       href="https://raw.githubusercontent.com/attila5287/rota-img/main/icons/favic0n.ico" />
     {% if theme == 'no_change' %}
-      
+
     {% set theme_not_chg = True  %}
     {% endif %}
 
     {% if not theme or theme == 'no_change'%}
     {% set theme = 'minty' %}
     {% endif %}
-    
+
     <link rel="stylesheet" type="text/css"
-    href="/static/styles/theme/{{theme}}/bootstrap.css" />
+      href="/static/styles/theme/{{theme}}/bootstrap.css" />
 
 
 
@@ -46,9 +46,9 @@
       href="https://fonts.googleapis.com/css2?family=Amita:wght@400;700&display=swap"
       rel="stylesheet">
 
-      <!-- 'Amita:wght@400;700&display=swap', -->
-      <!-- 'Major+Mono+Display&display=swap', -->
-      <!-- 'Lilita+One', -->
+    <!-- 'Amita:wght@400;700&display=swap', -->
+    <!-- 'Major+Mono+Display&display=swap', -->
+    <!-- 'Lilita+One', -->
     {% set google_fonts = [
       'Orbitron',
       'Comfortaa',
@@ -86,12 +86,8 @@
             src="https://raw.githubusercontent.com/attila5287/rota-img/main/icons-png/circle_white.png"
             style="max-height: 2.00rem;" alt="navbar-icon"
             data-toggle="tooltip" title="Göztepe Rotaract Kulübü">
-
-          <i class="fas fa-spin">
-
-          </i>
+          <i class="fas fa-spin"></i>
           Göztepe Rotaract Kulübü
-
         </a>
 
 
@@ -143,7 +139,7 @@
         <aside name="sticky-sidebar">
           <nav id="sidebarMenu"
             class="col-md-3 col-lg-2 d-md-block bg-primary sidebar collapse">
-            <div class="sidebar-sticky bg-transparent">  
+            <div class="sidebar-sticky bg-transparent">
               <ul class="nav flex-column justify-content-baseline">
                 <li class="nav-item">
                   <a class="nav-link disabled ml-2 mr-1">
@@ -200,11 +196,15 @@
                 ] -%}
                 <!-- ('is_admin', '/admin/requests', '├ Requests', 'check-double', ), -->
                 {% for access_level, href, caption, icon in side_bar %}
+                
                 {% if demo_mode == 'on' %}
 
                 {% if access_level or access_level == 'public' or current_user[access_level] or current_user[access_level]=='y' %}
+
                 {% set accessible = ' anim text-lowercase ml-2' %}
+                
                 {% else %}
+
                 {% set accessible = ' disabled text-capitalize mt-1 ml-0' %}
                 {% endif %}
 
@@ -253,25 +253,27 @@
 
         </aside>
 
-        <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-md-4" style="margin-top: 2.25rem;">
+        <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-md-4"
+          style="margin-top: 2.25rem;">
           <legend class="d-flex flex-row justify-content-between mini">
 
             <span name="with-info-notes">
               <p class="legend text-nowrap text-left mb-0">
-  
+
                 <span class="fa-stack fa-2x text-center mr-2">
-                  <i class="fas fa-square fa-stack-2x fa-fw text-secondary"></i>
+                  <i
+                    class="fas fa-square fa-stack-2x fa-fw text-secondary"></i>
                   <i
                     class="fas fa-user-md fa-stack-1x fa-fw text-light fa-inverse"></i>
                 </span>
-  
-  
+
+
                 {% if legend %}
                 {{ '{} '.format(legend) }}
                 {% else %}
-  
+
                 {{ '{} '.format('Göztepe Rotaract') }}
-  
+
                 {% endif %}
               </p>
               {% if info_notes %}
@@ -280,12 +282,13 @@
                 <span class="text-info fa-stack fa-2x text-center txt-shd">
                   <i class="fas fa-square  fa-fw fa-stack-2x "></i>
                   <i class="fas fa-info fa-stack-1x fa-inverse fa-fw"></i>
-  
+
                 </span>
                 <ul
                   class="text-sm list-group list-group-flush border-top py-2 border-primary border-top px-0 mx-0">
                   {% for i in info_notes %}
-                  <li class="list-group-item bg-transparent  d-flex justify-content-start align-items-center pt-0 pl-3 border-0 ml-2">
+                  <li
+                    class="list-group-item bg-transparent  d-flex justify-content-start align-items-center pt-0 pl-3 border-0 ml-2">
                     <span class="fas fa-play text-info text-xs mr-2"></span>
                     {{ i }}
                   </li>
@@ -296,103 +299,108 @@
             </span>
 
             <div class="d-flex flex-column">
-              
+
               <div name="change_theme">
                 {% if not theme_not_chg %}
-                
+
                 {% set change_theme_url = url_for(request.endpoint, theme=random_theme)  %}
                 <p class="mb-0 text-italic text-xs text-nowrap text-center">
                   reset to default theme or set random
                 </p>
-                <div class="btn-group">
-                  <a 
-                    class="btn btn-warning btn-sm rnd-3xl mt-0" 
-                    href="{{url_for(request.endpoint)}}"
-                    >
+                <div class="btn-group" name="theme-changeable">
+                  <a class="btn btn-warning btn-sm rnd-3xl mt-0"
+                    href="{{url_for(request.endpoint)}}">
                     <i class="fas fa-undo-alt text-lg mx-1"></i>
                   </a>
-                  <a 
-                    class="btn btn-info btn-block btn-sm mt-0 text-nowrap text-md disabled" 
-                    
-                    >
+                  <a
+                    class="btn btn-info btn-block btn-sm mt-0 text-nowrap text-md disabled">
                     <i class="fas fa-map-marker-alt text-md"></i>
                     {{theme}}
-                  </a>                
-                  <a 
-                    class="btn btn-primary btn-sm mt-0 text-nowrap text-md rnd-2xl" 
-                    href="{{url_for(request.endpoint, theme=random_theme)}}"
-                    >
+                  </a>
+                  <a class="btn btn-primary btn-sm mt-0 text-nowrap text-md rnd-2xl"
+                    href="{{url_for(request.endpoint, theme=random_theme)}}">
                     <i class="fas fa-dice text-xl my-0"></i>
                     <i class="fas fa-caret-right text-lg my-0 mr-0"></i>
                   </a>
-  
+
                 </div>
+                
                 {% else %}
                 
-                <p class="mt-4 mb-0 text-italic text-sm text-nowrap text-center">
+                <p
+                  class="mt-4 mb-0 text-italic text-sm text-center">
                   default theme only:
                 </p>
                 
-                <a 
-                class="btn btn-outline-primary border-0 btn-block rnd-xl text-sm mt-0 pt-0 pb-1 disabled text-bold" 
-                >
-                {{theme}}
-              </a>
-              {% endif %}
-              
+                <a
+                  class="btn btn-outline-primary border-0 btn-block rnd-xl text-sm mt-0 pt-0 pb-1 disabled text-bold">
+                  {{theme}}
+                </a>
+                {% endif %}
+
+
               </div>
-              
-              <p class="text-center text-italic text-xs mb-0">
+
+              <p class="text-center +text-italic text-xs mb-0">
                 login; member, admin and prez
               </p>
-              
-              <div class="btn-group">
 
+              <div class="btn-group" name="login-auth">
                 {% if current_user.is_authenticated %}
-                
-                <div class="btn btn-sm btn-outline-primary text-light py-0 rnd-2xl">
-                  <div class="fas fa-plug fa-rotate-180 text-primary text-lg mt-2">
+
+                {% set loggedin_msg = "current user is authenticated, logged in: chk √"  %}
+                <div 
+                  class="btn btn-sm btn-outline-primary text-light py-0 rnd-2xl" data-toggle="tooltip" title="{{loggedin_msg}}">
+                  <div
+                    class="fas fa-plug text-primary text-lg mt-2" data-toggle="tooltip" title="{{loggedin_msg}}">
                   </div>
                 </div>
-                
+
                 {% else %}
 
-                <div class="btn btn-sm btn-secondary py-0 rnd-2xl">
-                    <i class="fas fa-plug fa-rotate-180 text-light text-lg mt-1"></i>
+                {% set not_loggedin_msg = "current user is authenticated, logged in: chk √"  %}
+
+                <div class="btn btn-sm btn-secondary py-0 rnd-2xl"
+                data-toggle="tooltip" title="{{not_loggedin_msg}}">
+                  <i
+                    class="fas fa-plug text-light text-lg mt-1"
+                    data-toggle="tooltip" title="{{not_loggedin_msg}}"></i>
                 </div>
-  
+
                 {% endif %}
-  
-              {% set auth_list = [
+
+                {% set auth_list = [
               ('is_member','s fa-user-check', ''),
               ('is_admin','s fa-user-md', ''),
               ('is_prez','s fa-user-graduate', 'rnd-2xl'),
               ] %}
 
-              {% for auth, icon, btn_style in auth_list %}
-              {% if current_user %}
-              
-              {% if current_user[auth] == 'y' %}
-                
-              <div class="btn btn-sm btn-outline-primary text-light py-0 {{btn_style}}">
+                {% for auth, icon, btn_style in auth_list %}
+                {% if current_user %}
+
+                {% if current_user[auth] == 'y' %}
+
+                <div
+                  class="btn btn-sm btn-outline-primary text-light py-0 {{btn_style}}" data-toggle="tooltip" title="{{auth[3:]}} access check √">
                   <i class="fa{{icon}} text-primary text-lg mt-2"></i>
                 </div>
-                
+
                 {% else %}
 
-                <div class="btn btn-sm btn-outline-secondary py-0 {{btn_style}}">
-                    <i class="fa{{icon}} text-secondary text-lg mt-2"></i>
+                <div
+                  class="btn btn-sm btn-outline-secondary py-0 {{btn_style}}" data-toggle="tooltip" title="no {{auth[3:]}} access ×">
+                  <i class="fa{{icon}} text-secondary text-lg mt-2"></i>
                 </div>
                 {% endif %}
-              {% endif %}
-            {% endfor %}
+                {% endif %}
+                {% endfor %}
               </div>
             </div>
 
           </legend>
-              
-              
-              
+
+
+
           {% with messages = get_flashed_messages(with_categories=true) %}
 
           {% if messages %}

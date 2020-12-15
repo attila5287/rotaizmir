@@ -39,9 +39,6 @@ $( document ).ready( () => {
     $index
       .enter()
       .append("div")
-      .transition()
-      .ease(d3.easeElastic)
-      .duration(500)
       .attr("class", "index")
       .text((d) => {
         console.log("d :>> ", d);

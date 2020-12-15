@@ -9,7 +9,7 @@ from flask_login import (
   login_user, current_user, logout_user, login_required)
 from blueprints import db
 from blueprints.models import Member, User, Note
-from blueprints.admins.forms import UserMenu, TableModeSelect, AdminNoteForm
+from blueprints.admins.forms import UserMenu, AdminNoteForm
 from blueprints.members.forms import MemberMenu
 
 admins = Blueprint('admins', __name__)

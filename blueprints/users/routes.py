@@ -1,3 +1,4 @@
+from blueprints.context_pro import fa_icons, styles
 from datetime import datetime
 import random
 from random import shuffle
@@ -59,28 +60,7 @@ def inject_random_theme():
 @users.context_processor
 def inject_icons():
     pass
-    def icons(label):
-        pass
-        gallery = {  # font awesome icons for member forms
-            "email": "s fa-envelope",
-            "first_name": "s fa-user-edit",
-            "gender": "s fa-venus-mars",
-            "id": "s fa-id-card",
-            "img_url": "s fa-image",
-            "instagram": "b fa-instagram",
-            "is_admin": "s fa-user-md",
-            "is_prez": "s fa-user-md",
-            "last_name": "s fa-user-edit",
-            "linkedin": "b fa-linkedin",
-            "middle_name": "s fa-user-edit",
-            "phone_num": "s fa-phone",
-            "twitter": "b fa-twitter",
-            "user_id": "s fa-user-tag",
-            "menu": "s fa-sort",
-            "picture": "s fa-image",
-        }
-
-        return gallery.get(label, 's fa-edit')
+    icons = fa_icons
 
     return dict(icons=icons)
 
@@ -455,70 +435,8 @@ def delete_request(id):
     return redirect(url_for('users.user_requests'))
 
 @users.context_processor
-def inject_icons():
-  pass
-  def icons(label):
-    pass
-    gallery = {  # font awesome icons for member forms
-      "email": "s fa-envelope",
-      "first_name": "s fa-user-edit",
-      "gender": "s fa-venus-mars",
-      "id": "s fa-id-card",
-      "image_file": "s fa-file-image",
-      "img_url": "s fa-image",
-      "instagram": "b fa-instagram",
-      "is_admin": "s fa-user-md",
-      "is_member": "s fa-user-check",
-      "is_prez": "s fa-user-shield",
-      "last_name": "s fa-user-edit",
-      "linkedin": "b fa-linkedin",
-      "middle_name": "s fa-question-circle",
-      "phone_num": "s fa-phone",
-      "twitter": "b fa-twitter",
-      "user_id": "s fa-user-tag",
-      "menu": "s fa-sort",
-      "new_note": "s fa-sticky-note",
-      "display_requests": "b fa-tripadvisor",
-      "make_admin": "s fa-user-md",
-      "make_member": "s fa-user-check",
-      "make_prez": "s fa-user-shield",
-      "admin_request":  "s fa-concierge-bell",
-      "member_request": "s fa-concierge-bell",
-      "prez_request":   "s fa-concierge-bell",
-      "delivered":   "r fa-envelope-open",
-      "denied":   "s fa-gavel",
-      "reopen_req":   "s fa-lock-open",
-      "withdrew":   "s fa-lock",
-      "approved":   "s fa-stamp",
-      "pending":  "s fa-balance-scale",
-      "date_posted": "r fa-calendar-alt",
-      "note_content": "r fa-paper-plane",
-      "req_content": "r fa-file-alt",
-      'member' : 's fa-user-check',
-      'admin' : 's fa-user-md',
-      'prez' : 's fa-user-graduate',
-    }
-    return gallery.get(label, 's fa-edit')
-
-  return dict(icons=icons)
-
-@users.context_processor
 def inject_status_style():
   pass
-  def styles(label):
-    pass
-    
-    gallery = {  # font awesome icons for member forms
-      "approved": "primary",
-      "pending": "info",
-      "denied": "danger",
-      "delivered": "warning",
-      "received": "warning",
-      "withdrew": "danger",
-    }
-    
-    return gallery.get(label, 'secondary')
-
   return dict(styles=styles)
 
 @users.context_processor

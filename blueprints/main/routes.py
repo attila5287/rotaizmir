@@ -33,7 +33,6 @@ def about(theme='minty'):
         ],
     )
 
-
 @main.route("/home")
 @main.route("/home/")
 @main.route("/home/<string:theme>")
@@ -89,3 +88,25 @@ def inject_random_theme():
     return selected if selected else 'minty'
 
   return dict(random_theme=random_theme())
+
+
+@main.route("/fa/icons")
+@main.route("/fa/icons/")
+@main.route("/fa/icons/<string:theme>")
+@main.route("/fa/icons/<string:theme>/")
+def fa_icons(theme='no_change'):
+    pass
+    return render_template('fa_icons.html', 
+                           theme=theme,
+                           info_notes=[
+                               'fa icons full listed only really-available.',
+                           ],
+                           access=[
+                               'u',
+                               'm',
+                               'a',
+                               'p',
+                           ],
+                           legend='fa-icons',
+                           title='fa-icons',
+                           )

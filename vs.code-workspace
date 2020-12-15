@@ -29,7 +29,7 @@
 		"python.autoComplete.addBrackets": true,
 		"editor.lineHeight": 17,
 		"terminal.integrated.drawBoldTextInBrightColors": false,
-		"workbench.colorTheme": "Dracula Italics",
+		"workbench.colorTheme": "Draculish",
 		"debug.console.fontSize": 12,
 		"workbench.settings.useSplitJSON": true,
 		"editor.suggest.maxVisibleSuggestions": 10,
