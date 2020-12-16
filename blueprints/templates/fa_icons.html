@@ -1,6 +1,6 @@
 {% extends "layout.html" %}
 {% block content %}
-<div name="font-awesome-regular">
+<div name="fa-regular">
 {% set all_regular = [
   "far fa-address-book", 
 "far fa-address-card", 
@@ -155,7 +155,7 @@
 "far fa-window-restore", 
   ] %}
 </div>
-<div name="font-awesome-solid">
+<div name="fa-solid">
   {% set all_solid =  [
 "fas fa-address-book",
 "fas fa-address-card",
@@ -1276,31 +1276,52 @@
 "fab fa-youtube-square", 
 ] %}
 </div>
-
-
 <div class="mini"> 
-  {% set list_of_lists = [all_regular, all_solid, all_brands] %}
+
+{% set list_of_lists = [all_regular, all_solid, all_brands] %}
   
 {% set counter = 0 %}
 {% for _list in list_of_lists %}
-{% set cat_index = loop.index  %}
+{% set cat_index = loop.cycle(
+  'regular',
+  'solid',
+  'brands',
+  )  %}
 
 {% set counter = counter + loop.index %}
+<table class="table table-borderless table-hover table-dark">
+  <thead class="">
+    <tr>
+      <th>icon</th>
+      <th>class</th>
+      <th>#</th>
+    </tr>
+  </thead>
 
-{% set counter = counter + loop.index %}
+  <tbody>
 {% for icon in _list%}
-<p class="text-left mb-0 text-monts text-bold text-lg">  
-  {% set list_index = loop.index  %}
-  {{cat_index}}
-  |
-  {{list_index}}
-  {{icon}}
-  <i class="{{icon}} fa-pull-left text-2xl mr-5"></i>
-</p>
-<hr class="border-bottom">  
+    <tr >
 
-{% endfor %}
+      <td class="" scope="row">
+        <i class="{{icon}} text-2xl"></i>
+      </td>
 
-{% endfor %}
+      <td class="text-monts text-md">
+        {{icon}}
+      </td>
+
+      <td class="text-xs text-italic text-light">
+        {{cat_index}} | {{ loop.index}}
+      </td>
+
+    </tr>
+    
+    {% endfor %}
+    
+    {% endfor %}
+    
+      </tbody>
+    </table>
 </div>
+
 {% endblock %}
