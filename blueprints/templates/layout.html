@@ -75,7 +75,6 @@
   </head>
 
   <body>
-    b-list
     <style>
 
   body {
@@ -248,7 +247,7 @@
 
       </nav>
     </header>
-    <div class="container-fluid">
+    <div class="container-fluid" name="_main">
       <div class="row">
         <aside name="sticky-sidebar">
           <nav id="sidebarMenu"
@@ -512,9 +511,6 @@
             </div>
 
           </legend>
-
-
-
           {% with messages = get_flashed_messages(with_categories=true) %}
 
           {% if messages %}
@@ -574,8 +570,6 @@
 
       </div>
     </div>
-
-
 
     <aside>
       <!-- Optional JavaScript -->

@@ -99,7 +99,8 @@ def fa_icons(theme=''):
     return render_template('fa_icons.html', 
                            theme=theme,
                            info_notes=[
-                               'fa icons full listed only really-available.',
+                               'icons that actually-work!', 
+                               'click on icon to copy tag and make sure to include stylesheet', 
                            ],
                            access=[
                                'u',
@@ -107,6 +108,6 @@ def fa_icons(theme=''):
                                'a',
                                'p',
                            ],
-                           legend='fa-icons',
+                           legend='font awesome',
                            title='fa-icons',
                            )

@@ -1,5 +1,23 @@
 {% extends "layout.html" %}
 {% block content %}
+<script>
+  function copyToClipboard(element) {
+  var $temp = $("<input>");
+  $("body").append($temp);
+
+  // grab the text
+  $temp.val(
+    "<i class='"
+    + $(element).text().trim()
+    + "'></i>").select();
+
+
+  document.execCommand("copy");
+  $temp.remove();
+}
+
+</script>
+
 <span name="fa-all-icons">
   <div name="fa-regular">
   {% set all_regular = [
@@ -1301,19 +1319,27 @@
     </thead>
     
     <tbody>
-  
+  {% set cat_loop = loop %}
     {% for icon in _list%}
       <tr>
-        <td class="text-center" scope="row">
-          <i class="{{icon}} text-2xl"></i>
+        <td class="text-center {{cat_loop.cycle( 'bg-primary', 'bg-secondary', 'bg-info',)}}" scope="row">
+          <span class="text-hide"  id="{{cat_index}}_{{ loop.index}}">
+            {{icon}}
+          </span>
+          <button onclick="copyToClipboard('#{{cat_index}}_{{ loop.index}}')" class="btn btn-primary bg-transparent border-0 btn-lg add-anime text-light rnd-lg text-xl my-0 py-0"  data-toggle="tooltip" title="{{icon}}" >
+
+            <i class="{{icon}} fa-fw" id="{{cat_index}}_{{ loop.index}}"></i>
+          </button>
         </td>
   
-        <td class="text-monts text-sm">
+        <td class="text-monts text-md">
           {{icon}}
-          <br>
-          <p class="text-right text-italic text-xs my-0">
-            {{cat_index}} | {{ loop.index}}
-          </p>
+            <p class="text-right text-italic text-xs my-0">
+              {{cat_index}} | {{ loop.index}}
+            </p>
+            
+          
+
         </td>
   
       </tr>
