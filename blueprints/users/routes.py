@@ -467,7 +467,6 @@ def inject_tooltip_titles():
 @users.route('/user/requests/<string:theme>/', methods=['GET','POST'])
 def user_requests(theme='minty'):
     pass
-    # theme = theme if theme else 'minty'
     if current_user.is_authenticated:
         pass
         current_us3r = current_user

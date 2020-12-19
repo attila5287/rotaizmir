@@ -32,7 +32,9 @@
             {% if field.id == 'csrf_token' %}
             <i class="text-hide">CSRF TOKEN</i>
             {% elif field.type == 'SubmitField' %}
-            {{field(class="text-comfo btn btn-block btn-primary border-0  mb-0 mr-2" )}}                    
+            
+             {{field(class="text-comfo btn btn-block btn-primary border-0 mb-0 mr-2" )}}
+
             {% elif field.type == 'SelectField' %}
             <div class="row no-gutters align-items-center mb-4">
     

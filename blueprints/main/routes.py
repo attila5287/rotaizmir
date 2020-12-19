@@ -94,7 +94,7 @@ def inject_random_theme():
 @main.route("/fa/icons/")
 @main.route("/fa/icons/<string:theme>")
 @main.route("/fa/icons/<string:theme>/")
-def fa_icons(theme='no_change'):
+def fa_icons(theme=''):
     pass
     return render_template('fa_icons.html', 
                            theme=theme,
