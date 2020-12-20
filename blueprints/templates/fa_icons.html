@@ -1,26 +1,9 @@
 {% extends "layout.html" %}
 {% block content %}
-<script>
-  function copyToClipboard(element) {
-  var $temp = $("<input>");
-  $("body").append($temp);
 
-  // grab the text
-  $temp.val(
-    "<i class='"
-    + $(element).text().trim()
-    + "'></i>").select();
-
-
-  document.execCommand("copy");
-  $temp.remove();
-}
-
-</script>
-
-<span name="fa-all-icons">
+<div name="fa-all-icons">
   <div name="fa-regular">
-  {% set all_regular = [
+    {% set all_regular = [
     "far fa-address-book", 
   "far fa-address-card", 
   "far fa-angry", 
@@ -922,7 +905,7 @@
       ] %}
   </div>
   <div name="fa-brands">
-  {% set all_brands = [
+    {% set all_brands = [
     "fab fa-500px", 
   "fab fa-accessible-icon", 
   "fab fa-accusoft", 
@@ -1295,62 +1278,77 @@
   "fab fa-youtube-square", 
   ] %}
   </div>
-</span>
+</div>
 
-<div name="table" class="mini">
-  
+<script>
+  function copyToClipboard( element ) {
+    var $temp = $( "<input>" );
+    $( "body" ).append( $temp );
+
+    // grab the text
+    $temp.val(
+      "<i class='" +
+      $( element ).text().trim() +
+      "'></i>" ).select();
+
+
+    document.execCommand( "copy" );
+    $temp.remove();
+  }
+</script>
+
+<div id="accordianId" role="tablist" aria-multiselectable="true" class="mini">
   {% set list_of_lists = [all_regular, all_solid, all_brands] %}
-    
-  {% for _list in list_of_lists %}
-  
-   {% set cat_index = loop.cycle(
-    'regular',
-    'solid',
-    'brands',
-  ) %}
-    
-  <table class="table table-bordered table-hover table-sm">
-    
-    <thead class="{{loop.cycle( 'bg-primary', 'bg-secondary', 'bg-info',)}}">
-      <tr>
-        <th class="text-center" >icon</th>
-        <th class="text-center" >class</th>
-      </tr>
-    </thead>
-    
-    <tbody>
-  {% set cat_loop = loop %}
-    {% for icon in _list%}
-      <tr>
-        <td class="text-center {{cat_loop.cycle( 'bg-primary', 'bg-secondary', 'bg-info',)}}" scope="row">
-          <span class="text-hide"  id="{{cat_index}}_{{ loop.index}}">
-            {{icon}}
-          </span>
-          <button onclick="copyToClipboard('#{{cat_index}}_{{ loop.index}}')" class="btn btn-primary bg-transparent border-0 btn-lg add-anime text-light rnd-lg text-xl my-0 py-0"  data-toggle="tooltip" title="{{icon}}" >
 
+  {% for _list in list_of_lists %}
+
+  {% set cat_index = loop.cycle( 'regular', 'solid', 'brands', ) %}
+  {% set loop_outer_style = loop.cycle( 'info', 'success', 'danger', )  %}
+  <div class="card bg-transparent border-0">
+    <div
+      class="card-header text-bold text-light text-shdlite "
+      role="tab" id="section{{cat_index}}HeaderId">
+      <h5 class="mb-0">
+        <a class="btn btn-outline-{{loop_outer_style}}  btn-block rnd-xl" data-toggle="collapse"
+          data-parent="#accordianId"
+          aria-controls="section{{cat_index}}ContentId"
+          href="#section{{cat_index}}ContentId" aria-expanded="true">
+          <i class='fas fa-chevron-down mr-4'></i>
+          Section: {{cat_index}}
+        </a>
+      </h5>
+    </div>
+    <div id="section{{cat_index}}ContentId" class="collapse in" role="tabpanel"
+      aria-labelledby="section{{cat_index}}HeaderId">
+      <div class="card-body form-group row no-gutters">
+        <p class="text-center"> </p>
+        {% for icon in _list %}
+        <span class="text-hide" id="{{cat_index}}_{{ loop.index}}">
+          {{icon}}
+        </span>
+
+        <div class="form-group col-3 text-center">
+          <p class="text-italic text-sm mb-0"> {{cat_index}} {{loop.index}}
+          </p>
+          <button onclick="copyToClipboard('#{{cat_index}}_{{loop.index}}')"
+            class="btn btn-{{loop_outer_style}} btn-lg add-anime rnd-md text-xl my-0 py-1"
+            data-toggle="tooltip" title="{{icon}}">
             <i class="{{icon}} fa-fw" id="{{cat_index}}_{{ loop.index}}"></i>
           </button>
-        </td>
-  
-        <td class="text-monts text-md">
-          {{icon}}
-            <p class="text-right text-italic text-xs my-0">
-              {{cat_index}} | {{ loop.index}}
-            </p>
-            
-          
+          <p class="text-italic mb-0"> {{icon[7:]}} </p>
 
-        </td>
-  
-      </tr>
-      
-      {% endfor %}
-    </tbody>
-      
-    
-  </table>
-  
+        </div>
+
+
+        {% endfor %}
+      </div>
+
+    </div>
+    <hr>
+  </div>
+
   {% endfor %}
 </div>
+
 
 {% endblock %}

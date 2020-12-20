@@ -100,7 +100,7 @@ def fa_icons(theme=''):
                            theme=theme,
                            info_notes=[
                                'icons that actually-work!', 
-                               'click on icon to copy tag and make sure to include stylesheet', 
+                               'click on icon to copy tag or hover to see cls', 
                            ],
                            access=[
                                'u',
