@@ -1299,17 +1299,22 @@
 
 <div id="accordianId" role="tablist" aria-multiselectable="true" class="mini">
   {% set list_of_lists = [all_regular, all_solid, all_brands] %}
-
   {% for _list in list_of_lists %}
-
   {% set cat_index = loop.cycle( 'regular', 'solid', 'brand', ) %}
+     
+  <p class="ml-4 text-muted text-sm text-italic mb-0">
+    <i class="fas fa-images text-md mr-2"></i>
+    click below header to display gallery
+  </p>
+
   {% set loop_outer_style = loop.cycle( 'info', 'success', 'danger', )  %}
-  <div class="card bg-transparent border-0">
+  
+  <div class="card bg-transparent border-0 rnd-2xl">
     <div
-      class="card-header text-bold text-light text-shdlite "
+      class="card-header text-bold text-light text-shdlite rnd-xl bg-white"
       role="tab" id="section{{cat_index}}HeaderId">
-      <h5 class="mb-0">
-        <a class="btn btn-outline-{{loop_outer_style}}  btn-block rnd-xl" data-toggle="collapse"
+      <h5 class="mb-0 rnd-lg">
+        <a class="btn btn-outline-{{loop_outer_style}} btn-block rnd-xl" data-toggle="collapse"
           data-parent="#accordianId"
           aria-controls="section{{cat_index}}ContentId"
           href="#section{{cat_index}}ContentId" aria-expanded="true">
@@ -1323,7 +1328,9 @@
       <div class="card-body form-group row">
         <p class="text-center text-italic text-sm"> 
           <i class="fas fa-info-circle mr-1 text-lg text-{{loop_outer_style}}"></i>
-          click or tap to copy i tag of selected font awesome icon or hover for class name 
+          click or tap to copy i tag of selected font awesome 
+          <i class='fab fa-font-awesome text-{{loop_outer_style}} text-lg mx-0 opac-70'></i>
+          icon or hover mouse for class name 
         </p>
         {% for icon in _list %}
         <span class="text-hide" id="{{cat_index}}_{{ loop.index}}">
@@ -1332,7 +1339,6 @@
 
         <div class="form-group col-3">
           <p class="text-center text-italic text-sm mb-0 text-{{loop_outer_style}}"> 
-            <i class="fas fa-caret-down text-md text-{{loop_outer_style}}"></i>
             {{cat_index}} {{loop.index}}
           </p>
           <button onclick="copyToClipboard('#{{cat_index}}_{{loop.index}}')"
@@ -1340,7 +1346,7 @@
             data-toggle="tooltip" title="{{icon}}">
             <i class="{{icon}}" id="{{cat_index}}_{{ loop.index}}"></i>
           </button>
-          <p class="text-center text-italic mb-0"> {{icon[7:]}} </p>
+          <p class="text-md text-center text-italic mb-0"> {{icon[7:]}} </p>
         </div>
 
 
@@ -1353,6 +1359,5 @@
 
   {% endfor %}
 </div>
-
 
 {% endblock %}
