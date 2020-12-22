@@ -1,11 +1,10 @@
 {% extends "layout.html" %}
 {% block content %}
-<div class=" mini card card-asym bg-transparent pb-5 mb-5">
+<div class=" mini card bg-transparent pb-5 mb-5" name="welcome-headers">
   <div class="row">
     <div class="col-3">
-      <ul class="nav flex-column nav-tabs text-bold text-italic text-sm" id="myTab"
-        role="tablist" name="welcome-headers">
-        <li class="nav-item">
+      <ul class="nav flex-column nav-tabs text-bold text-italic text-sm py-2" id="myTab" role="tablist">
+        <li class="nav-item mb-2">
           
           <a class="nav-link rnd-xl d-flex flex-row align-items-center justify-content-between my-2 pt-1 pb-2 active"
             id="guest-tab" data-toggle="tab" href="#guest"
@@ -16,7 +15,7 @@
           </a>
 
         </li>
-        <li class="nav-item">
+        <li class="nav-item mb-2">
 
           <a class="nav-link rnd-xl d-flex flex-row align-items-center justify-content-between my-2 pt-1 pb-2"
             id="user-tab" data-toggle="tab" href="#user" role="tab"
@@ -27,7 +26,7 @@
           </a>
 
         </li>
-        <li class="nav-item">
+        <li class="nav-item mb-2">
 
           <a class="nav-link rnd-xl d-flex flex-row align-items-center justify-content-between my-2 pt-1 pb-2"
             id="member-tab" data-toggle="tab" href="#member"
@@ -51,7 +50,7 @@
       </ul>
     </div>
     <div class="col-9">
-      <div class="tab-content" name="welcome-txt-instructions">
+      <div class="tab-content" name="welcome-txt-instructions"> 
         <div class="tab-pane active" id="guest" role="tabpanel"
           aria-labelledby="guest-tab">
           <div class="progress float-bottom my-3">
@@ -90,8 +89,8 @@
           <i class="fas fa-chevron-right text-primary" aria-hidden="true"></i>
 
 
-          Still trying to figure out how it works? You're at the
-          right place
+          Still trying to figure out how it works? 
+          You're at the right place
 
           <a class="" href="/about">
             <i class="fas fa-map-marked-alt" aria-hidden="true">
@@ -175,12 +174,6 @@
         </div>
         <div class="tab-pane" id="admin" role="tabpanel"
           aria-labelledby="admin-tab">
-          <div class="progress float-bottom my-3">
-            <div class="progress-bar progress-bar-striped progress-bar-animated bg-primary"
-              role="progressbar" aria-valuenow="95"
-              aria-valuemin="0" aria-valuemax="100"
-              style="width: 95%"></div>
-          </div>
 
           <i class="fas fa-chevron-right text-primary" aria-hidden="true"></i>
           Lastly, we have admins who may create group events,

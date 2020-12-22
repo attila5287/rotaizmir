@@ -204,11 +204,11 @@
                 {% else %}
 
                 {% set accessible = ' disabled text-capitalize mt-1 ml-0' %}
+                {% set disabled = 'disabled' %}
                 {% endif %}
 
-
                 <a class="list-group-item list-group-item-light list-group-item-action bg-transparent text-light side-title border-0 m-0 mt-1 p-0 {{accessible}}"
-                  href="{{href}}">
+                  href="{{href}}" {{disabled}}>
 
                   <div
                     class="d-flex flex-row justify-content-between rnd-xl {{highlighted}}">
@@ -254,15 +254,11 @@
           style="margin-top: 2.25rem;">
           <legend class="d-flex flex-row justify-content-between mini">
 
-            <span name="with-info-notes">
+            <span name="with-info-notes"> 
               <p class="legend text-nowrap text-left mb-0">
-
                 <span class="fa-stack fa-2x text-center mr-2">
-
                   <i class="fas fa-square fa-stack-2x fa-fw text-secondary"></i>
-
                   <i class="fas fa-user-md fa-stack-1x fa-fw text-light fa-inverse"></i>
-                  
                 </span>
 
 

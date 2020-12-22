@@ -1302,7 +1302,7 @@
   {% for _list in list_of_lists %}
   {% set cat_index = loop.cycle( 'regular', 'solid', 'brand', ) %}
      
-  <p class="ml-4 text-muted text-sm text-italic mb-0">
+  <p class="ml-4 text-sm text-italic mb-0">
     <i class="fas fa-images text-md mr-2"></i>
     click below header to display gallery
   </p>
@@ -1310,9 +1310,11 @@
   {% set loop_outer_style = loop.cycle( 'info', 'success', 'danger', )  %}
   
   <div class="card bg-transparent border-0 rnd-2xl">
+    
     <div
-      class="card-header text-bold text-light text-shdlite rnd-xl bg-white"
+      class="card-header bg-transparent  text-bold text-light text-shdlite rnd-xl bg-white"
       role="tab" id="section{{cat_index}}HeaderId">
+      
       <h5 class="mb-0 rnd-lg">
         <a class="btn btn-outline-{{loop_outer_style}} btn-block rnd-xl" data-toggle="collapse"
           data-parent="#accordianId"
@@ -1322,7 +1324,9 @@
           {{cat_index}}
         </a>
       </h5>
+
     </div>
+
     <div id="section{{cat_index}}ContentId" class="collapse in" role="tabpanel"
       aria-labelledby="section{{cat_index}}HeaderId">
       <div class="card-body form-group row">
