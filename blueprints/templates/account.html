@@ -6,8 +6,8 @@
   
     {% set user_statii = [
       ( 'is_member', 'Member', '/user/requests',  ),
-      ( 'is_admin', 'Admin', 'user/requests',  ),
-      ( 'is_prez', 'Prez', 'user/requests',  ),
+      ( 'is_admin', 'Admin', '/user/requests',  ),
+      ( 'is_prez', 'Prez', '/user/requests',  ),
     ] %}
     
     {% for status, header, href in user_statii %}
@@ -19,22 +19,23 @@
         <h1 class="mt-2 card-title fa{{icons(status)}} text-primary"></h1>
       </div>
     </div>
+    
     {% else %}
       
     <div class="card border-0 text-center w-100 bg-transparent">
-        <h5 class="card-header bg-transparent pb-0 mb-0 align-baseline border-0 text-secondary"> {{header}} </h5>
-        <div class="card-body bg-transparent m-0 p-0">
-          <h1 class="card-title fa{{icons(status)}} text-secondary"></h1>
-        </div>
-        
-          <span class="text-monts">
-            <a class="btn btn-outline-primary rnd-md btn-block
-             text-lg shadow border-0 py-0" href="{{href}}" >
-              request
-            </a>
-          </span>
+      <h5 class="card-header bg-transparent pb-0 mb-0 align-baseline border-0 text-secondary"> {{header}} </h5>
+      <div class="card-body bg-transparent m-0 p-0">
+        <h1 class="card-title fa{{icons(status)}} text-secondary"></h1>
+      </div>
+      <span class="text-monts">
+        <a class="btn btn-outline-primary rnd-md btn-block text-lg shadow border-0 py-0" href="{{href}}" >
+          request
+        </a>
+      </span>
     </div>
+
     {% endif %}
+
     {% endfor %}
   
   </div>

@@ -14,6 +14,50 @@ from blueprints.users.utils import save_picture, send_reset_email
 from blueprints.users.forms import MemberRequestForm, AdminRequestForm, PrezRequestForm
 
 users = Blueprint('users', __name__)
+
+@users.route("/account", methods=['GET', 'POST'])
+@users.route("/account/", methods=['GET', 'POST'])
+@users.route("/account/<string:theme>", methods=['GET', 'POST'])
+@users.route("/account/<string:theme>/", methods=['GET', 'POST'])
+def account(theme=''):
+    pass
+    form = UpdateAccountForm()
+    formdata_posted = (request.method == 'POST')
+    current_us3r = current_user if current_user.is_authenticated else User.query.get_or_404(1)
+    
+    if formdata_posted and form.validate_on_submit():
+        pass
+        current_us3r.username = form.username.data
+        current_us3r.email = form.email.data
+        db.session.commit()
+        flash('Username and/or Email updated!', 'success')
+        return redirect(url_for('users.account'))
+
+    elif request.method == 'GET':
+        pass
+        form.username.data = current_us3r.username
+        form.email.data = current_us3r.email
+    
+    return render_template('account.html',
+                           theme=theme,
+                           current_us3r=current_us3r,
+                           form=form,
+                           info_notes=[
+                               'Choose a random suggested profile pic, update email or upload a profile pic',
+                           ],
+                           access=[
+                               'u',
+                               'm',
+                               'a',
+                               'p',
+                           ],
+                           js=[
+                               ('users', 'account', ),
+                           ],
+                           legend='Edit User Account',
+                           title='Account',
+                           )
+
 @users.context_processor
 def inject_random_request():
   pass
@@ -361,51 +405,6 @@ def register(theme='minty'):
                             
 
                             )
-
-@users.route("/account", methods=['GET', 'POST'])
-@users.route("/account/", methods=['GET', 'POST'])
-@users.route("/account/<string:theme>", methods=['GET', 'POST'])
-@users.route("/account/<string:theme>/", methods=['GET', 'POST'])
-def account(theme=''):
-    pass
-    form = UpdateAccountForm()
-    formdata_posted = (request.method == 'POST')
-    current_us3r = current_user if current_user.is_authenticated else User.query.get_or_404(1)
-    
-    if formdata_posted and form.validate_on_submit():
-        pass
-        current_us3r.username = form.username.data
-        current_us3r.email = form.email.data
-        db.session.commit()
-        flash('Username and/or Email updated!', 'success')
-        return redirect(url_for('users.account'))
-
-    elif request.method == 'GET':
-        pass
-        form.username.data = current_us3r.username
-        form.email.data = current_us3r.email
-    
-    first_random = random.randint(0,69)
-    return render_template('account.html',
-                           theme = theme,
-                           first_random = first_random,
-                           current_us3r=current_us3r,
-                           form=form,
-                           info_notes=[
-                               'Choose a random suggested profile pic, update email or upload a profile pic',
-                           ],
-                           access=[
-                               'u',
-                               'm',
-                               'a',
-                               'p',
-                           ],
-                           js=[
-                               ('users', 'account', ),
-                           ],
-                           legend='Edit User Account',
-                           title='Account',
-                           )
 
 @users.route('/user/reopen/request/<int:id>', methods=['GET','POST'])
 def reopen_request(id):
