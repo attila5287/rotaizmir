@@ -23,7 +23,7 @@ def account(theme=''):
     pass
     form = UpdateAccountForm()
     formdata_posted = (request.method == 'POST')
-    current_us3r = current_user if current_user.is_authenticated else User.query.get_or_404(1)
+    current_us3r = current_user if current_user.is_authenticated else User.query.first()
     
     if formdata_posted and form.validate_on_submit():
         pass
@@ -41,7 +41,7 @@ def account(theme=''):
         form.username.data = current_us3r.username
         form.email.data = current_us3r.email
     
-    image_file = url_for('static', filename='profile_pics/' + current_user.image_file)
+    image_file = url_for('static', filename='profile_pics/' + current_us3r.image_file)
         
     return render_template('account.html',
                            image_file=image_file,

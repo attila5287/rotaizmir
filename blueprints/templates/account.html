@@ -39,18 +39,20 @@
     {% endfor %}
   
   </div>
-  
-<div class="mini text-center">
-
-  <img class="rnd-lg w-50"  src="{{image_file}}" alt="user-imagefile-if-member">
-
-  <p class="text-center text-monts mb-1 mx-4 pt-2">
-    {{current_us3r.username}} 
-    &middot;  
-    <span class="text-italic text-nonbold text-balo">{{current_us3r.email}}</span>
-  </p>
-
-</div>
+  <div class="mini card-deck d-flex flex-row justify-content-around">
+    <div class="card rnd-xl mx-1 shadow bg-transparent pb-3">
+        <h6 class="card-header text-italic rnd-2xl  bg-transparent mb-2">
+          <i class="far fa-image text-xl mr-1"></i>
+        </h6>
+        
+        <img class="card-img"  src="{{image_file}}" alt="user-imagefile-if-member">
+        
+        <p class="card-title text-center text-italic text-monts mb-1 mx-4 pt-2">
+          
+          user uploaded image
+        </p>
+    </div>
+  </div>
 
   <div name="image-generator" class="mini card-deck d-flex flex-row justify-content-around">
     <div class="card rnd-xl mx-1 shadow bg-transparent w-50">
