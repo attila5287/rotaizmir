@@ -1297,7 +1297,7 @@
   }
 </script>
 
-<div id="accordianId" role="tablist" aria-multiselectable="true" class="mini">
+<div id="fa_icons_accordion" role="tablist" aria-multiselectable="true" class="mini">
   {% set list_of_lists = [all_regular, all_solid, all_brands] %}
   {% for _list in list_of_lists %}
   {% set cat_index = loop.cycle( 'regular', 'solid', 'brand', ) %}
@@ -1317,7 +1317,7 @@
       
       <h5 class="mb-0 rnd-lg">
         <a class="btn btn-outline-{{loop_outer_style}} btn-block rnd-xl" data-toggle="collapse"
-          data-parent="#accordianId"
+          data-parent="#fa_icons_accordion"
           aria-controls="section{{cat_index}}ContentId"
           href="#section{{cat_index}}ContentId" aria-expanded="true">
           <i class='fas fa-chevron-down mr-4'></i>

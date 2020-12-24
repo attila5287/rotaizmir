@@ -1,8 +1,13 @@
 {% extends "layout.html" %}
 {% block content %}
-
-<div name="all-account">
-  <div name="status-summary" class="mini card-group d-flex flex-row justify-content-between">
+<p class="text-center">
+  <button class="btn btn-outline-primary btn-lg btn-block rnd-3xl py-1" type="button" data-toggle="collapse" data-target=".multi-collapse" aria-expanded="false" aria-controls="authsummary icon_authsummary">
+    show/hide requests summary
+    <i class="far fa-eye collapse multi-collapse text-lg" id="icon_authsummary"></i>
+  </button>
+</p>
+<div id="authsummary" class="collapse multi-collapse">
+  <div class="mini card-group d-flex flex-row justify-content-between">
   
     {% set user_statii = [
       ( 'is_member', 'Member', '/user/requests',  ),
@@ -39,6 +44,9 @@
     {% endfor %}
   
   </div>
+</div> 
+
+<div name="all-account">
   <div class="mini card-deck d-flex flex-row justify-content-around">
     <div class="card rnd-xl mx-1 shadow bg-transparent pb-3">
         <h6 class="card-header text-italic rnd-2xl  bg-transparent mb-2">
@@ -84,18 +92,19 @@
     <p class="text-italic text-center mb-2">
       <small class="text-muted">
         <i class="fas fa-info-circle text-lg"></i>
-    
         Image on the right will be chosen randomly from gallery of available images.
-    
       </small>
     </p>
     <div class="d-flex flex-row">
       <div id="img_url_index"
       class="bg-black text-center text-digi text-3xl text-primary text-nowrap rnd-lg px-3 shadow w-25">
-        <i class="fas fa-hashtag text-primary text-lg" aria-hidden="true"></i>
-        <span class="index">
+        
+      <i class="fas fa-hashtag text-primary text-lg" aria-hidden="true"></i>
+        
+        <span an class="index">
           0
         </span>
+
       </div>
       <a class="set_profile_pic btn btn-primary text-center text-lg rnd-xl shadow w-75" type="button" id="set-as-profile-pic" data="/set/profile/picture/{{current_us3r.id}}/" data-title="/set/profile/picture/{{current_us3r.id}}/">
         <i class="text-lg fas fa-image animated infinite bounceIn delay-1s" aria-hidden="true"></i>
@@ -256,6 +265,7 @@
   {% endfor %}
 
   </div>
+
 </div>
 
 {% endblock %}
