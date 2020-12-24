@@ -40,6 +40,18 @@
   
   </div>
   
+<div class="mini text-center">
+
+  <img class="rnd-lg w-50"  src="{{image_file}}" alt="user-imagefile-if-member">
+
+  <p class="text-center text-monts mb-1 mx-4 pt-2">
+    {{current_us3r.username}} 
+    &middot;  
+    <span class="text-italic text-nonbold text-balo">{{current_us3r.email}}</span>
+  </p>
+
+</div>
+
   <div name="image-generator" class="mini card-deck d-flex flex-row justify-content-around">
     <div class="card rnd-xl mx-1 shadow bg-transparent w-50">
       <h6 class="card-header text-italic rnd-lg bg-transparent">
@@ -91,7 +103,7 @@
   </div>
   
   <div name="update-form" class="mini rnd-3xl p-0 card pt-4 pb-5">
-    <form method="POST" action="">
+    <form method="POST" action="" enctype="multipart/form-data">
         {{ form.hidden_tag() }}
   
         {% for field in form %}

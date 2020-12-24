@@ -29,6 +29,9 @@ def account(theme=''):
         pass
         current_us3r.username = form.username.data
         current_us3r.email = form.email.data
+        if form.picture.data:
+            picture_file = save_picture(form.picture.data)
+            current_user.image_file = picture_file        
         db.session.commit()
         flash('Username and/or Email updated!', 'success')
         return redirect(url_for('users.account'))
@@ -38,7 +41,10 @@ def account(theme=''):
         form.username.data = current_us3r.username
         form.email.data = current_us3r.email
     
+    image_file = url_for('static', filename='profile_pics/' + current_user.image_file)
+        
     return render_template('account.html',
+                           image_file=image_file,
                            theme=theme,
                            current_us3r=current_us3r,
                            form=form,
