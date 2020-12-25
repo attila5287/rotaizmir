@@ -36,7 +36,10 @@ class LoginForm(FlaskForm):
     remember = BooleanField('Remember Me')
     submit = SubmitField('Login')
 
-
+class UpdatePictureOnly(FlaskForm):
+    picture_only = FileField('Upload Profile Pic', validators=[FileAllowed(['jpg', 'png'])])
+    submit = SubmitField('upload picture')
+    
 class UpdateAccountForm(FlaskForm):
     username = StringField('Username',
                            validators=[DataRequired(), Length(min=2, max=64)])

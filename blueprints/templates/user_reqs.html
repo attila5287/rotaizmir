@@ -1,9 +1,5 @@
 {% extends "layout.html" %}
 {% block content %}
-<a class="mini btn btn-outline-success btn-block p-1" href="/admin/all/requests/">
-  <i class="fas fa-user-md"></i>
-  <small>admin view: all users</small>
-</a>
 <div class="mini" name="MAIN-requests-notes">
   {% for user_id, user_requests in disp_reqs.items() %}
   {% for category, sorted in user_requests.items() %}
@@ -170,8 +166,6 @@
   {% endfor %}
 </div>
 
-<hr class="mini my-1">
-
 <div class="card-group d-flex flex-row justify-content-between form-mini mt-0" name="user-request-forms">
 
   {% set user_stats = [
@@ -216,7 +210,7 @@
         
         <form method="POST" action="">
           <div class="form-group py-0 mb-0">
-            <select class="custom-select text-danger text-center  text-comfo border-0 shadow mb-2" id="category" name="category" value="{{category}}" >
+            <select class="custom-select text-secondary text-center  text-comfo border-0 shadow mb-2" id="category" name="category" value="{{category}}" >
               <option value="{{category}}" selected>{{category}}</option>
             </select>
             

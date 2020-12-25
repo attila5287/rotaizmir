@@ -9,7 +9,7 @@ from flask_login import login_user, current_user, logout_user, login_required
 from blueprints import db, bcrypt
 from blueprints.models import User, Post, Nickname, Member, Color, Note
 from blueprints.users.forms import (
-    RegistrationForm, LoginForm, UpdateAccountForm, RequestResetForm, ResetPasswordForm) 
+    RegistrationForm, LoginForm, UpdatePictureOnly,UpdateAccountForm, RequestResetForm, ResetPasswordForm) 
 from blueprints.users.utils import save_picture, send_reset_email
 from blueprints.users.forms import MemberRequestForm, AdminRequestForm, PrezRequestForm
 
@@ -21,6 +21,7 @@ users = Blueprint('users', __name__)
 @users.route("/account/<string:theme>/", methods=['GET', 'POST'])
 def account(theme=''):
     pass
+    form_piconly = UpdatePictureOnly()
     form = UpdateAccountForm()
     formdata_posted = (request.method == 'POST')
     current_us3r = current_user if current_user.is_authenticated else User.query.first()
@@ -42,12 +43,14 @@ def account(theme=''):
         form.email.data = current_us3r.email
     
     image_file = url_for('static', filename='profile_pics/' + current_us3r.image_file)
-        
+    member_linked = Member.query.filter_by(user_id=current_us3r.id).first()
     return render_template('account.html',
+                           member_linked=member_linked,
                            image_file=image_file,
                            theme=theme,
                            current_us3r=current_us3r,
                            form=form,
+                           form_piconly=form_piconly,
                            info_notes=[
                                'Choose a random suggested profile pic, update email or upload a profile pic',
                            ],
